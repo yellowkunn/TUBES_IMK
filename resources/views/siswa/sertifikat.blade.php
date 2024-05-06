@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulir Pendaftaran</title>
+    <title>Sertifikat Saya</title>
 
     <!-- font awsome -->
     <script src="https://kit.fontawesome.com/8c8655eff1.js" crossorigin="anonymous"></script>
 
     @vite('resources/css/app.css')
 </head>
-<body class="font-Inter">
-    <div class="max-w-[1440px]">
+<body class="font-Inter text-regularContent">
+    <div>
     @include('components.siswa.navbar')
 
-    <div class="grid grid-cols-6">
-        <div class="hidden md:flex">
+    <div class="flex max-w-[1440px]">
+        <div class="w-1/6" id="sidebar">
             @include('components.siswa.sidebar')
         </div>
         
         <!-- content -->
-        <div class="col-span-5">
-            <div id="content" class="px-7 py-28">
+        <div class="w-full">
+            <div id="content" class="p-8">
 
             <!-- page hierarchy -->
             <div class="flex items-center gap-2 text-smallContent">
@@ -32,7 +32,7 @@
 
             <p class="text-title font-semibold my-7">Sertifikat Saya</p>
                 
-                <div class="bg-white drop-shadow-regularShadow py-3 my-8 rounded-lg border text-regularContent">
+                <div class="bg-white drop-shadow-regularShadow py-3 my-8 rounded-lg border">
                     <!-- tabel rapor -->
                     <table class="min-w-full text-left text-sm font-light text-surface dark:text-white">
                         <thead class="border-b-2 border-neutral-200 font-semibold bg-greyBackground" style="color: #717171">

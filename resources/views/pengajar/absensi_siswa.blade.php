@@ -8,20 +8,23 @@
     <!-- font awsome -->
     <script src="https://kit.fontawesome.com/8c8655eff1.js" crossorigin="anonymous"></script>
 
+     <!-- google font for icon -->
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
     @vite('resources/css/app.css')
 </head>
-<body class="font-Inter">
-    <div class="max-w-[1440px]">
+<body class="font-Inter text-regularContent">
+    <div>
     @include('components.pengajar.navbar')
 
-    <div class="grid grid-cols-6">
-        <div class="hidden md:flex">
+    <div class="flex max-w-[1440px]">
+        <div class="w-1/6" id="sidebar">
             @include('components.pengajar.sidebar')
         </div>
         
         <!-- content -->
-        <div class="col-span-5">
-            <div id="content" class="px-7 py-28">
+        <div class="w-full">
+            <div id="content" class="p-8">
                 <!-- page hierarchy -->
                 <div class="flex items-center gap-2 text-smallContent">
                     <a href="">Dashboard</a>
@@ -62,7 +65,7 @@
                             <td class="px-12 py-4 font-semibold">1.</td>
                             <td class="px-12 py-4 flex items-center gap-4">
                                 <img src="https://t4.ftcdn.net/jpg/03/83/25/83/360_F_383258331_D8imaEMl8Q3lf7EKU2Pi78Cn0R7KkW9o.jpg" class="w-10 h-10 object-cover rounded-full" alt="">
-                                <p class="text-regularContent">Dadang</p>
+                                <p>Dadang</p>
                             </td>
                             <td class="text-center">
                                 <input type="checkbox" class="bg-white/10 border-2 border-greyIcon rounded drop-shadow-regularShadow" name="" id="">
@@ -72,7 +75,7 @@
                             <td class="px-12 py-4 font-semibold">2.</td>
                             <td class="px-12 py-4 flex items-center gap-4">
                                 <img src="https://t4.ftcdn.net/jpg/03/83/25/83/360_F_383258331_D8imaEMl8Q3lf7EKU2Pi78Cn0R7KkW9o.jpg" class="w-10 h-10 object-cover rounded-full" alt="">
-                                <p class="text-regularContent">Dadang</p>
+                                <p>Dadang</p>
                             </td>
                             <td class="text-center">
                                 <input type="checkbox" class="bg-white/10 border-2 border-greyIcon rounded drop-shadow-regularShadow" name="" id="">
@@ -82,7 +85,7 @@
                             <td class="px-12 py-4 font-semibold">3.</td>
                             <td class="px-12 py-4 flex items-center gap-4">
                                 <img src="https://t4.ftcdn.net/jpg/03/83/25/83/360_F_383258331_D8imaEMl8Q3lf7EKU2Pi78Cn0R7KkW9o.jpg" class="w-10 h-10 object-cover rounded-full" alt="">
-                                <p class="text-regularContent">Dadang</p>
+                                <p>Dadang</p>
                             </td>
                             <td class="text-center">
                                 <input type="checkbox" class="bg-white/10 border-2 border-greyIcon rounded drop-shadow-regularShadow" name="" id="">
@@ -92,7 +95,7 @@
                             <td class="px-12 py-4 font-semibold">4.</td>
                             <td class="px-12 py-4 flex items-center gap-4">
                                 <img src="https://t4.ftcdn.net/jpg/03/83/25/83/360_F_383258331_D8imaEMl8Q3lf7EKU2Pi78Cn0R7KkW9o.jpg" class="w-10 h-10 object-cover rounded-full" alt="">
-                                <p class="text-regularContent">Dadang</p>
+                                <p>Dadang</p>
                             </td>
                             <td class="text-center">
                                 <input type="checkbox" class="bg-white/10 border-2 border-greyIcon rounded drop-shadow-regularShadow" name="" id="">

@@ -10,18 +10,18 @@
 
     @vite('resources/css/app.css')
 </head>
-<body class="font-Inter">
-    <div class="max-w-[1440px]">
+<body class="font-Inter text-regularContent">
+    <div>
     @include('components.siswa.navbar')
 
-    <div class="grid grid-cols-6">
-        <div class="hidden md:flex">
+    <div class="flex max-w-[1440px]">
+        <div class="w-1/6" id="sidebar">
             @include('components.siswa.sidebar')
         </div>
         
         <!-- content -->
-        <div class="col-span-5">
-            <div id="content" class="px-7 py-28">
+        <div class="w-full">
+            <div id="content" class="p-8">
             <!-- page hierarchy -->
             <div class="flex items-center gap-2 text-smallContent">
                 <a href="">Dashboard</a>
@@ -35,12 +35,12 @@
 
             <p class="text-title font-semibold my-7">Rapor Bulanan</p>
                 
-            <div class="bg-white drop-shadow-regularShadow py-3 my-8 rounded-lg border text-regularContent">
+            <div class="bg-white drop-shadow-regularShadow py-3 my-8 rounded-lg border">
                 <!-- tabel rapor -->
                 <table class="min-w-full text-left text-sm font-light text-surface dark:text-white">
                     <div class="px-12 flex justify-between border-b border-neutral-200 font-semibold" style="color: #717171">
                         <p class="py-4 text-subtitle">Nama Mapel</p>
-                        <p class="py-4 text-regularContent">Nama Pengajar, S.Pd</p>
+                        <p class="py-4">Nama Pengajar, S.Pd</p>
                     </div>
                     
                     <thead class="border-b border-neutral-200 font-semibold bg-greyBackground" style="color: #717171">

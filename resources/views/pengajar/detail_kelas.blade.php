@@ -8,20 +8,23 @@
     <!-- font awsome -->
     <script src="https://kit.fontawesome.com/8c8655eff1.js" crossorigin="anonymous"></script>
 
+     <!-- google font for icon -->
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
     @vite('resources/css/app.css')
 </head>
-<body class="font-Inter">
-    <div class="max-w-[1440px]">
+<body class="font-Inter text-regularContent">
+    <div>
     @include('components.pengajar.navbar')
 
-    <div class="grid grid-cols-6">
-        <div class="hidden md:flex">
+    <div class="flex max-w-[1440px]">
+        <div class="w-1/6" id="sidebar">
             @include('components.pengajar.sidebar')
         </div>
         
         <!-- content -->
-        <div class="col-span-5">
-            <div id="content" class="px-7 py-28">
+        <div class="w-full">
+            <div id="content" class="p-8">
                 <!-- page hierarchy -->
                 <div class="flex items-center gap-2 text-smallContent">
                     <a href="">Dashboard</a>
@@ -33,7 +36,7 @@
 
                 <div class="flex justify-between mt-7">
                     <p class="text-title font-semibold">Matematika SMP</p>
-                    <button onclick="showPopupListSiswa()" class="bg-white text-greyIcon font-semibold text-regularContent 
+                    <button onclick="showPopupListSiswa()" class="bg-white text-greyIcon font-semibold 
                                     flex items-center gap-2 w-fit p-3 px-4 rounded-full 
                                     border border-greyIcon"
                                     style="box-shadow: 0px 1px 10px rgba(0,0,0,0.1)">
@@ -54,18 +57,18 @@
 
                 <!-- button -->
                 <div class="flex gap-4">
-                    <div class="bg-baseDarkerGreen text-white text-regularContent 
+                    <a href="" class="bg-baseDarkerGreen text-white 
                             flex items-center gap-2 w-fit p-3 px-6 rounded-full" style="box-shadow: 
                             0px 4px 5px 0 rgba(105,212,220,0.3);">
                         <i class="fa-solid fa-circle-plus fa-lg"></i>
                         <p>Tambah Pertemuan</p>
-                    </div>
-                    <div class="bg-baseDarkerGreen text-white text-regularContent 
+                    </a href="">
+                    <a href="" class="bg-baseDarkerGreen text-white 
                             flex items-center gap-2 w-fit p-3 px-6 rounded-full" style="box-shadow: 
                             0px 4px 5px 0 rgba(105,212,220,0.3);">
                         <i class="fa-solid fa-file-circle-plus fa-lg"></i>
                         <p>Absensi</p>
-                    </div>
+                    </a href="">
                 </div>
 
                 <div class="flex justify-between my-7">
@@ -80,7 +83,7 @@
                         
                         <div id="menu-0" class="hidden ps-5 pe-20 bg-white mt-2 py-2 rounded-md drop-shadow-regularShadow absolute" style="color: #949494;">
                             <a href="#" class="block py-1">Januari</a>
-                            <a href="#" class="block py-1">Febriari</a>
+                            <a href="#" class="block py-1">Februari</a>
                             <a href="#" class="block py-1">Maret</a>
                             <a href="#" class="block py-1">April</a>
                             <a href="#" class="block py-1">Mei</a>
@@ -101,8 +104,8 @@
                 <div class="bg-white p-5 px-8 rounded-lg shadow-meetCardShadow my-8">
                     <div class="flex justify-between">
                         <div class="flex flex-col">
-                            <p class="font-semibold text-regularContent">Pertemuan X</p>
-                            <p class="text-regularContent">Nama Materi</p>
+                            <p class="font-semibold">Pertemuan X</p>
+                            <p class=">Nama Materi</p>
                             <p class="text-greyIcon text-smallContent mt-3">30 April 2024</p>
                         </div>
                         <div class="flex my-auto gap-6">
@@ -125,7 +128,7 @@
                         <p class="font-semibold text-title">Daftar siswa</p>
                         <p>10 Siswa terdaftar dalam kelas ini</p></div>
                     <button onclick="showPopupListSiswa()">
-                    <i class="fa-solid fa-xmark fa-lg p-3.5 py-5 rounded ms-3" style="background-color: #EAEAEA; color: #363636"></i>
+                    <i class="fa-solid fa-xmark fa-lg p-3.5 py-5 rounded ms-3 text-greyIcon bg-[#EAEAEA]"></i>
                     </button>
                 </div>
                 <div class="bg-white p-7 pt-4 rounded-b-xl">
@@ -137,7 +140,7 @@
                                 <img src="https://t4.ftcdn.net/jpg/03/83/25/83/360_F_383258331_D8imaEMl8Q3lf7EKU2Pi78Cn0R7KkW9o.jpg" class="w-10 h-10 object-cover rounded-full" alt="">
                                 
                                 <div>
-                                    <p class="text-regularContent font-semibold">Marissa</p>
+                                    <p class= font-semibold">Marissa</p>
                                     <p class="text-smallContent text-greyIcon">marissa@gmail.com</p>
                                 </div>
                             </div>
@@ -146,7 +149,7 @@
                     </div>
 
                     <div class="bg-white text-center">
-                        <button onclick="showPopupListSiswa()" class="w-fit p-2 px-4 text-baseDarkerGreen font-semibold text-regularContent border-2 border-baseDarkerGreen rounded-full" style="box-shadow: 0px 0px 5px 1px rgba(105,212,220,0.3);">
+                        <button onclick="showPopupListSiswa()" class="w-fit p-2 px-4 text-baseDarkerGreen font-semibold border-2 border-baseDarkerGreen rounded-full" style="box-shadow: 0px 0px 5px 1px rgba(105,212,220,0.3);">
                         Tutup
                         </button>
                     </div>
@@ -196,7 +199,6 @@
             });
         }
 
-        // samakan dengan jumlah filter
         for (let i = 0; i < 1; i++) {
             initializeDropdown('filter-' + i, 'menu-' + i);
         }

@@ -11,17 +11,17 @@
     @vite('resources/css/app.css')
 </head>
 <body class="font-Inter">
-    <div class="max-w-[1440px]">
+    <div>
     @include('components.pengajar.navbar')
 
-    <div class="grid grid-cols-6">
-        <div class="hidden md:flex">
+    <div class="flex max-w-[1440px]">
+        <div class="w-1/6" id="sidebar">
             @include('components.pengajar.sidebar')
         </div>
         
         <!-- content -->
-        <div class="col-span-5">
-            <div id="content" class="px-7 py-28">
+        <div class="w-full">
+            <div id="content" class="p-8">
                 <!-- page hierarchy -->
                 <div class="flex items-center gap-2 text-smallContent">
                     <a href="">Dashboard</a>
@@ -29,70 +29,34 @@
                     <a href="">Jadwal</a>
                 </div>
 
-                <p class="text-title font-semibold mt-7">Jadwal</p>
+                <p class="text-title font-semibold my-7">Jadwal</p>
 
-                <!-- tabel rapor -->
-                <form action="" method="post">
-                @csrf
-                <table class="min-w-full text-left text-sm font-light text-surface dark:text-white">
-                    <thead class="border-b border-neutral-200 font-semibold bg-greyBackground" style="color: #717171">
-                        <th scope="col" class= "px-12 py-2">No.</th>
-                        <th scope="col" class= "w-full px-12 py-2">Nama</th>
-                        <th scope="col" class= "px-12 py-2">Kehadiran</th>
-                    </thead>
-                        
-                    <tbody class="bg-baseDarkerGreen/10">
-                        <tr>
-                            <td class="px-12 py-4 font-semibold">1.</td>
-                            <td class="px-12 py-4 flex items-center gap-4">
-                                <img src="https://t4.ftcdn.net/jpg/03/83/25/83/360_F_383258331_D8imaEMl8Q3lf7EKU2Pi78Cn0R7KkW9o.jpg" class="w-10 h-10 object-cover rounded-full" alt="">
-                                <p class="text-regularContent">Dadang</p>
-                            </td>
-                            <td class="text-center">
-                                <input type="checkbox" class="bg-white/10 border-2 border-greyIcon rounded drop-shadow-regularShadow" name="" id="">
-                            <td>
-                        </tr>
-                        <tr>
-                            <td class="px-12 py-4 font-semibold">2.</td>
-                            <td class="px-12 py-4 flex items-center gap-4">
-                                <img src="https://t4.ftcdn.net/jpg/03/83/25/83/360_F_383258331_D8imaEMl8Q3lf7EKU2Pi78Cn0R7KkW9o.jpg" class="w-10 h-10 object-cover rounded-full" alt="">
-                                <p class="text-regularContent">Dadang</p>
-                            </td>
-                            <td class="text-center">
-                                <input type="checkbox" class="bg-white/10 border-2 border-greyIcon rounded drop-shadow-regularShadow" name="" id="">
-                            <td>
-                        </tr>
-                        <tr>
-                            <td class="px-12 py-4 font-semibold">3.</td>
-                            <td class="px-12 py-4 flex items-center gap-4">
-                                <img src="https://t4.ftcdn.net/jpg/03/83/25/83/360_F_383258331_D8imaEMl8Q3lf7EKU2Pi78Cn0R7KkW9o.jpg" class="w-10 h-10 object-cover rounded-full" alt="">
-                                <p class="text-regularContent">Dadang</p>
-                            </td>
-                            <td class="text-center">
-                                <input type="checkbox" class="bg-white/10 border-2 border-greyIcon rounded drop-shadow-regularShadow" name="" id="">
-                            <td>
-                        </tr>
-                        <tr>
-                            <td class="px-12 py-4 font-semibold">4.</td>
-                            <td class="px-12 py-4 flex items-center gap-4">
-                                <img src="https://t4.ftcdn.net/jpg/03/83/25/83/360_F_383258331_D8imaEMl8Q3lf7EKU2Pi78Cn0R7KkW9o.jpg" class="w-10 h-10 object-cover rounded-full" alt="">
-                                <p class="text-regularContent">Dadang</p>
-                            </td>
-                            <td class="text-center">
-                                <input type="checkbox" class="bg-white/10 border-2 border-greyIcon rounded drop-shadow-regularShadow" name="" id="">
-                            <td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="mt-8 flex justify-end gap-6">
-                    <button type="reset" class="text-greyIcon hover:font-semibold">Reset</button>
-                    <button type="submit" class="text-baseDarkerGreen bg-white border-2 border-baseDarkerGreen p-1.5 px-5 rounded-lg
-                            hover:bg-baseDarkerGreen hover:text-white hover:font-semibold" style="box-shadow: 
-                                0px 4px 5px 0 rgba(105,212,220,0.3);">Simpan</button>
+                <div class="flex flex-col gap-8">
+                <div class="flex justify-between">
+                    <button class="bg-white border-2 focus:bg-baseBlue/10 focus:font-semibold focus:text-baseBlue border-neutral-200 focus:border-baseBlue rounded-lg p-2 px-8 drop-shadow-regularShadow">Sen</button>
+                    <button class="bg-white border-2 focus:bg-baseBlue/10 focus:font-semibold focus:text-baseBlue border-neutral-200 focus:border-baseBlue rounded-lg p-2 px-8 drop-shadow-regularShadow">Sel</button>
+                    <button class="bg-white border-2 focus:bg-baseBlue/10 focus:font-semibold focus:text-baseBlue border-neutral-200 focus:border-baseBlue rounded-lg p-2 px-8 drop-shadow-regularShadow">Rab</button>
+                    <button class="bg-white border-2 focus:bg-baseBlue/10 focus:font-semibold focus:text-baseBlue border-neutral-200 focus:border-baseBlue rounded-lg p-2 px-8 drop-shadow-regularShadow">Kam</button>
+                    <button class="bg-white border-2 focus:bg-baseBlue/10 focus:font-semibold focus:text-baseBlue border-neutral-200 focus:border-baseBlue rounded-lg p-2 px-8 drop-shadow-regularShadow">Jum</button>
+                    <button class="bg-white border-2 focus:bg-baseBlue/10 focus:font-semibold focus:text-baseBlue border-neutral-200 focus:border-baseBlue rounded-lg p-2 px-8 drop-shadow-regularShadow">Sab</button>
                 </div>
-                </form>
-                <!-- akhir dari tabel rapor -->
+
+                    <div class="w-full p-5 px-8 flex justify-between bg-white drop-shadow-regularShadow rounded-lg">
+                        <p>14.30 - 13.20</p>
+                        <p>Mapel</p>
+                        <p>Ruang A1</p>
+                    </div>
+                    <div class="w-full p-5 px-8 flex justify-between bg-white drop-shadow-regularShadow rounded-lg">
+                        <p>14.30 - 13.20</p>
+                        <p>Mapel</p>
+                        <p>Ruang A1</p>
+                    </div>
+                    <div class="w-full p-5 px-8 flex justify-between bg-white drop-shadow-regularShadow rounded-lg">
+                        <p>14.30 - 13.20</p>
+                        <p>Mapel</p>
+                        <p>Ruang A1</p>
+                    </div>
+                </div>
                 
                 </div>
             </div>
