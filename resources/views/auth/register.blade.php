@@ -38,7 +38,7 @@
         <x-input-error :messages="$errors->get('username')" class="mt-2" />
 
         <div class="relative flex justify-between">
-            <input type="password" id="password" name="password" required="{{ old('Nama_Akun') }}" class="border-2 border-greyBorder w-full p-2.5 rounded" placeholder="Password">
+            <input type="password" id="password" name="password" required class="border-2 border-greyBorder w-full p-2.5 rounded" placeholder="Password">
             <i class="fas fa-eye-slash eye-icon text-gray-400 hover:text-gray-600 absolute top-4 right-4"></i>
         </div>
         <x-input-error :messages="$errors->get('password')" class="mt-2" />
