@@ -34,8 +34,8 @@
                         <input autocomplete="off" type="email" id="email" name="email" required class="border-2 border-greyBorder w-full p-2.5 rounded" placeholder="Email">
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
 
-                        <input autocomplete="off" type="text" id="name" name="name" required class="border-2 border-greyBorder w-full p-2.5 rounded" placeholder="Username">
-                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                        <input autocomplete="off" type="text" id="username" name="username" required class="border-2 border-greyBorder w-full p-2.5 rounded" placeholder="Username">
+                        <x-input-error :messages="$errors->get('username')" class="mt-2" />
 
                         <div class="relative flex justify-between">
                             <input type="password" id="password" name="password" required class="border-2 border-greyBorder w-full p-2.5 rounded" placeholder="Password">

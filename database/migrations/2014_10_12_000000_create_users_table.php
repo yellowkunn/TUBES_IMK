@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('kata_sandi');
+            $table->string('password');
             $table->string('foto_profile')->nullable();
-            $table->enum('role', ['admin', 'pengajar', 'murid'])->default('murid');            
+            $table->enum('role', ['admin', 'pengajar', 'murid', 'user'])->default('user');            
             $table->rememberToken();
             $table->timestamp('dibuat')->useCurrent();
         });
