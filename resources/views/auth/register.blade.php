@@ -51,7 +51,7 @@
 
         <input type="hidden" name="role" id="role" value="user">
 
-        <button type="submit" class="w-full p-2.5 mt-4 mb-2 bg-baseDarkerGreen text-black font-bold rounded cursor-pointer hover:shadow-[0px_0px_5px_2px_rgba(105,212,220,0.3)] focus:bg-baseLighterGreen">
+        <button type="submit" class="w-full p-2.5 mt-4 mb-2 bg-baseDarkerGreen text-white font-bold rounded cursor-pointer hover:shadow-[0px_0px_5px_2px_rgba(105,212,220,0.3)] focus:bg-baseLighterGreen">
             Daftar
         </button>
     </div>

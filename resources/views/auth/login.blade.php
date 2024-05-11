@@ -43,7 +43,7 @@
                             <x-input-error :messages="$errors->get('password')" class="mt-1" />
                         </div>
                 
-                        <button type="submit" class="w-full p-2.5 mt-5 mb-2 bg-baseDarkerGreen text-black font-bold rounded cursor-pointer hover:shadow-[0px_0px_5px_2px_rgba(105,212,220,0.3)] focus:bg-baseLighterGreen">
+                        <button type="submit" class="w-full p-2.5 mt-5 mb-2 bg-baseDarkerGreen text-white font-bold rounded cursor-pointer hover:shadow-[0px_0px_5px_2px_rgba(105,212,220,0.3)] focus:bg-baseLighterGreen">
                             Masuk
                         </button>
                     </div>
