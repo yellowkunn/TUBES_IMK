@@ -1,4 +1,4 @@
-<div class="w-screen drop-shadow-regularShadow bg-white">
+<div class="mt-2 bg-white">
 <div class="flex justify-between items-center px-12 py-5">
 
     <div class="flex gap-8 lg:gap-24">
