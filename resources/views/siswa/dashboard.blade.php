@@ -15,11 +15,11 @@
 </head>
 <body class="font-Inter text-regularContent">
     <div>
-    @include('components.pengajar.navbar')
+    @include('components.siswa.navbar')
 
     <div class="flex max-w-[1440px]">
         <div class="w-1/6" id="sidebar">
-            @include('components.pengajar.sidebar')
+            @include('components.siswa.sidebar')
         </div>
         
         <!-- content -->
@@ -33,7 +33,7 @@
 
                 <div class="bg-baseDarkerGreen rounded-xl p-12 relative my-7 font-semibold text-white">
                     <div class="flex flex-col gap-2 text-start w-1/2">
-                        <p class="text-subtitle">Hello namapengajar!</p>
+                        <p class="text-subtitle">Hello namaSiswa!</p>
                         <p>Jangan lupa kelas kamu selanjutnya di hari Selasa pukul 10.00 ya!</p>
                     </div>
                     <div class="absolute right-5 top-0 invisible md:visible">
@@ -65,18 +65,37 @@
                             </div>
                         </div>
                         
-                        <!-- daftar kelas -->
-                        <div class="flex justify-between my-5 mt-12">
-                            <p class="text-subtitle font-semibold">Kelas</p>
-                            <a href="" class="text-[#00e]">Selengkapnya</a>
+                        <div class="flex gap-6 mt-12 mb-8">
+                        <!-- filter bds kelas aktif/tdk -->
+                        <div>
+                            <button id="filter-0" class="bg-white flex items-center gap-24 border border-greyBorder px-4 py-2 rounded-lg">
+                                <p class="text-greyIcon">Kelas Aktif</p>
+                                <i class="fa-solid fa-angle-down"></i>
+                            </button>
+                            
+                            <div id="menu-0" class="hidden ps-5 pe-20 bg-white mt-2 py-2 rounded-md drop-shadow-regularShadow absolute z-10" style="color: #949494;">
+                                <a href="#" class="block py-1">Kelas aktif</a>
+                                <a href="#" class="block py-1">Kelas tidak aktif</a>
+                            </div>
                         </div>
-                        <div class="grid grid-cols-2 gap-4">
+                        <!-- akhir dari filter -->
+
+                        <div>
+                            <a href="" class="bg-white flex items-center gap-2 border border-greyBorder px-4 py-2 rounded-lg">
+                                <span class="material-symbols-outlined text-greyIcon">add_circle</span> 
+                                <p class="text-greyIcon">Daftar kelas</p>
+                            </a>
+                        </div>
+                        </div>
+
+                        <!-- daftar kelas -->
+                        <div class="grid grid-cols-2 gap-4 my-5">
                             <div class="p-8 bg-white drop-shadow-regularShadow rounded-lg flex flex-col gap-2">
                                 <p class="font-semibold">Matematika</p>
                                 <p class="text-greyIcon text-wrap">Lorem ipsum dolor sit amet consectetur. Nunc donec feugiat ullamcorper urna.</p>
                                 <div class="flex items-center">
                                     <img src="" alt="">
-                                    <p class="text-greyIcon">10 pengajar</p>
+                                    <p class="text-greyIcon">10 Siswa</p>
                                 </div>
                                 <button class="text-white font-semibold bg-baseBlue w-full rounded-full py-1.5 mt-2">Detail</button>
                             </div>
@@ -86,7 +105,7 @@
                                 <p class="text-greyIcon text-wrap">Lorem ipsum dolor sit amet consectetur. Nunc donec feugiat ullamcorper urna.</p>
                                 <div class="flex items-center">
                                     <img src="" alt="">
-                                    <p class="text-greyIcon">10 pengajar</p>
+                                    <p class="text-greyIcon">10 Siswa</p>
                                 </div>
                                 <button class="text-white font-semibold bg-baseBlue w-full rounded-full py-1.5 mt-2">Detail</button>
                             </div>
@@ -96,7 +115,7 @@
                                 <p class="text-greyIcon text-wrap">Lorem ipsum dolor sit amet consectetur. Nunc donec feugiat ullamcorper urna.</p>
                                 <div class="flex items-center">
                                     <img src="" alt="">
-                                    <p class="text-greyIcon">10 pengajar</p>
+                                    <p class="text-greyIcon">10 Siswa</p>
                                 </div>
                                 <button class="text-white font-semibold bg-baseBlue w-full rounded-full py-1.5 mt-2">Detail</button>
                             </div>
@@ -106,17 +125,12 @@
                                 <p class="text-greyIcon text-wrap">Lorem ipsum dolor sit amet consectetur. Nunc donec feugiat ullamcorper urna.</p>
                                 <div class="flex items-center">
                                     <img src="" alt="">
-                                    <p class="text-greyIcon">10 pengajar</p>
+                                    <p class="text-greyIcon">10 Siswa</p>
                                 </div>
                                 <button class="text-white font-semibold bg-baseBlue w-full rounded-full py-1.5 mt-2">Detail</button>
                             </div>
                         </div>
                         <!-- akhir dari daftar kelas -->
-
-                        <div class="flex justify-between my-5 mt-12">
-                            <p class="text-subtitle font-semibold">Sertifikat terbaru</p>
-                            <a href="" class="text-[#00e]">Selengkapnya</a>
-                        </div>
                     </div>
 
                     <div class="w-1/3">

@@ -6,6 +6,8 @@
         <button onclick="sidebar()" style="transition: 0.25s;" id="buttonToggle">
             <i class="fa-solid fa-xmark fa-lg p-3.5 py-5 rounded ms-3" style="background-color: #EAEAEA; color: #363636" id="toggle"></i>
         </button>
+
+        <a href="" class="text-regularContent font-semibold" style="color: #363636">Kelas Saya</a>
     </div>
 
     <a href="profile" class="flex gap-3 items-center pe-16">

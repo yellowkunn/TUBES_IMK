@@ -17,9 +17,9 @@
 <body class="font-Inter text-regularContent">
 @include('components.navbar')
 
-    <main class="flex flex-col self-center w-full max-md:max-w-full">
+    <main class="flex flex-col self-center w-full max-md:max-w-full mt-8">
         <div class="lg:flex gap-8 max-md:max-w-full text-white px-10">
-            <div class="rounded-2xl bg-[#393939]  w-full lg:w-2/3 rounded-[50px] relative">
+            <div class="rounded-2xl bg-[#393939] w-full lg:w-2/3 rounded-[50px] relative">
                 <img src="{{ asset('images/manReadingBook.png') }}">
                 <div class="absolute right-48 top-12">
                     <p class="text-[85px]">Les Privat <br>Offline</p>
