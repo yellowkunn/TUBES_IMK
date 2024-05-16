@@ -105,7 +105,7 @@
                     <div class="flex justify-between">
                         <div class="flex flex-col">
                             <p class="font-semibold">Pertemuan X</p>
-                            <p class=">Nama Materi</p>
+                            <p class="">Nama Materi</p>
                             <p class="text-greyIcon text-smallContent mt-3">30 April 2024</p>
                         </div>
                         <div class="flex my-auto gap-6">
