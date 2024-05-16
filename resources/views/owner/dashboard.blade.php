@@ -27,21 +27,32 @@
             <div id="content" class="p-8">
 
                 <div class="flex justify-between">
-                    <div class="drop-shadow-regularShadow rounded-xl p-7 px-12 pe-36 text-white bg-baseBlue">
+                    <a href="/editdaftarkelas">
+                    <!-- <div class="drop-shadow-regularShadow rounded-xl p-7 px-12 pe-36 text-white bg-baseBlue">
                         <span class="material-symbols-outlined bg-white text-baseBlue p-1 rounded text-3xl">chair_alt</span>
                         <p class="font-semibold text-subtitle mt-3 my-1">Daftar Kelas</p>
                         <p class="text-smallContent">50 Orang</p>
+                    </div> -->
+                    <div class="border-2 border-greyBorder rounded-xl p-7 px-12 pe-36 text-greyIcon">
+                        <span class="material-symbols-outlined bg-greyBackground p-1 rounded text-3xl">chair_alt</span>
+                        <p class="font-semibold text-subtitle mt-3 my-1">Daftar Kelas</p>
+                        <p class="text-smallContent" style="color: #949494">50 Orang</p>
                     </div>
+                    </a>
+                    <a href="/editdaftarsiswa">
                     <div class="border-2 border-greyBorder rounded-xl p-7 px-12 pe-36 text-greyIcon">
                         <span class="material-symbols-outlined bg-greyBackground p-1 rounded text-3xl">interactive_space</span>
                         <p class="font-semibold text-subtitle mt-3 my-1">Daftar Siswa</p>
                         <p class="text-smallContent" style="color: #949494">50 Orang</p>
                     </div>
+                    </a>
+                    <a href="/editdaftarpengajar">
                     <div class="border-2 border-greyBorder rounded-xl p-7 px-12 pe-36 text-greyIcon">
                         <i class="fa-solid fa-chalkboard-user bg-greyBackground p-1 rounded text-2xl"></i>
                         <p class="font-semibold text-subtitle mt-3 my-1">Daftar Pengajar</p>
                         <p class="text-smallContent" style="color: #949494">50 Orang</p>
                     </div>
+                    </a>
                 </div>
 
                 <div class="flex justify-between mt-12">
@@ -93,10 +104,10 @@
                 </div>
                 <!-- akhir dari daftar kelas -->
 
-                <div class="flex justify-between mt-12">
-                    <p class="text-subtitle font-semibold">Pembayaran</p>
-                    <a href="" class="text-[#00e]">Selengkapnya</a>
-                </div>
+                <!-- <div class="flex justify-between mt-12"> -->
+                    <!-- <p class="text-subtitle font-semibold">Pembayaran</p> -->
+                    <!-- <a href="" class="text-[#00e]">Selengkapnya</a> -->
+                <!-- </div> -->
 
                 <!-- daftar pembayaran -->
                 <div class="w-full rounded-xl p-2 px-4">

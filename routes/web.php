@@ -1,20 +1,12 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PengajarController;
+use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     return view('beranda');
@@ -24,12 +16,8 @@ Auth::routes([
     'verify' => true
 ]);
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/home', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
-
 // Route::get('post', [HomeController::class, 'post'])->middleware(['auth', 'admin']);
 
 Route::middleware('auth')->group(function () {
@@ -41,5 +29,16 @@ Route::middleware('auth')->group(function () {
 
 // OWNER
 Route::get('/admindashboard', [AdminController::class, 'dashboardadmin']);
+Route::get('/editdaftarkelas', [AdminController::class, 'editdaftarkelas']);
+Route::get('/editdaftarsiswa', [AdminController::class, 'editdaftarsiswa']);
+Route::get('/editdaftarpengajar', [AdminController::class, 'editdaftarpengajar']);
 
+//Pengajar
+Route::get('/pengajardashboard', [PengajarController::class, 'dashboardpengajar']);
+Route::get('/pengajarabsensi', [PengajarController::class, 'absensipengajar']);
+Route::get('/pengajardetailkelas', [PengajarController::class, 'detailkelaspengajar']);
+Route::get('/pengajarjadwal', [PengajarController::class, 'jadwalpengajar']);
+
+//Siswa
+Route::get('/siswadashboard', [SiswaController::class, 'dashboardsiswa']);
 require __DIR__.'/auth.php';

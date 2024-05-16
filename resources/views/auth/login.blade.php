@@ -12,8 +12,7 @@
 </head>
 
 <body class="font-Inter text-regularContent">
-    <div class="flex flex-col gap-4 h-screen bg-cover bg-center px-10 pt-5" style="background-image: url('{{ asset('images/bg-loginRegis.png') }}')">
-
+<div class="flex flex-col gap-4 h-screen bg-cover bg-center px-10 pt-5" style="background-image: url('/images/bg-loginRegis.png');">
         <div class="flex items-center justify-end gap-2">
             <p class="text-greyIcon mr-2">Belum punya akun?</p>
             
