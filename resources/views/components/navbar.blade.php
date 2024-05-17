@@ -12,7 +12,7 @@
 
     <div class="flex gap-2 items-center">
         <i class="fa-solid fa-user text-greyIcon"></i>
-        <a href="">Masuk/Daftar</a>
+        <a href="{{ route('login') }}">Masuk/Daftar</a>
     </div>
 </div>
 </div>
