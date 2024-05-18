@@ -68,15 +68,10 @@
                         <div class="flex gap-6 mt-12 mb-8">
                         <!-- filter bds kelas aktif/tdk -->
                         <div>
-                            <button id="filter-0" class="bg-white flex items-center gap-24 border border-greyBorder px-4 py-2 rounded-lg">
-                                <p class="text-greyIcon">Kelas Aktif</p>
-                                <i class="fa-solid fa-angle-down"></i>
-                            </button>
-                            
-                            <div id="menu-0" class="hidden ps-5 pe-20 bg-white mt-2 py-2 rounded-md drop-shadow-regularShadow absolute z-10" style="color: #949494;">
-                                <a href="#" class="block py-1">Kelas aktif</a>
-                                <a href="#" class="block py-1">Kelas tidak aktif</a>
-                            </div>
+                            <select id="filterKelas" class="block appearance-none w-48 bg-white border border-greyBorder text-greyIcon px-4 py-2.5 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-greyIcon">
+                                <option value="Kelas aktif">Kelas Aktif</option>
+                                <option value="Kelas tidak aktif">Kelas Tidak Aktif</option>
+                            </select>
                         </div>
                         <!-- akhir dari filter -->
 
@@ -152,37 +147,5 @@
     </div>
 
     @include('components.footer')
-
-    <script>
-        function initializeDropdown(buttonId, menuId) {
-            const dropdownButton = document.getElementById(buttonId);
-            const dropdownMenu = document.getElementById(menuId);
-            let isDropdownOpen = true;
-
-            function toggleDropdown() {
-                isDropdownOpen = !isDropdownOpen;
-                if (isDropdownOpen) {
-                    dropdownMenu.classList.remove('hidden');
-                } else {
-                    dropdownMenu.classList.add('hidden');
-                }
-            }
-
-            toggleDropdown();
-
-            dropdownButton.addEventListener('click', toggleDropdown);
-
-            window.addEventListener('click', (event) => {
-                if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                    dropdownMenu.classList.add('hidden');
-                    isDropdownOpen = false;
-                }
-            });
-        }
-
-        for (let i = 0; i < 1; i++) {
-            initializeDropdown('filter-' + i, 'menu-' + i);
-        }
-    </script>
 </body>
 </html>

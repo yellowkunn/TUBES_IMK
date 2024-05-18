@@ -27,7 +27,7 @@
 
         <!-- lainnya -->
         <div>
-            <button id="lainnya-0" class="w-full">
+            <button id="lainnyaBtn" class="w-full">
                 <div class="flex justify-between items-center">
                     <p class="text-greyIcon" style="color: #949494">Lainnya</p>
                     <i class="fa-solid fa-angle-down rounded-full p-2 bg-greyBackground"></i>
@@ -128,6 +128,6 @@
     }
 
     for (let i = 0; i < 1; i++) {
-        initializeDropdown('lainnya-' + i, 'menu-' + i);
+        initializeDropdown('lainnyaBtn', 'menu-' + i);
     }
 </script>
