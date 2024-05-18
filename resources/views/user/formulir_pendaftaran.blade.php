@@ -77,7 +77,7 @@
             </div>
 
             <div class="flex gap-24 justify-between w-full">
-                <div class="flex flex-col gap-8 w-full">        
+                <div class="flex flex-col gap-8 w-full">   
                      <!-- dd jenis kelamin -->
                     <div>
                         <p>Jenis Kelamin</p>
