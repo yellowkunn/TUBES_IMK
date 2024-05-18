@@ -76,25 +76,21 @@
 
                     <!-- filter bds bulan -->
                     <div>
-                        <button id="filter-0" class="bg-white flex items-center gap-24 border border-greyBorder px-4 py-2 rounded-lg">
-                            <p class="text-greyIcon">Bulan</p>
-                            <i class="fa-solid fa-angle-down"></i>
-                        </button>
-                        
-                        <div id="menu-0" class="hidden ps-5 pe-20 bg-white mt-2 py-2 rounded-md drop-shadow-regularShadow absolute" style="color: #949494;">
-                            <a href="#" class="block py-1">Januari</a>
-                            <a href="#" class="block py-1">Februari</a>
-                            <a href="#" class="block py-1">Maret</a>
-                            <a href="#" class="block py-1">April</a>
-                            <a href="#" class="block py-1">Mei</a>
-                            <a href="#" class="block py-1">Juni</a>
-                            <a href="#" class="block py-1">Juli</a>
-                            <a href="#" class="block py-1">Agustus</a>
-                            <a href="#" class="block py-1">September</a>
-                            <a href="#" class="block py-1">Oktober</a>
-                            <a href="#" class="block py-1">November</a>
-                            <a href="#" class="block py-1">Desember</a>
-                        </div>
+                        <select id="filterBulan" class="block appearance-none w-44 bg-white border border-greyBorder text-greyIcon px-4 py-2 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-greyIcon">
+                            <option value="">Bulan</option>
+                            <option value="Januari">Januari</option>
+                            <option value="Februari">Februari</option>
+                            <option value="Maret">Maret</option>
+                            <option value="April">April</option>
+                            <option value="Mei">Mei</option>
+                            <option value="Juni">Juni</option>
+                            <option value="Juli">Juli</option>
+                            <option value="Agustus">Agustus</option>
+                            <option value="September">September</option>
+                            <option value="Oktober">Oktober</option>
+                            <option value="November">November</option>
+                            <option value="Desember">Desember</option>
+                        </select>
                     </div>
                     <!-- akhir dari filter -->
 
@@ -171,36 +167,6 @@
             } else {
                 popup.classList.add('hidden')
             }
-        }
-
-        function initializeDropdown(buttonId, menuId) {
-            const dropdownButton = document.getElementById(buttonId);
-            const dropdownMenu = document.getElementById(menuId);
-            let isDropdownOpen = true;
-
-            function toggleDropdown() {
-                isDropdownOpen = !isDropdownOpen;
-                if (isDropdownOpen) {
-                    dropdownMenu.classList.remove('hidden');
-                } else {
-                    dropdownMenu.classList.add('hidden');
-                }
-            }
-
-            toggleDropdown();
-
-            dropdownButton.addEventListener('click', toggleDropdown);
-
-            window.addEventListener('click', (event) => {
-                if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                    dropdownMenu.classList.add('hidden');
-                    isDropdownOpen = false;
-                }
-            });
-        }
-
-        for (let i = 0; i < 1; i++) {
-            initializeDropdown('filter-' + i, 'menu-' + i);
         }
     </script>
 </body>

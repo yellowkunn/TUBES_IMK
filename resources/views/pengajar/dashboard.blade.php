@@ -138,37 +138,5 @@
     </div>
 
     @include('components.footer')
-
-    <script>
-        function initializeDropdown(buttonId, menuId) {
-            const dropdownButton = document.getElementById(buttonId);
-            const dropdownMenu = document.getElementById(menuId);
-            let isDropdownOpen = true;
-
-            function toggleDropdown() {
-                isDropdownOpen = !isDropdownOpen;
-                if (isDropdownOpen) {
-                    dropdownMenu.classList.remove('hidden');
-                } else {
-                    dropdownMenu.classList.add('hidden');
-                }
-            }
-
-            toggleDropdown();
-
-            dropdownButton.addEventListener('click', toggleDropdown);
-
-            window.addEventListener('click', (event) => {
-                if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                    dropdownMenu.classList.add('hidden');
-                    isDropdownOpen = false;
-                }
-            });
-        }
-
-        for (let i = 0; i < 1; i++) {
-            initializeDropdown('filter-' + i, 'menu-' + i);
-        }
-    </script>
 </body>
 </html>

@@ -81,15 +81,13 @@
                      <!-- dd jenis kelamin -->
                     <div>
                         <p>Jenis Kelamin</p>
-                        <button type="button" id="ddJK-0" class="flex justify-between items-center border-b-2 border-greyBorder bg-greyBackground px-4 py-2 mt-1 w-full">
-                            <p class="text-greyIcon">Laki-laki</p>
-                            <i class="fa-solid fa-angle-down"></i>
-                        </button>
-                        
-                        <div id="menuJK-0" class="hidden w-2/5 bg-greyBackground py-2 absolute z-10" style="color: #949494;">
-                            <a href="#" class="block ps-5 py-1 hover:text-greyIcon hover:bg-[#F5f5f5]">Laki-laki</a>
-                            <a href="#" class="block ps-5 py-1 hover:text-greyIcon hover:bg-[#F5f5f5]">Perempuan</a>
-                        </div>
+                        <div class="relative w-full">
+                        <select id="genderSelect" name="gender" class="block mt-2 appearance-none w-full bg-greyBackground border border-greyBorder text-greyIcon py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-greyIcon">
+                            <option value="" class="text-greyIcon">Jenis Kelamin</option>
+                            <option value="Laki-laki" class="text-greyIcon">Laki-laki</option>
+                            <option value="Perempuan" class="text-greyIcon">Perempuan</option>
+                        </select>
+                    </div>
                     </div>
                     <!-- akhir dari dd jenis kelamin -->
 
@@ -233,45 +231,6 @@
             reader.readAsDataURL(input.files[0]);
             }
         }
-
-        function initializeDropdown(buttonId, menuId) {
-            const dropdownButton = document.getElementById(buttonId);
-            const dropdownMenu = document.getElementById(menuId);
-            let isDropdownOpen = true;
-
-            function toggleDropdown() {
-                isDropdownOpen = !isDropdownOpen;
-                if (isDropdownOpen) {
-                    dropdownMenu.classList.remove('hidden');
-                } else {
-                    dropdownMenu.classList.add('hidden');
-                }
-            }
-
-            toggleDropdown();
-
-            dropdownButton.addEventListener('click', toggleDropdown);
-
-            window.addEventListener('click', (event) => {
-                if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                    dropdownMenu.classList.add('hidden');
-                    isDropdownOpen = false;
-                }
-            });
-        }
-
-        for (let i = 0; i < 1; i++) {
-            initializeDropdown('ddDaftarKelas-' + i, 'menuDaftarKelas-' + i);
-        }
-
-        for (let i = 0; i < 1; i++) {
-            initializeDropdown('ddTingkatan-' + i, 'menuTingkatan-' + i);
-        }
-
-        for (let i = 0; i < 1; i++) {
-            initializeDropdown('ddJK-' + i, 'menuJK-' + i);
-        }
-
 
        // multistep form
         const steps = document.querySelectorAll('[id^="step-circle-"]');
