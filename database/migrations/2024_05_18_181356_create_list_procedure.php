@@ -67,13 +67,15 @@ return new class extends Migration
         deskripsi TEXT,
         harga DECIMAL(10,2),
         fasilitas TEXT,
-        rentang VARCHAR(255)
+        rentang VARCHAR(255),
+        jadwal_hari VARCHAR(255),
+        durasi VARCHAR(255)
     )
     BEGIN
         INSERT INTO kelas(
-            nama, foto, deskripsi, harga, fasilitas, rentang
+            nama, foto, deskripsi, harga, fasilitas, rentang, jadwal_hari, durasi
         ) VALUES (
-            nama, gambar, deskripsi, harga, fasilitas, rentang
+            nama, gambar, deskripsi, harga, fasilitas, rentang, jadwal_hari, durasi
         );
     END;
     ');

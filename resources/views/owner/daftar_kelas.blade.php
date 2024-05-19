@@ -118,6 +118,14 @@
                                         <p class="font-semibold mb-1">Fasilitas</p>
                                         <input class="rounded w-full h-9" type="text" name="fasilitas" id="fasilitas">
                                     </div>
+                                    <div>
+                                        <p class="font-semibold mb-1">Pilih Hari</p>
+                                        <input class="rounded w-full h-9" type="text" name="jadwal_hari" id="jadwal_hari">
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold mb-1">Durasi</p>
+                                        <input class="rounded w-full h-9" type="text" name="durasi" id="durasi">
+                                    </div>
 
                                     <div>
                                         <p class="font-semibold mb-1">Foto Kelas</p>

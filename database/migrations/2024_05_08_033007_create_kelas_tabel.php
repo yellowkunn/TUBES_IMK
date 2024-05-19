@@ -21,6 +21,8 @@ return new class extends Migration
             $table->decimal('harga', 10, 2);
             $table->text('fasilitas');
             $table->string('rentang');
+            $table->string('jadwal_hari');
+            $table->string('durasi');
             $table->timestamp('dibuat')->useCurrent();
         }); 
     }

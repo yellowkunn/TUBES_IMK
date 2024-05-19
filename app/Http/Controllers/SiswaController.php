@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Kelas;
 
 class SiswaController extends Controller
 {
@@ -38,5 +39,15 @@ class SiswaController extends Controller
         $request->get('pekerjaanortu'),
         $request->get('kelas'), $request->get('status')));
         return redirect()->back();
+    }
+
+    public function detailkelas($kelas)
+    {
+        $kelass = Kelas::where('id_kelas', $kelas)->first();
+        if (!$kelass) {
+            abort(404); // Tampilkan halaman 404 jika kelas tidak ditemukan
+        }
+        $class = Kelas::whereNotIn('id_kelas', [$kelas])->get();
+        return view('detail_tawaran_kelas', compact('kelass', 'class'));
     }
 }

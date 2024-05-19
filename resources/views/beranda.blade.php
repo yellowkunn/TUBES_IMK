@@ -47,59 +47,35 @@
             <p class="font-semibold text-[40px] text-[#333333]">Program Unggulan FEC</p>
 
             <div class="grid grid-cols-4 gap-8 mt-12">
+                @foreach($kelass as $kelas)
                 <article class="flex flex-col max-md:ml-0 max-md:w-full">
-                    <a href="" class="flex flex-col grow justify-center max-md:mt-5">
+                    <a href="{{ url('/detailkelas/' . $kelas->id_kelas) }}" class="flex flex-col grow justify-center max-md:mt-5">
                         <div class="flex flex-col p-8 w-full border-2 border-greyBorder bg-white/50 hover:bg-white hover:border-none rounded-xl">
                         <div class="flex gap-2.5 items-start text-neutral-700">
                             <div class="shrink-0 bg-baseBlue rounded-full h-[30px] w-[30px]"></div>
                             <div class="flex flex-col">
-                            <h4 class="font-semibold">Bahasa Inggris</h4>
-                            <p class="text-smallContent italic font-light">kurikulum nasional</p>
+                            <h4 class="font-semibold"> {{ $kelas->nama }} </h4>
+                            <!-- <p class="text-smallContent italic font-light">kurikulum nasional</p> -->
                             </div>
                         </div>
-                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/a9d649e5d3f12aafc79229e974e098d601878ee8ae388a23229704f8f6b346f2?apiKey=8e216de591ec44d2b3973e5d1e77a02f&" alt="Bahasa Inggris class" class="mt-4 w-full aspect-[1.69]" />
+                        <img loading="lazy" src="{{ asset('berkas_ujis/' . $kelas->foto) }}" alt="{{ $kelas->nama }} class" class="mt-4 w-full aspect-[1.69]" />
                         <p class="mt-6 text-smallContent text-neutral-700 text-start">
-                        matematika adalah pelajaran paporit jerome
+                        {{ $kelas->deskripsi }}
                         </p>
                         <div class="flex gap-5 justify-between items-center mt-3">
                         <p class=" text-smallContent text-justify text-neutral-600">
-                            <span class="text-subtitle font-semibold text-amber-500">Rp500.000</span>
+                            <span class="text-subtitle font-semibold text-amber-500"> {{ $kelas->harga }} </span>
                             <br>/bulan
                         </p>
-                        <a href="#" class="justify-center py-1 px-5 font-semibold text-lime-50 whitespace-nowrap bg-baseBlue rounded-full max-md:px-5">
+                        <a href="{{ url('/detailkelas/' . $kelas->id_kelas) }}" class="justify-center py-1 px-5 font-semibold text-lime-50 whitespace-nowrap bg-baseBlue rounded-full max-md:px-5">
                             Lihat
                         </a>
                         </div>
                     </div>
                     </a>
                 </article>
+                @endforeach
 
-                <article class="flex flex-col max-md:ml-0 max-md:w-full">
-                    <a href="" class="flex flex-col grow justify-center max-md:mt-5">
-                        <div class="flex flex-col p-8 w-full border-2 border-greyBorder bg-white/50 hover:bg-white hover:border-none rounded-xl">
-                        <div class="flex gap-2.5 items-start text-neutral-700">
-                            <div class="shrink-0 bg-baseBlue rounded-full h-[30px] w-[30px]"></div>
-                            <div class="flex flex-col">
-                            <h4 class="font-semibold">Bahasa Inggris</h4>
-                            <p class="text-smallContent italic font-light">kurikulum nasional</p>
-                            </div>
-                        </div>
-                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/a9d649e5d3f12aafc79229e974e098d601878ee8ae388a23229704f8f6b346f2?apiKey=8e216de591ec44d2b3973e5d1e77a02f&" alt="Bahasa Inggris class" class="mt-4 w-full aspect-[1.69]" />
-                        <p class="mt-6 text-smallContent text-neutral-700 text-start">
-                        matematika adalah pelajaran paporit jerome
-                        </p>
-                        <div class="flex gap-5 justify-between items-center mt-3">
-                        <p class=" text-smallContent text-justify text-neutral-600">
-                            <span class="text-subtitle font-semibold text-amber-500">Rp500.000</span>
-                            <br>/bulan
-                        </p>
-                        <a href="#" class="justify-center py-1 px-5 font-semibold text-lime-50 whitespace-nowrap bg-baseBlue rounded-full max-md:px-5">
-                            Lihat
-                        </a>
-                        </div>
-                    </div>
-                    </a>
-                </article>
 
             </div>
             </div>
