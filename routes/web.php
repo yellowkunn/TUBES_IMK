@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function () {
 // OWNER
 Route::get('/admindashboard', [AdminController::class, 'dashboardadmin']);
 Route::get('/editdaftarkelas', [AdminController::class, 'editdaftarkelas']);
+Route::post('/tambahkelasbaru', [AdminController::class, 'tambahkelasbaru']);
 Route::get('/editdaftarsiswa', [AdminController::class, 'editdaftarsiswa']);
 Route::get('/editdaftarpengajar', [AdminController::class, 'editdaftarpengajar']);
 

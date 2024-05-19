@@ -231,7 +231,13 @@
                 <button id="btnPrevious" type="button" class="stepper-btn text-baseBlue hover:font-semibold">Sebelumnya</button>
                 <button id="btnReset" type="reset" class="stepper-btn w-[50px] hover:font-semibold">Reset</button>
                 <button id="btnNext" type="button" class="stepper-btn w-[150px] p-3 bg-baseBlue text-white rounded hover:bg-baseBlue/90 hover:font-semibold">Selanjutnya</button>
+
                 <button id="btnSubmit" type="submit" class="stepper-btn w-[220px] p-3 bg-baseBlue text-white rounded hover:bg-baseBlue/90 hover:font-semibold">Lanjut ke pembayaran</button>
+                <script>
+                    document.getElementById('btnSubmit').addEventListener('click', function() {
+                        window.location.href = 'url-halaman-pembayaran';
+                    });
+                </script>
             </div>
         </form>
 

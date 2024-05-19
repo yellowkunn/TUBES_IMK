@@ -58,8 +58,27 @@ return new class extends Migration
             );
         END;
     ');
-    
+
+    DB::unprepared('
+    DROP PROCEDURE IF EXISTS kelas_baru;
+    CREATE PROCEDURE kelas_baru (
+        nama VARCHAR(255),
+        gambar VARCHAR(255),
+        deskripsi TEXT,
+        harga DECIMAL(10,2),
+        fasilitas TEXT,
+        rentang VARCHAR(255)
+    )
+    BEGIN
+        INSERT INTO kelas(
+            nama, foto, deskripsi, harga, fasilitas, rentang
+        ) VALUES (
+            nama, gambar, deskripsi, harga, fasilitas, rentang
+        );
+    END;
+    ');
     }
+    
 
     /**
      * Reverse the migrations.

@@ -34,7 +34,7 @@ return new class extends Migration
             $table->string('agama_ortu');
             $table->string('pendidikan_ortu');
             $table->string('pekerjaan_ortu');
-            $table->timestamps();
+            $table->timestamp('dibuat')->useCurrent();
         });
     }
 

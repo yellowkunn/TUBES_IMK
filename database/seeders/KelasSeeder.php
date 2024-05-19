@@ -17,44 +17,54 @@ class KelasSeeder extends Seeder
     {
         DB::table('kelas')->insert([
             [
+                'nama' => 'Bahasa Indonesia',
                 'foto' => 'nama-file-foto-1.jpg',
                 'deskripsi' => 'Deskripsi kelas pertama',
                 'harga' => 100000.00,
                 'fasilitas' => 'Fasilitas kelas pertama',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'rentang' => '8 pertemuan',
+                'dibuat' => now(),
+
             ],
             [
+                'nama' => 'Bahasa Inggris',
                 'foto' => 'nama-file-foto-2.jpg',
                 'deskripsi' => 'Deskripsi kelas kedua',
                 'harga' => 150000.00,
                 'fasilitas' => 'Fasilitas kelas kedua',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'rentang' => '8 pertemuan',
+                'dibuat' => now(),
+
             ],
             [
+                'nama' => 'Bahasa Jerman',
                 'foto' => 'nama-file-foto-3.jpg',
                 'deskripsi' => 'Deskripsi kelas ketiga',
                 'harga' => 200000.00,
                 'fasilitas' => 'Fasilitas kelas ketiga',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'rentang' => '8 pertemuan',
+                'dibuat' => now(),
+
             ],
             [
+                'nama' => 'Bahasa Jepang',
                 'foto' => 'nama-file-foto-4.jpg',
                 'deskripsi' => 'Deskripsi kelas keempat',
                 'harga' => 250000.00,
                 'fasilitas' => 'Fasilitas kelas keempat',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'rentang' => '8 pertemuan',
+                'dibuat' => now(),
+
             ],
             [
+                'nama' => 'Bahasa Arab',
                 'foto' => 'nama-file-foto-5.jpg',
                 'deskripsi' => 'Deskripsi kelas kelima',
                 'harga' => 300000.00,
                 'fasilitas' => 'Fasilitas kelas kelima',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'rentang' => '8 pertemuan',
+                'dibuat' => now(),
+
             ],
         ]);
     }

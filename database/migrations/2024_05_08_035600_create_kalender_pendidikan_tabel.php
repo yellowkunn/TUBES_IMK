@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('tanggal');
             $table->string('kegiatan');
             $table->integer('lama_waktu');
-            $table->timestamps();
+            $table->timestamp('dibuat')->useCurrent();
         });        
     }
 

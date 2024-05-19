@@ -37,7 +37,6 @@ class SiswaController extends Controller
         $request->get('agamaortu'),$request->get('pendidikanortu'),
         $request->get('pekerjaanortu'),
         $request->get('kelas'), $request->get('status')));
-        session()->flash('success', 'Form pentipan berhasil ditambahkan ke penitipan.');
         return redirect()->back();
     }
 }
