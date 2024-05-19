@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +17,7 @@ class HomeController extends Controller
 
             if($role=='user')
             {
-                return view ('dashboard');
+                return view ('beranda');
             }
             else if ($role=='admin')
             {
@@ -28,9 +29,4 @@ class HomeController extends Controller
             }
         }
     }
-
-    // public function post()
-    // {
-    //     return view('post');
-    // }
 }

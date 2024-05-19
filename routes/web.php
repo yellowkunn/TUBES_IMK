@@ -41,4 +41,8 @@ Route::get('/pengajarjadwal', [PengajarController::class, 'jadwalpengajar']);
 
 //Siswa
 Route::get('/siswadashboard', [SiswaController::class, 'dashboardsiswa']);
+
+// User
+Route::get('/formulirpendaftaran', [SiswaController::class, 'formulirpendaftaran']);
+Route::post('/formulirpendaftaran', [SiswaController::class, 'kirimformulirpendaftaran']);
 require __DIR__.'/auth.php';

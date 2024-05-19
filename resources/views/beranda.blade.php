@@ -26,7 +26,13 @@
             <div class="mt-10 flex flex-col gap-8">
                 <p id="typewriter" class="font-semibold text-red-700 text-[70px] leading-tight w-2/3 h-[180px]"></p>
                 <p class="leading-tight text-subtitle w-3/4">Di setiap langkah yang kami ambil, kami percaya bahwa pendidikan adalah kunci untuk membuka pintu masa depan yang gemilang.</p>
-                <a href="" class="text-red-700 text-[20px] w-[150px] py-2 border-2 border-red-700/50 text-center hover:text-white hover:bg-red-700 hover:border-none">Lihat Kelas</a>
+                @if (Route::has('login'))
+                @auth
+                <a href=" {{ url('/formulirpendaftaran') }} " class="text-red-700 text-[20px] w-[150px] py-2 border-2 border-red-700/50 text-center hover:text-white hover:bg-red-700 hover:border-none">Daftar Kelas</a>
+                @else
+                <a href=" {{ route('login') }} " class="text-red-700 text-[20px] w-[150px] py-2 border-2 border-red-700/50 text-center hover:text-white hover:bg-red-700 hover:border-none">Daftar Kelas</a>
+                @endauth
+                @endif
             </div>
 
             <div class="w-1/2 flex justify-end self-end hidden md:flex">
