@@ -17,9 +17,9 @@
 </div>
 </div>
 
-<div class="relative block md:hidden">
-    <div class="flex justify-between items-center px-6 md:px-8 py-5">
-        <p class="text-baseBlue text-center font-bold leading-snug">Fortunate<br>Education Center</p>
+<div class="relative block md:hidden bg-white">
+    <div class="flex justify-between items-center px-2 sm:px-6 md:px-8 py-5">
+        <p class="text-baseBlue text-center font-bold leading-snug ms-1.5">Fortunate<br>Education Center</p>
 
         <div class="flex items-center gap-2">
             <a href="{{ route('login') }}" id="masuk"><i class="fa-solid fa-user text-greyIcon"></i></a>
@@ -30,7 +30,7 @@
         </div>
     </div>
 
-    <div class="hidden md:hidden z-10 absolute top-0" id="menuHamburger">
+    <div class="hidden md:hidden z-20 fixed top-0 backdrop-brightness-50 w-full h-screen" id="menuHamburger">
         <div class="bg-white w-screen flex flex-col gap-5 p-10">
         <!-- close button -->
         <div class="flex justify-end">
@@ -42,7 +42,7 @@
             <a href="" class="nav w-fit">Kelas</a>
             <a href="" class="nav w-fit">Langkah Pendaftaran</a>
 
-            <a href="{{ route('login') }}">Masuk/Daftar</i></a>
+            <a href="{{ route('login') }}" class="nav w-fit">Masuk/Daftar</i></a>
         </div>
         </div>
     </div>

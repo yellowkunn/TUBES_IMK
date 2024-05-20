@@ -1,6 +1,6 @@
 <footer>
     <div class="md:grid grid-cols-2">
-    <div class="flex flex-col gap-6 p-12 text-white" style="background-color: #415474;">
+    <div class="flex flex-col gap-6 px-8 py-6 md:p-12 text-white" style="background-color: #415474;">
         <p class="text-white font-semibold text-subtitle leading-snug">Fortune<br>Education Center</p>
 
         <div class="flex flex-col gap-2">
@@ -36,7 +36,7 @@
         </div>
     </div>
 
-    <div class="w-full p-12" style="background-color: #415474;">
+    <div class="w-full px-8 py-4 md:p-12" style="background-color: #415474;">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3603.587295327313!2d98.70254632803451!3d3.5659308713442055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30313058c7999413%3A0x31b26aea0291234f!2sFortunate%20Education%20Center!5e1!3m2!1sid!2sid!4v1716044761765!5m2!1sid!2sid" 
             class="w-full h-full border-none" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>        
     </div>
