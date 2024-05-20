@@ -277,18 +277,19 @@
         }
 
         function updateStepCircle(tabID) {
-            steps.forEach((circle, index) => {
-                if (index <= tabID) {
-                    circle.style.background = '#7AA1E2'; // Highlight the current and previous steps
-                } else {
-                    circle.style.background = '#FFFFFF'; // Reset future steps
-                }
+
+        steps.forEach((circle, index) => {
+            if (index <= tabID) {
+                circle.style.background = '#7AA1E2';
+            } else {
+                circle.style.background = '#FFFFFF';
+            }
             });
 
-            const stepWidth = 36; // The width between steps (adjust as needed)
-            stepLine.style.width = `${tabID * stepWidth + (stepWidth / 2)}px`; // Adjust line width dynamically
-        }
-
+            const stepWidth = 36;
+                stepLine.style.width = `${tabID * stepWidth + (stepWidth / 2)}px`;
+            }
+        
         function updateButtonVisibility() {
             btnPrevious.style.display = currentTab === 0 ? 'none' : 'inline-block';
             btnNext.style.display = currentTab === tabs.length - 1 ? 'none' : 'inline-block';

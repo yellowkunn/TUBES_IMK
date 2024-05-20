@@ -18,7 +18,7 @@
     @include('components.siswa.navbar')
 
     <div class="flex max-w-[1440px]">
-        <div class="w-1/6" id="sidebar">
+        <div class="translate-x-[-100%] md:translate-x-0 md:h-fit fixed md:static z-10 h-screen duration-300" id="sidebar">
             @include('components.siswa.sidebar')
         </div>
         
@@ -141,6 +141,8 @@
         </div>
     </div>
 
+    @include('components.footer')
+
     <script>
        document.addEventListener('DOMContentLoaded', function() {
         const dropdowns = document.querySelectorAll('.dropdown');
@@ -191,5 +193,7 @@
     }
 
     </script>
+  
+<script src="{{asset('js/style.js')}}"></script>
 </body>
 </html>
