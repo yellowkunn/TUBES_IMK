@@ -16,21 +16,25 @@ return new class extends Migration
         Schema::create('biodata_siswa', function (Blueprint $table) {
             $table->id('id_biodata');
             $table->foreignId('pengguna_id')->constrained('users', 'id_pengguna')->onDelete('cascade');
+            $table->string('foto')->nullable();
             $table->string('nama_lengkap');
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
-            $table->date('tmpt_tgl_lahir');
+            $table->string('tempat_lahir');
+            $table->date('tgl_lahir');
             $table->string('agama');
             $table->string('kewarganegaraan');
             $table->text('alamat');
             $table->string('no_telepon');
             $table->string('no_hp');
             $table->string('pendidikan');
+            $table->string('diterimakursus');
             $table->string('nama_ortu');
-            $table->date('tmpt_tgl_lahir_ortu');
+            $table->string('tempat_lahir_ortu');
+            $table->date('tgl_lahir_ortu');
             $table->string('agama_ortu');
             $table->string('pendidikan_ortu');
             $table->string('pekerjaan_ortu');
-            $table->timestamps();
+            $table->timestamp('dibuat')->useCurrent();
         });
     }
 

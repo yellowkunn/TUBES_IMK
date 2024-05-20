@@ -24,10 +24,18 @@
         <!-- section 1 -->
         <div class="flex justify-between px-8 sm:px-16 lg:px-20">
             <div class="mt-10 flex flex-col gap-8">
+            
                 <p id="typewriter" class="font-semibold text-red-700 text-[50px] lg:text-[55px] xl:text-[70px] leading-tight lg:w-2/3 h-[180px] hidden md:block"></p>
                 <p class="md:hidden text-red-700 font-semibold text-subtitle text-balance">Gabung dan dapatkan pembelajaran terbaik dari kami!</p>
                 <p class="leading-tight sm:text-subtitle w-full lg:w-3/4">Di setiap langkah yang kami ambil, kami percaya bahwa pendidikan adalah kunci untuk membuka pintu masa depan yang gemilang.</p>
-                <a href="" class="text-red-700 sm:text-[20px] w-[120px] sm:w-[150px] py-2 border-2 border-red-700/50 text-center hover:text-white hover:bg-red-700 hover:border-none mb-16">Lihat Kelas</a>
+                @if (Route::has('login'))
+                @auth
+                <a href="{{ url('/formulirpendaftaran') }}" class="text-red-700 sm:text-[20px] w-[120px] sm:w-[150px] py-2 border-2 border-red-700/50 text-center hover:text-white hover:bg-red-700 hover:border-none mb-16">Daftar Kelas</a>
+                @else
+                <a href=" {{ route('login') }} " class="text-red-700 sm:text-[20px] w-[120px] sm:w-[150px] py-2 border-2 border-red-700/50 text-center hover:text-white hover:bg-red-700 hover:border-none mb-16">Daftar Kelas</a>
+                @endauth
+                @endif
+                
             </div>
 
             <div class="lg:w-1/2 flex justify-end self-end hidden md:flex">
@@ -39,54 +47,36 @@
         <!-- section 2 -->
         <div class="p-8 sm:px-16 sm:py-12 lg:p-20 bg-baseCream text-center">
             <div data-aos="fade-up">
+
             <p class="font-semibold text-subtitle sm:text-title md:text-[40px] text-[#333333]">Program Unggulan FEC</p>
 
             <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8 sm:mt-12">
+                @foreach($kelass as $kelas)
                 <article class="flex flex-col">
-                    <a href="" class="flex flex-col justify-center">
+                    <a href="{{ url('/detailkelas/' . $kelas->id_kelas) }}" class="flex flex-col justify-center">
                         <div class="flex flex-col p-5 sm:p-7 w-full drop-shadow-regularShadow bg-white hover:bg-white/75 hover:bg-white hover:drop-shadow-none rounded-xl">
                         <div class="flex flex-col items-start text-neutral-700">
-                            <h4 class="font-semibold">Bahasa Inggris</h4>
-                            <p class="text-smallContent italic font-light">kurikulum nasional</p>        
+                            <h4 class="font-semibold">{{ $kelas->nama }}</h4>
+                            <!-- <p class="text-smallContent italic font-light">kurikulum nasional</p> -->
                         </div>
-                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/a9d649e5d3f12aafc79229e974e098d601878ee8ae388a23229704f8f6b346f2?apiKey=8e216de591ec44d2b3973e5d1e77a02f&" alt="Bahasa Inggris class" class="mt-4 w-full" />
+                        <img loading="lazy" src="{{ asset('berkas_ujis/' . $kelas->foto) }}" alt="{{ $kelas->nama }} alt="" class="mt-4 w-full" />
+
                         <p class="mt-6 text-smallContent text-neutral-700 text-start">
-                        matematika adalah pelajaran paporit jerome
+                        {{ $kelas->deskripsi }}
                         </p>
 
                         <p class="text-justify text-neutral-600 mt-2 break-pretty">
-                            <span class="text-[20px] sm:text-subtitle font-semibold text-amber-500">Rp500.000</span>/bulan
+                            <span class="text-[20px] sm:text-subtitle font-semibold text-amber-500">{{ $kelas->harga }}</span>/bulan
                         </p>
-                        <a href="#" class="py-2 w-full font-semibold text-white bg-baseBlue hover:bg-[#607FB2] rounded-lg mt-3">
+                        <a href="{{ url('/detailkelas/' . $kelas->id_kelas) }}" class="py-2 w-full font-semibold text-white bg-baseBlue hover:bg-[#607FB2] rounded-lg mt-3">
                             Lihat
                         </a>
                         
                     </div>
                     </a>
                 </article>
-
-                <article class="flex flex-col">
-                    <a href="" class="flex flex-col justify-center">
-                        <div class="flex flex-col p-5 sm:p-7 w-full drop-shadow-regularShadow bg-white hover:bg-white/75 hover:bg-white hover:drop-shadow-none rounded-xl">
-                        <div class="flex flex-col items-start text-neutral-700">
-                            <h4 class="font-semibold">Bahasa Inggris</h4>
-                            <p class="text-smallContent italic font-light">kurikulum nasional</p>        
-                        </div>
-                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/a9d649e5d3f12aafc79229e974e098d601878ee8ae388a23229704f8f6b346f2?apiKey=8e216de591ec44d2b3973e5d1e77a02f&" alt="Bahasa Inggris class" class="mt-4 w-full" />
-                        <p class="mt-6 text-smallContent text-neutral-700 text-start">
-                        matematika adalah pelajaran paporit jerome
-                        </p>
-
-                        <p class="text-justify text-neutral-600 mt-2 break-pretty">
-                            <span class="text-[20px] sm:text-subtitle font-semibold text-amber-500">Rp500.000</span>/bulan
-                        </p>
-                        <a href="#" class="py-2 w-full font-semibold text-white bg-baseBlue hover:bg-[#607FB2] rounded-lg mt-3">
-                            Lihat
-                        </a>
-                        
-                    </div>
-                    </a>
-                </article> 
+                @endforeach
+                
             </div>
             </div>
         </div>

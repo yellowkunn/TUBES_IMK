@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('pengajar_id')->constrained('pengajar', 'id_pengajar')->onDelete('cascade');
             $table->date('tanggal_terbit');
             $table->string('file_sertifikat');
-            $table->timestamps();
+            $table->timestamp('dibuat')->useCurrent();
         });        
     }
 

@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('no_telepon');
             $table->string('no_hp');
             $table->string('pendidikan');
-            $table->timestamps();
+            $table->timestamp('dibuat')->useCurrent();
         });        
     }
 

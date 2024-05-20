@@ -25,7 +25,7 @@ return new class extends Migration
             $table->dateTime('tgl_batas');
             $table->dateTime('tgl_dikumpul')->nullable();
             $table->string('file_materi')->nullable();
-            $table->timestamps();
+            $table->timestamp('dibuat')->useCurrent();
         });        
     }
 

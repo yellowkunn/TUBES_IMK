@@ -8,17 +8,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/', function () {
-    return view('beranda');
-});
+Route::get('/', [HomeController::class, 'index']);
 
 Auth::routes([
     'verify' => true
 ]);
 
-
 Route::get('/home', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
-// Route::get('post', [HomeController::class, 'post'])->middleware(['auth', 'admin']);
+/// Route::get('post', [HomeController::class, 'post'])->middleware(['auth', 'admin']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -30,6 +27,7 @@ Route::middleware('auth')->group(function () {
 // OWNER
 Route::get('/admindashboard', [AdminController::class, 'dashboardadmin']);
 Route::get('/editdaftarkelas', [AdminController::class, 'editdaftarkelas']);
+Route::post('/tambahkelasbaru', [AdminController::class, 'tambahkelasbaru']);
 Route::get('/editdaftarsiswa', [AdminController::class, 'editdaftarsiswa']);
 Route::get('/editdaftarpengajar', [AdminController::class, 'editdaftarpengajar']);
 
@@ -41,4 +39,9 @@ Route::get('/pengajarjadwal', [PengajarController::class, 'jadwalpengajar']);
 
 //Siswa
 Route::get('/siswadashboard', [SiswaController::class, 'dashboardsiswa']);
+Route::get('/detailkelas/{id_kelas}', [SiswaController::class, 'detailkelas']);
+
+// User
+Route::get('/formulirpendaftaran', [SiswaController::class, 'formulirpendaftaran']);
+Route::post('/formulirpendaftaran', [SiswaController::class, 'kirimformulirpendaftaran']);
 require __DIR__.'/auth.php';
