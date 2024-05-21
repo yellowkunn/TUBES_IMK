@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('no_hp');
             $table->string('pendidikan');
             $table->string('diterimakursus');
+            $table->string('tingkat_kelas');
             $table->string('nama_ortu');
             $table->string('tempat_lahir_ortu');
             $table->date('tgl_lahir_ortu');

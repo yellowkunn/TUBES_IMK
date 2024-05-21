@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('pengajar', function (Blueprint $table) {
             $table->id('id_pengajar');
-            $table->foreignId('pengguna_id')->constrained('users', 'id_pengguna')->onDelete('cascade');
-            $table->foreignId('kelas_id')->constrained('kelas', 'id_kelas')->onDelete('cascade');
+            $table->foreignId('pengguna_id')->constrained('users', 'id_pengguna')->onDelete('cascade')->onUpdate('CASCADE');
+            $table->foreignId('kelas_id')->constrained('kelas', 'id_kelas')->onDelete('cascade')->onUpdate('CASCADE');
             $table->string('jabatan');
             $table->enum('status', ['Aktif', 'Tidak Aktif'])->default('Aktif');
             $table->timestamp('dibuat')->useCurrent();

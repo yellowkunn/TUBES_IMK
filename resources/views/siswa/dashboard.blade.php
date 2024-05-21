@@ -76,7 +76,7 @@
                         <!-- akhir dari filter -->
 
                         <div>
-                            <a href="" class="bg-white flex items-center gap-2 border border-greyBorder px-4 py-2 rounded-lg">
+                            <a href=" {{url('/../formulirpendaftaran')}} " class="bg-white flex items-center gap-2 border border-greyBorder px-4 py-2 rounded-lg">
                                 <span class="material-symbols-outlined text-greyIcon">add_circle</span> 
                                 <p class="text-greyIcon">Daftar kelas</p>
                             </a>

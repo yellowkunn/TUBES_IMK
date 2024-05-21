@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('kelas_id')->constrained('kelas', 'id_kelas')->onDelete('cascade');
             $table->enum('status', ['Aktif', 'Tidak Aktif', 'MenungguVerif'])->default('Aktif');
             $table->timestamp('dibuat')->useCurrent();
-        });        
+        });
     }
 
     /**

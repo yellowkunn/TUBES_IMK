@@ -31,6 +31,7 @@ return new class extends Migration
             IN nohp VARCHAR(255),
             IN pendidikanterakhir VARCHAR(255),
             IN diterimakursus VARCHAR(255),
+            IN tingkat_kelas VARCHAR(255),
             IN namaortu VARCHAR(255),
             IN tempatlahirortu VARCHAR(255),
             IN tanggallahirortu DATE,
@@ -43,11 +44,11 @@ return new class extends Migration
         BEGIN
             INSERT INTO biodata_siswa(
                 pengguna_id, foto, nama_lengkap, jenis_kelamin, tempat_lahir, tgl_lahir, agama, kewarganegaraan, alamat, 
-                no_telepon, no_hp, pendidikan, diterimakursus, nama_ortu, tempat_lahir_ortu, tgl_lahir_ortu, agama_ortu, 
+                no_telepon, no_hp, pendidikan, diterimakursus, tingkat_kelas, nama_ortu, tempat_lahir_ortu, tgl_lahir_ortu, agama_ortu, 
                 pendidikan_ortu, pekerjaan_ortu
             ) VALUES (
                 id_pengguna, gambar, namalengkap, gender, tempatlahir, tanggallahir, agama, kewarganegaraan, alamat, 
-                notelp, nohp, pendidikanterakhir, diterimakursus, namaortu, tempatlahirortu, tanggallahirortu, agamaortu, 
+                notelp, nohp, pendidikanterakhir, diterimakursus, tingkat_kelas, namaortu, tempatlahirortu, tanggallahirortu, agamaortu, 
                 pendidikanortu, pekerjaanortu
             );
     

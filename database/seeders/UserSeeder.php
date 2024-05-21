@@ -44,7 +44,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
             'foto_profile' => null,
-            'role' => 'siswa',
+            'role' => 'user',
             'remember_token' => Str::random(10),
             'dibuat' => now(),
         ],

@@ -6,37 +6,34 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Kelas;
-
 use Illuminate\Support\Facades\Auth;
+
 class HomeController extends Controller
 {
     public function index()
     {
-        if(Auth::id())
-        {
-            $role=Auth()->user()->role;
+        $kelass = Kelas::all();
 
-            if($role=='user')
-            {
-                return view ('beranda');
-            }
-            else if ($role=='admin')
-            {
-                return view ('owner.dashboard');
-            }
-            else if($role=='guru')
-            {
-                return view ('pengajar.dashboard');
-            }
-            else 
-            {
-                return redirect()->back();
-            }
-        }
-        else
+        if (Auth::check())
         {
-            $kelass = Kelas::all();
-            return view ('beranda', compact('kelass'));
+            $role = Auth::user()->role;
+
+            switch ($role) {
+                case 'user':
+                    return view('beranda', compact('kelass')); 
+                case 'admin':
+                    return view('owner.dashboard', compact('kelass'));
+                case 'guru':
+                    return view('pengajar.dashboard', compact('kelass'));
+                case 'siswa':
+                    return view('siswa.dashboard', compact('kelass'));
+                default:
+                    return redirect()->back();
+            }
+        } 
+        else 
+        {
+            return view('beranda', compact('kelass'));
         }
     }
 }
