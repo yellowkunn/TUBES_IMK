@@ -16,8 +16,9 @@ class HomeController extends Controller
 
         if (Auth::check())
         {
-            $role = Auth::user()->role;
-
+            $user = Auth::user();
+            $role = $user->role;
+        
             switch ($role) {
                 case 'user':
                     return view('beranda', compact('kelass')); 
@@ -26,11 +27,18 @@ class HomeController extends Controller
                 case 'guru':
                     return view('pengajar.dashboard', compact('kelass'));
                 case 'siswa':
-                    return view('siswa.dashboard', compact('kelass'));
+                    $status = $user->status;
+                    if ($status == 'MenungguVerif') {
+                        return view('beranda', compact('kelass'));
+                    } elseif ($status == 'Aktif' || $status == 'TidakAktif') {
+                        return view('siswa.dashboard', compact('kelass'));
+                    } else {
+                        return redirect()->back();
+                    }
                 default:
                     return redirect()->back();
             }
-        } 
+        }
         else 
         {
             return view('beranda', compact('kelass'));

@@ -15,8 +15,7 @@ return new class extends Migration
     {
         Schema::create('tugas', function (Blueprint $table) {
             $table->id('id_tugas');
-            $table->foreignId('pengajar_id')->constrained('pengajar', 'id_pengajar')->onDelete('cascade')->onUpdate('CASCADE');
-            $table->foreignId('siswa_id')->constrained('siswa', 'id_siswa')->onDelete('cascade')->onUpdate('CASCADE');
+            $table->foreignId('user_id')->constrained('users', 'id')->onDelete('cascade')->onUpdate('CASCADE');
             $table->foreignId('kelas_id')->constrained('kelas', 'id_kelas')->onDelete('cascade')->onUpdate('CASCADE');
             $table->string('judul_tugas');
             $table->text('deskripsi');
