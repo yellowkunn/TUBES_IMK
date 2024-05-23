@@ -78,8 +78,6 @@
         <li>{{ $fasilitas }}</li>
         @endforeach
       </ul>
-    </main>
-  </div>
   
   <section class="flex gap-5 justify-between mt-12 max-md:flex-wrap max-md:max-w-full">
     <h3 class="text-subtitle font-semibold">Kelas Lainnya</h3>
@@ -120,6 +118,8 @@
     <span class="material-symbols-outlined pt-1.5">add_shopping_cart</span>
     </div>
   </a>
+</div>
+</main>
 
   @include('components.footer')
 
