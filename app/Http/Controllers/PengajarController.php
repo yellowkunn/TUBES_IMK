@@ -10,7 +10,7 @@ class PengajarController extends Controller
     public function dashboardpengajar()
     {
         $kelass = Kelas::all();
-        return view('pengajar.dashboard', compact('kelas'));
+        return view('pengajar.dashboard', compact('kelass'));
     }
     public function absensipengajar()
     {
@@ -21,6 +21,10 @@ class PengajarController extends Controller
         return view('pengajar.detail_kelas', [
             "kelas" => $kelas
         ]);
+    }
+    public function tambahpertemuanpengajar()
+    {
+        return view('pengajar.tambah_pertemuan');
     }
     public function jadwalpengajar()
     {
@@ -33,5 +37,16 @@ class PengajarController extends Controller
     public function sertifikatpengajar()
     {
         return view('pengajar.sertifikat');
+    }
+
+    public function destroy(Request $request): RedirectResponse
+    {
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }
