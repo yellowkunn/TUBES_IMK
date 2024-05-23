@@ -31,8 +31,8 @@
                     <a href="">Dashboard</a>
                 </div>
 
-                <div class="bg-baseDarkerGreen rounded-xl p-12 relative my-7 font-semibold text-white">
-                    <div class="flex flex-col gap-2 text-start w-1/2">
+                <div class="bg-baseDarkerGreen rounded-xl p-6 md:p-12 relative my-7 font-semibold text-white">
+                    <div class="flex flex-col gap-2 text-start md:w-1/2">
                         <p class="text-subtitle">Hello namaSiswa!</p>
                         <p>Jangan lupa kelas kamu selanjutnya di hari Selasa pukul 10.00 ya!</p>
                     </div>
@@ -41,29 +41,60 @@
                     </div>
                 </div>
 
-                <div class="flex gap-14 mt-12">
-                    <div class="w-2/3">
+                <div class="md:flex gap-14 mt-12">
+                    <div class="md:w-2/3">
                         <div class="flex justify-between">
-                            <p class="text-subtitle font-semibold">Baru diakses</p>
+                            <p class="md:text-subtitle font-semibold">Baru diakses</p>
                             <a href="" class="text-[#00e]">Selengkapnya</a>
                         </div>
 
                         <!-- baru diakses -->
-                        <div class="flex flex-col gap-4 my-5">
-                            <div class="bg-white p-5 px-8 rounded-lg shadow-meetCardShadow">
-                                <div class="flex justify-between">
-                                    <div class="flex flex-col">
-                                        <p class="font-semibold">Pertemuan X</p>
-                                        <p class="">Nama Materi</p>
-                                        <p class="text-greyIcon text-smallContent mt-3">30 April 2024</p>
+                        <!-- perulangan pertemuan -->
+                        <div class="dropdown" data-index="0">
+                            <div id="tabPertemuan-0" class="rounded-xl drop-shadow-regularShadow bg-white p-4 px-8 flex justify-between items-center relative">
+                            <div>
+                                <div>
+                                    <div class="bg-baseBlue h-1/2 absolute top-5 left-4 rounded-full transform -translate-x-1/2 w-1"></div>
+                                </div>
+                                <div class="ms-1">
+                                    <p class="font-semibold">Pertemuan 1</p>
+                                    <p class="text-smallContent">Molekul</p>
+                                </div>
+                            </div>
+                            <button id="iconDD-0">
+                                <i class="fa-solid fa-caret-right text-baseBlue"></i>
+                            </button>
+                        </div>
+
+                        <div id="contentPertemuan-0" class="hidden">
+                            <div class="bg-white p-3 px-8 w-full rounded-t-xl drop-shadow-[0px_0px_2px_rgba(0,0,0,0.1)] mt-2.5">
+                                <p class="font-semibold">Materi</p> 
+                            </div>
+
+                            <div class="bg-baseCream w-full rounded-b-xl">
+                                <div class="grid divide-y-2">
+                                    <div class="flex gap-3 p-3 px-8 items-center">
+                                        <i class="fa-regular fa-file"></i>
+                                        <p>Materi1</p> 
                                     </div>
-                                    <div class="flex my-auto gap-6">
-                                        <p class="text-baseDarkerGreen bg-baseDarkerGreen/20 h-fit p-2 px-4 rounded-full">April</p>
-                                        <button class="bg-white border-2 border-baseBlue text-baseBlue px-4 rounded-full">Lihat Detail</button>
+                                </div>
+                            </div>
+
+                            <div class="bg-white p-3 px-8 w-full rounded-t-xl drop-shadow-[0px_0px_2px_rgba(0,0,0,0.1)] mt-3">
+                                <p class="font-semibold">Latihan</p> 
+                            </div>
+
+                            <div class="bg-baseCream w-full rounded-b-xl">
+                                <div class="grid divide-y-2">
+                                    <div class="flex gap-3 p-3 px-8 items-center">
+                                        <i class="fa-regular fa-file"></i>
+                                        <p>Latihan1</p> 
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <!-- akhir dari perulangan pertemuan -->
                         
                         <div class="flex gap-6 mt-12 mb-8">
                         <!-- filter bds kelas aktif/tdk -->
@@ -101,7 +132,7 @@
                         <!-- akhir dari daftar kelas -->
                     </div>
 
-                    <div class="w-1/3">
+                    <div class="md:w-1/3">
                         <p class="text-subtitle font-semibold">Kalender</p>
 
                         <!-- baru diakses -->

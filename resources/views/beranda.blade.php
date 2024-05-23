@@ -59,14 +59,14 @@
                             <h4 class="font-semibold">{{ $kelas->nama }}</h4>
                             <!-- <p class="text-smallContent italic font-light">kurikulum nasional</p> -->
                         </div>
-                        <img loading="lazy" src="{{ asset('berkas_ujis/' . $kelas->foto) }}" alt="{{ $kelas->nama }} alt="" class="mt-4 w-full" />
+                        <img loading="lazy" src="{{ asset('berkas_ujis/' . $kelas->foto) }}" alt="{{ $kelas->nama }} alt="" class="mt-4 max-h-64 w-full object-cover rounded-lg" />
 
                         <p class="mt-6 text-smallContent text-neutral-700 text-start">
                         {{ $kelas->deskripsi }}
                         </p>
 
                         <p class="text-justify text-neutral-600 mt-2 break-pretty">
-                            <span class="text-[20px] sm:text-subtitle font-semibold text-amber-500">{{ $kelas->harga }}</span>/bulan
+                            <span class="text-[20px] sm:text-subtitle font-semibold text-amber-500">Rp{{ number_format($kelas->harga, 0, ',', '.') }}</span>/bulan
                         </p>
                         <a href="{{ url('/detailkelas/' . $kelas->id_kelas) }}" class="py-2 w-full font-semibold text-white bg-baseBlue hover:bg-[#607FB2] rounded-lg mt-3">
                             Lihat

@@ -86,7 +86,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- akhir dari perulangan pertemuan -->
 
                     <!-- perulangan pertemuan -->
@@ -134,7 +133,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- akhir dari perulangan pertemuan -->
                 </div>
             </div>
