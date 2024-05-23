@@ -33,52 +33,59 @@
                 <a href="">Rapor Bulanan</a>
             </div>
 
-            <p class="text-title font-semibold my-7">Rapor Bulanan</p>
+            <p class="text-title font-semibold mt-7 mb-4 md:mb-6">Rapor Bulanan</p>
                 
-            <div class="bg-white drop-shadow-regularShadow py-3 my-8 rounded-lg border">
+            <div class="bg-white drop-shadow-regularShadow py-3 mb-8 rounded-lg border">
                 <!-- tabel rapor -->
-                <table class="min-w-full text-left text-sm font-light text-surface dark:text-white">
-                    <div class="px-12 flex justify-between border-b border-neutral-200 font-semibold" style="color: #717171">
-                        <p class="py-4 text-subtitle">Nama Mapel</p>
-                        <p class="py-4">Nama Pengajar, S.Pd</p>
-                    </div>
-                    
-                    <thead class="border-b border-neutral-200 font-semibold bg-greyBackground" style="color: #717171">
-                        <th scope="col" class= "px-12 py-2">No.</th>
-                        <th scope="col" class= "w-full px-12 py-2">Bidang</th>
-                        <th scope="col" class= "pe-24 py-2">Nilai</th>
-                    </thead>
+                <div class="overflow-x-auto">
+                    <div class="min-w-full text-left text-sm font-light text-surface dark:text-white">
+                        <div class="px-4 sm:px-12 flex justify-between border-b border-neutral-200 font-semibold" style="color: #717171">
+                            <p class="py-3 text-[18px] sm:text-[20px] md:text-subtitle">Nama Mapel</p>
+                            <p class="py-4">Nama Pengajar, S.Pd</p>
+                        </div>
                         
-                    <tbody>
-                        <tr class="border-b border-neutral-200">
-                            <td class="px-12 py-4">1.</td>
-                            <td class="px-12 py-4">Bidang</td>
-                            <td class="py-4">Nilai</td>
-                        </tr>
-                        <tr class="border-b border-neutral-200">
-                            <td class="px-12 py-4">2.</td>
-                            <td class="px-12 py-4">Bidang</td>
-                            <td class="py-4">Nilai</td>
-                        </tr>
-                        <tr class="border-b border-neutral-200">
-                            <td class="px-12 py-4">3.</td>
-                            <td class="px-12 py-4">Bidang</td>
-                            <td class="py-4">Nilai</td>
-                        </tr>
-                        <tr class="border-b border-neutral-200">
-                            <td class="px-12 py-4">4.</td>
-                            <td class="px-12 py-4">Bidang</td>
-                            <td class="py-4">Nilai</td>
-                        </tr>
-                        <tr>
-                            <td class="px-12 py-4 font-semibold">Total</td>
-                            <td></td>
-                            <td class="py-4">Nilai</td>
-                        </tr>
-                    </tbody>
-                </table>
+                        <table class="min-w-full text-left text-sm font-light text-surface dark:text-white">
+                            <thead class="border-b border-neutral-200 font-semibold bg-greyBackground" style="color: #717171">
+                                <tr>
+                                    <th scope="col" class="px-4 sm:px-12 py-2">No.</th>
+                                    <th scope="col" class="w-full px-4 sm:px-12 py-2">Bidang</th>
+                                    <th scope="col" class="px-4 sm:pe-24 py-2">Nilai</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
+                                <tr class="border-b border-neutral-200">
+                                    <td class="px-4 sm:px-12 py-4">1.</td>
+                                    <td class="px-4 sm:px-12 py-4">Bidang</td>
+                                    <td class="px-4 sm:px-12 md:px-4 py-4">Nilai</td>
+                                </tr>
+                                <tr class="border-b border-neutral-200">
+                                    <td class="px-4 sm:px-12 py-4">2.</td>
+                                    <td class="px-4 sm:px-12 py-4">Bidang</td>
+                                    <td class="px-4 sm:px-12 md:px-4">Nilai</td>
+                                </tr>
+                                <tr class="border-b border-neutral-200">
+                                    <td class="px-4 sm:px-12 py-4">3.</td>
+                                    <td class="px-4 sm:px-12 py-4">Bidang</td>
+                                    <td class="px-4 sm:px-12 md:px-4">Nilai</td>
+                                </tr>
+                                <tr class="border-b border-neutral-200">
+                                    <td class="px-4 sm:px-12 py-4">4.</td>
+                                    <td class="px-4 sm:px-12 py-4">Bidang</td>
+                                    <td class="px-4 sm:px-12 md:px-4">Nilai</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 sm:px-12 py-4 font-semibold">Total</td>
+                                    <td></td>
+                                    <td class="px-4 sm:px-12 md:px-4">Nilai</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
                 <!-- akhir dari tabel rapor -->
             </div>
+
 
             <!-- note -->
             <div class="bg-white drop-shadow-regularShadow border-b rounded-lg">
