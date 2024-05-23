@@ -53,7 +53,7 @@
                                 <button id="dd-more" class="text-end w-full"><i class="fa-solid fa-ellipsis-vertical text-lg"></i></button>
 
                                 <div id="dd-menu" class="hidden grid grid-cols-1 divide-y bg-white mt-2 rounded-md drop-shadow-regularShadow absolute top-7 right-14" style="color: #949494;">
-                                    <button onclick="showPopupEditKelas()" class="w-full h-full flex items-center gap-2 py-1.5 px-5">
+                                    <button onclick="c()" class="w-full h-full flex items-center gap-2 py-1.5 px-5">
                                         <i class="fa-regular fa-pen-to-square"></i>
                                         <p>Edit</p>
                                     </button>
@@ -67,8 +67,8 @@
                             <div class="flex flex-col gap-2">
                                 <p class="font-semibold">{{ $kelas->nama }} </p>
                                 <p class="text-greyIcon text-smallContent hyphens-auto line-clamp-3">{{ $kelas->deskripsi }}</p>
-                                <p class="font-semibold text-[#E9940C]">Rp{{ $kelas->harga }} / bulan</span></p>
-                                <button class="rounded-full bg-baseBlue text-white font-semibold py-2 my-3">Detail</button>
+                                <p class="font-semibold text-[#E9940C]">Rp.{{ $kelas->harga }} <br><span class="text-smallContent text-greyIcon font-normal">{{ $kelas->rentang }} / bulan</span></p>
+                                <a href="{{ url('/editdetailkelas/' . $kelas->id_kelas) }}" class="rounded-full bg-baseBlue text-white font-semibold py-2 my-3 inline-block text-center">Detail</a>
                             </div>
                             <div class="absolute bg-baseBlue h-1 rounded-full bottom-0 left-1/2 transform -translate-x-1/2 w-3/4"></div>
                         </div>

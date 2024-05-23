@@ -30,6 +30,7 @@ Route::get('/editdaftarkelas', [AdminController::class, 'editdaftarkelas']);
 Route::post('/tambahkelasbaru', [AdminController::class, 'tambahkelasbaru']);
 Route::get('/editdaftarsiswa', [AdminController::class, 'editdaftarsiswa']);
 Route::get('/editdaftarpengajar', [AdminController::class, 'editdaftarpengajar']);
+Route::get('/editdetailkelas/{kelas}', [AdminController::class, 'editdetailkelas']);
 
 //Pengajar
 Route::get('/pengajardashboard', [PengajarController::class, 'dashboardpengajar']);

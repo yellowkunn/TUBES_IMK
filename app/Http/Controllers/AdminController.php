@@ -18,6 +18,13 @@ class AdminController extends Controller
         $kelass = Kelas::all();
         return view ('owner.daftar_kelas', compact('kelass'));
     }
+
+    public function editdetailkelas(Kelas $kelas)
+    {
+        return view('owner.detail_tawaran_kelas', [
+            "kelas" => $kelas
+        ]);
+    }
     public function editdaftarsiswa()
     {
         return view ('owner.daftar_siswa');

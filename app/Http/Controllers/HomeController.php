@@ -26,7 +26,7 @@ class HomeController extends Controller
                     return view('beranda', compact('kelass')); 
                 case 'admin':
                     return view('owner.dashboard', compact('kelass'));
-                case 'guru':
+                case 'pengajar':
                     return view('pengajar.dashboard', compact('kelass'));
                 case 'siswa':
                     $siswa = Siswa::where('pengguna_id', $user->id_pengguna)->first();
