@@ -94,7 +94,11 @@
                   <h4 class="font-semibold">{{ $kls->nama }}</h4>
                   <!-- <p class="text-smallContent italic font-light">kurikulum nasional</p> -->
               </div>
+<<<<<<< HEAD
               <img loading="lazy" src="{{ asset('berkas_ujis/' . $kls->foto) }}" alt="{{ $kls->nama }} alt="" class="mt-4 max-h-64 w-full object-cover rounded-lg" />
+=======
+              <img loading="lazy" src="{{ asset('berkas_ujis/' . $kls->foto) }}" alt="{{ $kls->nama }}" class="mt-4 max-h-64 w-full object-cover rounded-lg" />
+>>>>>>> 1c0393c8118f00eb405585e606b558fddfeef275
 
               <p class="mt-6 text-smallContent text-neutral-700 text-start">
               {{ $kls->deskripsi }}
@@ -103,7 +107,15 @@
               <p class="text-justify text-neutral-600 mt-2 break-pretty">
                   <span class="text-[20px] sm:text-subtitle font-semibold text-amber-500">Rp{{ number_format($kls->harga, 0, ',', '.') }}</span>/bulan
               </p>
+<<<<<<< HEAD
               <a href="{{ url('/detailkelas/' . $kls->id_kelas) }}" class="py-2 w-full text-center font-semibold text-white bg-baseBlue hover:bg-[#607FB2] rounded-lg mt-3">
+=======
+<<<<<<< HEAD
+              <a href="{{ url('/detailkelas/' . $kls->id_kelas) }}" class="justify-center py-2 px-5 font-semibold text-lime-50 whitespace-nowrap bg-baseBlue rounded-full max-md:px-5">
+=======
+              <a href="{{ url('/detailkelas/' . $kls->id_kelas) }}" class="py-2 mt-4 w-full text-center font-semibold text-white bg-baseBlue hover:bg-[#607FB2] rounded-lg">
+>>>>>>> fc4a31b8d199ea272510a17361631cbc4b136b3f
+>>>>>>> 1c0393c8118f00eb405585e606b558fddfeef275
                   Lihat
               </a>
 
@@ -114,7 +126,7 @@
   </div>
 
   <a href="" class="flex justify-end bottom-10 mx-5 md:mx-10 sticky z-10 my-5 animate-bounce" id="daftarSkrg">
-    <div class="bg-baseBlue hover:bg-[#415474] text-white rounded-full p-2 px-3.5 drop-shadow-lg w-fit h-fit cursor-pointer">
+    <div id="daftarSkrgTip" class="bg-baseBlue hover:bg-[#415474] text-white rounded-full p-2 px-3.5 drop-shadow-lg w-fit h-fit cursor-pointer">
     <span class="material-symbols-outlined pt-1.5">add_shopping_cart</span>
     </div>
   </a>
@@ -125,6 +137,11 @@
 
 
   <script src="{{asset('js/style.js')}}"></script>
+  <script>
+    tippy('#daftarSkrgTip', {
+    content: 'Daftar Kelas',
+    });
+  </script>
 </body>
 
 </html>

@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Biodata_siswa;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,5 +24,8 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this -> call(UserSeeder::class);
         $this -> call(KelasSeeder::class);
+        $this -> call(PengajarSeeder::class);
+        $this -> call(Biodata_siswaSeeder::class);
+        $this -> call(SiswaSeeder::class);
     }
 }
