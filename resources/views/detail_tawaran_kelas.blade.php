@@ -103,7 +103,7 @@
               <p class="text-justify text-neutral-600 mt-2 break-pretty">
                   <span class="text-[20px] sm:text-subtitle font-semibold text-amber-500">{{ $kls->harga }}</span>/bulan
               </p>
-              <a href="{{ url('/detailkelas/' . $kls->id_kelas) }}" class="py-2 w-full font-semibold text-white bg-baseBlue hover:bg-[#607FB2] rounded-lg mt-3">
+              <a href="{{ url('/detailkelas/' . $kls->id_kelas) }}" class="justify-center py-2 px-5 font-semibold text-lime-50 whitespace-nowrap bg-baseBlue rounded-full max-md:px-5">
                   Lihat
               </a>
 

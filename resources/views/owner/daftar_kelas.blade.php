@@ -20,10 +20,10 @@
     <div>
         @include('components.owner.navbar')
 
-    <div class="flex max-w-[1440px]">
-        <div class="translate-x-[-100%] md:translate-x-0 md:h-fit fixed md:static z-10 h-screen duration-300" id="sidebar">
-            @include('components.owner.sidebar')
-        </div>
+        <div class="flex max-w-[1440px]">
+            <div class="translate-x-[-100%] md:translate-x-0 md:h-fit fixed md:static z-10 h-screen duration-300" id="sidebar">
+                @include('components.owner.sidebar')
+            </div>
 
             <!-- content -->
             <div class="w-full">
@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="grid grid-cols-3 gap-x-24 gap-y-16">
-                    @foreach($kelass as $kelas)
+                        @foreach($kelass as $kelas)
                         <div class="bg-white rounded-lg pt-6 pb-8 px-12 drop-shadow-regularShadow relative">
 
                             <!-- dd more (edit & hapus) -->
@@ -100,6 +100,19 @@
                                     <div>
                                         <p class="font-semibold mb-1">Nama Kelas</p>
                                         <input class="rounded w-full h-9" type="text" name="nama" id="nama">
+                                    </div>
+
+                                    <div>
+                                        <p class="font-semibold mb-1">Tingkat Kelas</p>
+                                        <select id="" name="tingkat_kelas" class="rounded w-full h-9">
+                                            <option value="" class="text-greyIcon">Kelas</option>
+                                            <option value="SD">SD</option>
+                                            <option class="text-greyIcon" value="SMP">SMP</option>
+                                            <option class="text-greyIcon" value="SMA">SMA</option>
+                                            <option class="text-greyIcon" value="Gap Year">Gap Year</option>
+                                            <option class="text-greyIcon" value="TOEFL">TOEFL</option>
+                                            <option class="text-greyIcon" value="IELTS">IELTS</option>
+                                        </select>
                                     </div>
 
                                     <div>
@@ -309,7 +322,7 @@
     </script>
 
 
-<script src="{{asset('js/style.js')}}"></script>
+    <script src="{{asset('js/style.js')}}"></script>
 </body>
 
 </html>

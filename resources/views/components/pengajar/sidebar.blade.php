@@ -4,15 +4,15 @@
             <span class="material-symbols-outlined">grid_view</span> 
             <p class="flex duration-500">Beranda</p>
         </a>
-        <a href="" class="flex items-center gap-2">
+        <a href="{{ route('jadwalpengajar') }}" class="flex items-center gap-2">
             <span class="material-symbols-outlined">calendar_month</span>
             <p class="flex duration-500">Jadwal</p>
         </a>
-        <a href="" class="flex items-center gap-3 ps-1">
+        <a href="{{ route('raporpengajar') }}" class="flex items-center gap-3 ps-1">
             <i class="fa-solid fa-chart-column"></i>
             <p class="flex duration-500">Rapor</p>
         </a>
-        <a href="" class="flex items-center gap-2">
+        <a href="{{ route('sertifikatpengajar') }}" class="flex items-center gap-2">
             <span class="material-symbols-outlined fa-sm">verified</span>
             <p class="flex duration-500">Sertifikat</p>
         </a>

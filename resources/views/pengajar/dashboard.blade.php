@@ -71,45 +71,20 @@
                             <a href="" class="text-[#00e]">Selengkapnya</a>
                         </div>
                         <div class="grid grid-cols-2 gap-4">
+                            @foreach($kelass as $kelas)
                             <div class="p-8 bg-white drop-shadow-regularShadow rounded-lg flex flex-col gap-2">
-                                <p class="font-semibold">Matematika</p>
-                                <p class="text-greyIcon text-wrap">Lorem ipsum dolor sit amet consectetur. Nunc donec feugiat ullamcorper urna.</p>
+                                <p class="font-semibold">{{ $kelas->nama }}</p>
+                                <p class="text-greyIcon text-wrap">{{ $kelas->deskripsi }}</p>
                                 <div class="flex items-center">
                                     <img src="" alt="">
                                     <p class="text-greyIcon">10 pengajar</p>
                                 </div>
-                                <button class="text-white font-semibold bg-baseBlue w-full rounded-full py-1.5 mt-2">Detail</button>
+                                <a href=" {{ url('pengajardetailkelas/' . $kelas->id_kelas) }} ">
+                            <button class="text-white font-semibold bg-baseBlue w-full rounded-full py-1.5 mt-2">Detail</button>
+                                </a>
                             </div>
+                            @endforeach
 
-                            <div class="p-8 bg-white drop-shadow-regularShadow rounded-lg flex flex-col gap-2">
-                                <p class="font-semibold">Matematika</p>
-                                <p class="text-greyIcon text-wrap">Lorem ipsum dolor sit amet consectetur. Nunc donec feugiat ullamcorper urna.</p>
-                                <div class="flex items-center">
-                                    <img src="" alt="">
-                                    <p class="text-greyIcon">10 pengajar</p>
-                                </div>
-                                <button class="text-white font-semibold bg-baseBlue w-full rounded-full py-1.5 mt-2">Detail</button>
-                            </div>
-
-                            <div class="p-8 bg-white drop-shadow-regularShadow rounded-lg flex flex-col gap-2">
-                                <p class="font-semibold">Matematika</p>
-                                <p class="text-greyIcon text-wrap">Lorem ipsum dolor sit amet consectetur. Nunc donec feugiat ullamcorper urna.</p>
-                                <div class="flex items-center">
-                                    <img src="" alt="">
-                                    <p class="text-greyIcon">10 pengajar</p>
-                                </div>
-                                <button class="text-white font-semibold bg-baseBlue w-full rounded-full py-1.5 mt-2">Detail</button>
-                            </div>
-
-                            <div class="p-8 bg-white drop-shadow-regularShadow rounded-lg flex flex-col gap-2">
-                                <p class="font-semibold">Matematika</p>
-                                <p class="text-greyIcon text-wrap">Lorem ipsum dolor sit amet consectetur. Nunc donec feugiat ullamcorper urna.</p>
-                                <div class="flex items-center">
-                                    <img src="" alt="">
-                                    <p class="text-greyIcon">10 pengajar</p>
-                                </div>
-                                <button class="text-white font-semibold bg-baseBlue w-full rounded-full py-1.5 mt-2">Detail</button>
-                            </div>
                         </div>
                         <!-- akhir dari daftar kelas -->
 

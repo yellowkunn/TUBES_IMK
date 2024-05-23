@@ -18,6 +18,7 @@ class KelasSeeder extends Seeder
         DB::table('kelas')->insert([
             [
                 'nama' => 'Bahasa Indonesia',
+                'tingkat_kelas' => "SMA",
                 'foto' => 'file_20240519034914.jpeg',
                 'deskripsi' => 'Deskripsi kelas pertama',
                 'harga' => 100000.00,
@@ -30,6 +31,7 @@ class KelasSeeder extends Seeder
             ],
             [
                 'nama' => 'Bahasa Inggris',
+                'tingkat_kelas' => "SMA",
                 'foto' => 'file_20240519034914.jpeg',
                 'deskripsi' => 'Deskripsi kelas kedua',
                 'harga' => 150000.00,
@@ -42,6 +44,7 @@ class KelasSeeder extends Seeder
             ],
             [
                 'nama' => 'Bahasa Jerman',
+                'tingkat_kelas' => "SMA",
                 'foto' => 'file_20240519034914.jpeg',
                 'deskripsi' => 'Deskripsi kelas ketiga',
                 'harga' => 200000.00,
@@ -54,6 +57,7 @@ class KelasSeeder extends Seeder
             ],
             [
                 'nama' => 'Bahasa Jepang',
+                'tingkat_kelas' => "SMA",
                 'foto' => 'file_20240519034914.jpeg',
                 'deskripsi' => 'Deskripsi kelas keempat',
                 'harga' => 250000.00,
@@ -66,6 +70,7 @@ class KelasSeeder extends Seeder
             ],
             [
                 'nama' => 'Bahasa Arab',
+                'tingkat_kelas' => "SMA",
                 'foto' => 'file_20240519034914.jpeg',
                 'deskripsi' => 'Deskripsi kelas kelima',
                 'harga' => 300000.00,
