@@ -50,14 +50,10 @@ class SiswaController extends Controller
         return redirect()->back(); 
     }
 
-    public function detailkelas($kelas)
+    public function detailkelas(Kelas $kelas)
     {
-        $kelass = Kelas::where('id_kelas', $kelas)->first();
-        if (!$kelass) {
-            abort(404); // Tampilkan halaman 404 jika kelas tidak ditemukan
-        }
-        $class = Kelas::whereNotIn('id_kelas', [$kelas])->get();
-        return view('detail_tawaran_kelas', compact('kelass', 'class'));
+        $class = Kelas::whereNotIn('id_kelas', $kelas)->get();
+        return view('detail_tawaran_kelas', ["kelas" => $kelas], compact('class'));
     }
 
     public function programkelas(Kelas $kelas)

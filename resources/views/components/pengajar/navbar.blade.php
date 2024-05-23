@@ -21,10 +21,13 @@
                 <i class="fa-regular fa-pen-to-square"></i>
                 <p>Edit Profile</p>
             </a>
-            <a href="" class="w-full h-full flex items-center gap-2 py-1 px-3">
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="w-full h-full flex items-center gap-2 py-1 px-3">
                 <i class="fa-solid fa-arrow-right-from-bracket fa-sm"></i>
-                <p>Logout</p>
-            </a>
+                <p>{{ __('logout') }}</p>
+                </button>
+            </form>
         </div>
     </div>
     <!-- akhir dari dd more (edit & hapus) -->

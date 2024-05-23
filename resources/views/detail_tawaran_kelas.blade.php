@@ -22,20 +22,20 @@
     <main class="flex flex-col self-center w-full px-8 sm:px-16 lg:px-20 my-4 md:my-12">
       <section class="flex gap-5 justify-between px-0.5 max-md:flex-wrap max-md:max-w-full">
         <div class="flex flex-col self-start">
-          <h2 class="text-title font-semibold">{{ $kelass->nama }}</h2>
+          <h2 class="text-title font-semibold">{{ $kelas->nama }}</h2>
           <h3 class="mt-8 text-subtitle max-md:mt-10 font-semibold">Waktu</h3>
 
           <div class="flex flex-col gap-3">
               <div class="flex gap-2 justify-center items-center mt-4">
                   <span class="material-symbols-outlined">calendar_today</span>  
                   <p class="my-auto font-normal">
-                      <span class="font-semibold">Jadwal :</span> {{ $kelass->jadwal_hari }}
+                      <span class="font-semibold">Jadwal :</span> {{ $kelas->jadwal_hari }}
                   </p>
               </div>
               <div class="flex gap-2 items-center">
                   <i class="fa-lg fa-regular fa-clock"></i>  
                   <p class="my-auto font-normal">
-                    <span class="font-semibold ms-1">Durasi :</span> {{ $kelass->durasi }} /sesi
+                    <span class="font-semibold ms-1">Durasi :</span> {{ $kelas->durasi }} /sesi
                   </p>
               </div>
           </div>
@@ -46,9 +46,9 @@
           <div class="flex flex-col">
             <p>Hanya</p>
             <p class="mt-5 leading-6">
-              <span class="text-subtitle font-semibold">Rp {{ $kelass->harga }}</span>
+              <span class="text-subtitle font-semibold">Rp {{ $kelas->harga }}</span>
               <br />
-              /{{ $kelass->rentang }}
+              /{{ $kelas->rentang }}
             </p>
             @if (Route::has('login'))
             @auth
@@ -68,13 +68,13 @@
 
       <h3 class="text-subtitle font-semibold max-w-3/4 mt-8 md:mt-4">Deskripsi</h3>
       <p class="mt-1.5  w-full md:w-3/4">
-       {{ $kelass->deskripsi }}
+       {{ $kelas->deskripsi }}
       </p>
 
       <h3 class="mt-8 text-subtitle font-semibold max-md:mt-10 max-md:max-w-full">Fasilitas</h3>
       <ul class="mt-2 max-md:max-w-full flex flex-col gap-1">
 
-        @foreach(explode(',', $kelass->fasilitas) as $fasilitas)
+        @foreach(explode(',', $kelas->fasilitas) as $fasilitas)
         <li>{{ $fasilitas }}</li>
         @endforeach
       </ul>

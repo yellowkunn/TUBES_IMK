@@ -43,7 +43,7 @@ Route::get('/beranda', [SiswaController::class, 'dashboardsiswa']);
 Route::get('/pembayaran', [SiswaController::class, 'pembayaran']);
 Route::get('/rapor', [SiswaController::class, 'rapor']);
 Route::get('/sertifikat', [SiswaController::class, 'sertifikat']);
-Route::get('/detailkelas/{id_kelas}', [SiswaController::class, 'detailkelas']);
+Route::get('/detailkelas/{kelas}', [SiswaController::class, 'detailkelas']);
 Route::get('/siswa/detailkelas/{kelas}', [SiswaController::class, 'programkelas']);
 Route::get('/editprofile', [SiswaController::class, 'editprofile']);
 
