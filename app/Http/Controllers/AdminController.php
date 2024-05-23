@@ -55,8 +55,8 @@ class AdminController extends Controller
             $file->move(public_path('berkas_ujis'), $nama_file);
             $berkas = '' . $nama_file;
         }
-        DB::select('call kelas_baru(?,?,?,?,?,?,?,?)',
-        array($request->get('nama'),
+        DB::select('call kelas_baru(?,?,?,?,?,?,?,?,?)',
+        array($request->get('nama'),$request->get('tingkat_kelas'),
         $berkas,
         $request->get('deskripsi'),
         $request->get('harga'),

@@ -33,7 +33,7 @@
 
                 <div class="bg-baseDarkerGreen rounded-xl p-6 md:p-12 relative my-7 font-semibold text-white">
                     <div class="flex flex-col gap-2 text-start md:w-1/2">
-                        <p class="text-subtitle">Hello namaSiswa!</p>
+                        <p class="text-subtitle">Hello {{ Auth::user()->username }}!</p>
                         <p>Jangan lupa kelas kamu selanjutnya di hari Selasa pukul 10.00 ya!</p>
                     </div>
                     <div class="absolute right-5 top-0 invisible md:visible">
@@ -43,7 +43,7 @@
 
                 <div class="md:flex gap-14 mt-12">
                     <div class="md:w-2/3">
-                        <div class="flex justify-between">
+                        <div class="flex justify-between items-center">
                             <p class="md:text-subtitle font-semibold">Baru diakses</p>
                             <a href="" class="text-[#00e]">Selengkapnya</a>
                         </div>
@@ -51,7 +51,7 @@
                         <!-- baru diakses -->
                         <!-- perulangan pertemuan -->
                         <div class="dropdown" data-index="0">
-                            <div id="tabPertemuan-0" class="rounded-xl drop-shadow-regularShadow bg-white p-4 px-8 flex justify-between items-center relative">
+                            <div id="tabPertemuan-0" class="mt-5 rounded-xl drop-shadow-regularShadow bg-white p-4 px-8 flex justify-between items-center relative">
                             <div>
                                 <div>
                                     <div class="bg-baseBlue h-1/2 absolute top-5 left-4 rounded-full transform -translate-x-1/2 w-1"></div>
@@ -117,15 +117,15 @@
                         <!-- daftar kelas -->
                         <div class="grid grid-cols-2 gap-4 my-5">
                             @foreach($siswas as $kelas)
-                            <div class="p-8 bg-white drop-shadow-regularShadow rounded-lg flex flex-col gap-2">
-                                <p class="font-semibold">{{$kelas->kelas->nama}}</p>
-                                <p class="text-greyIcon text-wrap">{{$kelas->kelas->deskripsi}}</p>
+                            <div class="p-8 px-10 bg-white drop-shadow-regularShadow rounded-lg flex flex-col gap-2">
+                                <p class="font-semibold text-subtitle">{{$kelas->kelas->nama}}</p>
                                 <div class="flex items-center">
-                                    <img src="{{ asset('berkas_ujis/' . $kelas->kelas->foto) }}" alt=" {{ $kelas->kelas->nama }} ">
+                                    <img src="{{ asset('berkas_ujis/' . $kelas->kelas->foto) }}" alt=" {{ $kelas->kelas->nama }} " class="my-2 max-h-64 w-full object-cover rounded-lg">
                                     <p class="text-greyIcon"></p>
                                 </div>
+                                <p class="text-greyIcon text-wrap">{{$kelas->kelas->deskripsi}}</p>
                                     <a href="{{ url('/siswa/detailkelas/' . $kelas->kelas->id_kelas) }} ">
-                                <button class="text-white font-semibold bg-baseBlue w-full rounded-full py-1.5 mt-2">Detail</button></a>
+                                <button class="text-white font-semibold bg-baseBlue w-full rounded-lg py-1.5 mt-4">Detail</button></a>
                             </div>
                             @endforeach
                         </div>
@@ -153,5 +153,54 @@
     @include('components.footer')
 
 <script src="{{asset('js/style.js')}}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const dropdowns = document.querySelectorAll('.dropdown');
+
+        dropdowns.forEach(dropdown => {
+            const index = dropdown.getAttribute('data-index');
+            tab_pertemuan('iconDD-' + index, 'contentPertemuan-' + index, 'tabPertemuan-' + index);
+        });
+    });
+
+    function tab_pertemuan(idDD, contentPertemuan, tabPertemuan) {
+        const dropdownButton = document.getElementById(idDD);
+        const dropdownContent = document.getElementById(contentPertemuan);
+        let isDropdownOpen = false;
+    
+        function toggleDropdown() {
+            isDropdownOpen = !isDropdownOpen;
+            if (isDropdownOpen) {
+                dropdownContent.classList.remove('hidden');
+                dropdownButton.classList.add('rotate-90');
+            } else {
+                dropdownContent.classList.add('hidden');
+                dropdownButton.classList.remove('rotate-90');
+            }
+        }
+
+        dropdownButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            toggleDropdown();
+        });
+
+        window.addEventListener('click', (event) => {
+            if (!dropdownButton.contains(event.target) && !dropdownContent.contains(event.target)) {
+                dropdownContent.classList.add('hidden');
+                dropdownButton.classList.remove('rotate-90');
+                isDropdownOpen = false;
+            }
+        });
+    }
+
+    function selectOption(event, index, option) {
+        event.preventDefault(); 
+        document.getElementById('selectedOption-' + index).textContent = option;
+        document.getElementById('tabPertemuan-' + index).value = option;
+        document.getElementById('contentPertemuan-' + index).classList.add('hidden');
+        document.getElementById('iconDD-' + index).classList.remove('rotate-90');
+        isDropdownOpen = false;
+    }
+    </script>
 </body>
 </html>

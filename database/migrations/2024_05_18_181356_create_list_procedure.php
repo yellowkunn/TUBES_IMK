@@ -73,6 +73,7 @@ return new class extends Migration
     DROP PROCEDURE IF EXISTS kelas_baru;
     CREATE PROCEDURE kelas_baru (
         nama VARCHAR(255),
+        tingkat_kelas VARCHAR(255),
         gambar VARCHAR(255),
         deskripsi TEXT,
         harga DECIMAL(10,2),
@@ -83,9 +84,9 @@ return new class extends Migration
     )
     BEGIN
         INSERT INTO kelas(
-            nama, foto, deskripsi, harga, fasilitas, rentang, jadwal_hari, durasi
+        nama, tingkat_kelas, foto, deskripsi, harga, fasilitas, rentang, jadwal_hari, durasi
         ) VALUES (
-            nama, gambar, deskripsi, harga, fasilitas, rentang, jadwal_hari, durasi
+        nama, tingkat_kelas, gambar, deskripsi, harga, fasilitas, rentang, jadwal_hari, durasi
         );
     END;
     ');

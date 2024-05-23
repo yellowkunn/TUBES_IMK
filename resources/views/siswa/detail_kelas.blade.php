@@ -142,7 +142,7 @@
     @include('components.footer')
 
     <script>
-       document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
         const dropdowns = document.querySelectorAll('.dropdown');
 
         dropdowns.forEach(dropdown => {
@@ -155,7 +155,7 @@
         const dropdownButton = document.getElementById(idDD);
         const dropdownContent = document.getElementById(contentPertemuan);
         let isDropdownOpen = false;
-
+    
         function toggleDropdown() {
             isDropdownOpen = !isDropdownOpen;
             if (isDropdownOpen) {
@@ -189,7 +189,6 @@
         document.getElementById('iconDD-' + index).classList.remove('rotate-90');
         isDropdownOpen = false;
     }
-
     </script>
   
 <script src="{{asset('js/style.js')}}"></script>

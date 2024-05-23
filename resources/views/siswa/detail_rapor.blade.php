@@ -57,7 +57,9 @@
                                 <tr class="border-b border-neutral-200">
                                     <td class="px-4 sm:px-12 py-4">1.</td>
                                     <td class="px-4 sm:px-12 py-4">Bidang</td>
-                                    <td class="px-4 sm:px-12 md:px-4 py-4">Nilai</td>
+
+                                    <td class="px-4 sm:px-12 md:px-4">Nilai</td>
+
                                 </tr>
                                 <tr class="border-b border-neutral-200">
                                     <td class="px-4 sm:px-12 py-4">2.</td>
