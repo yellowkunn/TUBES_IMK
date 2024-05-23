@@ -15,10 +15,10 @@
             <!-- <i class="fa-solid fa-user text-greyIcon"></i> -->
             @if (Route::has('login'))
             @auth
-            <a href="profile" class="flex gap-3 items-center pe-16">
+            <!-- <a href="profile" class="flex gap-3 items-center pe-16"> -->
                 <img src="https://t4.ftcdn.net/jpg/03/83/25/83/360_F_383258331_D8imaEMl8Q3lf7EKU2Pi78Cn0R7KkW9o.jpg" class="w-10 h-10 object-cover rounded-full" alt="">
                 <p class="text-smallContent">Marissa</p>
-            </a>
+            <!-- </a> -->
             @else
             <a href="{{ route('login') }}">Masuk/Daftar</a>
             @endauth
