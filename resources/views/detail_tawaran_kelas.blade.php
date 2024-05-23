@@ -23,7 +23,7 @@
       <section class="flex gap-5 justify-between px-0.5 max-md:flex-wrap max-md:max-w-full">
         <div class="flex flex-col self-start">
           <h2 class="text-title font-semibold">{{ $kelas->nama }}</h2>
-          <h3 class="mt-8 text-subtitle max-md:mt-10 font-semibold">Waktu</h3>
+          <h3 class="mt-4 md:mt-8 text-subtitle font-semibold">Waktu</h3>
 
           <div class="flex flex-col gap-3">
               <div class="flex gap-2 justify-center items-center mt-4">
@@ -103,11 +103,8 @@
               <p class="text-justify text-neutral-600 mt-2 break-pretty">
                   <span class="text-[20px] sm:text-subtitle font-semibold text-amber-500">Rp{{ number_format($kls->harga, 0, ',', '.') }}</span>/bulan
               </p>
-<<<<<<< HEAD
-              <a href="{{ url('/detailkelas/' . $kls->id_kelas) }}" class="justify-center py-2 px-5 font-semibold text-lime-50 whitespace-nowrap bg-baseBlue rounded-full max-md:px-5">
-=======
+
               <a href="{{ url('/detailkelas/' . $kls->id_kelas) }}" class="py-2 mt-4 w-full text-center font-semibold text-white bg-baseBlue hover:bg-[#607FB2] rounded-lg">
->>>>>>> fc4a31b8d199ea272510a17361631cbc4b136b3f
                   Lihat
               </a>
 
