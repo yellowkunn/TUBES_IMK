@@ -26,18 +26,17 @@
         <div class="w-full">
             <div id="content" class="p-8">
 
-            @foreach($kelas as $kls)
                 <!-- page hierarchy -->
                 <div class="flex items-center gap-2 text-smallContent">
                     <a href="">Dashboard</a>
                     <i class="fa-solid fa-caret-right text-baseBlue"></i>
                     <a href="">Kelas</a>
                     <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                    <a href="">{{ $kls->nama }} </a>
+                    <a href="">{{ $kelas->nama }} </a>
                 </div>
 
                 <div class="mt-8">
-                    <p class="text-title font-semibold">{{ $kls->nama }}</p>
+                    <p class="text-title font-semibold">{{ $kelas->nama }}</p>
                     <p class="text-smallContent text-greyIcon">Miss Tiur</p>
                 </div>
 
@@ -136,7 +135,6 @@
                     </div>
                     <!-- akhir dari perulangan pertemuan -->
                 </div>
-            @endforeach
             </div>
         </div>
     </div>
