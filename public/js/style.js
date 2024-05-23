@@ -83,3 +83,54 @@ const sidebar = () => {
 handleScroll();
 window.addEventListener('scroll', handleScroll);
 window.addEventListener('resize', handleScroll);
+
+
+
+//card pertemuan (siswa)
+document.addEventListener('DOMContentLoaded', function() {
+  const dropdowns = document.querySelectorAll('.dropdown');
+
+  dropdowns.forEach(dropdown => {
+      const index = dropdown.getAttribute('data-index');
+      tab_pertemuan('iconDD-' + index, 'contentPertemuan-' + index, 'tabPertemuan-' + index);
+  });
+});
+
+function tab_pertemuan(idDD, contentPertemuan, tabPertemuan) {
+  const dropdownButton = document.getElementById(idDD);
+  const dropdownContent = document.getElementById(contentPertemuan);
+  let isDropdownOpen = false;
+
+  function toggleDropdown() {
+      isDropdownOpen = !isDropdownOpen;
+      if (isDropdownOpen) {
+          dropdownContent.classList.remove('hidden');
+          dropdownButton.classList.add('rotate-90');
+      } else {
+          dropdownContent.classList.add('hidden');
+          dropdownButton.classList.remove('rotate-90');
+      }
+  }
+
+  dropdownButton.addEventListener('click', (event) => {
+      event.stopPropagation();
+      toggleDropdown();
+  });
+
+  window.addEventListener('click', (event) => {
+      if (!dropdownButton.contains(event.target) && !dropdownContent.contains(event.target)) {
+          dropdownContent.classList.add('hidden');
+          dropdownButton.classList.remove('rotate-90');
+          isDropdownOpen = false;
+      }
+  });
+}
+
+function selectOption(event, index, option) {
+  event.preventDefault(); 
+  document.getElementById('selectedOption-' + index).textContent = option;
+  document.getElementById('tabPertemuan-' + index).value = option;
+  document.getElementById('contentPertemuan-' + index).classList.add('hidden');
+  document.getElementById('iconDD-' + index).classList.remove('rotate-90');
+  isDropdownOpen = false;
+}

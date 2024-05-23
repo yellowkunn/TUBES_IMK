@@ -11,8 +11,14 @@
     <!-- dd more (edit & hapus) -->
     <div class="pe-4 my-auto">
     <button id="dd-more" class="flex gap-3 items-center">
-        <img src="https://t4.ftcdn.net/jpg/03/83/25/83/360_F_383258331_D8imaEMl8Q3lf7EKU2Pi78Cn0R7KkW9o.jpg" class="w-10 h-10 object-cover rounded-full" alt="">
-        <p class="text-smallContent hidden md:block">Marissa</p>
+        <div class="flex gap-3 items-center pe-1 w-fit">
+            @if(isset(Auth::user()->foto_profile))
+            <img src="{{ Auth::user()->foto_profile }}" class="w-10 h-10 object-cover rounded-full" alt="">
+            @else
+            <span class="material-symbols-outlined text-greyIcon">account_circle</span>
+            @endif
+            <p class="text-smallContent hidden md:block">{{ Auth::user()->username }}</p>
+        </div>
         <i class="fa-solid fa-angle-down fa-xs"></i>
     </button>
 

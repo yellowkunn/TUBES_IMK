@@ -9,6 +9,9 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [HomeController::class, 'index']);
+// Route::get('/', function(){
+//     return view('dashboard');
+// });
 
 Auth::routes([
     'verify' => true
