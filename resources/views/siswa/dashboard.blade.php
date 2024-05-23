@@ -85,45 +85,18 @@
 
                         <!-- daftar kelas -->
                         <div class="grid grid-cols-2 gap-4 my-5">
+                            @foreach($siswas as $kelas)
                             <div class="p-8 bg-white drop-shadow-regularShadow rounded-lg flex flex-col gap-2">
-                                <p class="font-semibold">Matematika</p>
-                                <p class="text-greyIcon text-wrap">Lorem ipsum dolor sit amet consectetur. Nunc donec feugiat ullamcorper urna.</p>
+                                <p class="font-semibold">{{$kelas->kelas->nama}}</p>
+                                <p class="text-greyIcon text-wrap">{{$kelas->kelas->deskripsi}}</p>
                                 <div class="flex items-center">
-                                    <img src="" alt="">
-                                    <p class="text-greyIcon">10 Siswa</p>
+                                    <img src="{{ asset('berkas_ujis/' . $kelas->kelas->foto) }}" alt=" {{ $kelas->kelas->nama }} ">
+                                    <p class="text-greyIcon"></p>
                                 </div>
-                                <button class="text-white font-semibold bg-baseBlue w-full rounded-full py-1.5 mt-2">Detail</button>
+                                    <a href="{{ url('/siswa/detailkelas/' . $kelas->kelas->id_kelas) }} ">
+                                <button class="text-white font-semibold bg-baseBlue w-full rounded-full py-1.5 mt-2">Detail</button></a>
                             </div>
-
-                            <div class="p-8 bg-white drop-shadow-regularShadow rounded-lg flex flex-col gap-2">
-                                <p class="font-semibold">Matematika</p>
-                                <p class="text-greyIcon text-wrap">Lorem ipsum dolor sit amet consectetur. Nunc donec feugiat ullamcorper urna.</p>
-                                <div class="flex items-center">
-                                    <img src="" alt="">
-                                    <p class="text-greyIcon">10 Siswa</p>
-                                </div>
-                                <button class="text-white font-semibold bg-baseBlue w-full rounded-full py-1.5 mt-2">Detail</button>
-                            </div>
-
-                            <div class="p-8 bg-white drop-shadow-regularShadow rounded-lg flex flex-col gap-2">
-                                <p class="font-semibold">Matematika</p>
-                                <p class="text-greyIcon text-wrap">Lorem ipsum dolor sit amet consectetur. Nunc donec feugiat ullamcorper urna.</p>
-                                <div class="flex items-center">
-                                    <img src="" alt="">
-                                    <p class="text-greyIcon">10 Siswa</p>
-                                </div>
-                                <button class="text-white font-semibold bg-baseBlue w-full rounded-full py-1.5 mt-2">Detail</button>
-                            </div>
-
-                            <div class="p-8 bg-white drop-shadow-regularShadow rounded-lg flex flex-col gap-2">
-                                <p class="font-semibold">Matematika</p>
-                                <p class="text-greyIcon text-wrap">Lorem ipsum dolor sit amet consectetur. Nunc donec feugiat ullamcorper urna.</p>
-                                <div class="flex items-center">
-                                    <img src="" alt="">
-                                    <p class="text-greyIcon">10 Siswa</p>
-                                </div>
-                                <button class="text-white font-semibold bg-baseBlue w-full rounded-full py-1.5 mt-2">Detail</button>
-                            </div>
+                            @endforeach
                         </div>
                         <!-- akhir dari daftar kelas -->
                     </div>

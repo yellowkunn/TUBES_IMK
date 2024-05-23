@@ -27,12 +27,13 @@
             <div id="content" class="p-8">
 
                 <div class="flex justify-between">
-                    <a href="/editdaftarkelas">
                     <!-- <div class="drop-shadow-regularShadow rounded-xl p-7 px-12 pe-36 text-white bg-baseBlue">
                         <span class="material-symbols-outlined bg-white text-baseBlue p-1 rounded text-3xl">chair_alt</span>
                         <p class="font-semibold text-subtitle mt-3 my-1">Daftar Kelas</p>
                         <p class="text-smallContent">50 Orang</p>
                     </div> -->
+                    <a href="/editdaftarkelas">
+
                     <div class="border-2 border-greyBorder rounded-xl p-7 px-12 pe-36 text-greyIcon">
                         <span class="material-symbols-outlined bg-greyBackground p-1 rounded text-3xl">chair_alt</span>
                         <p class="font-semibold text-subtitle mt-3 my-1">Daftar Kelas</p>

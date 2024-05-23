@@ -32,11 +32,11 @@
                     <i class="fa-solid fa-caret-right text-baseBlue"></i>
                     <a href="">Kelas</a>
                     <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                    <a href="">Matematika SMP</a>
+                    <a href="">{{ $kelas->nama }} </a>
                 </div>
 
                 <div class="mt-8">
-                    <p class="text-title font-semibold">Matematika SMP</p>
+                    <p class="text-title font-semibold">{{ $kelas->nama }}</p>
                     <p class="text-smallContent text-greyIcon">Miss Tiur</p>
                 </div>
 

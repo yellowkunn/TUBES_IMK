@@ -10,6 +10,6 @@ class Kelas extends Model
     protected $primaryKey = 'id_kelas';
     protected $guarded = ['id_kelas'];
     public $timestamps = false;
-
+    
     use HasFactory;
 }

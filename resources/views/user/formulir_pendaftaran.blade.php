@@ -209,27 +209,18 @@
                     <!-- akhir dari dd tingkatan -->
                     <div>
                         <div class="relative w-full">
-                            <select id="subjectSelect" name="kelas" class="block mt-2 appearance-none w-full bg-greyBackground border border-greyBorder text-greyIcon py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-greyIcon">
+                            <select id="" name="kelas" class="block mt-2 appearance-none w-full bg-greyBackground border border-greyBorder text-greyIcon py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-greyIcon">
                                 <option value="" class="text-greyIcon">Mata Pelajaran</option>
                                 @foreach ($kelass as $kelas)
-                                <option value=" {{ $kelas->id_kelas }} ">{{ $kelas->nama }}</option>
+                                <option value="{{$kelas->id_kelas}}">{{$kelas->nama}}</option>
                                 @endforeach
                             </select>
                         </div>
-                        <script>
-                            document.getElementById('formId').addEventListener('submit', function(event) {
-                                var selectedSubject = document.getElementById('subjectSelect').value;
-                                if (selectedSubject === '') {
-                                    alert('Silakan pilih kelas yang ingin Anda daftarkan.');
-                                    event.preventDefault(); // Mencegah pengiriman formulir jika mata pelajaran tidak dipilih
-                                }
-                            });
-                        </script>
                     </div>
 
                     <div>
                         <div class="relative w-full">
-                            <select id="subjectSelectt" name="tingkat_kelas" class="block mt-2 appearance-none w-full bg-greyBackground border border-greyBorder text-greyIcon py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-greyIcon">
+                            <select id="" name="tingkat_kelas" class="block mt-2 appearance-none w-full bg-greyBackground border border-greyBorder text-greyIcon py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-greyIcon">
                                 <option value="" class="text-greyIcon">Kelas</option>
                                 <option value="SD">SD</option>
                                 <option class="text-greyIcon" value="SMP">SMP</option>
@@ -239,19 +230,10 @@
                                 <option class="text-greyIcon" value="IELTS">IELTS</option>
                             </select>
                         </div>
-                        <script>
-                            document.getElementById('formId').addEventListener('submit', function(event) {
-                                var selectedSubject = document.getElementById('subjectSelectt').value;
-                                if (selectedSubject === '') {
-                                    alert('Silakan pilih kelas Anda terlebih dahulu.');
-                                    event.preventDefault(); // Mencegah pengiriman formulir jika mata pelajaran tidak dipilih
-                                }
-                            });
-                        </script>
                     </div>
                     <input type="hidden" name="id_pengguna" value="{{ Auth::user()->id_pengguna }}">
                     <input type="hidden" name="status" value="MenungguVerif">
-                    <input type="hidden" name="kelas" value="1">
+                    <!-- <input type="hidden" name="kelas" value="1"> -->
                 </div>
             </div>
 
@@ -261,11 +243,11 @@
                 <button id="btnNext" type="button" class="stepper-btn w-[150px] p-3 bg-baseBlue text-white rounded hover:bg-baseBlue/90 hover:font-semibold">Selanjutnya</button>
 
                 <button id="btnSubmit" type="submit" class="stepper-btn w-[220px] p-3 bg-baseBlue text-white rounded hover:bg-baseBlue/90 hover:font-semibold">Lanjut ke pembayaran</button>
-                <!-- <script>
+                <script>
                     document.getElementById('btnSubmit').addEventListener('click', function() {
                         window.location.href = 'url-halaman-pembayaran';
                     });
-                </script> -->
+                </script>
             </div>
         </form>
 

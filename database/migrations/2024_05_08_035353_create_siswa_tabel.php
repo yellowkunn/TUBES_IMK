@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('siswa', function (Blueprint $table) {
+            $table->id('id_siswa');
             $table->foreignId('pengguna_id')->constrained('users', 'id_pengguna')->onDelete('cascade');
             $table->foreignId('kelas_id')->constrained('kelas', 'id_kelas')->onDelete('cascade');
             $table->enum('status', ['Aktif', 'TidakAktif', 'MenungguVerif'])->default('Aktif');

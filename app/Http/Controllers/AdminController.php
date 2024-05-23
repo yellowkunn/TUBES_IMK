@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Kelas;
 
 class AdminController extends Controller
 {
@@ -14,7 +15,8 @@ class AdminController extends Controller
 
     public function editdaftarkelas()
     {
-        return view ('owner.daftar_kelas');
+        $kelass = Kelas::all();
+        return view ('owner.daftar_kelas', compact('kelass'));
     }
     public function editdaftarsiswa()
     {

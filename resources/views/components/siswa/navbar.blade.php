@@ -17,14 +17,20 @@
     </button>
 
         <div id="dd-menu" class="hidden grid grid-cols-1 divide-y bg-white mt-2 rounded-md drop-shadow-regularShadow absolute top-12 right-5" style="color: #949494;">
-            <a href="" class="w-full h-full flex items-center gap-2 py-1 px-3">
+            <a href=" {{ url('/editprofile') }} " class="w-full h-full flex items-center gap-2 py-1 px-3">
                 <i class="fa-regular fa-pen-to-square"></i>
                 <p>Edit Profile</p>
             </a>
-            <a href="" class="w-full h-full flex items-center gap-2 py-1 px-3">
+            <!--<a href="{{ route('logout') }}" class="w-full h-full flex items-center gap-2 py-1 px-3">
                 <i class="fa-solid fa-arrow-right-from-bracket fa-sm"></i>
-                <p>Logout</p>
-            </a>
+            </a> -->
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="w-full h-full flex items-center gap-2 py-1 px-3">
+                <i class="fa-solid fa-arrow-right-from-bracket fa-sm"></i>
+                <p>{{ __('logout') }}</p>
+                </button>
+            </form>
         </div>
     </div>
     <!-- akhir dari dd more (edit & hapus) -->

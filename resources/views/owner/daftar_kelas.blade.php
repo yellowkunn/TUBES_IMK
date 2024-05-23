@@ -45,6 +45,7 @@
                     </div>
 
                     <div class="grid grid-cols-3 gap-x-24 gap-y-16">
+                    @foreach($kelass as $kelas)
                         <div class="bg-white rounded-lg pt-6 pb-8 px-12 drop-shadow-regularShadow relative">
 
                             <!-- dd more (edit & hapus) -->
@@ -63,16 +64,16 @@
                                 </div>
                             </div>
                             <!-- akhir dari dd more (edit & hapus) -->
-
                             <div class="flex flex-col gap-2">
-                                <p class="font-semibold">Matematika</p>
-                                <p class="text-greyIcon text-smallContent hyphens-auto line-clamp-3">Lorem ipsum dolor sit amet consectetur. Nunc donec feugiat ullamcorper urna. </p>
-                                <p class="font-semibold text-[#E9940C]">Rp500.000<span class="text-smallContent text-greyIcon font-normal"> / bulan</span></p>
+                                <p class="font-semibold">{{ $kelas->nama }} </p>
+                                <p class="text-greyIcon text-smallContent hyphens-auto line-clamp-3">{{ $kelas->deskripsi }}</p>
+                                <p class="font-semibold text-[#E9940C]">Rp{{ $kelas->harga }} / bulan</span></p>
                                 <button class="rounded-full bg-baseBlue text-white font-semibold py-2 my-3">Detail</button>
                             </div>
-
                             <div class="absolute bg-baseBlue h-1 rounded-full bottom-0 left-1/2 transform -translate-x-1/2 w-3/4"></div>
                         </div>
+                        @endforeach
+
                         <div class="bg-[#7AA1E2]/10 rounded-lg p-8 px-12 drop-shadow-regularShadow hover:bg-[#7AA1E2]/20">
                             <button onclick="showPopupTambahKelas()" class="text-end w-full h-full flex justify-center items-center gap-2 text-baseBlue">
                                 <div class="p-0.5 px-[7px] border-2 border-[#7AA1E2] rounded-full">
