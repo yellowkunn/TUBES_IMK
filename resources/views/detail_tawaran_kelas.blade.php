@@ -95,7 +95,6 @@
                   <!-- <p class="text-smallContent italic font-light">kurikulum nasional</p> -->
               </div>
               <img loading="lazy" src="{{ asset('berkas_ujis/' . $kls->foto) }}" alt="{{ $kls->nama }}" class="mt-4 max-h-64 w-full object-cover rounded-lg" />
-
               <p class="mt-6 text-smallContent text-neutral-700 text-start">
               {{ $kls->deskripsi }}
               </p>
