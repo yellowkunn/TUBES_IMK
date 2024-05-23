@@ -46,7 +46,7 @@
           <div class="flex flex-col">
             <p>Hanya</p>
             <p class="mt-5 leading-6">
-              <span class="text-subtitle font-semibold">Rp {{ $kelas->harga }}</span>
+              <span class="text-subtitle font-semibold">Rp{{ number_format($kelas->harga, 0, ',', '.') }}</span>
               <br />
               /{{ $kelas->rentang }}
             </p>
@@ -101,7 +101,7 @@
               </p>
 
               <p class="text-justify text-neutral-600 mt-2 break-pretty">
-                  <span class="text-[20px] sm:text-subtitle font-semibold text-amber-500">{{ $kls->harga }}</span>/bulan
+                  <span class="text-[20px] sm:text-subtitle font-semibold text-amber-500">Rp{{ number_format($kls->harga, 0, ',', '.') }}</span>/bulan
               </p>
               <a href="{{ url('/detailkelas/' . $kls->id_kelas) }}" class="py-2 w-full font-semibold text-white bg-baseBlue hover:bg-[#607FB2] rounded-lg mt-3">
                   Lihat

@@ -42,73 +42,79 @@
                 <p class="text-subtitle font-semibold">Informasi Akun</p>
                 <p class="mt-2">Informasi yang mungkin tampak pada pengguna lain</p>
 
-                <div class="flex flex-col gap-6 mt-8">
-                    <div>
-                        <label for="username" class="font-semibold">Username</label>
-                        <input type="text" id="username" name="username" autocomplete="on" required="{{ old('username') }}" class="border-2 border-greyBorder w-full p-2.5 rounded mt-2" placeholder="Masukkan username" value="{{ Auth::user()->username }}" autofocus>
-                        <x-input-error :messages="$errors->get('username')" class="mt-2" />
-                        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                        <script>
-                            $(document).ready(function() {
-                                var input = $('#username');
-                                var length = input.val().length; // Menghitung panjang teks di input
-                                input.focus(); // Fokuskan input
+                <form action="" method="post">
+                @csrf
+                    <div class="flex flex-col gap-6 mt-8">
+                        <div>
+                            <label for="username" class="font-semibold">Username</label>
+                            <input type="text" id="username" name="username" autocomplete="on" required="{{ old('username') }}" class="border-2 border-greyBorder w-full p-2.5 rounded mt-2" placeholder="Masukkan username" value="{{ Auth::user()->username }}" autofocus>
+                            <x-input-error :messages="$errors->get('username')" class="mt-2" />
+                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                            <script>
+                                $(document).ready(function() {
+                                    var input = $('#username');
+                                    var length = input.val().length; // Menghitung panjang teks di input
+                                    input.focus(); // Fokuskan input
 
-                                // Geser posisi fokus ke kanan dari teks yang ada
-                                input[0].setSelectionRange(length, length);
-                            });
-                        </script>
+                                    // Geser posisi fokus ke kanan dari teks yang ada
+                                    input[0].setSelectionRange(length, length);
+                                });
+                            </script>
+                        </div>
+
+                        <div>
+                            <label for="email" class="font-semibold">Email</label>
+                            <input type="email" id="email" name="email" autocomplete="on" required="{{ old('email') }}" class="border-2 border-greyBorder w-full p-2.5 rounded mt-2" placeholder="Masukkan email" value="{{ Auth::user()->email }}">
+                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                        </div>
                     </div>
 
-                    <div>
-                        <label for="email" class="font-semibold">Email</label>
-                        <input type="email" id="email" name="email" autocomplete="on" required="{{ old('email') }}" class="border-2 border-greyBorder w-full p-2.5 rounded mt-2" placeholder="Masukkan email" value="{{ Auth::user()->email }}">
-                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    <div class="mt-10 mb-3 flex justify-end">
+                        <button type="submit" class="bg-baseBlue font-semibold rounded-full text-white px-6 py-2">Edit data</button>
                     </div>
-                </div>
-
-                <div class="mt-10 mb-3 flex justify-end">
-                    <button type="submit" class="bg-baseBlue font-semibold rounded-full text-white px-6 py-2">Edit data</button>
-                </div>
+                </form>
             </div>
 
             <div class="ps-12">
                 <p class="text-subtitle font-semibold">Password</p>
                 <p class="mt-2">Gunakan password yang kuat untuk melindungi akun anda</p>
 
-                <div class="flex flex-col gap-4 mt-8">
-                    <!-- Password Lama-->
-                    <div>
-                        <label for="username" class="font-semibold">Password Lama</label>
-                        <div class="relative flex justify-between">
-                            <input type="password" id="password" name="password" required class="border-2 border-greyBorder w-full p-2.5 rounded mt-2" placeholder="Masukkan password lama">
-                            <x-input-error :messages="$errors->get('password')" class="mt-1" />
+                <form action="" method="post">
+                @csrf
+                    <div class="flex flex-col gap-4 mt-8">
+                        <!-- Password Lama-->
+                        <div>
+                            <label for="username" class="font-semibold">Password Lama</label>
+                            <div class="relative flex justify-between">
+                                <input type="password" id="password" name="password" required class="border-2 border-greyBorder w-full p-2.5 rounded mt-2" placeholder="Masukkan password lama">
+                                <x-input-error :messages="$errors->get('password')" class="mt-1" />
+                            </div>
+                        </div>
+
+                        <!-- Password Baru -->
+                        <div>
+                            <label for="username" class="font-semibold">Password Baru</label>
+                            <div class="relative flex justify-between">
+                                <input type="password" id="password" name="password" required class="border-2 border-greyBorder w-full p-2.5 rounded mt-2" placeholder="Masukkan password naru">
+                                <i class="fas fa-eye-slash eye-icon text-gray-400 hover:text-gray-600 absolute top-6 right-4"></i>
+                            </div>
+                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                        </div>
+
+                        <div>
+                            <label for="username" class="font-semibold">Konfirmasi Password Baru</label>
+                            <div class="relative flex justify-between">
+                                <input type="password" id="password_confirmation" name="password_confirmation" required class="border-2 border-greyBorder w-full p-2.5 rounded mt-2" placeholder="Konfirmasi Password">
+                                <i class="fas fa-eye-slash eye-icon text-gray-400 hover:text-gray-600 absolute top-6 right-4"></i>
+                            </div>
+                            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                         </div>
                     </div>
 
-                    <!-- Password Baru -->
-                    <div>
-                        <label for="username" class="font-semibold">Password Baru</label>
-                        <div class="relative flex justify-between">
-                            <input type="password" id="password" name="password" required class="border-2 border-greyBorder w-full p-2.5 rounded mt-2" placeholder="Masukkan password naru">
-                            <i class="fas fa-eye-slash eye-icon text-gray-400 hover:text-gray-600 absolute top-6 right-4"></i>
-                        </div>
-                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                    <div class="mt-10 mb-3 flex justify-end">
+                        <button type="submit" class="bg-baseBlue font-semibold rounded-full text-white px-6 py-2">Edit password</button>
                     </div>
-
-                    <div>
-                        <label for="username" class="font-semibold">Konfirmasi Password Baru</label>
-                        <div class="relative flex justify-between">
-                            <input type="password" id="password_confirmation" name="password_confirmation" required class="border-2 border-greyBorder w-full p-2.5 rounded mt-2" placeholder="Konfirmasi Password">
-                            <i class="fas fa-eye-slash eye-icon text-gray-400 hover:text-gray-600 absolute top-6 right-4"></i>
-                        </div>
-                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-                    </div>
-                </div>
-
-                <div class="mt-10 mb-3 flex justify-end">
-                    <button type="submit" class="bg-baseBlue font-semibold rounded-full text-white px-6 py-2">Edit password</button>
-                </div>
+                </form>
             </div>
         </div>
 

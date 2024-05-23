@@ -96,4 +96,15 @@ class SiswaController extends Controller
         $siswas = Siswa::where('pengguna_id', $user->id_pengguna)->with('kelas')->get();
         return view('siswa.sertifikat', compact('siswas'));
     }
+
+    public function destroy(Request $request): RedirectResponse
+    {
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
 }

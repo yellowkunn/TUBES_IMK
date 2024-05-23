@@ -4,7 +4,7 @@
     <div class="flex gap-8 lg:gap-24">
     <p class="text-baseBlue text-center font-bold lg:text-[18px] leading-snug">Fortunate<br>Education Center</p>
     <div id="menus" class="flex gap-5 lg:gap-12 items-center">
-        <a href="" class="nav">Beranda</a>
+        <a href="{{ route('home') }}" class="nav">Beranda</a>
         <a href="" class="nav">Kelas</a>
         <a href="" class="nav">Langkah Pendaftaran</a>
     </div>
@@ -15,12 +15,19 @@
             <!-- <i class="fa-solid fa-user text-greyIcon"></i> -->
             @if (Route::has('login'))
             @auth
-            <a href="profile" class="flex gap-3 items-center pe-16">
-                <img src="https://t4.ftcdn.net/jpg/03/83/25/83/360_F_383258331_D8imaEMl8Q3lf7EKU2Pi78Cn0R7KkW9o.jpg" class="w-10 h-10 object-cover rounded-full" alt="">
-                <p class="text-smallContent">Marissa</p>
+            <a href="/profile" class="flex gap-3 items-center pe-1 w-fit">
+                @if(isset(Auth::user()->foto_profile))
+                <img src="{{ Auth::user()->foto_profile }}" class="w-10 h-10 object-cover rounded-full" alt="">
+                @else
+                <span class="material-symbols-outlined text-greyIcon">account_circle</span>
+                @endif
+                <p class="text-smallContent hidden md:block">{{ Auth::user()->username }}</p>
             </a>
             @else
-            <a href="{{ route('login') }}">Masuk/Daftar</a>
+            <a href="{{ route('login') }}" class="flex gap-2 items-center nav">
+                <i class="fa-solid fa-user text-greyIcon"></i>
+                <p>Masuk/Daftar</p>
+            </a>
             @endauth
             @endif
         </div>
@@ -45,7 +52,7 @@
         <div class="bg-white w-screen flex flex-col gap-5 p-10">
         <!-- close button -->
         <div class="flex justify-end">
-            <i class="fa-solid fa-xmark fa-lg text-slate-600" id="btnClose"></i>
+            <button type="button"><i class="fa-solid fa-xmark fa-lg text-slate-600" id="btnClose"></i></button>
         </div>
 
         <div id="menus" class="flex flex-col gap-6">
@@ -53,7 +60,9 @@
             <a href="" class="nav w-fit">Kelas</a>
             <a href="" class="nav w-fit">Langkah Pendaftaran</a>
 
+            @if(!Route::has('login'))
             <a href="{{ route('login') }}" class="nav w-fit">Masuk/Daftar</i></a>
+            @endif
         </div>
         </div>
     </div>
