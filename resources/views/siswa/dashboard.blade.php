@@ -31,8 +31,8 @@
                     <a href="">Dashboard</a>
                 </div>
 
-                <div class="bg-baseDarkerGreen rounded-xl p-12 relative my-7 font-semibold text-white">
-                    <div class="flex flex-col gap-2 text-start w-1/2">
+                <div class="bg-baseDarkerGreen rounded-xl p-6 md:p-12 relative my-7 font-semibold text-white">
+                    <div class="flex flex-col gap-2 text-start md:w-1/2">
                         <p class="text-subtitle">Hello {{ Auth::user()->username }}!</p>
                         <p>Jangan lupa kelas kamu selanjutnya di hari Selasa pukul 10.00 ya!</p>
                     </div>

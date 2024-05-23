@@ -31,9 +31,9 @@
                     <a href="">Dashboard</a>
                 </div>
 
-                <div class="bg-baseDarkerGreen rounded-xl p-12 relative my-7 font-semibold text-white">
-                    <div class="flex flex-col gap-2 text-start w-1/2">
-                        <p class="text-subtitle">Hello namapengajar!</p>
+                <div class="bg-baseDarkerGreen rounded-xl p-6 md:p-12 relative my-7 font-semibold text-white">
+                    <div class="flex flex-col gap-2 text-start md:w-1/2">
+                        <p class="text-subtitle">Hello {{ Auth::user()->username }}!</p>
                         <p>Jangan lupa kelas kamu selanjutnya di hari Selasa pukul 10.00 ya!</p>
                     </div>
                     <div class="absolute right-5 top-0 invisible md:visible">
@@ -41,8 +41,8 @@
                     </div>
                 </div>
 
-                <div class="flex gap-14 mt-12">
-                    <div class="w-2/3">
+                <div class="md:flex gap-14 mt-12">
+                    <div class="md:w-2/3">
                         <div class="flex justify-between">
                             <p class="text-subtitle font-semibold">Baru diakses</p>
                             <a href="" class="text-[#00e]">Selengkapnya</a>
@@ -94,7 +94,7 @@
                         </div>
                     </div>
 
-                    <div class="w-1/3">
+                    <div class="md:w-1/3">
                         <p class="text-subtitle font-semibold">Kalender</p>
 
                         <!-- baru diakses -->
