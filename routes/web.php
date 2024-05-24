@@ -36,8 +36,9 @@ Route::get('/editdaftarpengajar', [AdminController::class, 'editdaftarpengajar']
 Route::get('/editdetailkelas/{kelas}', [AdminController::class, 'editdetailkelas']);
 
 //Pengajar
-Route::get('/pengajardashboard', [PengajarController::class, 'dashboardpengajar']);
-Route::get('/pengajarabsensi', [PengajarController::class, 'absensipengajar']);
+Route::get('/pengajardashboard', [PengajarController::class, 'dashboardpengajar'])->name('dashboardpengajar');
+Route::get('/pengajarabsensi', [PengajarController::class, 'absensipengajar'])->name('absensipengajar');;
+Route::get('/pengajardetailkelas/{kelas}/tambahpertemuan', [PengajarController::class, 'tambahpertemuanpengajar'])->name('tambah_pertemuan');
 Route::get('/pengajardetailkelas/{kelas}', [PengajarController::class, 'detailkelaspengajar']);
 Route::get('/pengajarjadwal', [PengajarController::class, 'jadwalpengajar']);
 Route::get('absensipengajar', [PengajarController::class, 'absensipengajar']);

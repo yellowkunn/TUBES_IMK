@@ -1,6 +1,6 @@
 <div class="bg-white pt-3 h-screen my-5 w-screen md:w-1/6 duration-500" id="sidebarContent">
     <div class="px-8 ms-1 flex flex-col gap-6 lg:gap-10 text-regularContent font-semibold text-greyIcon">
-        <a href="" class="flex items-center gap-2">
+        <a href="{{ route('dashboardpengajar') }}" class="flex items-center gap-2">
             <span class="material-symbols-outlined">grid_view</span> 
             <p class="flex duration-500">Beranda</p>
         </a>

@@ -23,7 +23,7 @@
       <section class="flex gap-5 justify-between px-0.5 max-md:flex-wrap max-md:max-w-full">
         <div class="flex flex-col self-start">
           <h2 class="text-title font-semibold">{{ $kelas->nama }}</h2>
-          <h3 class="mt-8 text-subtitle max-md:mt-10 font-semibold">Waktu</h3>
+          <h3 class="mt-4 md:mt-8 text-subtitle font-semibold">Waktu</h3>
 
           <div class="flex flex-col gap-3">
               <div class="flex gap-2 justify-center items-center mt-4">
@@ -95,7 +95,6 @@
                   <!-- <p class="text-smallContent italic font-light">kurikulum nasional</p> -->
               </div>
               <img loading="lazy" src="{{ asset('berkas_ujis/' . $kls->foto) }}" alt="{{ $kls->nama }}" class="mt-4 max-h-64 w-full object-cover rounded-lg" />
-
               <p class="mt-6 text-smallContent text-neutral-700 text-start">
               {{ $kls->deskripsi }}
               </p>

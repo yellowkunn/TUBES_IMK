@@ -50,10 +50,10 @@
 
                             <!-- dd more (edit & hapus) -->
                             <div>
-                                <button id="dd-more" class="text-end w-full"><i class="fa-solid fa-ellipsis-vertical text-lg"></i></button>
+                                <button id="dd-more{{ $loop->index }}" class="text-end w-full"><i class="fa-solid fa-ellipsis-vertical text-lg"></i></button>
 
-                                <div id="dd-menu" class="hidden grid grid-cols-1 divide-y bg-white mt-2 rounded-md drop-shadow-regularShadow absolute top-7 right-14" style="color: #949494;">
-                                    <button onclick="c()" class="w-full h-full flex items-center gap-2 py-1.5 px-5">
+                                <div id="dd-menu{{ $loop->index }}" class="hidden grid grid-cols-1 divide-y bg-white mt-2 rounded-md drop-shadow-regularShadow absolute top-7 right-14" style="color: #949494;">
+                                    <button onclick="showPopupEditKelas()" class="w-full h-full flex items-center gap-2 py-1.5 px-5">
                                         <i class="fa-regular fa-pen-to-square"></i>
                                         <p>Edit</p>
                                     </button>
@@ -67,7 +67,7 @@
                             <div class="flex flex-col gap-2">
                                 <p class="font-semibold">{{ $kelas->nama }} </p>
                                 <p class="text-greyIcon text-smallContent hyphens-auto line-clamp-3">{{ $kelas->deskripsi }}</p>
-                                <p class="font-semibold text-[#E9940C]">Rp.{{ $kelas->harga }} <br><span class="text-smallContent text-greyIcon font-normal">{{ $kelas->rentang }} / bulan</span></p>
+                                <p class="font-semibold text-[#E9940C]">Rp{{ number_format($kelas->harga, 0, ',', '.') }} <br><span class="text-smallContent text-greyIcon font-normal">{{ $kelas->rentang }} / bulan</span></p>
                                 <a href="{{ url('/editdetailkelas/' . $kelas->id_kelas) }}" class="rounded-full bg-baseBlue text-white font-semibold py-2 my-3 inline-block text-center">Detail</a>
                             </div>
                             <div class="absolute bg-baseBlue h-1 rounded-full bottom-0 left-1/2 transform -translate-x-1/2 w-3/4"></div>
@@ -292,33 +292,42 @@
             }
         }
 
-        function initializeDropdown(buttonId, menuId) {
-            const dropdownButton = document.getElementById(buttonId);
-            const dropdownMenu = document.getElementById(menuId);
-            let isDropdownOpen = true;
+        document.addEventListener('DOMContentLoaded', (event) => {
+            function initializeDropdown(buttonId, menuId) {
+                const dropdownButton = document.getElementById(buttonId);
+                const dropdownMenu = document.getElementById(menuId);
+                let isDropdownOpen = false;
 
-            function toggleDropdown() {
-                isDropdownOpen = !isDropdownOpen;
-                if (isDropdownOpen) {
-                    dropdownMenu.classList.remove('hidden');
-                } else {
-                    dropdownMenu.classList.add('hidden');
+                function toggleDropdown() {
+                    isDropdownOpen = !isDropdownOpen;
+                    if (isDropdownOpen) {
+                        dropdownMenu.classList.remove('hidden');
+                    } else {
+                        dropdownMenu.classList.add('hidden');
+                    }
                 }
+
+                dropdownButton.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    toggleDropdown();
+                });
+
+                window.addEventListener('click', (event) => {
+                    if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                        dropdownMenu.classList.add('hidden');
+                        isDropdownOpen = false;
+                    }
+                });
             }
 
-            toggleDropdown();
-
-            dropdownButton.addEventListener('click', toggleDropdown);
-
-            window.addEventListener('click', (event) => {
-                if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                    dropdownMenu.classList.add('hidden');
-                    isDropdownOpen = false;
-                }
+            // Select all dropdown buttons and menus
+            const dropdownButtons = document.querySelectorAll('[id^="dd-more"]');
+            dropdownButtons.forEach((button, index) => {
+                initializeDropdown(`dd-more${index}`, `dd-menu${index}`);
             });
-        }
+        });
 
-        initializeDropdown('dd-more', 'dd-menu');
+
     </script>
 
 

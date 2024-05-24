@@ -10,8 +10,8 @@
 
     <!-- dd more (edit & hapus) -->
     <div class="pe-4 my-auto">
-    <button id="dd-more" class="flex gap-3 items-center">
-        <div class="flex gap-3 items-center pe-1 w-fit">
+    <button id="dd-more" class="flex gap-2 items-center">
+        <div class="flex gap-1 items-center pe-1 w-fit">
             @if(isset(Auth::user()->foto_profile))
             <img src="{{ Auth::user()->foto_profile }}" class="w-10 h-10 object-cover rounded-full" alt="">
             @else
