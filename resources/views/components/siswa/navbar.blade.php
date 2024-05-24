@@ -27,9 +27,6 @@
                 <i class="fa-regular fa-pen-to-square"></i>
                 <p>Edit Profile</p>
             </a>
-            <!--<a href="{{ route('logout') }}" class="w-full h-full flex items-center gap-2 py-1 px-3">
-                <i class="fa-solid fa-arrow-right-from-bracket fa-sm"></i>
-            </a> -->
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit" class="w-full h-full flex items-center gap-2 py-1 px-3">
