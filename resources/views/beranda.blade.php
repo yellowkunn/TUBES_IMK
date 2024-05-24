@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beranda</title>
 
-     <!-- font awsome -->
-     <script src="https://kit.fontawesome.com/8c8655eff1.js" crossorigin="anonymous"></script>
+    <!-- font awsome -->
+    <script src="https://kit.fontawesome.com/8c8655eff1.js" crossorigin="anonymous"></script>
 
     <!-- google font for icon -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -18,13 +19,19 @@
 </head>
 
 <body class="font-Inter text-regularContent">
-@include('components.navbar')
+    @include('components.navbar')
 
     <main class="flex flex-col self-center w-full max-md:max-w-full sm:pt-4 lg:pt-6 bg-white">
+        @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+        @endif
+
         <!-- section 1 -->
         <div class="flex justify-between px-8 sm:px-16 lg:px-20">
             <div class="mt-10 flex flex-col gap-8">
-            
+
                 <p id="typewriter" class="font-semibold text-red-700 text-[50px] lg:text-[55px] xl:text-[70px] leading-tight lg:w-2/3 h-[180px] hidden md:block"></p>
                 <p class="md:hidden text-red-700 font-semibold text-subtitle text-balance">Gabung dan dapatkan pembelajaran terbaik dari kami!</p>
                 <p class="leading-tight sm:text-subtitle w-full lg:w-3/4">Di setiap langkah yang kami ambil, kami percaya bahwa pendidikan adalah kunci untuk membuka pintu masa depan yang gemilang.</p>
@@ -35,7 +42,7 @@
                 <a href=" {{ route('login') }} " class="text-red-700 sm:text-[20px] w-[120px] sm:w-[150px] py-2 border-2 border-red-700/50 text-center hover:text-white hover:bg-red-700 hover:border-none mb-16">Daftar Kelas</a>
                 @endauth
                 @endif
-                
+
             </div>
 
             <div class="lg:w-1/2 flex justify-end self-end hidden md:flex">
@@ -43,41 +50,45 @@
             </div>
         </div>
         <!-- akhir section 1 -->
-        
+
         <!-- section 2 -->
         <div class="p-8 sm:px-16 sm:py-12 lg:p-20 bg-baseCream text-center">
             <div data-aos="fade-up">
 
-            <p class="font-semibold text-subtitle sm:text-title md:text-[40px] text-[#333333]">Program Unggulan FEC</p>
+                <p class="font-semibold text-subtitle sm:text-title md:text-[40px] text-[#333333]">Program Unggulan FEC</p>
 
-            <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8 sm:mt-12">
-                @foreach($kelass as $kelas)
-                <article class="flex flex-col">
-                    <a href="{{ url('/detailkelas/' . $kelas->id_kelas) }}" class="flex flex-col justify-center">
-                        <div class="flex flex-col p-5 sm:p-7 w-full drop-shadow-regularShadow bg-white hover:bg-white/75 hover:bg-white hover:drop-shadow-none rounded-xl">
-                        <div class="flex flex-col items-start text-neutral-700">
-                            <h4 class="font-semibold">{{ $kelas->nama }}</h4>
-                            <!-- <p class="text-smallContent italic font-light">kurikulum nasional</p> -->
-                        </div>
-                        <img loading="lazy" src="{{ asset('berkas_ujis/' . $kelas->foto) }}" alt="{{ $kelas->nama }} alt="" class="mt-4 max-h-64 w-full object-cover rounded-lg" />
+                <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8 sm:mt-12">
+                    @if(count($kelass) > 0)
+                    @foreach($kelass as $kelas)
+                    <article class="flex flex-col">
+                        <a href="{{ url('/detailkelas/' . $kelas->id_kelas) }}" class="flex flex-col justify-center">
+                            <div class="flex flex-col p-5 sm:p-7 w-full drop-shadow-regularShadow bg-white hover:bg-white/75 hover:bg-white hover:drop-shadow-none rounded-xl">
+                                <div class="flex flex-col items-start text-neutral-700">
+                                    <h4 class="font-semibold">{{ $kelas->nama }}</h4>
+                                    <!-- <p class="text-smallContent italic font-light">kurikulum nasional</p> -->
+                                </div>
+                                <img loading="lazy" src="{{ asset('berkas_ujis/' . $kelas->foto) }}" alt="{{ $kelas->nama }} alt="" class=" mt-4 max-h-64 w-full object-cover rounded-lg" />
 
-                        <p class="mt-6 text-smallContent text-neutral-700 text-start">
-                        {{ $kelas->deskripsi }}
-                        </p>
+                                <p class="mt-6 text-smallContent text-neutral-700 text-start">
+                                    {{ $kelas->deskripsi }}
+                                </p>
 
-                        <p class="text-justify text-neutral-600 mt-2 break-pretty">
-                            <span class="text-[20px] sm:text-subtitle font-semibold text-amber-500">Rp{{ number_format($kelas->harga, 0, ',', '.') }}</span>/bulan
-                        </p>
-                        <a href="{{ url('/detailkelas/' . $kelas->id_kelas) }}" class="py-2 w-full font-semibold text-white bg-baseBlue hover:bg-[#607FB2] rounded-lg mt-3">
-                            Lihat
+                                <p class="text-justify text-neutral-600 mt-2 break-pretty">
+                                    <span class="text-[20px] sm:text-subtitle font-semibold text-amber-500">Rp{{ number_format($kelas->harga, 0, ',', '.') }}</span>/bulan
+                                </p>
+                                <a href="{{ url('/detailkelas/' . $kelas->id_kelas) }}" class="py-2 w-full font-semibold text-white bg-baseBlue hover:bg-[#607FB2] rounded-lg mt-3">
+                                    Lihat
+                                </a>
+
+                            </div>
                         </a>
-                        
-                    </div>
-                    </a>
-                </article>
-                @endforeach
-                
-            </div>
+                    </article>
+                    @endforeach
+                    @else
+                    <p class="font-semibold text-subtitle sm:text-title md:text-[20px] text-[#333333]">Ooppss..tidak ada data kelas :(</p>
+                    @endif
+
+                </div>
             </div>
         </div>
         <!-- akhir section 2 -->
@@ -111,7 +122,7 @@
                     <p>Dapatkan sertifikat-sertifikat menarik yang dapat kamu letakkan pada portofoliomu.</p>
                 </div>
             </div>
-            
+
         </div>
         <!-- akhir section 3 -->
 
@@ -119,7 +130,7 @@
         <div class="p-16 lg:p-20">
             <div data-aos="fade-up" class="flex flex-col items-center">
                 <p class="font-semibold text-title w-1/2">Apa kata mereka yang sudah belajar di FEC?</p>
-                
+
                 <div class="flex justify-between items-center mt-20 mb-12 lg:w-[850px]">
                     <button class="flex p-3 py-6 hover:rounded-full hover:bg-baseBlue/20">
                         <i class="fa-solid fa-angle-left fa-lg text-baseBlue"></i>
@@ -142,58 +153,59 @@
                         <i class="fa-solid fa-angle-right fa-lg text-baseBlue"></i>
                     </button>
                 </div>
-                
+
             </div>
         </div>
         <!-- akhir section 4 -->
-    </main>   
+    </main>
 
-@include('components.footer')
+    @include('components.footer')
 
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script>
-    const words = ["Education Beyond Boundaries.", "Join & be part of us now!", "Fortunate Education Center."];
-    let i = 0;
-    let j = 0;
-    let currentWord = "";
-    let isDeleting = false;
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        const words = ["Education Beyond Boundaries.", "Join & be part of us now!", "Fortunate Education Center."];
+        let i = 0;
+        let j = 0;
+        let currentWord = "";
+        let isDeleting = false;
 
-    function type() {
-        currentWord = words[i];
-        if (isDeleting) {
-            document.getElementById("typewriter").textContent = currentWord.substring(0, j);
-            j--;
-            if (j < 0) {
-                isDeleting = false;
-                i++;
-                if (i == words.length) {
-                    i = 0;
+        function type() {
+            currentWord = words[i];
+            if (isDeleting) {
+                document.getElementById("typewriter").textContent = currentWord.substring(0, j);
+                j--;
+                if (j < 0) {
+                    isDeleting = false;
+                    i++;
+                    if (i == words.length) {
+                        i = 0;
+                    }
+                    setTimeout(type, 100);
+                } else {
+                    setTimeout(type, 50);
                 }
-                setTimeout(type, 100);
             } else {
-                setTimeout(type, 50);
-            }
-        } else {
-            document.getElementById("typewriter").textContent = currentWord.substring(0, j + 1);
-            j++;
-            if (j > currentWord.length) {
-                isDeleting = true;
-                setTimeout(type, 1000);
-            } else {
-                setTimeout(type, 100);
+                document.getElementById("typewriter").textContent = currentWord.substring(0, j + 1);
+                j++;
+                if (j > currentWord.length) {
+                    isDeleting = true;
+                    setTimeout(type, 1000);
+                } else {
+                    setTimeout(type, 100);
+                }
             }
         }
-    }
 
-    type();
-</script>
+        type();
+    </script>
 
-<script>
-    AOS.init({
-        easing: 'ease-out',
-        duration: 600
-    });
-</script>
-        
+    <script>
+        AOS.init({
+            easing: 'ease-out',
+            duration: 600
+        });
+    </script>
+
 </body>
+
 </html>

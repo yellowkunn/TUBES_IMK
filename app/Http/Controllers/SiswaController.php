@@ -69,6 +69,18 @@ class SiswaController extends Controller
         $siswas = Siswa::where('pengguna_id', $user->id_pengguna)->with('kelas')->get();
         return view('siswa.dashboard', compact('siswas'));
     }
+    public function berandasiswa()
+    {
+        
+        try {
+            $kelass = Kelas::all();
+        } catch (\Exception $e) {
+            // Tangani kesalahan koneksi ke database di sini
+            return redirect()->back()->with('error', 'Tidak dapat terhubung ke database.');
+        }
+
+        return view('beranda', compact('kelass')); 
+    }
 
     public function editprofile()
     {

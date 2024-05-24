@@ -47,7 +47,8 @@ Route::get('/raporpengajar', [PengajarController::class, 'raporpengajar'])->name
 Route::get('/sertifikatpengajar', [PengajarController::class, 'sertifikatpengajar'])->name('sertifikatpengajar');
 
 //Siswa
-Route::get('/beranda', [SiswaController::class, 'dashboardsiswa']);
+Route::get('/berandasiswa', [SiswaController::class, 'berandasiswa']);
+Route::get('/dashboardsiswa', [SiswaController::class, 'dashboardsiswa']);
 Route::get('/pembayaran', [SiswaController::class, 'pembayaran']);
 Route::get('/rapor', [SiswaController::class, 'rapor']);
 Route::get('/sertifikat', [SiswaController::class, 'sertifikat']);
