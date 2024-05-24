@@ -77,7 +77,7 @@
                         </a>
                     </div>
 
-                    <div class="flex justify-between my-7">
+                    <div class="flex justify-between items-center mt-12">
                         <p class="text-subtitle font-semibold">Pertemuan yang telah dilakukan</p>
 
                         <!-- filter bds bulan -->
