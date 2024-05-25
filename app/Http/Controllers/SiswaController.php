@@ -82,6 +82,13 @@ class SiswaController extends Controller
         return view('beranda', compact('kelass')); 
     }
 
+    public function kelassaya()
+    {
+        $user = Auth::user();
+        $siswas = Siswa::where('pengguna_id', $user->id_pengguna)->with('kelas')->get();
+        return view('siswa.kelas_saya', compact('siswas'));
+    }
+
     public function editprofile()
     {
         $user = Auth::user();
