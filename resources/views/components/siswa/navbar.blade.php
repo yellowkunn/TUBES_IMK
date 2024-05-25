@@ -5,6 +5,7 @@
             <i class="fa-solid fa-bars md:fa-xmark fa-lg p-3.5 py-5 rounded ms-3" style="background-color: #EAEAEA; color: #363636" id="toggle"></i>
         </button>
 
+        <a href="{{ url('berandasiswa') }}" class="text-regularContent font-semibold md:mx-2 lg:mx-4 hidden sm:block" style="color: #363636">Beranda</a>
         <a href="" class="text-regularContent font-semibold" style="color: #363636">Kelas Saya</a>
     </div>
 
@@ -23,6 +24,10 @@
     </button>
 
         <div id="dd-menu" class="hidden grid grid-cols-1 divide-y bg-white mt-2 rounded-md drop-shadow-regularShadow absolute top-12 right-5" style="color: #949494;">
+            <a href=" {{ url('/berandasiswa') }} " class="w-full h-full flex items-center gap-2 py-1 px-2.5 sm:hidden">
+            <span class="material-symbols-outlined text-[20px]">sync</span>
+                <p>Beranda</p>
+            </a>
             <a href=" {{ url('/editprofile') }} " class="w-full h-full flex items-center gap-2 py-1 px-3">
                 <i class="fa-regular fa-pen-to-square"></i>
                 <p>Edit Profile</p>

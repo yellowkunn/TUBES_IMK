@@ -98,10 +98,10 @@
                             </div>
                             <!-- akhir dari perulangan pertemuan -->
 
-                            <div class="flex gap-6 mt-12 mb-8">
+                            <div class="sm:flex gap-6 mt-12 mb-3 md:mb-8">
                                 <!-- filter bds kelas aktif/tdk -->
-                                <div>
-                                    <select id="filterKelas" class="block appearance-none w-48 bg-white border border-greyBorder text-greyIcon px-4 py-2.5 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-greyIcon">
+                                <div class="mb-3 md:mb-0">
+                                    <select id="filterKelas" class="block appearance-none w-full sm:w-48 bg-white border border-greyBorder text-greyIcon px-4 py-2.5 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-greyIcon">
                                         <option value="Kelas aktif">Kelas Aktif</option>
                                         <option value="Kelas tidak aktif">Kelas Tidak Aktif</option>
                                     </select>
@@ -117,19 +117,19 @@
                             </div>
 
                             <!-- daftar kelas -->
-                            <div class="grid grid-cols-2 gap-4 my-5">
+                            <div class="sm:grid grid-cols-2 gap-4">
                                 @foreach($siswas as $siswa)
                                 @php
                                 $kelas = $siswa->kelas;
                                 @endphp
                                 @if($kelas)
-                                <div class="p-8 px-10 bg-white drop-shadow-regularShadow rounded-lg flex flex-col gap-2">
-                                    <p class="font-semibold text-subtitle">
+                                <div class="p-6 lg:p-8 px-8 md:px-6 lg:px-10 bg-white drop-shadow-regularShadow rounded-lg flex flex-col gap-2 my-8 sm:my-4 md:my-0">
+                                    <p class="font-semibold md:text-[20px] lg:text-subtitle">
                                         {{ $kelas->nama }}
                                     </p>
                                     <div class="flex items-center">
                                         @if($kelas->foto)
-                                        <img src="{{ asset('berkas_ujis/' . $kelas->foto) }}" alt="{{ $kelas->nama }}" class="my-2 max-h-64 w-full object-cover rounded-lg">
+                                        <img src="{{ asset('berkas_ujis/' . $kelas->foto) }}" alt="{{ $kelas->nama }}" class="my-2 max-h-52 md:max-h-56 lg:max-h-44 w-full object-cover rounded-lg">
                                         @else
                                         <p class="text-greyIcon">Foto tidak tersedia</p>
                                         @endif
@@ -166,7 +166,9 @@
         </div>
     </div>
 
+    <div class="mt-12">
     @include('components.footer')
+    </div>
 
     <script src="{{asset('js/style.js')}}"></script>
     <script>

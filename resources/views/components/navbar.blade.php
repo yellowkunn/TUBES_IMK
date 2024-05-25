@@ -9,12 +9,12 @@
                 @php
                 $siswa = App\Models\Siswa::where('pengguna_id', Auth::user()->id_pengguna)->first();
                 @endphp
-                @if (Auth::user()->role === 'siswa')
-                @if ($siswa->status === 'Aktif' || $siswa->status === 'TidakAktif')
-                <a href="{{ route('home') }}" class="nav">Dashboard</a>
-                @else
-                <a href="{{ route('home') }}" class="nav">Beranda</a>
-                @endif
+                    @if (Auth::user()->role === 'siswa')
+                        @if ($siswa->status === 'Aktif' || $siswa->status === 'TidakAktif')
+                        <a href="{{ route('home') }}" class="nav">Dashboard</a>
+                        @else
+                    <a href="{{ route('home') }}" class="nav">Beranda</a>
+                    @endif
                 @else
                 <a href="{{ route('home') }}" class="nav">Beranda</a>
                 @endif
@@ -94,14 +94,26 @@
             </div>
 
             <div id="menus" class="flex flex-col gap-6">
-                <a href="{{ route('home') }}" class="nav w-fit">Beranda</a>
+            @if(Route::has('login'))
+                @php
+                    $routeName = auth()->check() ? 'Dashboard' : 'Beranda';
+                @endphp
+                <a href="{{ route('home') }}" class="nav w-fit">{{ $routeName }}</a>
+            @endif
+
                 <a href="" class="nav w-fit">Kelas</a>
                 <a href="" class="nav w-fit">Langkah Pendaftaran</a>
 
-                @if(!Route::has('login'))
-                <a href="{{ route('login') }}" class="nav w-fit">Masuk/Daftar</i></a>
-                @else
+                @if(Route::has('login'))
+                @auth
                 <a href="/profile" class="nav w-fit">Profile</i></a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="nav w-fit">Keluar</i></button>
+                </form>
+                @else
+                <a href="{{ route('login') }}" class="nav w-fit">Masuk/Daftar</i></a>
+                @endauth
                 @endif
             </div>
         </div>
