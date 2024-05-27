@@ -16,6 +16,7 @@
 </head>
 
 <body class="font-Inter text-regularContent">
+    @livewire('clicker')
     <div>
         @include('components.siswa.navbar')
 
