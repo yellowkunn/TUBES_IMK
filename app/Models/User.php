@@ -21,6 +21,16 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $guarded = ['id_pengguna'];
     public $timestamps = false;
 
+    public function pengajar()
+    {
+        return $this->hasOne(Pengajar::class, 'user_id');
+    }
+
+    public function siswa()
+    {
+        return $this->hasOne(Siswa::class, 'user_id');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

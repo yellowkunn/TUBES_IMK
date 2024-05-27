@@ -13,6 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
+        DB::statement(" CREATE USER 'admin'@'localhost' IDENTIFIED BY '' ");
+        DB::statement(" CREATE USER 'pengajar'@'localhost' IDENTIFIED BY '' ");
+        DB::statement(" CREATE USER 'siswa'@'localhost' IDENTIFIED BY '' ");
+        DB::statement(" CREATE USER 'user'@'localhost' IDENTIFIED BY '' ");
+        
+        //sementara privilegenya begini dulu, ntar tak ubah terakhiran deh
+        DB::statement(" GRANT ALL PRIVILEGES ON tubes_imk.* TO 'admin'@'localhost' ");
+        DB::statement(" GRANT SELECT, INSERT, UPDATE, DELETE ON tubes_imk.* TO 'pengajar'@'localhost'; ");
+        DB::statement(" GRANT SELECT, INSERT, UPDATE, DELETE ON tubes_imk.* TO 'siswa'@'localhost'; ");
+        DB::statement(" GRANT SELECT, INSERT, UPDATE, DELETE ON tubes_imk.* TO 'user'@'localhost'; ");
+        
+        DB::statement(" FLUSH PRIVILEGES ");
+
         Schema::create('users', function (Blueprint $table) {
             $table->id('id_pengguna');
             $table->string('username')->unique();

@@ -9,9 +9,6 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [HomeController::class, 'index']);
-// Route::get('/', function(){
-//     return view('dashboard');
-// });
 
 Auth::routes([
     'verify' => true
@@ -28,34 +25,40 @@ Route::middleware('auth')->group(function () {
 
 
 // OWNER
-Route::get('/admindashboard', [AdminController::class, 'dashboardadmin'])->name('dashboardadmin');
-Route::get('/editdaftarkelas', [AdminController::class, 'editdaftarkelas'])->name('editdaftarkelas');
-Route::post('/tambahkelasbaru', [AdminController::class, 'tambahkelasbaru'])->name('tambahkelasbaru');
-Route::get('/editdaftarsiswa', [AdminController::class, 'editdaftarsiswa'])->name('editdaftarsiswa');
-Route::get('/editdaftarpengajar', [AdminController::class, 'editdaftarpengajar'])->name('editdaftarpengajar');
-Route::get('/editdetailkelas/{kelas}', [AdminController::class, 'editdetailkelas'])->name('editdetailkelas');
+Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
+    Route::get('/admindashboard', [AdminController::class, 'dashboardadmin'])->name('dashboardadmin');
+    Route::get('/editdaftarkelas', [AdminController::class, 'editdaftarkelas'])->name('editdaftarkelas');
+    Route::post('/tambahkelasbaru', [AdminController::class, 'tambahkelasbaru'])->name('tambahkelasbaru');
+    Route::get('/editdaftarsiswa', [AdminController::class, 'editdaftarsiswa'])->name('editdaftarsiswa');
+    Route::get('/editdaftarpengajar', [AdminController::class, 'editdaftarpengajar'])->name('editdaftarpengajar');
+    Route::get('/editdetailkelas/{kelas}', [AdminController::class, 'editdetailkelas'])->name('editdetailkelas');
+});
 
 //Pengajar
-Route::get('/pengajardashboard', [PengajarController::class, 'dashboardpengajar'])->name('dashboardpengajar');
-Route::get('/pengajarabsensi', [PengajarController::class, 'absensipengajar'])->name('absensipengajar');;
-Route::get('/pengajardetailkelas/{kelas}/tambahpertemuan', [PengajarController::class, 'tambahpertemuanpengajar'])->name('tambah_pertemuan');
-Route::get('/pengajardetailkelas/{kelas}', [PengajarController::class, 'detailkelaspengajar']);
-Route::get('/pengajarjadwal', [PengajarController::class, 'jadwalpengajar']);
-Route::get('absensipengajar', [PengajarController::class, 'absensipengajar']);
-Route::get('/jadwalpengajar', [PengajarController::class, 'jadwalpengajar'])->name('jadwalpengajar');
-Route::get('/raporpengajar', [PengajarController::class, 'raporpengajar'])->name('raporpengajar');
-Route::get('/sertifikatpengajar', [PengajarController::class, 'sertifikatpengajar'])->name('sertifikatpengajar');
+Route::middleware(['role:pengajar', 'auth', 'verified'])->group(function () {
+    Route::get('/pengajardashboard', [PengajarController::class, 'dashboardpengajar'])->name('dashboardpengajar');
+    Route::get('/pengajarabsensi', [PengajarController::class, 'absensipengajar'])->name('absensipengajar');;
+    Route::get('/pengajardetailkelas/{kelas}/tambahpertemuan', [PengajarController::class, 'tambahpertemuanpengajar'])->name('tambah_pertemuan');
+    Route::get('/pengajardetailkelas/{kelas}', [PengajarController::class, 'detailkelaspengajar']);
+    Route::get('/pengajarjadwal', [PengajarController::class, 'jadwalpengajar']);
+    Route::get('absensipengajar', [PengajarController::class, 'absensipengajar']);
+    Route::get('/jadwalpengajar', [PengajarController::class, 'jadwalpengajar'])->name('jadwalpengajar');
+    Route::get('/raporpengajar', [PengajarController::class, 'raporpengajar'])->name('raporpengajar');
+    Route::get('/sertifikatpengajar', [PengajarController::class, 'sertifikatpengajar'])->name('sertifikatpengajar');
+});
 
 //Siswa
-Route::get('/berandasiswa', [SiswaController::class, 'berandasiswa'])->name('berandasiswa');
-Route::get('/dashboardsiswa', [SiswaController::class, 'dashboardsiswa'])->name('dashboardsiswa');
-Route::get('/pembayaran', [SiswaController::class, 'pembayaran'])->name('pembayaran');
-Route::get('/rapor', [SiswaController::class, 'rapor'])->name('rapor');
-Route::get('/sertifikat', [SiswaController::class, 'sertifikat'])->name('sertifikat');
-Route::get('/kelas', [SiswaController::class, 'kelassaya'])->name('kelas');
-Route::get('/detailkelas/{kelas}', [SiswaController::class, 'detailkelas'])->name('detailkelas');
-Route::get('/siswa/detailkelas/{kelas}', [SiswaController::class, 'programkelas'])->name('programkelas');
-Route::get('/editprofile', [SiswaController::class, 'editprofile'])->name('editprofile');
+Route::middleware(['role:siswa', 'auth', 'verified'])->group(function () {
+    Route::get('/berandasiswa', [SiswaController::class, 'berandasiswa'])->name('berandasiswa');
+    Route::get('/dashboardsiswa', [SiswaController::class, 'dashboardsiswa'])->name('dashboardsiswa');
+    Route::get('/pembayaran', [SiswaController::class, 'pembayaran'])->name('pembayaran');
+    Route::get('/rapor', [SiswaController::class, 'rapor'])->name('rapor');
+    Route::get('/sertifikat', [SiswaController::class, 'sertifikat'])->name('sertifikat');
+    Route::get('/kelas', [SiswaController::class, 'kelassaya'])->name('kelas');
+    Route::get('/detailkelas/{kelas}', [SiswaController::class, 'detailkelas'])->name('detailkelas');
+    Route::get('/siswa/detailkelas/{kelas}', [SiswaController::class, 'programkelas'])->name('programkelas');
+    Route::get('/editprofile', [SiswaController::class, 'editprofile'])->name('editprofile');
+});
 
 // User
 Route::get('/formulirpendaftaran', [SiswaController::class, 'formulirpendaftaran']);
