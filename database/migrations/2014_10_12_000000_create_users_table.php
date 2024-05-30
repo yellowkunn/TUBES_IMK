@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -13,6 +14,13 @@ return new class extends Migration
      */
     public function up()
     {
+
+        // Menghapus pengguna jika sudah ada
+        DB::statement("DROP USER IF EXISTS 'admin'@'localhost'");
+        DB::statement("DROP USER IF EXISTS 'pengajar'@'localhost'");
+        DB::statement("DROP USER IF EXISTS 'siswa'@'localhost'");
+        DB::statement("DROP USER IF EXISTS 'user'@'localhost'");
+
         DB::statement(" CREATE USER 'admin'@'localhost' IDENTIFIED BY '' ");
         DB::statement(" CREATE USER 'pengajar'@'localhost' IDENTIFIED BY '' ");
         DB::statement(" CREATE USER 'siswa'@'localhost' IDENTIFIED BY '' ");

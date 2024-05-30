@@ -45,11 +45,12 @@
                 
                 <div class="bg-white drop-shadow-regularShadow py-3 my-5 rounded-lg border">
                     <!-- tabel rapor -->
-                    <table class="min-w-full text-left text-sm font-light text-surface dark:text-white">
+                    <table class="min-w-full text-left text-sm font-light text-surface dark:text-white" style="color: #191919">
                         <thead class="border-b-2 border-neutral-200 font-semibold bg-greyBackground" style="color: #717171">
                             <th scope="col" class= "w-2 px-8 py-3">No.</th>
                             <th scope="col" class= "px-8 py-3">Nama Lengkap</th>
                             <th scope="col" class= "px-8 py-3">Tingkat</th>
+                            <th scope="col" class= "px-8 py-3">Pelajaran</th>
                             <th scope="col" class= "px-8 py-3">Hari</th>
                             <th scope="col" class= "px-8 py-3">Waktu</th>
                             <th scope="col" class= "px-8 py-3">Guru</th>
@@ -57,58 +58,25 @@
                         </thead>
                             
                         <tbody>
-                            <tr class="border-b border-neutral-200">
-                                <td class="px-8 py-4">1.</td>
-                                <td class="px-8 py-4">Bagus Bagusin</td>
-                                <td class="px-8 py-4">4 SD</td>
-                                <td class="px-8 py-4">30 April 2024</td>
-                                <td class="px-8 py-4">Senin 10.00 WIB</td>
-                                <td class="px-8 py-4">Miss Tiur</td>
-                                <td class="px-8 py-4 flex items-center gap-4">
-                                    <i class="fa-solid fa-arrow-right-to-bracket rotate-90"></i>
-                                    <i class="fa-regular fa-eye"></i>
-                                    <span class="material-symbols-outlined text-xl">military_tech</span>
-                                </td>
-                            </tr>
-                            <tr class="border-b border-neutral-200 bg-greyBackground">
-                                <td class="px-8 py-4">2.</td>
-                                <td class="px-8 py-4">Bagus Bagusin</td>
-                                <td class="px-8 py-4">4 SD</td>
-                                <td class="px-8 py-4">30 April 2024</td>
-                                <td class="px-8 py-4">Senin 10.00 WIB</td>
-                                <td class="px-8 py-4">Miss Tiur</td>
-                                <td class="px-8 py-4 flex items-center gap-4">
-                                    <i class="fa-solid fa-arrow-right-to-bracket rotate-90"></i>
-                                    <i class="fa-regular fa-eye"></i>
-                                    <span class="material-symbols-outlined text-xl">military_tech</span>
-                                </td>
-                            </tr>
-                            <tr class="border-b border-neutral-200">
-                                <td class="px-8 py-4">3.</td>
-                                <td class="px-8 py-4">Bagus Bagusin</td>
-                                <td class="px-8 py-4">4 SD</td>
-                                <td class="px-8 py-4">30 April 2024</td>
-                                <td class="px-8 py-4">Senin 10.00 WIB</td>
-                                <td class="px-8 py-4">Miss Tiur</td>
-                                <td class="px-8 py-4 flex items-center gap-4">
-                                    <i class="fa-solid fa-arrow-right-to-bracket rotate-90"></i>
-                                    <i class="fa-regular fa-eye"></i>
-                                    <span class="material-symbols-outlined text-xl">military_tech</span>
-                                </td>
-                            </tr>
+                        @php $nomor = 1; @endphp
+                            @if($siswas)
+                            @foreach($siswas as $siswa)
                             <tr class="bg-greyBackground">
-                                <td class="px-8 py-4">4.</td>
-                                <td class="px-8 py-4">Bagus Bagusin</td>
-                                <td class="px-8 py-4">4 SD</td>
-                                <td class="px-8 py-4">30 April 2024</td>
-                                <td class="px-8 py-4">Senin 10.00 WIB</td>
-                                <td class="px-8 py-4">Miss Tiur</td>
+                                <td class="px-8 py-4">{{ $nomor++ }}</td>
+                                <td class="px-8 py-4">{{  $siswa->pengguna->biodataSiswa->nama_lengkap }}</td>
+                                <td class="px-8 py-4">{{  $siswa->pengguna->biodataSiswa->tingkat_kelas }}</td>
+                                <td class="px-8 py-4">{{  $siswa->kelas->nama }}</td>
+                                <td class="px-8 py-4">{{ $siswa->kelas->jadwal_hari }}</td>
+                                <td class="px-8 py-4">10.00 WIB, 11.00 WIB, 12.00 WIB</td>
+                                <td class="px-8 py-4">{{ $siswa->kelas->pengajar[0]->pengguna->biodataPengajar->nama_lengkap }}</td>
                                 <td class="px-8 py-4 flex items-center gap-4">
                                     <i class="fa-solid fa-arrow-right-to-bracket rotate-90"></i>
                                     <i class="fa-regular fa-eye"></i>
                                     <span class="material-symbols-outlined text-xl">military_tech</span>
                                 </td>
                             </tr>
+                            @endforeach
+                            @endif
                         </tbody>
                     </table>
                     <!-- akhir dari tabel rapor -->

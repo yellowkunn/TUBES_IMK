@@ -45,6 +45,7 @@ Route::middleware(['role:pengajar', 'auth', 'verified'])->group(function () {
     Route::get('/jadwalpengajar', [PengajarController::class, 'jadwalpengajar'])->name('jadwalpengajar');
     Route::get('/raporpengajar', [PengajarController::class, 'raporpengajar'])->name('raporpengajar');
     Route::get('/sertifikatpengajar', [PengajarController::class, 'sertifikatpengajar'])->name('sertifikatpengajar');
+    Route::post('/kirimtambahpertemuan', [PengajarController::class, 'kirimtambahpertemuan']);
 });
 
 //Siswa
@@ -64,3 +65,7 @@ Route::middleware(['role:siswa', 'auth', 'verified'])->group(function () {
 Route::get('/formulirpendaftaran', [SiswaController::class, 'formulirpendaftaran']);
 Route::post('/formulirpendaftaran', [SiswaController::class, 'kirimformulirpendaftaran']);
 require __DIR__.'/auth.php';
+
+Route::fallback(function () {
+    return response()->view('errors.404', [], 404);
+});

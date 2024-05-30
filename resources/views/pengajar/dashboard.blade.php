@@ -71,7 +71,7 @@
                             <a href="" class="text-[#00e]">Selengkapnya</a>
                         </div>
                         <div class="grid grid-cols-2 gap-4">
-                            @foreach($kelass as $kelas)
+                            @foreach($kelasss as $kelas)
                             <div class="p-8 bg-white drop-shadow-regularShadow rounded-lg flex flex-col gap-2">
                                 <p class="font-semibold">{{ $kelas->nama }}</p>
                                 <p class="text-greyIcon text-wrap">{{ $kelas->deskripsi }}</p>

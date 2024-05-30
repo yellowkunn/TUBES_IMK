@@ -39,6 +39,11 @@ class PengajarController extends Controller
         return view('pengajar.sertifikat');
     }
 
+    public function kirimtambahpertemuan(Request $request)
+    {
+
+    }
+
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();

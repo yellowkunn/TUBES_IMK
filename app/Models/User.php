@@ -23,12 +23,22 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function pengajar()
     {
-        return $this->hasOne(Pengajar::class, 'user_id');
+        return $this->hasOne(Pengajar::class, 'pengguna_id', 'id_pengguna');
     }
 
     public function siswa()
     {
         return $this->hasOne(Siswa::class, 'user_id');
+    }
+
+    public function biodataSiswa()
+    {
+        return $this->hasOne(Biodata_Siswa::class, 'pengguna_id', 'id_pengguna');
+    }
+
+    public function biodataPengajar()
+    {
+        return $this->hasOne(Biodata_Pengajar::class, 'pengguna_id', 'id_pengguna');
     }
 
     /**

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('biodata_pengajar', function (Blueprint $table) {
             $table->id('id_biodata');
-            $table->foreignId('id_pengguna')->constrained('users', 'id_pengguna')->onDelete('cascade');
+            $table->foreignId('pengguna_id')->constrained('users', 'id_pengguna')->onDelete('cascade');
             $table->string('nama_lengkap');
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
             $table->date('tmpt_tgl_lahir');

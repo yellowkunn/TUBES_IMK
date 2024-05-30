@@ -48,6 +48,40 @@ return new class extends Migration
     END
 ');
 
+DB::unprepared('
+        CREATE TRIGGER after_pengajar_insert
+        AFTER INSERT ON users
+        FOR EACH ROW
+        BEGIN
+            -- Hanya lakukan sesuatu jika peran pengguna adalah "pengajar"
+            IF NEW.role = "pengajar" THEN
+                -- Periksa apakah user_id sudah ada di tabel pengajar
+                IF NOT EXISTS (SELECT 1 FROM pengajar WHERE pengguna_id = NEW.id_pengguna) THEN
+                    -- Jika belum ada, masukkan data baru ke tabel pengajar
+                    INSERT INTO pengajar (pengguna_id)
+                    VALUES (NEW.id_pengguna);
+                END IF;
+            END IF;
+        END
+    ');
+
+    DB::unprepared('
+        CREATE TRIGGER after_pengajar_update
+        AFTER INSERT ON users
+        FOR EACH ROW
+        BEGIN
+            -- Hanya lakukan sesuatu jika peran pengguna adalah "pengajar"
+            IF NEW.role = "pengajar" THEN
+                -- Periksa apakah user_id sudah ada di tabel pengajar
+                IF NOT EXISTS (SELECT 1 FROM pengajar WHERE pengguna_id = NEW.id_pengguna) THEN
+                    -- Jika belum ada, masukkan data baru ke tabel pengajar
+                    INSERT INTO pengajar (pengguna_id)
+                    VALUES (NEW.id_pengguna);
+                END IF;
+            END IF;
+        END
+    ');
+
     DB::unprepared('
     CREATE TRIGGER after_user_update_role
     AFTER UPDATE ON users

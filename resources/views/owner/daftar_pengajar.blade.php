@@ -43,26 +43,34 @@
                 
                 <div class="bg-white drop-shadow-regularShadow py-3 my-5 rounded-lg border">
                     <!-- tabel rapor -->
-                    <table class="min-w-full text-left text-sm font-light text-surface dark:text-white">
+                    <table class="min-w-full text-left text-sm font-light text-surface dark:text-white" style="color: #191919">
                         <thead class="border-b-2 border-neutral-200 font-semibold bg-greyBackground" style="color: #717171">
                             <th scope="col" class= "w-2 px-8 py-3">No.</th>
                             <th scope="col" class= "px-8 py-3">Nama Lengkap</th>
+                            <th scope="col" class= "px-8 py-3">Pelajaran</th>
+                            <th scope="col" class= "px-8 py-3">Hari</th>
+                            <th scope="col" class= "px-8 py-3">Waktu</th>
                             <th scope="col" class= "px-8 py-3">Jabatan</th>
                             <th scope="col" class= "px-8 py-3">No. HP</th>
-                            <th scope="col" class= "px-8 py-3"></th>
+                            <th scope="col" class= "px-8 py-3">Aksi</th>
                         </thead>
                             
                         <tbody>
+                            @if($pengajars)
+                            @foreach ($pengajars as $pengajar)
                             <tr class="border-b border-neutral-200">
                                 <td class="px-8 py-4 font-semibold">1.</td>
                                 <td class="px-8 py-4">
-                                    <div class="flex gap-2">
-                                        <img src="" alt="pic">
-                                        <p class="font-semibold">NamaPengajar</p>
+                                    <div class="flex gap-2 items-center">
+                                        <img src="{{ asset('berkas_ujis/' . $pengajar->pengguna->foto_profile) }}" alt="pic" class="w-10 h-10 object-cover rounded-full">
+                                        <p class="font-semibold">{{ $pengajar->pengguna->biodataPengajar->nama_lengkap }}</p>
                                     </div>
                                 </td>
-                                <td class="px-8 py-4">Jabatan</td>
-                                <td class="px-8 py-4">+6281234567890</td>
+                                <td class="px-8 py-4">{{  $pengajar->kelas->nama }}</td>
+                                <td class="px-8 py-4">{{ $pengajar->kelas->jadwal_hari }}</td>
+                                <td class="px-8 py-4">10.00 WIB, 11.00 WIB, 12.00 WIB</td>
+                                <td class="px-8 py-4">{{  $pengajar->jabatan }}</td>
+                                <td class="px-8 py-4">{{  $pengajar->pengguna->biodataPengajar->no_hp }}</td>
                                 <td class="px-8 py-4 flex items-center gap-4">
                                     <button class="text-baseBlue font-semibold w-16 h-8 rounded hover:bg-white hover:border-2 hover:border-baseBlue focus:bg-baseBlue focus:text-white">Detail</button>
                                     <span class="material-symbols-outlined text-greyIcon">military_tech</span>
@@ -74,69 +82,8 @@
                                     </button>
                                 </td>
                             </tr>
-                            <tr class="border-b border-neutral-200 bg-greyBackground">
-                                <td class="px-8 py-4 font-semibold">2.</td>
-                                <td class="px-8 py-4">
-                                    <div class="flex gap-2">
-                                        <img src="" alt="pic">
-                                        <p class="font-semibold">NamaPengajar</p>
-                                    </div>
-                                </td>
-                                <td class="px-8 py-4">Jabatan</td>
-                                <td class="px-8 py-4">+6281234567890</td>
-                                <td class="px-8 py-4 flex items-center gap-4">
-                                    <button class="text-baseBlue font-semibold w-16 h-8 rounded hover:bg-white hover:border-2 hover:border-baseBlue focus:bg-baseBlue focus:text-white">Detail</button>
-                                    <span class="material-symbols-outlined text-greyIcon">military_tech</span> 
-                                    <button onclick="showPopupEditPengajar()" class="flex items-center gap-2">
-                                        <i class="fa-regular fa-pen-to-square"></i>
-                                    </button>
-                                    <button onclick="showPopupHapusPengajar()" class="flex items-center gap-2">
-                                        <i class="fa-regular fa-trash-can"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr class="border-b border-neutral-200">
-                                <td class="px-8 py-4 font-semibold">3.</td>
-                                <td class="px-8 py-4">
-                                    <div class="flex gap-2">
-                                        <img src="" alt="pic">
-                                        <p class="font-semibold">NamaPengajar</p>
-                                    </div>
-                                </td>
-                                <td class="px-8 py-4">Jabatan</td>
-                                <td class="px-8 py-4">+6281234567890</td>
-                                <td class="px-8 py-4 flex items-center gap-4">
-                                    <button class="text-baseBlue font-semibold w-16 h-8 rounded hover:bg-white hover:border-2 hover:border-baseBlue focus:bg-baseBlue focus:text-white">Detail</button>
-                                    <span class="material-symbols-outlined text-greyIcon">military_tech</span> 
-                                    <button onclick="showPopupEditPengajar()" class="flex items-center gap-2">
-                                    <i class="fa-regular fa-pen-to-square"></i>
-                                    </button>
-                                    <button onclick="showPopupHapusPengajar()" class="flex items-center gap-2">
-                                        <i class="fa-regular fa-trash-can"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr class="bg-greyBackground">
-                                <td class="px-8 py-4 font-semibold">4.</td>
-                                <td class="px-8 py-4">
-                                    <div class="flex gap-2">
-                                        <img src="" alt="pic">
-                                        <p class="font-semibold">NamaPengajar</p>
-                                    </div>
-                                </td>
-                                <td class="px-8 py-4">Jabatan</td>
-                                <td class="px-8 py-4">+6281234567890</td>
-                                <td class="px-8 py-4 flex items-center gap-4">
-                                    <button class="text-baseBlue font-semibold hover:bg-white w-16 h-8 rounded hover:border-2 hover:border-baseBlue focus:bg-baseBlue focus:text-white">Detail</button>
-                                    <span class="material-symbols-outlined text-greyIcon">military_tech</span> 
-                                    <button onclick="showPopupEditPengajar()" class="flex items-center gap-2">
-                                    <i class="fa-regular fa-pen-to-square"></i>
-                                    </button>
-                                    <button onclick="showPopupHapusPengajar()" class="flex items-center gap-2">
-                                        <i class="fa-regular fa-trash-can"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                            @endforeach
+                            @endif
                         </tbody>
                     </table>
                     <!-- akhir dari tabel rapor -->

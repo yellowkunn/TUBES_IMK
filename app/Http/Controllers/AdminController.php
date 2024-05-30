@@ -5,12 +5,25 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Kelas;
+use App\Models\Siswa;
+use App\Models\Pengajar;
 
 class AdminController extends Controller
 {
     public function dashboardadmin()
     {
-        return view('owner.dashboard');
+        $siswas = Siswa::select('kelas_id')->distinct()->get();
+        $kelas_ids = $siswas->pluck('kelas_id')->toArray(); // Ambil semua kelas_id yang unik dan ubah ke dalam array
+        
+        $kelasss = Kelas::leftJoin('siswa', 'kelas.id_kelas', '=', 'siswa.kelas_id')
+            ->select('kelas.*', DB::raw('COUNT(siswa.id_siswa) as total_siswa'))
+            ->whereNotNull('siswa.kelas_id')
+            ->whereIn('kelas.id_kelas', $kelas_ids) // Tambahkan kondisi whereIn untuk membatasi hasil query
+            ->groupBy('kelas.id_kelas', 'kelas.nama', 'kelas.tingkat_kelas', 'kelas.foto', 'kelas.deskripsi', 'kelas.harga', 'kelas.fasilitas', 'kelas.rentang', 'kelas.jadwal_hari', 'kelas.durasi', 'kelas.dibuat')
+            ->get();
+
+        $totalkelas = Kelas::all();
+        return view('owner.dashboard', compact('kelasss', 'totalkelas'));
     }
 
     public function editdaftarkelas()
@@ -27,11 +40,13 @@ class AdminController extends Controller
     }
     public function editdaftarsiswa()
     {
-        return view ('owner.daftar_siswa');
+        $siswas = Siswa::all();
+        return view ('owner.daftar_siswa', compact('siswas'));
     }
     public function editdaftarpengajar()
     {
-        return view ('owner.daftar_pengajar');
+        $pengajars = Pengajar::all();
+        return view ('owner.daftar_pengajar', compact('pengajars'));
     }
 
     public function tambahkelasbaru(Request $request)
@@ -68,14 +83,14 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Kelas berhasil ditambahkan');
     }
 
-    public function destroy(Request $request): RedirectResponse
-    {
-        Auth::guard('web')->logout();
+    // public function destroy(Request $request): RedirectResponse
+    // {
+    //     Auth::guard('web')->logout();
 
-        $request->session()->invalidate();
+    //     $request->session()->invalidate();
 
-        $request->session()->regenerateToken();
+    //     $request->session()->regenerateToken();
 
-        return redirect('/');
-    }
+    //     return redirect('/');
+    // }
 }

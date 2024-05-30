@@ -34,9 +34,8 @@
                     <a href="">Tambah</a>
                 </div>
                 
-                <form action="" method="post">
+                <form action="{{ url('kirimtambahpertemuan') }}" method="post">
                 @csrf
-
                     <div class="flex justify-between items-center">
                         <p class="text-title font-semibold my-7">Tambah Pertemuan</p>
                         <button type="submit" id="submit"><i class="fa-solid fa-check fa-xl p-5 px-[10px] border-2 border-emerald-500 hover:border-none 
