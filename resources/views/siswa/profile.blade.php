@@ -199,10 +199,17 @@
         const kontenAkun = document.getElementById('akunContent');
         const kontenBiodata = document.getElementById('biodataContent');
 
+        tabAkun.classList.remove('bg-baseBlue', 'text-white');
+        tabAkun.classList.add('bg-white', 'text-baseBlue', 'font-semibold');
+
         tabAkun.addEventListener("click", function() {
             if (kontenAkun.classList.contains('hidden')) {
                 kontenBiodata.classList.add('hidden');
                 kontenAkun.classList.remove('hidden');
+                tabBiodata.classList.add('bg-baseBlue', 'text-white');
+                tabBiodata.classList.remove('bg-white', 'text-baseBlue');
+                tabAkun.classList.remove('bg-baseBlue', 'text-white');
+                tabAkun.classList.add('bg-white', 'text-baseBlue');
             }
         });
 
@@ -210,6 +217,10 @@
             if (kontenBiodata.classList.contains('hidden')) {
                 kontenAkun.classList.add('hidden');
                 kontenBiodata.classList.remove('hidden');
+                tabAkun.classList.add('bg-baseBlue', 'text-white');
+                tabAkun.classList.remove('bg-white', 'text-baseBlue');
+                tabBiodata.classList.remove('bg-baseBlue', 'text-white');
+                tabBiodata.classList.add('bg-white', 'text-baseBlue');
             }
         });
     </script>
