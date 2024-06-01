@@ -77,7 +77,7 @@
                                 <p class="text-greyIcon text-wrap">{{ $kelas->deskripsi }}</p>
                                 <div class="flex items-center">
                                     <img src="" alt="">
-                                    <p class="text-greyIcon">10 pengajar</p>
+                                    <p class="text-greyIcon">{{ $kelas->total_siswa }} siswa</p>
                                 </div>
                                 <a href=" {{ url('pengajardetailkelas/' . $kelas->id_kelas) }} ">
                             <button class="text-white font-semibold bg-baseBlue w-full rounded-full py-1.5 mt-2">Detail</button>

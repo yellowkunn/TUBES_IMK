@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $kelas->nama }} {{ $kelas->tingkat_kelas }}</title>
+    <title>{{ $kelasDetail->nama }} {{ $kelasDetail->tingkat_kelas }}</title>
 
     <!-- font awsome -->
     <script src="https://kit.fontawesome.com/8c8655eff1.js" crossorigin="anonymous"></script>
@@ -16,6 +16,7 @@
 </head>
 
 <body class="font-Inter text-regularContent">
+    @if($kelasDetail)
     <div>
         @include('components.pengajar.navbar')
 
@@ -29,26 +30,26 @@
                 <div id="content" class="p-8">
                     <!-- page hierarchy -->
                     <div class="flex items-center gap-2 text-smallContent">
-                        <a href="">Dashboard</a>
+                        <a href="{{ url('home') }}">Dashboard</a>
                         <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                        <a href="">Kelas</a>
-                        <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                        <a href="">{{ $kelas->nama }} {{ $kelas->tingkat_kelas }}</a>
+                        <!-- <a href="">Kelas</a>
+                        <i class="fa-solid fa-caret-right text-baseBlue"></i> -->
+                        <a href="">{{ $kelasDetail->nama }} {{ $kelasDetail->tingkat_kelas }}</a>
                     </div>
 
                     <div class="flex justify-between mt-7">
-                        <p class="text-title font-semibold">{{ $kelas->nama }} {{ $kelas->tingkat_kelas }}</p>
+                        <p class="text-title font-semibold">{{ $kelasDetail->nama }} {{ $kelasDetail->tingkat_kelas }}</p>
                         <button onclick="showPopupListSiswa()" class="bg-white text-greyIcon font-semibold 
                                     flex items-center gap-2 w-fit p-3 px-4 rounded-full 
                                     border border-greyIcon" style="box-shadow: 0px 1px 10px rgba(0,0,0,0.1)">
                             <i class="fa-solid fa-user-group"></i>
-                            <p>10 Siswa</p>
+                            <p>{{ $kelasDetail->total_siswa }}</p>
                         </button>
                     </div>
 
                     <div class="flex gap-2 items-center text-smallContent text-greyIcon mb-7">
                         @php
-                        $jadwal_hari = explode(',', $kelas->jadwal_hari);
+                        $jadwal_hari = explode(',', $kelasDetail->jadwal_hari);
                         @endphp
 
                         @foreach($jadwal_hari as $hari)
@@ -58,12 +59,12 @@
                         @endif
                         @endforeach
                         <p class="text-2xl">&#8226;</p>
-                        <p>{{ $kelas->durasi }} /sesi</p>
+                        <p>{{ $kelasDetail->durasi }} /sesi</p>
                     </div>
 
                     <!-- button -->
                     <div class="flex gap-4">
-                        <a href="{{ route('tambah_pertemuan', $kelas) }}" class="bg-baseDarkerGreen text-white 
+                        <a href="{{ route('tambah_pertemuan', $kelasDetail) }}" class="bg-baseDarkerGreen text-white 
                             flex items-center gap-2 w-fit p-3 px-6 rounded-full" style="box-shadow: 
                             0px 4px 5px 0 rgba(105,212,220,0.3);">
                             <i class="fa-solid fa-circle-plus fa-lg"></i>
@@ -127,7 +128,7 @@
                 <div class="flex justify-between md:min-w-[800px] bg-white px-10 pt-4 rounded-t-xl">
                     <div>
                         <p class="font-semibold text-title">Daftar siswa</p>
-                        <p>10 Siswa terdaftar dalam kelas ini</p>
+                        <p>{{ $kelasDetail->total_siswa }} Siswa terdaftar dalam kelas ini</p>
                     </div>
                     <button onclick="showPopupListSiswa()">
                         <i class="fa-solid fa-xmark fa-lg p-3.5 py-5 rounded ms-3 text-greyIcon bg-[#EAEAEA]"></i>
@@ -137,16 +138,18 @@
                     <div class="grid grid-cols-3 gap-2 my-3">
 
                         <!-- perulangan data per siswa -->
+                        @foreach($siswa as $siswas)
                         <div class="p-3 px-5 bg-baseDarkerGreen/10 rounded-lg">
                             <div class="flex gap-3 items-center">
                                 <img src="https://t4.ftcdn.net/jpg/03/83/25/83/360_F_383258331_D8imaEMl8Q3lf7EKU2Pi78Cn0R7KkW9o.jpg" class="w-10 h-10 object-cover rounded-full" alt="">
 
                                 <div>
-                                    <p class=font-semibold">Marissa</p>
-                                    <p class="text-smallContent text-greyIcon">marissa@gmail.com</p>
+                                    <p class=font-semibold">{{ $siswas->pengguna->biodataSiswa->nama_lengkap }}</p>
+                                    <p class="text-smallContent text-greyIcon">{{ $siswas->pengguna->email }}</p>
                                 </div>
                             </div>
                         </div>
+                        @endforeach
 
                     </div>
 
@@ -178,6 +181,7 @@
 
 
     <script src="{{asset('js/style.js')}}"></script>
+    @endif
 </body>
 
 </html>

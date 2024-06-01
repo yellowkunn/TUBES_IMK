@@ -31,9 +31,9 @@
 
                     <!-- page hierarchy -->
                     <div class="flex items-center gap-2 text-smallContent">
-                        <a href="">Dashboard</a>
+                        <a href="{{ route('home') }}">Dashboard</a>
                         <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                        <a href="">Kelas</a>
+                        <a href="{{ route('editdaftarkelas') }}">Kelas</a>
                     </div>
 
                     <div class="flex justify-between items-center my-7">

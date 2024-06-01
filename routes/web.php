@@ -26,7 +26,7 @@ Route::middleware('auth')->group(function () {
 
 // OWNER
 Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
-    Route::get('/admindashboard', [AdminController::class, 'dashboardadmin'])->name('dashboardadmin');
+    // Route::get('/admindashboard', [AdminController::class, 'dashboardadmin'])->name('dashboardadmin');
     Route::get('/editdaftarkelas', [AdminController::class, 'editdaftarkelas'])->name('editdaftarkelas');
     Route::post('/tambahkelasbaru', [AdminController::class, 'tambahkelasbaru'])->name('tambahkelasbaru');
     Route::get('/editdaftarsiswa', [AdminController::class, 'editdaftarsiswa'])->name('editdaftarsiswa');
@@ -36,7 +36,7 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
 
 //Pengajar
 Route::middleware(['role:pengajar', 'auth', 'verified'])->group(function () {
-    Route::get('/pengajardashboard', [PengajarController::class, 'dashboardpengajar'])->name('dashboardpengajar');
+    // Route::get('/pengajardashboard', [PengajarController::class, 'dashboardpengajar'])->name('dashboardpengajar');
     Route::get('/pengajarabsensi', [PengajarController::class, 'absensipengajar'])->name('absensipengajar');;
     Route::get('/pengajardetailkelas/{kelas}/tambahpertemuan', [PengajarController::class, 'tambahpertemuanpengajar'])->name('tambah_pertemuan');
     Route::get('/pengajardetailkelas/{kelas}', [PengajarController::class, 'detailkelaspengajar']);

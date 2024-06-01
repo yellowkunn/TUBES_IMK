@@ -10,21 +10,21 @@ use App\Models\Pengajar;
 
 class AdminController extends Controller
 {
-    public function dashboardadmin()
-    {
-        $siswas = Siswa::select('kelas_id')->distinct()->get();
-        $kelas_ids = $siswas->pluck('kelas_id')->toArray(); // Ambil semua kelas_id yang unik dan ubah ke dalam array
+    // public function dashboardadmin()
+    // {
+    //     $siswas = Siswa::select('kelas_id')->distinct()->get();
+    //     $kelas_ids = $siswas->pluck('kelas_id')->toArray(); // Ambil semua kelas_id yang unik dan ubah ke dalam array
         
-        $kelasss = Kelas::leftJoin('siswa', 'kelas.id_kelas', '=', 'siswa.kelas_id')
-            ->select('kelas.*', DB::raw('COUNT(siswa.id_siswa) as total_siswa'))
-            ->whereNotNull('siswa.kelas_id')
-            ->whereIn('kelas.id_kelas', $kelas_ids) // Tambahkan kondisi whereIn untuk membatasi hasil query
-            ->groupBy('kelas.id_kelas', 'kelas.nama', 'kelas.tingkat_kelas', 'kelas.foto', 'kelas.deskripsi', 'kelas.harga', 'kelas.fasilitas', 'kelas.rentang', 'kelas.jadwal_hari', 'kelas.durasi', 'kelas.dibuat')
-            ->get();
+    //     $kelasss = Kelas::leftJoin('siswa', 'kelas.id_kelas', '=', 'siswa.kelas_id')
+    //         ->select('kelas.*', DB::raw('COUNT(siswa.id_siswa) as total_siswa'))
+    //         ->whereNotNull('siswa.kelas_id')
+    //         ->whereIn('kelas.id_kelas', $kelas_ids) // Tambahkan kondisi whereIn untuk membatasi hasil query
+    //         ->groupBy('kelas.id_kelas', 'kelas.nama', 'kelas.tingkat_kelas', 'kelas.foto', 'kelas.deskripsi', 'kelas.harga', 'kelas.fasilitas', 'kelas.rentang', 'kelas.jadwal_hari', 'kelas.durasi', 'kelas.dibuat')
+    //         ->get();
 
-        $totalkelas = Kelas::all();
-        return view('owner.dashboard', compact('kelasss', 'totalkelas'));
-    }
+    //     $totalkelas = Kelas::all();
+    //     return view('owner.dashboard', compact('kelasss', 'totalkelas'));
+    // }
 
     public function editdaftarkelas()
     {
