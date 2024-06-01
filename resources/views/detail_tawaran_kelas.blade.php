@@ -129,6 +129,34 @@
     tippy('#daftarSkrgTip', {
     content: 'Daftar Kelas',
     });
+
+ 
+    // price card detail tawaran kelas
+      function handleScroll() {
+        const daftarSkrg = document.getElementById('daftarSkrg');
+        const priceCard = document.getElementById('priceCard');
+        const scroll = window.scrollY;
+
+        if (window.innerWidth > 768) {
+          if (scroll > 280) {
+            daftarSkrg.classList.remove('hidden');
+          } else {
+            daftarSkrg.classList.add('hidden');
+            
+          }
+        } else {
+          if (scroll > 500) {
+            daftarSkrg.classList.remove('hidden');
+          } else {
+            daftarSkrg.classList.add('hidden');
+            
+          }
+        }
+      }
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll);
   </script>
 </body>
 

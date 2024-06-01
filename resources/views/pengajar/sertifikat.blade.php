@@ -97,8 +97,6 @@
     </div>
 </div>
 
-    @include('components.footer')
-    
-<script src="{{asset('js/style.js')}}"></script>
+ @include('components.footer')
 </body>
 </html>

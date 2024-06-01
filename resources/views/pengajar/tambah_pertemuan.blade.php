@@ -11,6 +11,8 @@
     <!-- font awsome -->
     <script src="https://kit.fontawesome.com/8c8655eff1.js" crossorigin="anonymous"></script>
 
+    @livewireStyles
+
     @vite('resources/css/app.css')
 </head>
 <body class="font-Inter">
@@ -38,55 +40,167 @@
                 @csrf
                     <div class="flex justify-between items-center">
                         <p class="text-title font-semibold my-7">Tambah Pertemuan</p>
-                        <button type="submit" id="submit"><i class="fa-solid fa-check fa-xl p-5 px-[10px] border-2 border-emerald-500 hover:border-none 
-                        hover:bg-emerald-400 text-emerald-600 hover:text-white rounded-full drop-shadow-xl"></i></button> 
+                        <button type="reset" class="rounded-full p-1.5 px-5 hover:bg-greyIcon hover:text-white bg-greyIcon/20 text-greyIcon font-semibold hover:font-normal">Reset</button>
                     </div>
 
-                    <div class="flex flex-col gap-12">
-                        <input type="text" name="pertemuan" id="pertemuan" value="Pertemuan ke-i" disabled class="w-fit ps-4 bg-neutral-50">
+                    <div class="md:flex justify-between gap-20">
 
-                        <div class="flex flex-col gap-2 w-1/2">
-                            <label for="date">Tanggal</label>
-                            <input type="date" name="date" id="date" class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                         <!-- form kotak kiri -->
+                        <div>
+                            <div class="bg-white drop-shadow-regularShadow rounded-lg p-8 h-fit">
+                                <div class="flex flex-col gap-12">
+                                    <input type="text" name="pertemuan" id="pertemuan" value="Pertemuan ke-i" disabled class="ps-4 bg-neutral-50">
+
+                                    <div class="flex flex-col gap-2">
+                                        <label for="date">Tanggal</label>
+                                        <input type="date" name="date" id="date" class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                                    </div>
+
+                                    <div class="flex flex-col gap-2">
+                                        <label for="topikbahasan">Topik Bahasan</label>
+                                        <input type="text" name="topikbahasan" id="topikbahasan" class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="text-baseBlue bg-white border-2 border-baseBlue p-2 w-full rounded-lg mt-8
+                                    hover:bg-baseBlue hover:text-white hover:font-semibold" style="filter: drop-shadow(0px 0px 5px rgba(121,162,226,0.3));">Simpan</button>
                         </div>
 
-                        <div class="flex flex-col gap-2 w-1/2">
-                            <label for="topikbahasan">Topik Bahasan</label>
-                            <input type="text" name="topikbahasan" id="topikbahasan" class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" required>
+                        <!-- form kotak kanan -->
+                        <div class="flex flex-col gap-5 w-full">
+                            <!-- materi -->
+                            <div class="bg-white drop-shadow-regularShadow rounded-lg p-5 h-fit">
+                                <div class="flex justify-between items-center border-2 border-baseBlue/20 bg-baseBlue/5 rounded-lg p-3 px-6">
+                                    <button class="w-full h-full" onclick="showPopupMateri()" type="button">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fa-regular fa-file"></i>
+                                            <p class="text-start hover:font-semibold">Tambah Materi</p>
+                                        </div>
+                                        <button type="button" onclick="showPopupMateri()"><i class="fa-solid fa-plus p-2 px-[9px] bg-baseBlue text-white rounded-full"></i></button>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <!-- Latihan -->
+                            <div class="bg-white drop-shadow-regularShadow rounded-lg p-5 h-fit">
+                                <div class="flex justify-between items-center border-2 border-baseBlue/20 bg-baseBlue/5 rounded-lg p-3 px-6">
+                                    <button class="w-full h-full" onclick="showPopupLatihan()" type="button">
+                                        <input type="hidden" name="latihan" id="latihan">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fa-regular fa-file"></i>
+                                            <p class="text-start hover:font-semibold">Tambah Latihan</p>
+                                        </div>
+                                        <button type="button" onclick="showPopupLatihan()"><i class="fa-solid fa-plus p-2 px-[9px] bg-baseBlue text-white rounded-full"></i></button>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <!-- folder -->
+                            <div class="bg-white drop-shadow-regularShadow rounded-lg p-5 h-fit">
+                                <div class="flex justify-between items-center border-2 border-baseBlue/20 bg-baseBlue/5 rounded-lg p-3 px-6">
+                                    <button class="w-full h-full" onclick="showPopupFolder()" type="button">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fa-regular fa-folder"></i>
+                                            <p class="text-start hover:font-semibold">Tambah Folder</p>
+                                        </div>
+                                        <button type="button" onclick="showPopupFolder()"><i class="fa-solid fa-plus p-2 px-[9px] bg-baseBlue text-white rounded-full"></i></button>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <!-- link -->
+                            <div class="bg-white drop-shadow-regularShadow rounded-lg px-7 py-6 h-fit">
+                                <p class="font-semibold mb-3">Link</p>
+                                <div class="flex items-center gap-4">
+                                    <i class="fa-solid fa-link"></i>
+                                    <input type="url" name="link" id="link" class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1"/>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <hr class="my-12">
-
-                    <p class="text-subtitle font-semibold mb-5">Bahan Ajar</p>
-
-                    <div class="md:flex items-start gap-20">
-                        <div class="md:w-1/2">
-                            <div class="flex justify-between items-center border-2 border-baseBlue/20 bg-baseBlue/5 p-3 px-6 rounded-lg">
-                                <p>Materi</p>
-                                <button type="button" id="addFileMateri" onclick="addInputFileMateri()"><i class="fa-solid fa-plus p-2 px-[9px] bg-baseBlue text-white rounded-full"></i></button>
+                    <!-- konten pop up materi -->
+                    <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow w-full h-screen" id="popupMateri">
+                        <div class="flex flex-col justify-center">
+                            <div class="flex justify-between md:min-w-[800px] bg-white px-10 pt-7 rounded-t-xl">
+                                <p class="font-semibold text-title">Tambah Materi</p>
+                                <button onclick="showPopupMateri()">
+                                    <i class="fa-solid fa-xmark fa-lg p-3.5 py-5 rounded ms-3 text-greyIcon bg-[#EAEAEA]"></i>
+                                </button>
                             </div>
-                            
-                            <div class="rounded-lg">
-                                <div id="divInputFileMateri" class="grid grid-cols-3 bg-neutral-100 border-4 border-white"></div>
+                            <div class="bg-white p-7 pt-4 rounded-b-xl">
+                                <div class="my-3">
+                                    <livewire:dynamic-input :inputType="'materi'">
+                                </div>
+
+                                <div class="bg-white text-center">
+                                    <button onclick="showPopupMateri()" class="w-fit p-2 px-4 text-baseBlue font-semibold border-2 border-baseBlue rounded-full" style="box-shadow: 0px 0px 5px 1px rgba(105,212,220,0.3);">
+                                        Selesai
+                                    </button>
+                                </div>
+
                             </div>
                         </div>
-                            
-                        <div class="md:w-1/2">
-                            <div class="flex justify-between items-center border-2 border-baseBlue/20 bg-baseBlue/5 p-3 px-6 rounded-lg">
-                                <p>Latihan</p>
-                                <button type="button" id="addFileLatihan" onclick="addInputFileLatihan()"><i class="fa-solid fa-plus p-2 px-[9px] bg-baseBlue text-white rounded-full"></i></button>
-                            </div>
-                            
-                            <div class="rounded-lg">
-                                <div id="divInputFileLatihan" class="grid grid-cols-3 bg-neutral-100 border-4 border-white"></div>
-                            </div>
-                        </div>
-
                     </div>
+                    
+                    <!-- konten pop Latihan -->
+                    <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow w-full h-screen" id="popupLatihan">
+                        <div class="flex flex-col justify-center">
+                            <div class="flex justify-between md:min-w-[800px] bg-white px-10 pt-7 rounded-t-xl">
+                                <p class="font-semibold text-title">Tambah Latihan</p>
+                                <button onclick="showPopupLatihan()">
+                                    <i class="fa-solid fa-xmark fa-lg p-3.5 py-5 rounded ms-3 text-greyIcon bg-[#EAEAEA]"></i>
+                                </button>
+                            </div>
+                            <div class="bg-white p-7 pt-4 rounded-b-xl">
+                                <div class="my-3">
+                                    <livewire:dynamic-input :inputType="'latihan'">
+                                </div>
+
+                                <div class="bg-white text-center">
+                                    <button onclick="showPopupLatihan()" class="w-fit p-2 px-4 text-baseBlue font-semibold border-2 border-baseBlue rounded-full" style="box-shadow: 0px 0px 5px 1px rgba(105,212,220,0.3);">
+                                        Selesai
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                     <!-- akhir dari konten pop Latihan -->
+
+                    <!-- konten pop folder -->
+                    <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow w-full h-screen" id="popupFolder">
+                        <div class="flex flex-col justify-center">
+                            <div class="flex justify-between md:min-w-[800px] bg-white px-10 pt-7 rounded-t-xl">
+                                <p class="font-semibold text-title">Tambah Folder</p>
+                                <button onclick="showPopupFolder()">
+                                    <i class="fa-solid fa-xmark fa-lg p-3.5 py-5 rounded ms-3 text-greyIcon bg-[#EAEAEA]"></i>
+                                </button>
+                            </div>
+                            <div class="bg-white p-7 pt-4 rounded-b-xl">
+                                <div class="my-3">
+                                    <livewire:dynamic-input :inputType="'folder'">
+                                </div>
+
+                                <div class="bg-white text-center">
+                                    <button onclick="showPopupFolder()" class="w-fit p-2 px-4 text-baseBlue font-semibold border-2 border-baseBlue rounded-full" style="box-shadow: 0px 0px 5px 1px rgba(105,212,220,0.3);">
+                                        Selesai
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                     <!-- akhir dari konten pop folder -->
                 </form>
 
-                
                 </div>
             </div>
         </div>
@@ -94,62 +208,21 @@
 
     @include('components.footer')
 
+@livewireScripts
 
-<script src="{{asset('js/style.js')}}"></script>
 <script>
-    var divInputFileMateri = document.getElementById('divInputFileMateri');
-    var divInputFileLatihan = document.getElementById('divInputFileLatihan');
-    var index = 0;
+    function showPopupMateri() {
+    document.getElementById('popupMateri').classList.toggle('hidden');
+}
 
-    function addInputFileMateri() {
-        index++;
+function showPopupLatihan() {
+    document.getElementById('popupLatihan').classList.toggle('hidden');
+}
 
-        var inputElement = document.createElement('input');
-        inputElement.type = 'file';
-        inputElement.name = 'materi[]';
-        inputElement.className = 'rounded p-4 md:ps-8 file:border-none file:text-sm col-span-2';
-        inputElement.innerHTML = '<input type="hidden" name="type" value="materi">';
-        inputElement.multiple = true;
-        inputElement.id = 'inputMateri-' + index;
+function showPopupFolder() {
+    document.getElementById('popupFolder').classList.toggle('hidden');
+}
 
-        var deleteButton = document.createElement('button');
-        deleteButton.type = 'button';
-        deleteButton.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-        deleteButton.onclick = function() {
-            divInputFileMateri.removeChild(inputElement);
-            divInputFileMateri.removeChild(deleteButton);
-        };
-
-        divInputFileMateri.insertBefore(deleteButton, divInputFileMateri.firstChild);
-        divInputFileMateri.insertBefore(inputElement, divInputFileMateri.firstChild);
-    }
-
-    function addInputFileLatihan() {
-        index++;
-
-        var inputElement = document.createElement('input');
-        inputElement.type = 'file';
-        inputElement.name = 'Latihan[]';
-        inputElement.className = 'rounded p-4 md:ps-8 file:border-none file:text-sm col-span-2';
-        inputElement.innerHTML = '<input type="hidden" name="type" value="latihan">';
-        inputElement.multiple = true;
-        inputElement.id = 'inputLatihan-' + index;
-
-        var deleteButton = document.createElement('button');
-        deleteButton.type = 'button';
-        deleteButton.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-        deleteButton.onclick = function() {
-            divInputFileLatihan.removeChild(inputElement);
-            divInputFileLatihan.removeChild(deleteButton);
-        };
-
-        divInputFileLatihan.insertBefore(deleteButton, divInputFileLatihan.firstChild);
-        divInputFileLatihan.insertBefore(inputElement, divInputFileLatihan.firstChild);
-    }
-
-    tippy('#submit', {
-        content: 'Tambah Pertemuan',
-    });
 </script>
 </body>
 </html>

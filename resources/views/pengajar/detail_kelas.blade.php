@@ -165,19 +165,10 @@
     @include('components.footer')
 
     <script>
-        const showPopupListSiswa = () => {
-            const popup = document.getElementById('popupListSiswa');
-
-            if (popup.classList.contains('hidden')) {
-                popup.classList.remove('hidden')
-            } else {
-                popup.classList.add('hidden')
-            }
-        }
+    function showPopupListSiswa() {
+        document.getElementById('popupListSiswa').classList.toggle('hidden');
+    }
     </script>
-
-
-    <script src="{{asset('js/style.js')}}"></script>
 </body>
 
 </html>
