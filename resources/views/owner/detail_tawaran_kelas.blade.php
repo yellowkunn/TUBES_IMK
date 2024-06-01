@@ -46,7 +46,7 @@
           <div class="flex flex-col">
             <p>Hanya</p>
             <p class="mt-5 leading-6">
-              <span class="text-subtitle font-semibold">Rp {{ $kelas->harga }}</span>
+              <span class="text-subtitle font-semibold">Rp{{ number_format($kelas->harga, 0, ',', '.') }}</span>
               <br />
               /{{ $kelas->rentang }}
             </p>
@@ -88,9 +88,6 @@
   </a>
 
   @include('components.footer')
-
-
-  <script src="{{asset('js/style.js')}}"></script>
 </body>
 
 </html>

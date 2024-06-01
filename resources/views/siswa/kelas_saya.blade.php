@@ -76,7 +76,6 @@
     @include('components.footer')
     </div>
 
-    <script src="{{asset('js/style.js')}}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const dropdowns = document.querySelectorAll('.dropdown');

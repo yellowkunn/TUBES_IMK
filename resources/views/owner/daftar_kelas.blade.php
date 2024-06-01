@@ -87,7 +87,7 @@
                     <!-- pop up tambah kelas baru -->
                     <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow 
                     w-full h-screen" id="popupTambahKelas">
-                        <div class="flex flex-col justify-center max-w-[450px]">
+                        <div class="flex flex-col justify-center max-w-[600px]">
                             <div class="flex justify-between bg-baseBlue px-10 py-4 rounded-t-xl text-white">
                                 <p class="text-title">Tambah Kelas</p>
                                 <button onclick="showPopupTambahKelas()">
@@ -95,56 +95,62 @@
                                 </button>
                             </div>
                             <div class="bg-white p-7 pt-4 rounded-b-xl px-10 py-8">
-                                <form action="/tambahkelasbaru" method="POST" enctype="multipart/form-data" class="flex flex-col gap-5">
+                                <form action="/tambahkelasbaru" method="POST" enctype="multipart/form-data">
                                     @csrf
-                                    <div>
-                                        <p class="font-semibold mb-1">Nama Kelas</p>
-                                        <input class="rounded w-full h-9" type="text" name="nama" id="nama">
-                                    </div>
-
-                                    <div>
-                                        <p class="font-semibold mb-1">Tingkat Kelas</p>
-                                        <select id="" name="tingkat_kelas" class="rounded w-full h-9">
-                                            <option value="" class="text-greyIcon">Kelas</option>
-                                            <option value="SD">SD</option>
-                                            <option class="text-greyIcon" value="SMP">SMP</option>
-                                            <option class="text-greyIcon" value="SMA">SMA</option>
-                                            <option class="text-greyIcon" value="Gap Year">Gap Year</option>
-                                            <option class="text-greyIcon" value="TOEFL">TOEFL</option>
-                                            <option class="text-greyIcon" value="IELTS">IELTS</option>
-                                        </select>
-                                    </div>
-
-                                    <div>
-                                        <p class="font-semibold mb-1">Keterangan</p>
-                                        <input class="rounded w-full h-9" type="text" name="deskripsi" id="deskripsi">
-                                    </div>
-                                    <div>
-                                        <p for="harga" class="font-semibold">Harga</p>
-
-                                        <div class="flex justify-between gap-4 h-9">
-                                            <input class="rounded w-5/6" type="number" name="harga" id="harga">
-                                            <p class="text-2xl text-greyIcon my-auto">/</p>
-                                            <input class="rounded w-1/3" type="text" name="rentang" id="rentang" placeholder="Rentang">
+                                    <div class="overflow-y-auto max-h-96 pe-7 flex flex-col gap-5 mt-5 px-0.5">
+                                        <div>
+                                            <p class="font-semibold mb-1">Nama Kelas</p>
+                                            <input class="rounded w-full h-9" type="text" name="nama" id="nama">
                                         </div>
-                                    </div>
 
-                                    <div>
-                                        <p class="font-semibold mb-1">Fasilitas</p>
-                                        <input class="rounded w-full h-9" type="text" name="fasilitas" id="fasilitas">
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold mb-1">Pilih Hari</p>
-                                        <input class="rounded w-full h-9" type="text" name="jadwal_hari" id="jadwal_hari">
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold mb-1">Durasi</p>
-                                        <input class="rounded w-full h-9" type="text" name="durasi" id="durasi">
-                                    </div>
+                                        <div>
+                                            <p class="font-semibold mb-1">Tingkat Kelas</p>
+                                            <select id="" name="tingkat_kelas" class="rounded w-full h-9">
+                                                <option value="" class="text-greyIcon">Kelas</option>
+                                                <option value="SD">SD</option>
+                                                <option class="text-greyIcon" value="SMP">SMP</option>
+                                                <option class="text-greyIcon" value="SMA">SMA</option>
+                                                <option class="text-greyIcon" value="Gap Year">Gap Year</option>
+                                                <option class="text-greyIcon" value="TOEFL">TOEFL</option>
+                                                <option class="text-greyIcon" value="IELTS">IELTS</option>
+                                            </select>
+                                        </div>
 
-                                    <div>
-                                        <p class="font-semibold mb-1">Foto Kelas</p>
-                                        <input class="rounded w-full h-9" type="file" name="gambar" id="gambar" required>
+                                        <div>
+                                            <p class="font-semibold mb-1">Keterangan</p>
+                                            <input class="rounded w-full h-9" type="text" name="deskripsi" id="deskripsi">
+                                        </div>
+
+                                        <div>
+                                            <p for="harga" class="font-semibold">Harga</p>
+
+                                            <div class="flex justify-between gap-2 h-9">
+                                                <input class="rounded w-5/6" type="number" name="harga" id="harga">
+                                                <p class="text-2xl text-greyIcon my-auto">/</p>
+                                                <input class="rounded w-1/3" type="text" name="rentang" id="rentang" placeholder="Rentang">
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <p class="font-semibold mb-1">Fasilitas</p>
+                                            <input class="rounded w-full h-9" type="text" name="fasilitas" id="fasilitas">
+                                        </div>
+
+                                        <div>
+                                            <p class="font-semibold mb-1">Pilih Hari</p>
+                                            <input class="rounded w-full h-9" type="text" name="jadwal_hari" id="jadwal_hari">
+                                        </div>
+                                        
+                                        <div>
+                                            <p class="font-semibold mb-1">Durasi</p>
+                                            <input class="rounded w-full h-9" type="text" name="durasi" id="durasi">
+                                        </div>
+
+                                        <div>
+                                            <p class="font-semibold mb-1">Foto Kelas</p>
+                                            <input type="file" accept="image/*" name="gambar" id="gambar" class="file:text-baseBlue file:font-semibold 
+                                                    file:bg-baseBlue/20 file:rounded-full file:py-2 file:px-4 file:border-none file:cursor-pointer mt-1" required>
+                                        </div>
                                     </div>
 
                                     <div class="mt-8 flex justify-end gap-6">
@@ -329,9 +335,6 @@
 
 
     </script>
-
-
-    <script src="{{asset('js/style.js')}}"></script>
 </body>
 
 </html>
