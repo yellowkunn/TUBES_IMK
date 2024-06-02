@@ -10,6 +10,8 @@ class DynamicInput extends Component
     use WithFileUploads;
     public $inputs = [];
     public $inputType;
+    public $waktutenggat = [];
+    public $tanggaltenggat = [];
     public $file = [];
     public $folder = [];
     public $i = 1;
@@ -17,10 +19,19 @@ class DynamicInput extends Component
     public function add($i){      
         $this->i = $i + 1;
         array_push($this->inputs, $i);
+
+        if($this->inputType == 'materi'){
+        $this->waktutenggat[$this->i] = '';
+        $this->tanggaltenggat[$this->i] = '';
+        }
     }
 
     public function remove($key){
         unset($this->inputs[$key]);
+        if($this->inputType == 'latihan'){
+            unset($this->waktutenggat[$key]);
+            unset($this->tanggaltenggat[$key]);
+        }
     }
 
     public function render()

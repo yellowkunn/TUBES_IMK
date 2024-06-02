@@ -35,9 +35,7 @@
                     <i class="fa-solid fa-caret-right text-baseBlue"></i>
                     <a href="">Tambah</a>
                 </div>
-                
                 @livewire('tambah-pertemuan', ['kelas' => $kelas])
-
                 </div>
             </div>
         </div>
@@ -50,14 +48,20 @@
 <script>
     function showPopupMateri() {
     document.getElementById('popupMateri').classList.toggle('hidden');
+    event.preventDefault();
+    event.stopPropagation();
 }
 
 function showPopupLatihan() {
     document.getElementById('popupLatihan').classList.toggle('hidden');
+    event.preventDefault();
+    event.stopPropagation();
 }
 
 function showPopupFolder() {
     document.getElementById('popupFolder').classList.toggle('hidden');
+    event.preventDefault();
+    event.stopPropagation();
 }
 
 </script>
