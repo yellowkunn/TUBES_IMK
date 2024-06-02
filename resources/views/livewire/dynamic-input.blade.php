@@ -23,7 +23,7 @@
             <div class="flex justify-between py-3 px-5">
                 @if($inputType == 'materi')
                 <input type="hidden" name="inputType" value="materi">
-                <input wire:model="file.{{ $value }}" type="file" id="file.{{ $value }}" class="file:text-baseBlue file:font-semibold 
+                <input wire:model="filemateri.{{ $value }}" type="file" id="file.{{ $value }}" class="file:text-baseBlue file:font-semibold 
                     file:bg-baseBlue/20 file:rounded-full file:py-2 file:px-4 file:border-none file:cursor-pointer">
                 @elseif($inputType == 'latihan')
                 <input type="hidden" name="inputType" value="latihan">
@@ -32,7 +32,7 @@
                         <input type="time" wire:model="waktutenggat.{{ $value }}" id="waktutenggat" class="border-2 border-baseBlue/20 bg-baseBlue/5 rounded-lg me-2">
                         <input type="date" wire:model="tanggaltenggat.{{ $value }}" id="tanggaltenggat" class="border-2 border-baseBlue/20 bg-baseBlue/5 rounded-lg">
                     </div> -->
-                    <input wire:model="file.{{ $value }}" type="file" id="file.{{ $value }}" class="file:text-baseBlue file:font-semibold 
+                    <input wire:model="filelatihan.{{ $value }}" type="file" id="file.{{ $value }}" class="file:text-baseBlue file:font-semibold 
                         file:bg-baseBlue/20 file:rounded-full file:py-2 file:px-4 file:border-none file:cursor-pointer">
                 </div>
                 @else

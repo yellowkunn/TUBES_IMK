@@ -10,8 +10,61 @@ use App\Models\Tugas;
 use App\Models\Link;
 use App\Models\Kelas;
 use Illuminate\Support\Facades\Auth;
+
+
+
+
+
+
+
+
+
 class Tambahpertemuan extends Component
 {
+
+
+    public $inputs = [];
+    public $inputType;
+    public $waktutenggat = [];
+    public $tanggaltenggat = [];
+    public $filemateri = [];
+    public $filelatihan = [];
+    public $folder = [];
+    public $i = 1;
+
+    public function add($i){      
+        $this->i = $i + 1;
+        array_push($this->inputs, $i);
+
+
+        // if($this->inputType == 'materi'){
+        // $this->waktutenggat[$this->i] = '';
+        // $this->tanggaltenggat[$this->i] = '';
+        // }
+    }
+
+    public function remove($key){
+        unset($this->inputs[$key]);
+
+        
+        // if($this->inputType == 'latihan'){
+        //     unset($this->waktutenggat[$key]);
+        //     unset($this->tanggaltenggat[$key]);
+        // }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
     use WithFileUploads;
 
     public $pertemuan;
@@ -36,18 +89,15 @@ class Tambahpertemuan extends Component
 
     public function tambahPertemuan()
     {
-        dd([
-            'pengajar_id' => Auth::user()->id_pengguna,
-            'kelas_id' => $this->kelas->id_kelas,
-            'pertemuan_ke' => $this->pertemuan,
-            'tgl_pertemuan' => $this->date,
-            'judul' => $this->topikbahasan,
-            'deskripsi' => $this->deskripsi,
-            'tugas' => $this->tugas,
-            'materi' => $this->materi,
-            'link' => $this->link,
-        ]);
-        
+        if ($this->inputType == 'materi') {
+            foreach ($this->filemateri as $key => $file) {
+                $file->store('materi');
+            }
+        } elseif ($this->inputType == 'latihan') {
+            foreach ($this->filelatihan as $key => $file) {
+                $file->store('latihan');
+            }
+        }
         $user = Auth::user();
 
         $this->validate([
@@ -63,8 +113,8 @@ class Tambahpertemuan extends Component
             'judul' => $this->topikbahasan,
             'deskripsi' => $this->deskripsi
         ]);
-        if ($this->materi) {
-            $materiPath = $this->materi->store('materi', 'public');
+        foreach ($this->filemateri as $file) {
+            $materiPath = $file->store('materi', 'public');
             Materi::create([
                 'pertemuan_id' => $this->pertemuan,
                 'file_materi' => $materiPath,
@@ -72,15 +122,15 @@ class Tambahpertemuan extends Component
                 'tgl_akses' => $this->tanggalakses,
             ]);
         }
-        if ($this->tugas) {
-            $tugasPath = $this->tugas->store('tugas', 'public');
+        foreach ($this->filelatihan as $file) {
+            $tugasPath = $file->store('latihan', 'public');
             Tugas::create([
                 'pertemuan_id' => $this->pertemuan,
                 'file_tugas' => $tugasPath,
                 'jam_akses' => $this->waktuakses2,
                 'tgl_akses' => $this->tanggalakses2,
-                'batas_jam_akses' => $this->batas_waktu_akses_2,
-                'batas_tgl_akses' => $this->batas_tanggal_akses_2,
+                'jam_batas_akses' => $this->batas_waktu_akses_2,
+                'tgl_batas_akses' => $this->batas_tanggal_akses_2,
             ]);
         }
         Link::create([
