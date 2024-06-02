@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_link');
             $table->foreignId('pertemuan_id')->constrained('pertemuan', 'id_pertemuan')->onDelete('cascade');
             $table->text('url');
-            $table->timestamps();
+            $table->timestamp('dibuat')->useCurrent();
         });
     }
 

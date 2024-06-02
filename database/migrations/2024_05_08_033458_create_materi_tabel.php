@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('materi', function (Blueprint $table) {
             $table->id('id_materi');
             $table->foreignId('pertemuan_id')->constrained('pertemuan', 'id_pertemuan')->onDelete('cascade');
-            $table->string('konten_materi');
+            $table->string('file_materi');
             $table->timestamp('dibuat')->useCurrent();
         });        
     }

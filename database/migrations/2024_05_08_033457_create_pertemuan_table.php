@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('id_pertemuan');
             $table->foreignId('pengajar_id')->constrained('pengajar', 'id_pengajar')->onDelete('cascade');
             $table->foreignId('kelas_id')->constrained('kelas', 'id_kelas')->onDelete('cascade');
+            $table->integer('pertemuan_ke');
             $table->string('judul');
             $table->text('deskripsi');
             $table->date('tgl_pertemuan');

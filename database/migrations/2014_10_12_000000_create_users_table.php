@@ -17,7 +17,7 @@ return new class extends Migration
 
         // Menghapus pengguna jika sudah ada
         DB::statement("DROP USER IF EXISTS 'admin'@'localhost'");
-        DB::statement("DROP USER IF EXISTS 'pengajar'@'lozcalhost'");
+        DB::statement("DROP USER IF EXISTS 'pengajar'@'localhost'");
         DB::statement("DROP USER IF EXISTS 'siswa'@'localhost'");
         DB::statement("DROP USER IF EXISTS 'user'@'localhost'");
 

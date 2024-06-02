@@ -31,9 +31,9 @@ class PengajarController extends Controller
 
         return view('pengajar.detail_kelas', compact('kelasDetail', 'siswa'));
     }
-    public function tambahpertemuanpengajar()
+    public function tambahpertemuanpengajar(Kelas $kelas)
     {
-        return view('pengajar.tambah_pertemuan');
+        return view('pengajar.tambah_pertemuan', compact('kelas'));
     }
     public function jadwalpengajar()
     {
