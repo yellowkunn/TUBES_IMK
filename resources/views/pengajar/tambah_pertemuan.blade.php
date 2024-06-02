@@ -135,12 +135,18 @@
                                 </button>
                             </div>
                             <div class="bg-white p-7 pt-4 rounded-b-xl">
-                                <div class="my-3">
+                                <div class="flex flex-col gap-4">
+                                    <div class="ms-4">
+                                        <p class="font-semibold mb-1.5">Waktu Akses</p>
+                                        <input type="time" name="waktuakses" id="waktuakses" class="border-2 border-baseBlue/20 bg-baseBlue/5 rounded-lg me-2">
+                                        <input type="date" name="tanggalakses" id="tanggalakses" class="border-2 border-baseBlue/20 bg-baseBlue/5 rounded-lg">
+                                    </div>
+        
                                     <livewire:dynamic-input :inputType="'materi'">
                                 </div>
 
                                 <div class="bg-white text-center">
-                                    <button onclick="showPopupMateri()" class="w-fit p-2 px-4 text-baseBlue font-semibold border-2 border-baseBlue rounded-full" style="box-shadow: 0px 0px 5px 1px rgba(105,212,220,0.3);">
+                                    <button onclick="showPopupMateri()" class="w-fit h-11 px-4 text-baseBlue font-semibold border-2 border-baseBlue rounded-full hover:border-none hover:bg-baseBlue hover:text-white mt-5" style="filter: drop-shadow(0px 0px 5px rgba(121,162,226,0.3));">
                                         Selesai
                                     </button>
                                 </div>
@@ -164,7 +170,7 @@
                                 </div>
 
                                 <div class="bg-white text-center">
-                                    <button onclick="showPopupLatihan()" class="w-fit p-2 px-4 text-baseBlue font-semibold border-2 border-baseBlue rounded-full" style="box-shadow: 0px 0px 5px 1px rgba(105,212,220,0.3);">
+                                    <button onclick="showPopupMateri()" class="w-fit h-11 px-4 text-baseBlue font-semibold border-2 border-baseBlue rounded-full hover:border-none hover:bg-baseBlue hover:text-white mt-5" style="filter: drop-shadow(0px 0px 5px rgba(121,162,226,0.3));">
                                         Selesai
                                     </button>
                                 </div>
@@ -189,7 +195,7 @@
                                 </div>
 
                                 <div class="bg-white text-center">
-                                    <button onclick="showPopupFolder()" class="w-fit p-2 px-4 text-baseBlue font-semibold border-2 border-baseBlue rounded-full" style="box-shadow: 0px 0px 5px 1px rgba(105,212,220,0.3);">
+                                    <button onclick="showPopupFolder()" class="w-fit p-2 px-4 text-baseBlue font-semibold border-2 border-baseBlue rounded-full" style="filter: drop-shadow(0px 0px 5px rgba(121,162,226,0.3));">
                                         Selesai
                                     </button>
                                 </div>
@@ -200,10 +206,10 @@
                      <!-- akhir dari konten pop folder -->
 
                      <div class="flex gap-10 justify-center items-center mt-12 mb-4">
-                                <button type="reset" class="text-greyIcon hover:font-semibold">Reset</button>
-                                <button type="submit" class="text-baseBlue bg-white border-2 border-baseBlue p-1.5 px-8 rounded-lg 
-                                        hover:bg-baseBlue hover:text-white hover:font-semibold" style="filter: drop-shadow(0px 0px 5px rgba(121,162,226,0.3));">Simpan</button>
-                            </div>
+                        <button type="reset" class="text-greyIcon hover:font-semibold">Reset</button>
+                        <button type="submit" class="text-baseBlue bg-white border-2 border-baseBlue p-1.5 px-8 rounded-lg 
+                                hover:bg-baseBlue hover:text-white hover:font-semibold" style="filter: drop-shadow(0px 0px 5px rgba(121,162,226,0.3));">Simpan</button>
+                    </div>
                 </form>
 
                 </div>

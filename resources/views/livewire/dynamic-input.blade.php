@@ -22,11 +22,19 @@
         @foreach($inputs as $key => $value)
             <div class="flex justify-between py-3 px-5">
                 @if($inputType == 'materi')
-                    <input wire:model="file.{{ $value }}" type="file" id="file.{{ $value }}" class="file:text-baseBlue file:font-semibold 
-                        file:bg-baseBlue/20 file:rounded-full file:py-2 file:px-4 file:border-none file:cursor-pointer">
+                <input type="hidden" name="inputType" value="materi">
+                <input wire:model="file.{{ $value }}" type="file" id="file.{{ $value }}" class="file:text-baseBlue file:font-semibold 
+                    file:bg-baseBlue/20 file:rounded-full file:py-2 file:px-4 file:border-none file:cursor-pointer">
                 @elseif($inputType == 'latihan')
+                <input type="hidden" name="inputType" value="latihan">
+                <div class="flex flex-col gap-4 py-2" wire.model="div.{{ $key }}">
+                    <div>
+                        <input type="time" wire:model="waktutenggat.{{ $value }}" id="waktutenggat" class="border-2 border-baseBlue/20 bg-baseBlue/5 rounded-lg me-2">
+                        <input type="date" wire:model="tanggaltenggat.{{ $value }}" id="tanggaltenggat" class="border-2 border-baseBlue/20 bg-baseBlue/5 rounded-lg">
+                    </div>
                     <input wire:model="file.{{ $value }}" type="file" id="file.{{ $value }}" class="file:text-baseBlue file:font-semibold 
                         file:bg-baseBlue/20 file:rounded-full file:py-2 file:px-4 file:border-none file:cursor-pointer">
+                </div>
                 @else
                     <input wire:model="folder.{{ $value }}" type="file" id="folder.{{ $value }}" class="file:text-baseBlue file:font-semibold 
                         file:bg-baseBlue/20 file:rounded-full file:py-2 file:px-4 file:border-none file:cursor-pointer" webkitdirectory directory multiple/>
