@@ -38,15 +38,12 @@
                 
                 <form action="{{ url('kirimtambahpertemuan') }}" method="post">
                 @csrf
-                    <div class="flex justify-between items-center">
-                        <p class="text-title font-semibold my-7">Tambah Pertemuan</p>
-                        <button type="reset" class="rounded-full p-1.5 px-5 hover:bg-greyIcon hover:text-white bg-greyIcon/20 text-greyIcon font-semibold hover:font-normal">Reset</button>
-                    </div>
+                    <p class="text-title font-semibold my-7">Tambah Pertemuan</p>
 
-                    <div class="md:flex justify-between gap-20">
+                    <div class="md:flex justify-between gap-16">
 
                          <!-- form kotak kiri -->
-                        <div>
+                        <div class="w-1/2">
                             <div class="bg-white drop-shadow-regularShadow rounded-lg p-8 h-fit">
                                 <div class="flex flex-col gap-12">
                                     <input type="text" name="pertemuan" id="pertemuan" value="Pertemuan ke-i" disabled class="ps-4 bg-neutral-50">
@@ -60,15 +57,17 @@
                                         <label for="topikbahasan">Topik Bahasan</label>
                                         <input type="text" name="topikbahasan" id="topikbahasan" class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" required>
                                     </div>
+
+                                    <div class="flex flex-col gap-2">
+                                        <label for="deskripsi">Deskripsi</label>
+                                        <textarea name="deskripsi" id="deskripsi" class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" rows="3" cols="50"></textarea>
+                                    </div>
                                 </div>
                             </div>
-
-                            <button type="submit" class="text-baseBlue bg-white border-2 border-baseBlue p-2 w-full rounded-lg mt-8
-                                    hover:bg-baseBlue hover:text-white hover:font-semibold" style="filter: drop-shadow(0px 0px 5px rgba(121,162,226,0.3));">Simpan</button>
                         </div>
 
                         <!-- form kotak kanan -->
-                        <div class="flex flex-col gap-5 w-full">
+                        <div class="flex flex-col gap-5 w-1/2">
                             <!-- materi -->
                             <div class="bg-white drop-shadow-regularShadow rounded-lg p-5 h-fit">
                                 <div class="flex justify-between items-center border-2 border-baseBlue/20 bg-baseBlue/5 rounded-lg p-3 px-6">
@@ -101,7 +100,7 @@
                             <hr>
 
                             <!-- folder -->
-                            <div class="bg-white drop-shadow-regularShadow rounded-lg p-5 h-fit">
+                            <!-- <div class="bg-white drop-shadow-regularShadow rounded-lg p-5 h-fit">
                                 <div class="flex justify-between items-center border-2 border-baseBlue/20 bg-baseBlue/5 rounded-lg p-3 px-6">
                                     <button class="w-full h-full" onclick="showPopupFolder()" type="button">
                                         <div class="flex items-center gap-3">
@@ -113,7 +112,7 @@
                                 </div>
                             </div>
 
-                            <hr>
+                            <hr> -->
 
                             <!-- link -->
                             <div class="bg-white drop-shadow-regularShadow rounded-lg px-7 py-6 h-fit">
@@ -199,6 +198,12 @@
                         </div>
                     </div>
                      <!-- akhir dari konten pop folder -->
+
+                     <div class="flex gap-10 justify-center items-center mt-12 mb-4">
+                                <button type="reset" class="text-greyIcon hover:font-semibold">Reset</button>
+                                <button type="submit" class="text-baseBlue bg-white border-2 border-baseBlue p-1.5 px-8 rounded-lg 
+                                        hover:bg-baseBlue hover:text-white hover:font-semibold" style="filter: drop-shadow(0px 0px 5px rgba(121,162,226,0.3));">Simpan</button>
+                            </div>
                 </form>
 
                 </div>
