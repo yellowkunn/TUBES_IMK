@@ -8,26 +8,22 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('materi', function (Blueprint $table) {
-            $table->id('id_materi');
+        Schema::create('links', function (Blueprint $table) {
+            $table->id('id_link');
             $table->foreignId('pertemuan_id')->constrained('pertemuan', 'id_pertemuan')->onDelete('cascade');
-            $table->string('konten_materi');
-            $table->timestamp('dibuat')->useCurrent();
-        });        
+            $table->text('url');
+            $table->timestamps();
+        });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('materi_tabel');
+        Schema::dropIfExists('links');
     }
 };
