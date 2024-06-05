@@ -23,7 +23,8 @@ class Tambahpertemuan extends Component
 {
 
 
-    public $inputs = [];
+    public $boxinputmateri = [];
+    public $boxinputlatihan = [];
     public $inputType;
     public $waktutenggat = [];
     public $tanggaltenggat = [];
@@ -32,9 +33,9 @@ class Tambahpertemuan extends Component
     public $folder = [];
     public $i = 1;
 
-    public function add($i){      
+    public function addmateri($i){      
         $this->i = $i + 1;
-        array_push($this->inputs, $i);
+        array_push($this->boxinputmateri, $i);
 
 
         // if($this->inputType == 'materi'){
@@ -43,14 +44,23 @@ class Tambahpertemuan extends Component
         // }
     }
 
-    public function remove($key){
-        unset($this->inputs[$key]);
+    public function addlatihan($i){      
+        $this->i = $i + 1;
+        array_push($this->boxinputlatihan, $i);
+    }
+
+    public function removemateri($key){
+        unset($this->boxinputmateri[$key]);
 
         
         // if($this->inputType == 'latihan'){
         //     unset($this->waktutenggat[$key]);
         //     unset($this->tanggaltenggat[$key]);
         // }
+    }
+
+    public function removelatihan($key){
+        unset($this->boxinputlatihan[$key]);
     }
 
 

@@ -154,7 +154,7 @@
                                     </div>
 
                                     <div class="mt-8 flex justify-end gap-6">
-                                        <button type="button" onclick="showPopupTambahKelas()" class="text-greyIcon hover:text-black">Batal</button>
+                                        <button type="button" onclick="showPopupTambahKelas()" class="text-greyIcon hover:font-semibold">Batal</button>
                                         <button type="submit" class="text-baseBlue bg-white border-2 border-baseBlue p-1.5 px-7 rounded-full
                                             hover:bg-baseBlue hover:text-white" style="box-shadow: 
                                             0px 0px 5px 1px rgba(122,161,226,0.3);">Tambah</button>

@@ -8,7 +8,10 @@
         <div class="w-1/2">
             <div class="bg-white drop-shadow-regularShadow rounded-lg p-8 h-fit">
                 <div class="flex flex-col gap-12">
-                    <input type="text" wire:model="pertemuan" id="pertemuan" class="ps-4 bg-neutral-50">
+                    <div class="flex flex-col gap-2">
+                        <label for="pertemuan">Pertemuan ke</label>
+                        <input type="text" wire:model="pertemuan" id="pertemuan" class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" required>
+                    </div>
 
                     <div class="flex flex-col gap-2">
                         <label for="date">Tanggal</label>
@@ -105,30 +108,26 @@
                         <input type="date" wire:model="tanggalakses" id="tanggalakses" class="border-2 border-baseBlue/20 bg-baseBlue/5 rounded-lg">
                     </div>
                     <div class="w-full overflow-y-auto max-h-96">
-    <div class="md:flex items-start">
-        <div class="w-full px-3 py-1.5">
-            <div class="flex justify-between gap-28 items-center border-2 border-baseBlue/20 bg-baseBlue/5 p-3 px-6 rounded-lg">
-                <p>Materi</p>
-                <button type="button" wire:click="add({{ $i }})"><i class="fa-solid fa-plus p-2 px-[9px] bg-baseBlue text-white rounded-full"></i></button>
-            </div>
+                    <div class="md:flex items-start">
+                        <div class="w-full px-3 py-1.5">
+                            <div class="flex justify-between gap-28 items-center border-2 border-baseBlue/20 bg-baseBlue/5 p-3 px-6 rounded-lg">
+                                <p>Materi</p>
+                                <button type="button" wire:click="addmateri({{ $i }})"><i class="fa-solid fa-plus p-2 px-[9px] bg-baseBlue text-white rounded-full"></i></button>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="rounded-lg">
-                <div id="divInputFileMateri" class="grid grid-cols-3 bg-neutral-100 border-4 border-white"></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="flex flex-col">
-        @foreach($inputs as $key => $value)
-            <div class="flex justify-between py-3 px-5">
-                <input type="hidden" name="inputType" value="materi">
-                <input wire:model="filemateri.{{ $value }}" type="file" id="file.{{ $value }}" class="file:text-baseBlue file:font-semibold 
-                    file:bg-baseBlue/20 file:rounded-full file:py-2 file:px-4 file:border-none file:cursor-pointer">
-                <button type="button" wire:click="remove({{ $key }})"><i class="fa-solid fa-xmark me-7"></i></button>
-            </div>
-        @endforeach
-    </div>
-</div>
+                    <div class="flex flex-col">
+                        @foreach($boxinputmateri as $key => $value)
+                            <div class="flex justify-between py-3 px-5">
+                                <input type="hidden" name="inputType" value="materi">
+                                <input wire:model="filemateri.{{ $value }}" type="file" id="file.{{ $value }}" class="file:text-baseBlue file:font-semibold 
+                                    file:bg-baseBlue/20 file:rounded-full file:py-2 file:px-4 file:border-none file:cursor-pointer">
+                                <button type="button" wire:click="removemateri({{ $key }})"><i class="fa-solid fa-xmark me-7"></i></button>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
                 </div>
 
                 <div class="bg-white text-center">
@@ -156,43 +155,41 @@
                         <p class="font-semibold mb-1.5">Waktu Akses</p>
                         <input type="time" wire:model="waktuakses2" id="waktuakses2" class="border-2 border-baseBlue/20 bg-baseBlue/5 rounded-lg me-2">
                         <input type="date" wire:model="tanggalakses2" id="tanggalakses2" class="border-2 border-baseBlue/20 bg-baseBlue/5 rounded-lg">
-                        <p class="font-semibold mb-1.5">Batas Waktu Akses</p>
+                        <p class="font-semibold mb-1.5 mt-3">Tenggat Tugas</p>
                         <input type="time" wire:model="batas_waktu_akses_2" id="batas_waktu_akses_2" class="border-2 border-baseBlue/20 bg-baseBlue/5 rounded-lg me-2">
                         <input type="date" wire:model="batas_tanggal_akses_2" id="batas_tanggal_akses_2" class="border-2 border-baseBlue/20 bg-baseBlue/5 rounded-lg">
                     </div>
                 </div>
-                <div class="my-3">
+                <div class="mt-5">
                 <div class="w-full overflow-y-auto max-h-96">
-    <div class="md:flex items-start">
-        <div class="w-full px-3 py-1.5">
-            <div class="flex justify-between gap-28 items-center border-2 border-baseBlue/20 bg-baseBlue/5 p-3 px-6 rounded-lg">
-                <p>Latihan</p>
-                <button type="button" wire:click="add({{ $i }})"><i class="fa-solid fa-plus p-2 px-[9px] bg-baseBlue text-white rounded-full"></i></button>
-            </div>
+                <div class="md:flex items-start">
+                    <div class="w-full px-3 py-1.5">
+                        <div class="flex justify-between gap-28 items-center border-2 border-baseBlue/20 bg-baseBlue/5 p-3 px-6 rounded-lg">
+                            <p>Latihan</p>
+                            <button type="button" wire:click="addlatihan({{ $i }})"><i class="fa-solid fa-plus p-2 px-[9px] bg-baseBlue text-white rounded-full"></i></button>
+                        </div>
 
-            <div class="rounded-lg">
-                <div id="divInputFileMateri" class="grid grid-cols-3 bg-neutral-100 border-4 border-white"></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="flex flex-col">
-        @foreach($inputs as $key => $value)
-            <div class="flex justify-between py-3 px-5">
-                <input type="hidden" name="inputType" value="latihan">
-                <div class="flex flex-col gap-4 py-2" wire:model="div.{{ $key }}">
-                    <input wire:model="filelatihan.{{ $value }}" type="file" id="file.{{ $value }}" class="file:text-baseBlue file:font-semibold 
-                        file:bg-baseBlue/20 file:rounded-full file:py-2 file:px-4 file:border-none file:cursor-pointer">
+                        <div class="rounded-lg">
+                            <div id="divInputFileMateri" class="grid grid-cols-3 bg-neutral-100 border-4 border-white"></div>
+                        </div>
+                    </div>
                 </div>
-                <button type="button" wire:click="remove({{ $key }})"><i class="fa-solid fa-xmark me-7"></i></button>
+
+                <div class="flex flex-col">
+                    @foreach($boxinputlatihan as $key => $value)
+                        <div class="flex justify-between py-3 px-5">
+                            <input type="hidden" name="inputType" value="latihan">
+                            <input wire:model="filelatihan.{{ $value }}" type="file" id="file.{{ $value }}" class="file:text-baseBlue file:font-semibold 
+                                file:bg-baseBlue/20 file:rounded-full file:py-2 file:px-4 file:border-none file:cursor-pointer">
+                            <button type="button" wire:click="removelatihan({{ $key }})"><i class="fa-solid fa-xmark me-7"></i></button>
+                        </div>
+                    @endforeach
+                </div>
             </div>
-        @endforeach
-    </div>
-</div>
             </div>
 
                 <div class="bg-white text-center">
-                <button onclick="showPopupLatihan()" class="w-fit h-11 px-4 text-baseBlue font-semibold border-2 border-baseBlue rounded-full hover:border-none hover:bg-baseBlue hover:text-white mt-5" style="filter: drop-shadow(0px 0px 5px rgba(121,162,226,0.3));">
+                <button type="button" onclick="showPopupLatihan()" class="w-fit h-11 px-4 text-baseBlue font-semibold border-2 border-baseBlue rounded-full hover:border-none hover:bg-baseBlue hover:text-white mt-5" style="filter: drop-shadow(0px 0px 5px rgba(121,162,226,0.3));">
                         Selesai
                     </button>
                 </div>
@@ -203,7 +200,7 @@
     <!-- akhir dari konten pop Latihan -->
 
     <!-- konten pop folder -->
-    <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow w-full h-screen" id="popupFolder">
+    <!-- <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow w-full h-screen" id="popupFolder">
         <div class="flex flex-col justify-center">
             <div class="flex justify-between md:min-w-[800px] bg-white px-10 pt-7 rounded-t-xl">
                 <p class="font-semibold text-title">Tambah Folder</p>
@@ -213,18 +210,18 @@
             </div>
             <div class="bg-white p-7 pt-4 rounded-b-xl">
                 <div class="my-3">
-                    <livewire:dynamic-input :inputType="'folder'">
+                    
                 </div>
 
                 <div class="bg-white text-center">
-                    <button onclick="showPopupFolder()" class="w-fit p-2 px-4 text-baseBlue font-semibold border-2 border-baseBlue rounded-full" style="filter: drop-shadow(0px 0px 5px rgba(121,162,226,0.3));">
+                    <button type="button" onclick="showPopupFolder()" class="w-fit p-2 px-4 text-baseBlue font-semibold border-2 border-baseBlue rounded-full" style="filter: drop-shadow(0px 0px 5px rgba(121,162,226,0.3));">
                         Selesai
                     </button>
                 </div>
 
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- akhir dari konten pop folder -->
 
     <div class="flex gap-10 justify-center items-center mt-12 mb-4">

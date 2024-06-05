@@ -34,7 +34,7 @@ class AdminController extends Controller
 
     public function editdetailkelas(Kelas $kelas)
     {
-        return view('owner.detail_tawaran_kelas', [
+        return view('owner.detail_kelas', [
             "kelas" => $kelas
         ]);
     }

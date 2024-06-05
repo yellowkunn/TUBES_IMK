@@ -80,12 +80,6 @@
       </ul>
     </main>
   </div>
-  
-  <a href="" class="flex justify-end bottom-10 mx-5 md:mx-10 sticky z-10 my-5 animate-bounce" id="daftarSkrg">
-    <div class="bg-baseBlue hover:bg-[#415474] text-white rounded-full p-2 px-3.5 drop-shadow-lg w-fit h-fit cursor-pointer">
-    <span class="material-symbols-outlined pt-1.5">add_shopping_cart</span>
-    </div>
-  </a>
 
   @include('components.footer')
 </body>
