@@ -12,7 +12,7 @@
                 <p class="flex duration-500 relative left-10 hidden">Pembayaran</p>
             </div>
         </a>
-        <a href="" class="mt-[-10px]">
+        <a href="{{ route('pengaturanruangan') }}" class="mt-[-10px]">
             <div class="flex h-20 items-center gap-3 absolute left-0 w-5/6 lg:w-full py-3">
                 <span class="material-symbols-outlined relative left-10">door_open</span>
                 <p class="flex duration-500 w-1/2 relative left-10 hidden">Pengaturan Ruangan</p>

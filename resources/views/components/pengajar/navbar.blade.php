@@ -5,7 +5,7 @@
             <i class="fa-solid fa-bars md:fa-xmark fa-lg p-3.5 py-5 rounded ms-3" style="background-color: #EAEAEA; color: #363636" id="toggle"></i>
         </button>
 
-        <a href="" class="text-regularContent font-semibold" style="color: #363636">Kelas Saya</a>
+        <a href="" class="text-regularContent font-semibold nav" style="color: #363636">Kelas Saya</a>
     </div>
 
     <!-- dd more (edit & hapus) -->

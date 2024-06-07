@@ -28,11 +28,11 @@
 
                 <!-- page hierarchy -->
                 <div class="flex items-center gap-2 text-smallContent">
-                    <a href="">Dashboard</a>
+                    <a href="{{ route('home') }}" class="hover:font-semibold">Dashboard</a>
                     <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                    <a href="">Kelas</a>
+                    <a href="{{ route('kelas') }}" class="hover:font-semibold">Kelas</a>
                     <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                    <a href="">{{ $kelas->nama }} </a>
+                    <a href="{{ route('programkelas', ['kelas'=>$kelas->id_kelas]) }} " class="hover:font-semibold">{{ $kelas->nama }}</a>
                 </div>
 
                 <div class="mt-8">
@@ -42,15 +42,15 @@
 
                 <div class="my-8 flex flex-col gap-6">
                     <!-- perulangan pertemuan -->
-                    <div class="dropdown" data-index="0">
+                    <div class="dropdown group" data-index="0">
                         <div id="tabPertemuan-0" class="rounded-xl drop-shadow-regularShadow bg-white p-4 px-8 flex justify-between items-center relative">
                             <div>
                                 <div>
-                                    <div class="bg-baseBlue h-1/2 absolute top-5 left-4 rounded-full transform -translate-x-1/2 w-1"></div>
+                                    <div class="bg-baseBlue h-1/3 group-hover:h-1/2 absolute top-[3.5vh] group-hover:top-5 left-4 rounded-full transform -translate-x-1/2 duration-300 w-1"></div>
                                 </div>
                                 <div class="ms-1">
-                                    <p class="font-semibold">Pertemuan 1</p>
-                                    <p class="text-smallContent">Molekul</p>
+                                    <p class="font-semibold">Pertemuan pertemuan->pertemuan_ke</p>
+                                    <p class="text-smallContent">pertemuan->judul</p>
                                 </div>
                             </div>
                             <button id="iconDD-0">
@@ -65,9 +65,13 @@
 
                             <div class="bg-baseCream w-full rounded-b-xl">
                                 <div class="grid divide-y-2">
+                                    <div class="flex gap-4 px-8 p-1.5 text-greyIcon text-smallContent">
+                                        <p><span class="font-semibold">Open:</span> materi->jam_akses</p>
+                                        <p>materi->tgl_akses</p>
+                                    </div>
                                     <div class="flex gap-3 p-3 px-8 items-center">
                                         <i class="fa-regular fa-file"></i>
-                                        <p>Materi1</p> 
+                                        <p>materi->file_materi</p> 
                                     </div>
                                 </div>
                             </div>
@@ -78,56 +82,19 @@
 
                             <div class="bg-baseCream w-full rounded-b-xl">
                                 <div class="grid divide-y-2">
-                                    <div class="flex gap-3 p-3 px-8 items-center">
-                                        <i class="fa-regular fa-file"></i>
-                                        <p>Latihan1</p> 
+                                    <div class="flex gap-8 px-8 p-1.5 text-greyIcon text-smallContent">
+                                        <div class="flex gap-4">
+                                            <p><span class="font-semibold">Open:</span> latihan->jam_akses</p>
+                                            <p>latihan->tgl_akses</p>
+                                        </div>
+                                        <div class="flex gap-4">
+                                            <p><span class="font-semibold">Deadline:</span> latihan->jam_batas_akses</p>
+                                            <p>latihan->tgl_batas_akses</p>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- akhir dari perulangan pertemuan -->
-
-                    <!-- perulangan pertemuan -->
-                    <div class="dropdown" data-index="1">
-                        <div id="tabPertemuan-1" class="rounded-xl drop-shadow-regularShadow bg-white p-4 px-8 flex justify-between items-center relative">
-                            <div>
-                                <div>
-                                    <div class="bg-baseBlue h-1/2 absolute top-5 left-4 rounded-full transform -translate-x-1/2 w-1"></div>
-                                </div>
-                                <div class="ms-1">
-                                    <p class="font-semibold">Pertemuan 2</p>
-                                    <p class="text-smallContent">Molekul</p>
-                                </div>
-                            </div>
-                            <button id="iconDD-1">
-                                <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                            </button>
-                        </div>
-
-                        <div id="contentPertemuan-1" class="hidden">
-                            <div class="bg-white p-3 px-8 w-full rounded-t-xl drop-shadow-[0px_0px_2px_rgba(0,0,0,0.1)] mt-2.5">
-                                <p class="font-semibold">Materi</p> 
-                            </div>
-
-                            <div class="bg-baseCream w-full rounded-b-xl">
-                                <div class="grid divide-y-2">
                                     <div class="flex gap-3 p-3 px-8 items-center">
                                         <i class="fa-regular fa-file"></i>
-                                        <p>Materi1</p> 
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="bg-white p-3 px-8 w-full rounded-t-xl drop-shadow-[0px_0px_2px_rgba(0,0,0,0.1)] mt-3">
-                                <p class="font-semibold">Latihan</p> 
-                            </div>
-
-                            <div class="bg-baseCream w-full rounded-b-xl">
-                                <div class="grid divide-y-2">
-                                    <div class="flex gap-3 p-3 px-8 items-center">
-                                        <i class="fa-regular fa-file"></i>
-                                        <p>Latihan1</p> 
+                                        <p>latihan->file_tugas</p> 
                                     </div>
                                 </div>
                             </div>

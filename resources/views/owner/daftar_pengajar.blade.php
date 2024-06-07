@@ -49,6 +49,7 @@
                                 <th scope="col" class= "px-8 py-3">Nama Lengkap</th>
                                 <th scope="col" class= "px-8 py-3">Jabatan</th>
                                 <th scope="col" class= "px-8 py-3">No. HP</th>
+                                <th></th>
                                 <th scope="col" class= "px-8 py-3 text-center">Aksi</th>
                             </thead>
                                 
@@ -70,9 +71,9 @@
                                     
                                     <td class="px-8 py-4">{{  $pengajar->jabatan }}</td>
                                     <td class="px-8 py-4">{{  $pengajar->pengguna->biodataPengajar->no_hp }}</td>
+                                    <td class="py-4"><button onclick="showPopupUploadSertif({{ $pengajar->pengguna->biodataPengajar->id_biodata }})" id="sertif"><span class="material-symbols-outlined text-greyIcon mt-1.5">workspace_premium</span></button></td>
                                     <td class="px-8 py-4 flex items-center gap-4 justify-center">
                                         <button onclick="showPopupDetailPengajar({{ $pengajar->pengguna->biodataPengajar->id_biodata }})" class="text-baseBlue font-semibold w-16 h-8 rounded hover:bg-white hover:border-2 hover:border-baseBlue focus:bg-baseBlue focus:text-white">Detail</button>
-                                        <button onclick="showPopupUploadSertif({{ $pengajar->pengguna->biodataPengajar->id_biodata }})" id="sertif"><span class="material-symbols-outlined text-greyIcon mt-1.5">military_tech</span></button>
                                         <button onclick="showPopupEditPengajar({{ $pengajar->pengguna->biodataPengajar->id_biodata }})" class="flex items-center gap-2">
                                         <i class="fa-regular fa-pen-to-square"></i>
                                         </button>
@@ -120,7 +121,7 @@
                                         </div>
                                         <div class="flex flex-col gap-2">
                                             <p class="font-semibold">Pendidikan: <span class="font-normal">{{  $pengajar->pengguna->biodataPengajar->pendidikan }}</span></p>
-                                            <p class="font-semibold">Jabatan: <span class="font-normal">Pengajar</span></p>
+                                            <p class="font-semibold">Jabatan: <span class="font-normal">{{ $pengajar->jabatan }}</span></p>
                                             <p class="font-semibold">No. Handphone: <span class="font-normal">{{  $pengajar->pengguna->biodataPengajar->no_hp }}</span></p>
                                         </div>
                                     </div>

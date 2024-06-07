@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function () {
 // OWNER
 Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
     // Route::get('/admindashboard', [AdminController::class, 'dashboardadmin'])->name('dashboardadmin');
+    Route::get('/pengaturanruangan', [AdminController::class, 'pengaturanruangan'])->name('pengaturanruangan');
     Route::get('/editdaftarkelas', [AdminController::class, 'editdaftarkelas'])->name('editdaftarkelas');
     Route::post('/tambahkelasbaru', [AdminController::class, 'tambahkelasbaru'])->name('tambahkelasbaru');
     Route::get('/editdaftarsiswa', [AdminController::class, 'editdaftarsiswa'])->name('editdaftarsiswa');

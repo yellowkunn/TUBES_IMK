@@ -26,6 +26,12 @@ class AdminController extends Controller
     //     return view('owner.dashboard', compact('kelasss', 'totalkelas'));
     // }
 
+    public function pengaturanruangan()
+    {
+        $kelass = Kelas::all();
+        return view ('owner.pengaturan_ruangan', compact('kelass'));
+    }
+
     public function editdaftarkelas()
     {
         $kelass = Kelas::all();

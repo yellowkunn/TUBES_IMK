@@ -39,32 +39,47 @@
                     
                     <!-- daftar kelas -->
                     <div class="sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-12 mt-8">
-                                @foreach($siswas as $siswa)
-                                @php
-                                $kelas = $siswa->kelas;
-                                @endphp
-                                @if($kelas)
-                                <div class="p-6 lg:p-8 px-8 md:px-6 lg:px-10 bg-white drop-shadow-regularShadow rounded-lg flex flex-col gap-2 my-8 sm:my-4 md:my-0">
-                                    <p class="font-semibold md:text-[20px] lg:text-subtitle">
-                                        {{ $kelas->nama }}
-                                    </p>
-                                    <div class="flex items-center">
-                                        @if($kelas->foto)
-                                        <img src="{{ asset('berkas_ujis/' . $kelas->foto) }}" alt="{{ $kelas->nama }}" class="my-2 max-h-52 md:max-h-56 lg:max-h-44 w-full object-cover rounded-lg">
-                                        @else
-                                        <p class="text-greyIcon">Foto tidak tersedia</p>
-                                        @endif
-                                    </div>
-                                    <p class="text-greyIcon text-wrap">
-                                        {{ $kelas->deskripsi }}
-                                    </p>
-                                    <a href="{{ url('/siswa/detailkelas/' . $kelas->id_kelas) }}">
-                                        <button class="text-white font-semibold bg-baseBlue w-full rounded-lg py-1.5 mt-4">Detail</button>
-                                    </a>
-                                </div>
+                        @foreach($siswas as $siswa)
+                        @php
+                        $kelas = $siswa->kelas;
+                        @endphp
+                        @if($kelas)
+                        
+                        <div class="p-6 lg:p-8 px-8 md:px-6 lg:px-10 bg-white drop-shadow-regularShadow rounded-lg flex flex-col gap-2 my-8 sm:my-4 md:my-0 group">
+                            <p class="font-semibold md:text-[20px] lg:text-subtitle">
+                                {{ $kelas->nama }}
+                            </p>
+                            <div class="flex items-center">
+                                @if($kelas->foto)
+                                <img src="{{ asset('berkas_ujis/' . $kelas->foto) }}" alt="{{ $kelas->nama }}" class="my-2 max-h-52 md:max-h-56 lg:max-h-44 w-full object-cover rounded-lg">
+                                @else
+                                <p class="text-greyIcon">Foto tidak tersedia</p>
                                 @endif
-                                @endforeach
                             </div>
+                            
+                            <div class="flex flex-col gap-3">
+                                <div class="flex gap-2 items-center mt-2">
+                                    <span class="material-symbols-outlined text-[20px]">calendar_today</span>  
+                                    <p class="my-auto font-normal">
+                                        {{ $kelas->jadwal_hari }}
+                                    </p>
+                                </div>
+                                <div class="flex gap-2 items-center">
+                                    <i class="fa-lg fa-regular fa-clock fa-sm"></i>  
+                                    <p class="my-auto font-normal">
+                                        {{ $kelas->durasi }} /sesi
+                                    </p>
+                                </div>
+                            </div>
+
+                            <a href="{{ route('programkelas', ['kelas' => $kelas->id_kelas]) }}"
+                                class="text-center text-white group-hover:font-semibold bg-baseBlue/80 group-hover:bg-baseBlue w-full rounded-lg py-1.5 mt-4">Lihat Detail
+                            </a>
+                        </div>
+                    
+                        @endif
+                        @endforeach
+                    </div>
 
                             <!-- akhir dari daftar kelas -->
                 </div>

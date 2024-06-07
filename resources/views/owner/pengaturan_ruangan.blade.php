@@ -33,11 +33,11 @@
                     <div class="flex items-center gap-2 text-smallContent">
                         <a href="{{ route('home') }}">Dashboard</a>
                         <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                        <a href="{{ route('editdaftarkelas') }}">Kelas</a>
+                        <a href="{{ route('pengaturanruangan') }}">Pengaturan Ruangan</a>
                     </div>
 
                     <div class="flex justify-between items-center my-7">
-                        <p class="text-title font-semibold">Daftar Kelas</p>
+                        <p class="text-title font-semibold">Pengaturan Ruangan</p>
                         <form action="" method="get" class="flex justify-between items-center relative">
                             <input autocomplete="off" type="text" id="search" name="search" value="" class="py-2 px-5 w-full bg-greyBackground border-2 border-greyBorder rounded-full" placeholder="Cari">
                             <button type="submit" class="absolute right-5"><i class="fa-solid fa-magnifying-glass text-greyIcon"></i></button>
@@ -53,11 +53,11 @@
                                 <button id="dd-more{{ $loop->index }}" class="text-end w-full"><i class="fa-solid fa-ellipsis-vertical text-lg"></i></button>
 
                                 <div id="dd-menu{{ $loop->index }}" class="hidden grid grid-cols-1 divide-y bg-white mt-2 rounded-md drop-shadow-regularShadow absolute top-7 right-14" style="color: #949494;">
-                                    <button onclick="showPopupEditKelas({{ $kelas->id_kelas }})" class="w-full h-full flex items-center gap-2 py-1.5 px-5">
+                                    <button onclick="showPopupEditKelas()" class="w-full h-full flex items-center gap-2 py-1.5 px-5">
                                         <i class="fa-regular fa-pen-to-square"></i>
                                         <p>Edit</p>
                                     </button>
-                                    <button onclick="showPopupHapusKelas({{ $kelas->id_kelas }})" class="w-full h-full flex items-center gap-2 py-1.5 px-5">
+                                    <button onclick="showPopupHapusKelas()" class="w-full h-full flex items-center gap-2 py-1.5 px-5">
                                         <i class="fa-regular fa-trash-can"></i>
                                         <p>Hapus</p>
                                     </button>
@@ -172,11 +172,11 @@
 
                     <!-- pop up edit kelas -->
                     <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow 
-                    w-full h-screen" id="popupEditKelas{{ $kelas->id_kelas }}">
+                    w-full h-screen" id="popupEditKelas">
                         <div class="flex flex-col justify-center max-w-[450px]">
                             <div class="flex justify-between bg-baseBlue px-10 py-4 rounded-t-xl text-white">
                                 <p class="text-title">Edit Kelas</p>
-                                <button onclick="showPopupEditKelas({{ $kelas->id_kelas }})">
+                                <button onclick="showPopupEditKelas()">
                                     <i class="fa-solid fa-xmark fa-lg"></i>
                                 </button>
                             </div>
@@ -184,26 +184,26 @@
                                 <form action="" method="post" class="flex flex-col gap-5">
                                     <div>
                                         <p class="font-semibold mb-1">Nama Kelas</p>
-                                        <input class="rounded w-full h-9" type="text" name="namaKelas" id="namaKelas" value="{{ $kelas->nama }}">
+                                        <input class="rounded w-full h-9" type="text" name="namaKelas" id="namaKelas" value="Nama Kelas">
                                     </div>
 
                                     <div>
                                         <p class="font-semibold mb-1">Keterangan</p>
-                                        <input class="rounded w-full h-9" type="text" name="keterangan" id="keterangan" value="{{ $kelas->deskripsi }}">
+                                        <input class="rounded w-full h-9" type="text" name="keterangan" id="keterangan" value="Lorem ipsum">
                                     </div>
 
                                     <div>
                                         <p for="harga" class="font-semibold">Harga</p>
 
                                         <div class="flex justify-between gap-4 h-9">
-                                            <input class="rounded w-5/6" type="number" name="harga" id="harga" value="{{ $kelas->harga }}">
+                                            <input class="rounded w-5/6" type="number" name="harga" id="harga" value="500000">
                                             <p class="text-2xl text-greyIcon my-auto">/</p>
-                                            <input class="rounded w-1/3" type="text" name="rentang" id="rentang" placeholder="Rentang" value="{{ $kelas->rentang }}">
+                                            <input class="rounded w-1/3" type="text" name="rentang" id="rentang" placeholder="Rentang" value="8 Pertemuan">
                                         </div>
                                     </div>
 
                                     <div class="mt-8 flex justify-end gap-6">
-                                        <button type="button" onclick="showPopupEditKelas({{ $kelas->id_kelas }})" class="text-greyIcon hover:text-black">Batal</button>
+                                        <button type="button" onclick="showPopupEditKelas()" class="text-greyIcon hover:text-black">Batal</button>
                                         <button type="submit" class="text-baseBlue bg-white border-2 border-baseBlue p-1.5 px-7 rounded-full
                                             hover:bg-baseBlue hover:text-white" style="box-shadow: 
                                             0px 0px 5px 1px rgba(122,161,226,0.3);">Simpan</button>
@@ -217,11 +217,11 @@
 
                     <!-- pop up hapus kelas -->
                     <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow 
-                    w-full h-screen" id="popupHapusKelas{{ $kelas->id_kelas }}">
+                    w-full h-screen" id="popupHapusKelas">
                         <div class="flex flex-col justify-center max-w-[350px]">
                             <div class="bg-white rounded-xl px-10 py-8">
                                 <div class="text-end">
-                                    <button onclick="showPopupHapusKelas({{ $kelas->id_kelas }})">
+                                    <button onclick="showPopupHapusKelas()">
                                         <i class="fa-solid fa-xmark fa-lg text-greyIcon"></i>
                                     </button>
                                 </div>
@@ -268,16 +268,34 @@
     @include('components.footer')
 
     <script>
-        function showPopupTambahKelas() {
-            document.getElementById('popupTambahKelas').classList.toggle('hidden');
+        const showPopupTambahKelas = () => {
+            const popup = document.getElementById('popupTambahKelas');
+
+            if (popup.classList.contains('hidden')) {
+                popup.classList.remove('hidden')
+            } else {
+                popup.classList.add('hidden')
+            }
         }
 
-        function showPopupEditKelas(i) {
-            document.getElementById('popupEditKelas'+i).classList.toggle('hidden');
+        const showPopupEditKelas = () => {
+            const popup = document.getElementById('popupEditKelas');
+
+            if (popup.classList.contains('hidden')) {
+                popup.classList.remove('hidden')
+            } else {
+                popup.classList.add('hidden')
+            }
         }
 
-        function showPopupHapusKelas(i) {
-            document.getElementById('popupHapusKelas'+i).classList.toggle('hidden');
+        const showPopupHapusKelas = () => {
+            const popup = document.getElementById('popupHapusKelas');
+
+            if (popup.classList.contains('hidden')) {
+                popup.classList.remove('hidden')
+            } else {
+                popup.classList.add('hidden')
+            }
         }
 
         document.addEventListener('DOMContentLoaded', (event) => {

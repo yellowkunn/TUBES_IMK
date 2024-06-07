@@ -30,7 +30,7 @@
 
                     <!-- page hierarchy -->
                     <div class="flex items-center gap-2 text-smallContent">
-                        <a href="">Dashboard</a>
+                        <a href="{{ route('home') }}" class="hover:font-semibold">Dashboard</a>
                     </div>
 
                     <div class="bg-baseDarkerGreen rounded-xl p-6 md:p-12 relative my-7 font-semibold text-white">
