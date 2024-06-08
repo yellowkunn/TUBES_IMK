@@ -44,9 +44,9 @@
                         </form>
                     </div>
 
-                    <div class="grid grid-cols-3 gap-x-24 gap-y-16">
+                    <div class="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-x-24 gap-y-16">
                         @foreach($kelass as $kelas)
-                        <div class="bg-white rounded-lg pt-6 pb-8 px-12 drop-shadow-regularShadow relative">
+                        <div class="bg-white rounded-lg p-6 px-10 lg:px-12 drop-shadow-regularShadow relative group">
 
                             <!-- dd more (edit & hapus) -->
                             <div>
@@ -65,16 +65,20 @@
                             </div>
                             <!-- akhir dari dd more (edit & hapus) -->
                             <div class="flex flex-col gap-2">
-                                <p class="font-semibold">{{ $kelas->nama }} </p>
-                                <p class="text-greyIcon text-smallContent hyphens-auto line-clamp-3">{{ $kelas->deskripsi }}</p>
-                                <p class="font-semibold text-[#E9940C]">Rp{{ number_format($kelas->harga, 0, ',', '.') }} <br><span class="text-smallContent text-greyIcon font-normal">{{ $kelas->rentang }} / bulan</span></p>
-                                <a href="{{ url('/editdetailkelas/' . $kelas->id_kelas) }}" class="rounded-full bg-baseBlue text-white font-semibold py-2 my-3 inline-block text-center">Detail</a>
+                                <p class="font-semibold md:text-[20px] lg:text-subtitle capitalize">{{ $kelas->nama }} </p>
+                                @if($kelas->foto)
+                                <img src="{{ asset('berkas_ujis/' . $kelas->foto) }}" alt="{{ $kelas->nama }}" class="my-2 max-h-52 md:max-h-56 lg:max-h-44 w-full object-cover rounded-lg">
+                                @else
+                                <p class="text-greyIcon">Foto tidak tersedia</p>
+                                @endif
+                                <p class="font-semibold text-[#E9940C] md:text-[18px] lg:text-[20px]">Rp{{ number_format($kelas->harga, 0, ',', '.') }} <br><span class="text-smallContent text-greyIcon font-normal">{{ $kelas->rentang }} / bulan</span></p>
+                                <a href="{{ url('/editdetailkelas/' . $kelas->id_kelas) }}" class="rounded-full bg-baseBlue/80 group-hover:bg-baseBlue text-white group-hover:font-semibold py-2 my-3 inline-block text-center">Lihat Detail</a>
                             </div>
-                            <div class="absolute bg-baseBlue h-1 rounded-full bottom-0 left-1/2 transform -translate-x-1/2 w-3/4"></div>
+                            <div class="absolute bg-baseBlue/80 group-hover:bg-baseBlue h-1 rounded-full bottom-0 left-1/2 transform -translate-x-1/2 w-1/4 group-hover:w-2/3 duration-500"></div>
                         </div>
                         @endforeach
 
-                        <div class="bg-[#7AA1E2]/10 rounded-lg p-8 px-12 drop-shadow-regularShadow hover:bg-[#7AA1E2]/20">
+                        <div class="bg-[#7AA1E2]/10 rounded-lg p-8 px-12 drop-shadow-regularShadow hover:bg-[#7AA1E2]/20 min-h-[400px]">
                             <button onclick="showPopupTambahKelas()" class="text-end w-full h-full flex justify-center items-center gap-2 text-baseBlue">
                                 <div class="p-0.5 px-[7px] border-2 border-[#7AA1E2] rounded-full">
                                     <i class="fa-solid fa-plus"></i>
@@ -85,9 +89,8 @@
                     </div>
 
                     <!-- pop up tambah kelas baru -->
-                    <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow 
-                    w-full h-screen" id="popupTambahKelas">
-                        <div class="flex flex-col justify-center max-w-[600px]">
+                    <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow w-full h-screen" id="popupTambahKelas">
+                        <div class="flex flex-col justify-center w-[80%]">
                             <div class="flex justify-between bg-baseBlue px-10 py-4 rounded-t-xl text-white">
                                 <p class="text-title">Tambah Kelas</p>
                                 <button onclick="showPopupTambahKelas()">
@@ -98,65 +101,85 @@
                                 <form action="/tambahkelasbaru" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="overflow-y-auto max-h-96 pe-7 flex flex-col gap-5 mt-5 px-0.5">
-                                        <div>
-                                            <p class="font-semibold mb-1">Nama Kelas</p>
-                                            <input class="rounded w-full h-9" type="text" name="nama" id="nama">
-                                        </div>
+                                        <div class="flex justify-between gap-14">
+                                            <!-- kiri -->
+                                            <div class="w-full flex flex-col gap-6">
+                                                <div>
+                                                    <p class="font-semibold mb-2">Nama Kelas</p>
+                                                    <input class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" type="text" name="nama" id="nama">
+                                                </div>
 
-                                        <div>
-                                            <p class="font-semibold mb-1">Tingkat Kelas</p>
-                                            <select id="" name="tingkat_kelas" class="rounded w-full h-9">
-                                                <option value="" class="text-greyIcon">Kelas</option>
-                                                <option value="SD">SD</option>
-                                                <option class="text-greyIcon" value="SMP">SMP</option>
-                                                <option class="text-greyIcon" value="SMA">SMA</option>
-                                                <option class="text-greyIcon" value="Gap Year">Gap Year</option>
-                                                <option class="text-greyIcon" value="TOEFL">TOEFL</option>
-                                                <option class="text-greyIcon" value="IELTS">IELTS</option>
-                                            </select>
-                                        </div>
+                                                <div>
+                                                    <p class="font-semibold mb-2">Fasilitas</p>
+                                                    <input class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" type="text" name="fasilitas" id="fasilitas">
+                                                </div>
 
-                                        <div>
-                                            <p class="font-semibold mb-1">Keterangan</p>
-                                            <input class="rounded w-full h-9" type="text" name="deskripsi" id="deskripsi">
-                                        </div>
-
-                                        <div>
-                                            <p for="harga" class="font-semibold">Harga</p>
-
-                                            <div class="flex justify-between gap-2 h-9">
-                                                <input class="rounded w-5/6" type="number" name="harga" id="harga">
-                                                <p class="text-2xl text-greyIcon my-auto">/</p>
-                                                <input class="rounded w-1/3" type="text" name="rentang" id="rentang" placeholder="Rentang">
+                                                <div>
+                                                    <p class="font-semibold mb-2">Durasi</p>
+                                                    <input class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" type="text" name="durasi" id="durasi">
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div>
-                                            <p class="font-semibold mb-1">Fasilitas</p>
-                                            <input class="rounded w-full h-9" type="text" name="fasilitas" id="fasilitas">
-                                        </div>
+                                            <!-- kanan -->
+                                            <div class="w-full flex flex-col gap-6">
+                                                <div>
+                                                    <p class="font-semibold mb-2">Tingkat Kelas</p>
+                                                    <select id="" name="tingkat_kelas" class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                                                        <option value="" class="text-greyIcon">Kelas</option>
+                                                        <option value="SD">SD</option>
+                                                        <option class="text-greyIcon" value="SMP">SMP</option>
+                                                        <option class="text-greyIcon" value="SMA">SMA</option>
+                                                        <option class="text-greyIcon" value="Gap Year">Gap Year</option>
+                                                        <option class="text-greyIcon" value="TOEFL">TOEFL</option>
+                                                        <option class="text-greyIcon" value="IELTS">IELTS</option>
+                                                    </select>
+                                                </div>
 
-                                        <div>
-                                            <p class="font-semibold mb-1">Pilih Hari</p>
-                                            <input class="rounded w-full h-9" type="text" name="jadwal_hari" id="jadwal_hari">
+                                                <div>
+                                                    <p for="harga" class="font-semibold">Harga</p>
+
+                                                    <div class="flex justify-between gap-2 h-9">
+                                                        <input class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" type="number" name="harga" id="harga">
+                                                        <p class="text-2xl text-greyIcon my-auto">/</p>
+                                                        <input class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" type="text" name="rentang" id="rentang" placeholder="Rentang">
+                                                    </div>
+                                                </div>
+                                                
+                                                <div>
+                                                    <p class="font-semibold mb-2">Pilih Hari</p>
+                                                    <input class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" type="text" name="jadwal_hari" id="jadwal_hari">
+                                                </div>
+
+                                            </div>
                                         </div>
                                         
                                         <div>
-                                            <p class="font-semibold mb-1">Durasi</p>
-                                            <input class="rounded w-full h-9" type="text" name="durasi" id="durasi">
+                                            <p class="font-semibold mb-2">Keterangan</p>
+                                            <textarea name="deskripsi" id="deskripsi" class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" rows="3" cols="50"></textarea>
                                         </div>
 
-                                        <div>
-                                            <p class="font-semibold mb-1">Foto Kelas</p>
-                                            <input type="file" accept="image/*" name="gambar" id="gambar" class="file:text-baseBlue file:font-semibold 
-                                                    file:bg-baseBlue/20 file:rounded-full file:py-2 file:px-4 file:border-none file:cursor-pointer mt-1" required>
+                                        <div class="self-start">
+                                            <p class="font-semibold mb-2">Foto Kelas</p>
+                                            <div class="max-w-[320px] mb-10 mx-auto">
+                                                <button id="file" onclick="document.getElementById('gambar').click(); return false;" class="p-2 py-3 w-full border rounded-lg">
+                                                    <div class="w-full h-[200px] p-1 mb-2 flex">
+                                                        <img src="" alt="" id="uploadedFile" class="max-w-full max-h-full rounded">
+                                                    </div>
+                                                    <div class="flex items-center justify-center gap-2">
+                                                        <i class="fa-solid fa-arrow-up-from-bracket fa-sm text-greyIcon rounded-full w-fit"></i>
+                                                        <p class="text-greyIcon text-smallContent">Upload foto kelas</p>
+                                                    </div>
+                                                                            </button>
+                                                <p class="text-xs mt-3">*Maks 2MB</p>
+                                                <input type="file" name="gambar" id="gambar" class="invisible" accept="image/*" onchange="showFile(this)" required>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <div class="mt-8 flex justify-end gap-6">
+                                    <div class="mt-8 flex justify-center gap-6">
                                         <button type="button" onclick="showPopupTambahKelas()" class="text-greyIcon hover:font-semibold">Batal</button>
                                         <button type="submit" class="text-baseBlue bg-white border-2 border-baseBlue p-1.5 px-7 rounded-full
-                                            hover:bg-baseBlue hover:text-white" style="box-shadow: 
+                                            hover:bg-baseBlue hover:text-white hover:font-semibold" style="box-shadow: 
                                             0px 0px 5px 1px rgba(122,161,226,0.3);">Tambah</button>
                                     </div>
                                 </form>
@@ -170,6 +193,8 @@
                     </div>
                     <!-- akhir dari pop up tambah kelas baru -->
 
+                    
+                    @foreach($kelass as $kelas)
                     <!-- pop up edit kelas -->
                     <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow 
                     w-full h-screen" id="popupEditKelas{{ $kelas->id_kelas }}">
@@ -184,21 +209,21 @@
                                 <form action="" method="post" class="flex flex-col gap-5">
                                     <div>
                                         <p class="font-semibold mb-1">Nama Kelas</p>
-                                        <input class="rounded w-full h-9" type="text" name="namaKelas" id="namaKelas" value="{{ $kelas->nama }}">
+                                        <input class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" type="text" name="namaKelas" id="namaKelas" value="{{ $kelas->nama }}">
                                     </div>
 
                                     <div>
                                         <p class="font-semibold mb-1">Keterangan</p>
-                                        <input class="rounded w-full h-9" type="text" name="keterangan" id="keterangan" value="{{ $kelas->deskripsi }}">
+                                        <input class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" type="text" name="keterangan" id="keterangan" value="{{ $kelas->deskripsi }}">
                                     </div>
 
                                     <div>
                                         <p for="harga" class="font-semibold">Harga</p>
 
                                         <div class="flex justify-between gap-4 h-9">
-                                            <input class="rounded w-5/6" type="number" name="harga" id="harga" value="{{ $kelas->harga }}">
+                                            <input class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" type="number" name="harga" id="harga" value="{{ $kelas->harga }}">
                                             <p class="text-2xl text-greyIcon my-auto">/</p>
-                                            <input class="rounded w-1/3" type="text" name="rentang" id="rentang" placeholder="Rentang" value="{{ $kelas->rentang }}">
+                                            <input class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" type="text" name="rentang" id="rentang" placeholder="Rentang" value="{{ $kelas->rentang }}">
                                         </div>
                                     </div>
 
@@ -242,14 +267,14 @@
                                     </svg>
 
                                     <p class="font-semibold text-greyIcon text-balance text-center">
-                                        Apakah anda yakin ingin menghapus kelas Matematika?
+                                        Apakah anda yakin ingin menghapus kelas {{ $kelas->nama }}?
                                     </p>
 
                                     <form action="" method="post">
                                         <div class="flex justify-between gap-4 mt-4">
-                                            <button type="button" onclick="showPopupHapusKelas()" class="text-greyIcon hover:text-black w-full">Batal</button>
+                                            <button type="button" onclick="showPopupHapusKelas()" class="text-greyIcon w-full hover:font-semibold">Batal</button>
                                             <button type="submit" class="text-[#d60101] bg-white border-2 border-[#d60101] p-1.5 w-full rounded-full
-                                    hover:bg-[#d60101] hover:text-white" style="box-shadow: 0px 0px 5px 1px rgba(214,1,1,0.3);">Hapus</button>
+                                            hover:bg-[#d60101] hover:text-white hover:font-semibold" style="box-shadow: 0px 0px 5px 1px rgba(214,1,1,0.3);">Hapus</button>
                                         </div>
                                     </form>
 
@@ -259,13 +284,16 @@
                         <!-- akhir dari pop up hapus kelas -->
 
                     </div>
+                    @endforeach
 
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="mt-16">
     @include('components.footer')
+    </div>
 
     <script>
         function showPopupTambahKelas() {
@@ -315,7 +343,16 @@
             });
         });
 
-
+        function showFile(input) {
+            const getFile = document.getElementById('uploadedFile');
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = (e) => {
+                    getFile.src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
     </script>
 </body>
 

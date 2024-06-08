@@ -19,22 +19,27 @@
 
     <div class="flex flex-col gap-6 px-24 py-12">
         <div class="flex items-center gap-6">
-            <a href=""><i class="fa-solid fa-arrow-left rounded-full bg-white p-3 drop-shadow-regularShadow"></i></a>
+            <a href="{{ route('home') }}"><i class="fa-solid fa-arrow-left rounded-full bg-white p-3 drop-shadow-regularShadow"></i></a>
 
             <p class="font-semibold text-subtitle">Profile</p>
         </div>
 
         <div class="flex justify-center">
             <div class="w-fit relative">
-                <img src="https://t4.ftcdn.net/jpg/03/83/25/83/360_F_383258331_D8imaEMl8Q3lf7EKU2Pi78Cn0R7KkW9o.jpg" class="w-24 h-24 object-cover rounded-full" alt="">
-                <button class="absolute bottom-0 right-0"><i class="fa-solid fa-pen text-white p-2 bg-baseBlue rounded-full"></i></button>
+            <input type="file" name="gambar" id="gambar" class="hidden" accept="image/*" onchange="showFile(this)" required>
+                @if(isset(Auth::user()->foto_profile))
+                <img src="{{ Auth::user()->foto_profile }}" id="uploadedFile" class="w-24 h-24 object-cover rounded-full" alt="">
+                @else
+                <span class="material-symbols-outlined text-greyIcon">account_circle</span>
+                @endif    
+               
+                <button id="file" onclick="document.getElementById('gambar').click(); return false;" class="absolute right-0 bottom-0"><i class="fa-solid fa-pen text-white p-2 bg-baseBlue rounded-full"></i></button>
             </div>
         </div>
 
         <div class="border-b-2 border-baseBlue w-full flex gap-6">
-            <button type="button" id="akunBtn" class="rounded-t-lg bg-baseBlue py-2 px-4 text-white focus:font-semibold">Akun</button>
-            <button type="button" id="biodataBtn" class="rounded-t-lg bg-baseBlue py-2 px-4 text-white focus:font-semibold">Biodata</button>
-            <button type="button" class="rounded-t-lg bg-baseBlue py-2 px-4 text-white focus:font-semibold">Lainnya</button>
+            <button type="button" id="akunBtn" class="rounded-t-lg bg-white py-2 px-4 text-white focus:font-semibold">Akun</button>
+            <button type="button" id="biodataBtn" class="rounded-t-lg py-2 px-4 bg-white text-baseBlue focus:font-semibold">Biodata</button>
         </div>
 
         <div id="akunContent" class="grid grid-cols-2 gap-12 divide-x-2 mt-6">
@@ -70,7 +75,7 @@
                     </div>
 
                     <div class="mt-10 mb-3 flex justify-end">
-                        <button type="submit" class="bg-baseBlue font-semibold rounded-full text-white px-6 py-2">Edit data</button>
+                        <button type="submit" class="bg-baseBlue/80 hover:bg-baseBlue hover:font-semibold rounded-full text-white px-6 py-2">Edit data</button>
                     </div>
                 </form>
             </div>
@@ -112,7 +117,7 @@
                     </div>
 
                     <div class="mt-10 mb-3 flex justify-end">
-                        <button type="submit" class="bg-baseBlue font-semibold rounded-full text-white px-6 py-2">Edit password</button>
+                        <button type="submit" class="bg-baseBlue/80 hover:bg-baseBlue hover:font-semibold rounded-full text-white px-6 py-2">Edit password</button>
                     </div>
                 </form>
             </div>
@@ -199,17 +204,18 @@
         const kontenAkun = document.getElementById('akunContent');
         const kontenBiodata = document.getElementById('biodataContent');
 
-        tabAkun.classList.remove('bg-baseBlue', 'text-white');
-        tabAkun.classList.add('bg-white', 'text-baseBlue', 'font-semibold');
+        tabAkun.classList.remove('bg-white', 'text-baseBlue');
+        tabAkun.classList.add('bg-baseBlue', 'text-white', 'font-semibold');
 
         tabAkun.addEventListener("click", function() {
             if (kontenAkun.classList.contains('hidden')) {
                 kontenBiodata.classList.add('hidden');
                 kontenAkun.classList.remove('hidden');
-                tabBiodata.classList.add('bg-baseBlue', 'text-white');
-                tabBiodata.classList.remove('bg-white', 'text-baseBlue');
-                tabAkun.classList.remove('bg-baseBlue', 'text-white');
-                tabAkun.classList.add('bg-white', 'text-baseBlue');
+             
+                tabAkun.classList.add('bg-baseBlue', 'text-white');
+                tabAkun.classList.remove('bg-white', 'text-baseBlue');
+                tabBiodata.classList.remove('bg-baseBlue', 'text-white');
+                tabBiodata.classList.add('bg-white', 'text-baseBlue');
             }
         });
 
@@ -217,12 +223,25 @@
             if (kontenBiodata.classList.contains('hidden')) {
                 kontenAkun.classList.add('hidden');
                 kontenBiodata.classList.remove('hidden');
-                tabAkun.classList.add('bg-baseBlue', 'text-white');
-                tabAkun.classList.remove('bg-white', 'text-baseBlue');
-                tabBiodata.classList.remove('bg-baseBlue', 'text-white');
-                tabBiodata.classList.add('bg-white', 'text-baseBlue');
+            
+                tabBiodata.classList.add('bg-baseBlue', 'text-white');
+                tabBiodata.classList.remove('bg-white', 'text-baseBlue');
+                tabAkun.classList.remove('bg-baseBlue', 'text-white');
+                tabAkun.classList.add('bg-white', 'text-baseBlue');
             }
         });
+
+        function showFile(input) {
+            const getFile = document.getElementById('uploadedFile');
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = (e) => {
+                    getFile.src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
     </script>
 </body>
 

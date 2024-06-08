@@ -18,6 +18,11 @@ class PengajarController extends Controller
     {
         return view('pengajar.absensi_pengajar');
     }
+
+    public function kelaspengajar(){
+        return view('pengajar.kelas_ajar');
+    }
+
     public function detailkelaspengajar(Kelas $kelas)
     {
 

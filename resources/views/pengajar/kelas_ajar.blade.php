@@ -17,11 +17,11 @@
 
 <body class="font-Inter text-regularContent">
     <div>
-        @include('components.siswa.navbar')
+        @include('components.pengajar.navbar')
 
         <div class="flex max-w-[1440px]">
             <div class="translate-x-[-100%] md:translate-x-0 md:h-fit fixed md:static z-10 h-screen duration-300" id="sidebar">
-                @include('components.siswa.sidebar')
+                @include('components.pengajar.sidebar')
             </div>
 
             <!-- content -->
@@ -30,60 +30,41 @@
 
                     <!-- page hierarchy -->
                     <div class="flex items-center gap-2 text-smallContent">
-                        <a href="{{ route('home') }}" class="hover:font-semibold">Dashboard</a>
+                        <a href="{{ route('home') }}">Dashboard</a>
                         <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                        <a href="{{ route('kelas') }}" class="hover:font-semibold">Kelas</a>
+                        <a href="">Kelas</a>
                     </div>
 
                     <p class="text-title font-semibold mt-8">Kelas Saya</p>   
                     
                     <!-- daftar kelas -->
                     <div class="sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-12 mt-8">
-                        @foreach($siswas as $siswa)
-                        @php
-                        $kelas = $siswa->kelas;
-                        @endphp
-                        @if($kelas)
-                        
                         <div class="p-6 lg:p-8 px-8 md:px-6 lg:px-10 bg-white drop-shadow-regularShadow rounded-lg flex flex-col gap-2 my-8 sm:my-4 md:my-0 group">
                             <p class="font-semibold md:text-[20px] lg:text-subtitle">
-                                {{ $kelas->nama }}
+                                $kelas->nama
                             </p>
-                            <div class="flex items-center">
-                                @if($kelas->foto)
-                                <img src="{{ asset('berkas_ujis/' . $kelas->foto) }}" alt="{{ $kelas->nama }}" class="my-2 max-h-52 md:max-h-56 lg:max-h-44 w-full object-cover rounded-lg">
-                                @else
-                                <p class="text-greyIcon">Foto tidak tersedia</p>
-                                @endif
-                            </div>
                             
                             <div class="flex flex-col gap-1">
                                 <div class="flex gap-2 items-center mt-2">
                                     <span class="material-symbols-outlined text-[20px]">calendar_today</span>  
                                     <p class="my-auto font-normal">
-                                        {{ $kelas->jadwal_hari }}
+                                        $kelas->jadwal_hari
                                     </p>
                                 </div>
                                 <div class="flex gap-2 items-center">
                                     <i class="fa-lg fa-regular fa-clock fa-sm"></i>  
                                     <p class="my-auto font-normal">
-                                        {{ $kelas->durasi }} /sesi
+                                        $kelas->durasi /sesi
                                     </p>
                                 </div>
                             </div>
 
-                            <a href="{{ route('programkelas', ['kelas' => $kelas->id_kelas]) }}"
+                            <a href="route('programkelas', ['kelas' => $kelas->id_kelas])"
                                 class="text-center text-white group-hover:font-semibold bg-baseBlue/80 group-hover:bg-baseBlue w-full rounded-lg py-2 mt-4">Lihat Detail
                             </a>
-
-                            <div class="absolute bg-baseBlue/80 group-hover:bg-baseBlue h-1 rounded-full bottom-0 left-1/2 transform -translate-x-1/2 w-1/4 group-hover:w-2/3 duration-500"></div>
                         </div>
-                        
-                        @endif
-                        @endforeach
                     </div>
-                    <!-- akhir dari daftar kelas -->
-
+                            <!-- akhir dari daftar kelas -->
                 </div>
             </div>
         </div>
