@@ -52,15 +52,15 @@
 
                             <!-- baru diakses -->
                             <!-- perulangan pertemuan -->
-                            <div class="dropdown" data-index="0">
-                                <div id="tabPertemuan-0" class="mt-5 rounded-xl drop-shadow-regularShadow bg-white p-4 px-8 flex justify-between items-center relative">
+                            <div class="dropdown group mt-4" data-index="0">
+                                <div id="tabPertemuan-0" class="rounded-xl drop-shadow-regularShadow bg-white p-4 px-8 flex justify-between items-center relative">
                                     <div>
                                         <div>
-                                            <div class="bg-baseBlue h-1/2 absolute top-5 left-4 rounded-full transform -translate-x-1/2 w-1"></div>
+                                            <div class="bg-baseBlue h-1/3 group-hover:h-1/2 absolute top-[3.5vh] group-hover:top-5 left-4 rounded-full transform -translate-x-1/2 duration-300 w-1"></div>
                                         </div>
                                         <div class="ms-1">
-                                            <p class="font-semibold">Pertemuan 1</p>
-                                            <p class="text-smallContent">Molekul</p>
+                                            <p class="font-semibold">Pertemuan pertemuan->pertemuan_ke</p>
+                                            <p class="text-smallContent">pertemuan->judul</p>
                                         </div>
                                     </div>
                                     <button id="iconDD-0">
@@ -70,27 +70,41 @@
 
                                 <div id="contentPertemuan-0" class="hidden">
                                     <div class="bg-white p-3 px-8 w-full rounded-t-xl drop-shadow-[0px_0px_2px_rgba(0,0,0,0.1)] mt-2.5">
-                                        <p class="font-semibold">Materi</p>
+                                        <p class="font-semibold">Materi</p> 
                                     </div>
 
                                     <div class="bg-baseCream w-full rounded-b-xl">
                                         <div class="grid divide-y-2">
+                                            <div class="flex gap-4 px-8 p-1.5 text-greyIcon text-smallContent">
+                                                <p><span class="font-semibold">Open:</span> materi->jam_akses</p>
+                                                <p>materi->tgl_akses</p>
+                                            </div>
                                             <div class="flex gap-3 p-3 px-8 items-center">
                                                 <i class="fa-regular fa-file"></i>
-                                                <p>Materi1</p>
+                                                <p>materi->file_materi</p> 
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="bg-white p-3 px-8 w-full rounded-t-xl drop-shadow-[0px_0px_2px_rgba(0,0,0,0.1)] mt-3">
-                                        <p class="font-semibold">Latihan</p>
+                                        <p class="font-semibold">Latihan</p> 
                                     </div>
 
                                     <div class="bg-baseCream w-full rounded-b-xl">
                                         <div class="grid divide-y-2">
+                                            <div class="flex gap-8 px-8 p-1.5 text-greyIcon text-smallContent">
+                                                <div class="flex gap-4">
+                                                    <p><span class="font-semibold">Open:</span> latihan->jam_akses</p>
+                                                    <p>latihan->tgl_akses</p>
+                                                </div>
+                                                <div class="flex gap-4">
+                                                    <p><span class="font-semibold">Deadline:</span> latihan->jam_batas_akses</p>
+                                                    <p>latihan->tgl_batas_akses</p>
+                                                </div>
+                                            </div>
                                             <div class="flex gap-3 p-3 px-8 items-center">
                                                 <i class="fa-regular fa-file"></i>
-                                                <p>Latihan1</p>
+                                                <p>latihan->file_tugas</p> 
                                             </div>
                                         </div>
                                     </div>
@@ -111,19 +125,20 @@
                                 <div>
                                     <a href=" {{url('/../formulirpendaftaran')}} " class="bg-white flex items-center gap-2 border border-greyBorder px-4 py-2 rounded-lg">
                                         <span class="material-symbols-outlined text-greyIcon">add_circle</span>
-                                        <p class="text-greyIcon">Daftar kelas</p>
+                                        <p class="text-greyIcon">Tambah kelas</p>
                                     </a>
                                 </div>
                             </div>
 
                             <!-- daftar kelas -->
-                            <div class="sm:grid grid-cols-2 gap-4">
+                            <div class="sm:grid grid-cols-2 gap-4 lg:gap-12 mt-8">
                                 @foreach($siswas as $siswa)
                                 @php
                                 $kelas = $siswa->kelas;
                                 @endphp
                                 @if($kelas)
-                                <div class="p-6 lg:p-8 px-8 md:px-6 lg:px-10 bg-white drop-shadow-regularShadow rounded-lg flex flex-col gap-2 my-8 sm:my-4 md:my-0">
+                                
+                                <div class="p-6 lg:p-8 px-8 md:px-6 lg:px-10 bg-white drop-shadow-regularShadow rounded-lg flex flex-col gap-2 my-8 sm:my-4 md:my-0 group">
                                     <p class="font-semibold md:text-[20px] lg:text-subtitle">
                                         {{ $kelas->nama }}
                                     </p>
@@ -134,17 +149,31 @@
                                         <p class="text-greyIcon">Foto tidak tersedia</p>
                                         @endif
                                     </div>
-                                    <p class="text-greyIcon text-wrap">
-                                        {{ $kelas->deskripsi }}
-                                    </p>
-                                    <a href="{{ url('/siswa/detailkelas/' . $kelas->id_kelas) }}">
-                                        <button class="text-white font-semibold bg-baseBlue w-full rounded-lg py-1.5 mt-4">Detail</button>
+                                    
+                                    <div class="flex flex-col gap-1">
+                                        <div class="flex gap-2 items-center mt-2">
+                                            <span class="material-symbols-outlined text-[20px]">calendar_today</span>  
+                                            <p class="my-auto font-normal">
+                                                {{ $kelas->jadwal_hari }}
+                                            </p>
+                                        </div>
+                                        <div class="flex gap-2 items-center">
+                                            <i class="fa-lg fa-regular fa-clock fa-sm"></i>  
+                                            <p class="my-auto font-normal">
+                                                {{ $kelas->durasi }} /sesi
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <a href="{{ route('programkelas', ['kelas' => $kelas->id_kelas]) }}"
+                                        class="text-center text-white group-hover:font-semibold bg-baseBlue/80 group-hover:bg-baseBlue w-full rounded-lg py-2 mt-4">Lihat Detail
                                     </a>
+                                    <div class="absolute bg-baseBlue/80 group-hover:bg-baseBlue h-1 rounded-full bottom-0 left-1/2 transform -translate-x-1/2 w-1/4 group-hover:w-2/3 duration-500"></div>
                                 </div>
+                            
                                 @endif
                                 @endforeach
                             </div>
-
                             <!-- akhir dari daftar kelas -->
                         </div>
 
