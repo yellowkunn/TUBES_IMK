@@ -67,14 +67,22 @@
                     <div class="flex gap-4 my-5">
                         @if($kelasss)
                         @foreach($kelasss as $kelas)
-                        <div class="p-8 bg-white drop-shadow-regularShadow rounded-lg flex flex-col gap-2">
-                            <p class="font-semibold">{{ $kelas->nama }}</p>
-                            <p class="text-greyIcon text-wrap">{{ $kelas->deskripsi }}</p>
+                        <div class="p-6 lg:p-8 px-8 md:px-6 lg:px-10 bg-white drop-shadow-regularShadow rounded-lg flex flex-col gap-2">
+                            <p class="font-semibold md:text-[20px] lg:text-subtitle">{{ $kelas->nama }}</p>
                             <div class="flex items-center">
-                                <img src="{{ asset('berkas_ujis/' . $kelas->foto) }}" alt="" class="h-20">
-                                <p class="text-greyIcon">Siswa: {{ $kelas->total_siswa }}</p>
+                                @if($kelas->foto)
+                                <img src="{{ asset('berkas_ujis/' . $kelas->foto) }}" alt="{{ $kelas->nama }}" class="my-2 max-h-52 md:max-h-56 lg:max-h-44 w-full object-cover rounded-lg">
+                                @else
+                                <p class="text-greyIcon">Foto tidak tersedia</p>
+                                @endif
                             </div>
-                            <button class="text-white font-semibold bg-baseBlue w-full rounded-full py-1.5 mt-2">Detail</button>
+                            <p class="text-greyIcon text-wrap">{{ $kelas->deskripsi }}</p>
+                            <p class="text-greyIcon">Siswa: {{ $kelas->total_siswa }}</p>
+                            <div class="flex justify-between items-center">
+                                <a href="{{ url('/siswa/detailkelas/' . $kelas->id_kelas) }}">
+                                    <button class="text-white font-semibold bg-baseBlue rounded-lg py-1.5 px-4 md:px-6 lg:px-8">Detail</button>
+                                </a>
+                            </div>
                         </div>
                         @endforeach
                         @endif

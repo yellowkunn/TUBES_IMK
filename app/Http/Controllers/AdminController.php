@@ -35,8 +35,10 @@ class AdminController extends Controller
     public function editdaftarkelas()
     {
         $kelass = Kelas::all();
-        return view ('owner.daftar_kelas', compact('kelass'));
+        $pengajars = DB::table('view_pengajar_unique')->get(); // Mengambil data dari view_pengajar_unique
+        return view('owner.daftar_kelas', compact('kelass', 'pengajars')); // Menyertakan $pengajar ke dalam compact
     }
+    
 
     public function editdetailkelas(Kelas $kelas)
     {
@@ -60,6 +62,8 @@ class AdminController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255|unique:kelas',
             'deskripsi' => 'required|string|max:255',
+            'pengajar_id' => 'required|integer',
+            'tingkat_kelas' => 'required|string|max:255',
             'harga' => 'required|numeric',
             'rentang' => 'required|string|max:255',
             'fasilitas' => 'required|string|max:255',

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id('id_materi');
             $table->foreignId('pertemuan_id')->constrained('pertemuan', 'id_pertemuan')->onDelete('cascade');
             $table->string('file_materi');
+            $table->string('nama_asli_file_materi');
             $table->time('jam_akses')->nullable();
             $table->dateTime('tgl_akses')->nullable();
             $table->timestamp('dibuat')->useCurrent();

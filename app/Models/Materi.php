@@ -12,4 +12,9 @@ class Materi extends Model
     protected $table = 'materi';
     protected $primaryKey = 'id_materi';
     protected $guarded = ['id_materi'];
+
+    public function pertemuan()
+    {
+        return $this->belongsTo(Pertemuan::class, 'pertemuan_id', 'id_pertemuan');
+    }
 }

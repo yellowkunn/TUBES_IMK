@@ -45,10 +45,10 @@
             </button>
 
             <div id="dd-menu" class="hidden grid grid-cols-1 divide-y bg-white mt-2 rounded-md drop-shadow-regularShadow absolute md:top-12 lg:top-14 md:right-10 lg:right-14" style="color: #949494;">
-                <a href=" {{ url('/editprofile') }} " class="w-full h-full flex items-center gap-2 py-1 px-3">
+                <!-- <a href=" {{ url('/editprofile') }} " class="w-full h-full flex items-center gap-2 py-1 px-3">
                     <i class="fa-regular fa-pen-to-square"></i>
                     <p>Edit Profile</p>
-                </a>
+                </a> -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit" class="w-full h-full flex items-center gap-2 py-1 px-3">

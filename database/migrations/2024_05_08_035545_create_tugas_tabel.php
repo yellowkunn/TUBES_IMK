@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id('id_tugas');
             $table->foreignId('pertemuan_id')->constrained('pertemuan', 'id_pertemuan')->onDelete('cascade');
             $table->string('file_tugas');
+            $table->string('nama_asli_file_tugas');
             $table->time('jam_akses')->nullable();
             $table->dateTime('tgl_akses')->nullable();
             $table->time('jam_batas_akses')->nullable();

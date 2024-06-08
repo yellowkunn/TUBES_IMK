@@ -8,6 +8,7 @@ use App\Models\Kelas;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Biodata_siswa;
 use App\Models\Siswa;
+use App\Models\Pertemuan;
 
 class SiswaController extends Controller
 {
@@ -58,10 +59,37 @@ class SiswaController extends Controller
 
     public function programkelas(Kelas $kelas)
     {
-        return view('siswa.detail_kelas', [
-            "kelas" => $kelas
-        ]);
+        // Ambil data pertemuan beserta relasinya
+        $pertemuans = Pertemuan::with('materi', 'tugas')
+                        ->where('kelas_id', $kelas->id_kelas)
+                        ->get()
+                        ->groupBy('pertemuan_ke'); // Kelompokkan berdasarkan pertemuan_ke
+    
+        // Buat array baru untuk menyimpan hasil penggabungan
+        $groupedPertemuans = [];
+    
+        foreach ($pertemuans as $pertemuan_ke => $items) {
+            // Gabungkan materi dan tugas
+            $materi = collect();
+            $tugas = collect();
+            
+            foreach ($items as $item) {
+                $materi = $materi->merge($item->materi);
+                $tugas = $tugas->merge($item->tugas);
+            }
+    
+            // Tambahkan ke array hasil
+            $groupedPertemuans[] = (object) [
+                'pertemuan_ke' => $pertemuan_ke,
+                'judul' => $items->first()->judul, // Ambil judul dari item pertama
+                'materi' => $materi,
+                'tugas' => $tugas,
+            ];
+        }
+    
+        return view('siswa.detail_kelas', compact('kelas', 'groupedPertemuans'));
     }
+    
 
     public function dashboardsiswa()
     {

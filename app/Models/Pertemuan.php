@@ -12,4 +12,13 @@ class Pertemuan extends Model
     protected $table = 'pertemuan';
     protected $primaryKey = 'id_pertemuan';
     protected $guarded = ['id_pertemuan'];
+
+    public function materi()
+    {
+        return $this->hasMany(Materi::class, 'pertemuan_id', 'id_pertemuan');
+    }
+    public function tugas()
+    {
+        return $this->hasMany(Tugas::class, 'pertemuan_id', 'id_pertemuan');
+    }
 }

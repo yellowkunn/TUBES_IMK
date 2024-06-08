@@ -11,18 +11,8 @@ use App\Models\Link;
 use App\Models\Kelas;
 use Illuminate\Support\Facades\Auth;
 
-
-
-
-
-
-
-
-
 class Tambahpertemuan extends Component
 {
-
-
     public $boxinputmateri = [];
     public $boxinputlatihan = [];
     public $inputType;
@@ -36,12 +26,6 @@ class Tambahpertemuan extends Component
     public function addmateri($i){      
         $this->i = $i + 1;
         array_push($this->boxinputmateri, $i);
-
-
-        // if($this->inputType == 'materi'){
-        // $this->waktutenggat[$this->i] = '';
-        // $this->tanggaltenggat[$this->i] = '';
-        // }
     }
 
     public function addlatihan($i){      
@@ -51,30 +35,11 @@ class Tambahpertemuan extends Component
 
     public function removemateri($key){
         unset($this->boxinputmateri[$key]);
-
-        
-        // if($this->inputType == 'latihan'){
-        //     unset($this->waktutenggat[$key]);
-        //     unset($this->tanggaltenggat[$key]);
-        // }
     }
 
     public function removelatihan($key){
         unset($this->boxinputlatihan[$key]);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
     use WithFileUploads;
 
     public $pertemuan;
@@ -128,6 +93,7 @@ class Tambahpertemuan extends Component
             Materi::create([
                 'pertemuan_id' => $this->pertemuan,
                 'file_materi' => $materiPath,
+                'nama_asli_file_materi' => $file->getClientOriginalName(), // Simpan nama asli file
                 'jam_akses' => $this->waktuakses,
                 'tgl_akses' => $this->tanggalakses,
             ]);
@@ -137,6 +103,7 @@ class Tambahpertemuan extends Component
             Tugas::create([
                 'pertemuan_id' => $this->pertemuan,
                 'file_tugas' => $tugasPath,
+                'nama_asli_file_tugas' => $file->getClientOriginalName(), // Simpan nama asli file
                 'jam_akses' => $this->waktuakses2,
                 'tgl_akses' => $this->tanggalakses2,
                 'jam_batas_akses' => $this->batas_waktu_akses_2,
