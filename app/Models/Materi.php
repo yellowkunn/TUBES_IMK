@@ -12,6 +12,11 @@ class Materi extends Model
     protected $table = 'materi';
     protected $primaryKey = 'id_materi';
     protected $guarded = ['id_materi'];
+    protected $casts = [
+        'tanggal_akses' => 'date',
+        'tanggal_akses_2' => 'date',
+        'batas_tanggal_akses_2' => 'date',
+    ];
 
     public function pertemuan()
     {
