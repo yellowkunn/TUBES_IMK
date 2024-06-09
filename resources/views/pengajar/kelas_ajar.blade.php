@@ -77,7 +77,7 @@
                                 </div>
                             </div>
 
-                            <a href=""
+                            <a href=" route('detailkelaspengajar', ['kelas' => $kelas->id_kelas]) "
                                 class="text-center text-white group-hover:font-semibold bg-baseBlue/80 group-hover:bg-baseBlue w-full rounded-lg py-2 mt-4">Lihat Detail
                             </a>
 

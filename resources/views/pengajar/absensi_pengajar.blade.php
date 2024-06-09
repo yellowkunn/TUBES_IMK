@@ -27,15 +27,15 @@
             <div id="content" class="p-8">
                 <!-- page hierarchy -->
                 <div class="flex items-center gap-2 text-smallContent">
-                    <a href="">Dashboard</a>
+                    <a href="{{ route('home') }}" class="hover:font-semibold">Dashboard</a>
                     <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                    <a href="">Kelas</a>
+                    <a href="{{ route('pengajar.kelas') }}" class="hover:font-semibold">Kelas</a>
                     <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                    <a href="">Matematika SMP</a>
+                    <a href="route('')" class="hover:font-semibold">Matematika SMP</a>
                     <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                    <a href="">Pertemuan 4</a>
+                    <a href="route('')" class="hover:font-semibold">Pertemuan 4</a>
                     <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                    <a href="">Absensi</a>
+                    <a href="{{ route('absensipengajar') }}" class="hover:font-semibold">Absensi</a>
                 </div>
 
                 <p class="text-title font-semibold mt-7">Absensi</p>
@@ -53,7 +53,7 @@
                 <!-- tabel rapor -->
                 <form action="" method="post">
                 @csrf
-                <table class="min-w-full text-left text-sm font-light text-surface dark:text-white">
+                <table class="min-w-full text-left text-sm font-light text-surface style="color: #717171">
                     <thead class="border-b border-neutral-200 font-semibold bg-greyBackground" style="color: #717171">
                         <th scope="col" class= "px-12 py-2">No.</th>
                         <th scope="col" class= "w-full px-12 py-2">Nama</th>
@@ -61,46 +61,21 @@
                     </thead>
                         
                     <tbody class="bg-baseDarkerGreen/10">
+                    @php $nomor = 1; @endphp
+                        @if($siswas->isNotEmpty())
+                        @foreach($siswas as $siswa)
                         <tr>
-                            <td class="px-12 py-4 font-semibold">1.</td>
+                            <td class="px-12 py-4 font-semibold">{{ $nomor++ }}</td>
                             <td class="px-12 py-4 flex items-center gap-4">
-                                <img src="https://t4.ftcdn.net/jpg/03/83/25/83/360_F_383258331_D8imaEMl8Q3lf7EKU2Pi78Cn0R7KkW9o.jpg" class="w-10 h-10 object-cover rounded-full" alt="">
-                                <p>Dadang</p>
+                                <img src="{{ asset('berkas_ujis/' . $siswa  ->pengguna->foto_profile) }}" class="w-10 h-10 object-cover rounded-full" alt="">
+                                <p>{{ $siswa->pengguna->biodataSiswa->nama_lengkap }}</p>
                             </td>
                             <td class="text-center">
                                 <input type="checkbox" class="bg-white/10 border-2 border-greyIcon rounded drop-shadow-regularShadow" name="" id="">
                             <td>
                         </tr>
-                        <tr>
-                            <td class="px-12 py-4 font-semibold">2.</td>
-                            <td class="px-12 py-4 flex items-center gap-4">
-                                <img src="https://t4.ftcdn.net/jpg/03/83/25/83/360_F_383258331_D8imaEMl8Q3lf7EKU2Pi78Cn0R7KkW9o.jpg" class="w-10 h-10 object-cover rounded-full" alt="">
-                                <p>Dadang</p>
-                            </td>
-                            <td class="text-center">
-                                <input type="checkbox" class="bg-white/10 border-2 border-greyIcon rounded drop-shadow-regularShadow" name="" id="">
-                            <td>
-                        </tr>
-                        <tr>
-                            <td class="px-12 py-4 font-semibold">3.</td>
-                            <td class="px-12 py-4 flex items-center gap-4">
-                                <img src="https://t4.ftcdn.net/jpg/03/83/25/83/360_F_383258331_D8imaEMl8Q3lf7EKU2Pi78Cn0R7KkW9o.jpg" class="w-10 h-10 object-cover rounded-full" alt="">
-                                <p>Dadang</p>
-                            </td>
-                            <td class="text-center">
-                                <input type="checkbox" class="bg-white/10 border-2 border-greyIcon rounded drop-shadow-regularShadow" name="" id="">
-                            <td>
-                        </tr>
-                        <tr>
-                            <td class="px-12 py-4 font-semibold">4.</td>
-                            <td class="px-12 py-4 flex items-center gap-4">
-                                <img src="https://t4.ftcdn.net/jpg/03/83/25/83/360_F_383258331_D8imaEMl8Q3lf7EKU2Pi78Cn0R7KkW9o.jpg" class="w-10 h-10 object-cover rounded-full" alt="">
-                                <p>Dadang</p>
-                            </td>
-                            <td class="text-center">
-                                <input type="checkbox" class="bg-white/10 border-2 border-greyIcon rounded drop-shadow-regularShadow" name="" id="">
-                            <td>
-                        </tr>
+                        @endforeach 
+                        @endif
                     </tbody>
                 </table>
 

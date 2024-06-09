@@ -29,11 +29,13 @@
             <div id="content" class="p-8">
                 <!-- page hierarchy -->
                 <div class="flex items-center gap-2 text-smallContent">
-                    <a href="">Daftar Kelas</a>
+                    <a href="{{ route('home') }}" class="hover:font-semibold">Dashboard</a>
                     <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                    <a href="">Kelas</a>
+                    <a href="{{ route('pengajar.kelas') }}" class="hover:font-semibold">Kelas</a>
                     <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                    <a href="">Tambah</a>
+                    <a href="" class="hover:font-semibold"> $kelasDetail->nama  $kelasDetail->tingkat_kelas </a>
+                    <i class="fa-solid fa-caret-right text-baseBlue"></i>
+                    <a href=" route('tambah_pertemuan') " class="hover:font-semibold">Tambah</a>
                 </div>
                 @livewire('tambah-pertemuan', ['kelas' => $kelas])
                 </div>
@@ -52,10 +54,6 @@
 
 function showPopupLatihan() {
     document.getElementById('popupLatihan').classList.toggle('hidden');
-}
-
-function showPopupFolder() {
-    document.getElementById('popupFolder').classList.toggle('hidden');
 }
 
 </script>
