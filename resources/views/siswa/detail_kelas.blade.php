@@ -44,7 +44,7 @@
 
                     <div class="my-8 flex flex-col gap-6">
                         <!-- perulangan pertemuan -->
-                        @if($groupedPertemuans)
+                        @if(collect($groupedPertemuans)->isNotEmpty())
                         @foreach($groupedPertemuans as $index => $pertemuan) <!-- Tambahkan $index untuk membuat ID unik -->
                         <div class="dropdown group" data-index="{{ $index }}">
                             <div id="tabPertemuan-{{ $index }}" class="rounded-xl drop-shadow-regularShadow bg-white p-4 px-8 flex justify-between items-center relative">
@@ -129,6 +129,18 @@
                             </div>
                         </div>
                         @endforeach
+                        @else
+                        <div class="rounded-xl drop-shadow-regularShadow bg-white p-4 px-8 flex justify-between items-center relative">
+                            <div>
+                                <div>
+                                    <div class="bg-baseBlue h-1/3 group-hover:h-1/2 absolute top-[3.5vh] group-hover:top-5 left-4 rounded-full transform -translate-x-1/2 duration-300 w-1"></div>
+                                </div>
+                                <div class="ms-1">
+                                    <p class="font-semibold">Belum ada pertemuan </p>
+                                    <p class="text-smallContent">-</p>
+                                </div>
+                            </div>
+                        </div>
                         @endif
 
                         <!-- akhir dari perulangan pertemuan -->

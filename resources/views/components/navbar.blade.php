@@ -34,7 +34,7 @@
             <button id="dd-more" class="flex gap-2 items-center">
                 <div class="flex gap-1 items-center pe-1 w-fit">
                     @if(isset(Auth::user()->foto_profile))
-                    <img src="{{ Auth::user()->foto_profile }}" class="w-10 h-10 object-cover rounded-full" alt="">
+                    <img src="{{ asset('berkas_ujis/' . Auth::user()->foto_profile) }}" class="w-10 h-10 object-cover rounded-full" alt="">
                     @else
                     <span class="material-symbols-outlined text-greyIcon">account_circle</span>
                     @endif
