@@ -50,7 +50,7 @@
                             <th scope="col" class= "w-2 px-8 py-3">No.</th>
                             <th scope="col" class= "px-8 py-3">Nama Lengkap</th>
                             <th scope="col" class= "px-8 py-3">Tingkat</th>
-                            <th scope="col" class= "px-8 py-3">Pelajaran</th>
+                            <th scope="col" class= "px-8 py-3">Kelas</th>
                             <th scope="col" class= "px-8 py-3">Hari</th>
                             <th scope="col" class= "px-8 py-3">Waktu</th>
                             <!-- <th scope="col" class= "px-8 py-3">Guru</th> -->
