@@ -3,7 +3,10 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use App\Models\User;
+
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -17,12 +20,20 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $nama = fake()->unique()->word();
+        while(strlen($nama) <= 5) {
+            $nama = fake()->unique()->word();
+        }
+
         return [
-            'name' => fake()->name(),
+            'username' => $nama,
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => Hash::make('password'),
+            'foto_profile' => 'file_20240519034914.jpeg',
+            'role' => 'user',
             'remember_token' => Str::random(10),
+            'dibuat' => now(),
         ];
     }
 

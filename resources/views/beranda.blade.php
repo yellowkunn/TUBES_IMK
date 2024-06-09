@@ -64,14 +64,25 @@
                         <a href="{{ url('/detailkelas/' . $kelas->id_kelas) }}" class="flex flex-col justify-center">
                             <div class="flex flex-col p-5 sm:p-7 w-full drop-shadow-regularShadow bg-white hover:bg-white/75 hover:bg-white hover:drop-shadow-none rounded-xl">
                                 <div class="flex flex-col items-start text-neutral-700">
-                                    <h4 class="font-semibold">{{ $kelas->nama }}</h4>
+                                    <h4 class="font-semibold text-subtitle  ">{{ $kelas->nama }}</h4>
                                     <!-- <p class="text-smallContent italic font-light">kurikulum nasional</p> -->
                                 </div>
                                 <img loading="lazy" src="{{ asset('berkas_ujis/' . $kelas->foto) }}" alt="{{ $kelas->nama }} alt="" class=" mt-4 max-h-64 w-full object-cover rounded-lg" />
 
-                                <p class="mt-6 text-smallContent text-neutral-700 text-start">
-                                    {{ $kelas->deskripsi }}
-                                </p>
+                                <div class="flex flex-col gap-1">
+                                    <div class="flex gap-2 items-center mt-2">
+                                        <span class="material-symbols-outlined text-[20px]">calendar_today</span>  
+                                        <p class="my-auto font-normal">
+                                            3 pertemuan/minggu
+                                        </p>
+                                    </div>
+                                    <div class="flex gap-2 items-center">
+                                        <i class="fa-lg fa-regular fa-clock fa-sm"></i>  
+                                        <p class="my-auto font-normal">
+                                            {{ $kelas->durasi }} /sesi
+                                        </p>
+                                    </div>
+                                </div>
 
                                 <p class="text-justify text-neutral-600 mt-2 break-pretty">
                                     <span class="text-[20px] sm:text-subtitle font-semibold text-amber-500">Rp{{ number_format($kelas->harga, 0, ',', '.') }}</span>/bulan

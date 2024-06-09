@@ -12,6 +12,8 @@ class Siswa extends Model
     protected $table = 'siswa';
     protected $primaryKey = 'id_kelas';
     protected $guarded = ['id_kelas'];
+    public $timestamps = false;
+
 
     public function pengguna()
     {

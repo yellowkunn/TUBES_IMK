@@ -12,4 +12,5 @@ class Biodata_siswa extends Model
     protected $table = 'biodata_siswa';
     protected $primaryKey = 'id_biodata';
     protected $guarded = ['id_biodata'];
+    public $timestamps = false;
 }
