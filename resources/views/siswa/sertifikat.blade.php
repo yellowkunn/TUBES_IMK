@@ -28,9 +28,9 @@
 
             <!-- page hierarchy -->
             <div class="flex items-center gap-2 text-smallContent">
-                <a href="">Dashboard</a>
+                <a href="{{ route('home') }}">Dashboard</a>
                 <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                <a href="">Sertifikat</a>
+                <a href="{{ route('sertifikat') }}">Sertifikat</a>
             </div>
 
             <p class="text-title font-semibold mt-7 mb-4 md:mb-6">Sertifikat Saya</p>
