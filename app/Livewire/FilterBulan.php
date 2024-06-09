@@ -17,27 +17,29 @@ class FilterBulan extends Component
     public function mount(Kelas $kelas)
     {
         // Set the default selected month to the current month
-        $currentMonthNumber = Carbon::now()->format('m');
-        $months = [
-            '01' => 'Januari',
-            '02' => 'Februari',
-            '03' => 'Maret',
-            '04' => 'April',
-            '05' => 'Mei',
-            '06' => 'Juni',
-            '07' => 'Juli',
-            '08' => 'Agustus',
-            '09' => 'September',
-            '10' => 'Oktober',
-            '11' => 'November',
-            '12' => 'Desember'
-        ];
-        $this->selectedMonth = $months[$currentMonthNumber];
-
-        // Initialize filterBulan with the current month's data
-        $this->filter_bulan_pertemuan();
+        // $currentMonthNumber = Carbon::now()->format('m');
+        // $months = [
+        //     '01' => 'Januari',
+        //     '02' => 'Februari',
+        //     '03' => 'Maret',
+        //     '04' => 'April',
+        //     '05' => 'Mei',
+        //     '06' => 'Juni',
+        //     '07' => 'Juli',
+        //     '08' => 'Agustus',
+        //     '09' => 'September',
+        //     '10' => 'Oktober',
+        //     '11' => 'November',
+        //     '12' => 'Desember'
+        // ];
+        // tampilkan semua data pertemuan yang telah dilakukan sebelumnya
+        // $this->filterBulan = Pertemuan::where('kelas_id', $this->kelas->id_kelas)
+        //         ->whereDate('tgl_pertemuan', '<', Carbon::now())
+        //         ->get();
 
         $this->kelas = $kelas;
+
+        $this->filter_bulan_pertemuan();
     }
 
     public function filter_bulan_pertemuan()
@@ -64,8 +66,30 @@ class FilterBulan extends Component
                 ->where('kelas_id', $this->kelas->id_kelas)
                 ->get();
         } else {
-            $this->filterBulan = collect();
+            $this->filterBulan = Pertemuan::where('kelas_id', $this->kelas->id_kelas)
+                ->whereDate('tgl_pertemuan', '<', Carbon::now())
+                ->get();
         }
+    }
+
+    public function getMonthName($date)
+    {
+        $monthNumber = Carbon::parse($date)->format('m');
+        $months = [
+            '01' => 'Januari',
+            '02' => 'Februari',
+            '03' => 'Maret',
+            '04' => 'April',
+            '05' => 'Mei',
+            '06' => 'Juni',
+            '07' => 'Juli',
+            '08' => 'Agustus',
+            '09' => 'September',
+            '10' => 'Oktober',
+            '11' => 'November',
+            '12' => 'Desember'
+        ];
+        return $months[$monthNumber];
     }
 
     public function render()

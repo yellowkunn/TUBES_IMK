@@ -41,7 +41,7 @@ Route::middleware(['role:pengajar', 'auth', 'verified'])->group(function () {
     Route::get('/tambahpertemuan/{kelas}', [PengajarController::class, 'tambahpertemuanpengajar'])->name('tambah_pertemuan');
     Route::get('/absensi/{kelas}', [PengajarController::class, 'absensi'])->name('absensi');
     Route::get('/pengajar/kelas', [PengajarController::class, 'kelaspengajar'])->name('pengajar.kelas');
-    Route::get('/pengajardetailkelas/{kelas}', [PengajarController::class, 'detailkelaspengajar']);
+    Route::get('/pengajardetailkelas/{kelas}', [PengajarController::class, 'detailkelaspengajar'])-> name('pengajar.kelas.detail');
     Route::get('/pengajar/kelas/{kelas}/{pertemuan}', [PengajarController::class, 'detailpertemuanpengajar'])->name('pengajar.kelas.pertemuan');
     Route::get('/pengajarjadwal', [PengajarController::class, 'jadwalpengajar']);
     Route::get('absensipengajar', [PengajarController::class, 'absensipengajar']);

@@ -91,16 +91,12 @@
                             </div>
 
                             <div class="flex gap-6 items-center mt-4">
-                                        @foreach($kelas->siswa as $siswa => $image)
-                                        @if($siswa === 0)
-                                        <img class="w-8 h-8 object-cover rounded-full z-0" src="{{ asset('berkas_ujis/' . $image->pengguna->foto_profile) }}" alt="">
-                                        @elseif($siswa === 1)
-                                        <img class="w-8 h-8 object-cover rounded-full absolute z-10 left-4" src="{{ asset('berkas_ujis/' . $image->pengguna->foto_profile) }}" alt="">
-                                        @else
-                                        <img class="w-8 h-8 object-cover rounded-full absolute z-20 left-8" src="{{ asset('berkas_ujis/' . $image->pengguna->foto_profile) }}" alt="">
-                                        @endif
-                                        @endforeach
-                                    </div>
+                                @foreach($kelas->siswa as $siswa => $image)
+                                @if($siswa > 2 && $loop->index < 3)
+                                <img class="w-8 h-8 object-cover rounded-full absolute z-{{ ($loop->index + 1) * 10 }} left-{{ ($loop->index * 4) + 4 }}" src="{{ asset('berkas_ujis/' . $image->pengguna->foto_profile) }}" alt="">
+                                @endif
+                                @endforeach
+                            </div>
                             
                             <a href="{{ url('/siswa/detailkelas/' . $kelas->id_kelas) }}"
                                 class="text-center text-white group-hover:font-semibold bg-baseBlue/80 group-hover:bg-baseBlue w-full rounded-lg py-2 mt-4">Lihat Detail

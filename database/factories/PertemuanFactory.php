@@ -21,7 +21,7 @@ class PertemuanFactory extends Factory
     {
         return [
             'pengajar_id' => '2',
-            'kelas_id' => \App\Models\Kelas::factory(),
+            'kelas_id' => fake()->numberBetween(1, 4),
             'pertemuan_ke' => fake()->numberBetween(1, 8),
             'judul' => fake()->word(7),
             'deskripsi' => fake()->word(20),

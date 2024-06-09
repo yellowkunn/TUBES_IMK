@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Kelas;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Siswa;
+use App\Models\Biodata_siswa;
+use App\Models\Pengajar;
 use Illuminate\Support\Facades\DB;
 
 class PengajarController extends Controller
@@ -19,10 +22,18 @@ class PengajarController extends Controller
         $siswas = Siswa::where('kelas_id', $kelas->id_kelas)->get();
         return view('pengajar.absensi_pengajar', compact('kelas', 'siswas'));
     }
-    
 
     public function kelaspengajar(){
-        return view('pengajar.kelas_ajar');
+        $user = Auth::user();
+        $kelas_ajars = Pengajar::where('pengguna_id', $user->id_pengguna)
+            ->with(['kelas' => function($query) {
+                $query->select('kelas.*')
+                    ->leftJoin('siswa', 'kelas.id_kelas', '=', 'siswa.kelas_id')
+                    ->selectRaw('kelas.*, COUNT(siswa.id_siswa) as total_siswa')
+                    ->groupBy('kelas.id_kelas');
+            }])->get();
+        
+        return view('pengajar.kelas_ajar', compact('kelas_ajars'));
     }
 
     public function detailkelaspengajar(Kelas $kelas)

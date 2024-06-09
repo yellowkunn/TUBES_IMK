@@ -35,7 +35,7 @@
                     <i class="fa-solid fa-caret-right text-baseBlue"></i>
                     <a href="route('')" class="hover:font-semibold">Pertemuan 4</a>
                     <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                    <a href="{{ route('absensipengajar') }}" class="hover:font-semibold">Absensi</a>
+                    <a href="{{ route('absensi', ['kelas' => $kelas->id_kelas]) }}" class="hover:font-semibold">Absensi</a>
                 </div>
 
                 <p class="text-title font-semibold mt-7">Absensi</p>

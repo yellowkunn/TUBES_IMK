@@ -22,7 +22,7 @@ class Biodata_siswaFactory extends Factory
         $user = \App\Models\User::where('role', 'user')->inRandomOrder()->first();
 
         return [
-        'pengguna_id' => $user,
+        'pengguna_id' => $user->id_pengguna,
         'foto' => fake()->imageUrl(640, 480, 'biodata_siswa', true),
         'nama_lengkap' => $user->username,
         'jenis_kelamin' => fake()->randomElement(['Laki-laki', 'Perempuan']),
