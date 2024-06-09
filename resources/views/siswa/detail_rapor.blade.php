@@ -27,13 +27,13 @@
             <div id="content" class="p-8">
             <!-- page hierarchy -->
             <div class="flex items-center gap-2 text-smallContent">
-                <a href="">Dashboard</a>
+                <a href="{{ route('home') }}" class="hover:font-semibold">Dashboard</a>
                 <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                <a href="">Rapor</a>
+                <a href="{{ route('rapor') }}" class="hover:font-semibold">Rapor</a>
                 <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                <a href="">Bahasa Inggris</a>
+                <a href="" class="hover:font-semibold">Bahasa Inggris</a>
                 <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                <a href="">Rapor Bulanan</a>
+                <a href="" class="hover:font-semibold">Rapor Bulanan</a>
             </div>
 
             <p class="text-title font-semibold mt-7 mb-4 md:mb-6">Rapor Bulanan</p>
