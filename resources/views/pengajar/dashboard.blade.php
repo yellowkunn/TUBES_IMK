@@ -109,15 +109,12 @@
                                     </div>
 
                                     <div class="flex gap-6 items-center mt-4">
-                                        @foreach($kelas->siswa as $siswa => $image)
-                                        @if($siswa === 0)
-                                        <img class="w-8 h-8 object-cover rounded-full z-0" src="{{ asset('berkas_ujis/' . $image->pengguna->foto_profile) }}" alt="">
-                                        @elseif($siswa === 1)
-                                        <img class="w-8 h-8 object-cover rounded-full absolute z-10 left-4" src="{{ asset('berkas_ujis/' . $image->pengguna->foto_profile) }}" alt="">
-                                        @else
-                                        <img class="w-8 h-8 object-cover rounded-full absolute z-20 left-8" src="{{ asset('berkas_ujis/' . $image->pengguna->foto_profile) }}" alt="">
+                                    @foreach($kelas->siswa as $siswa => $image)
+                                        @if($loop->index < 3)
+                                        <img class="w-8 h-8 object-cover rounded-full absolute z-{{ ($loop->index * 10) }} ms-10 left-{{ ($loop->index * 4) }}" src="{{ asset('berkas_ujis/' . $image->pengguna->foto_profile) }}" alt="">
                                         @endif
-                                        @endforeach
+                                    @endforeach
+                                    <p class="text-greyIcon relative ms-2 left-{{ $kelas->total_siswa > 1 ? '16' : '8' }} top-0.5 text-smallContent">{{ $kelas->total_siswa }} Siswa</p>
                                     </div>
 
 

@@ -92,10 +92,11 @@
 
                             <div class="flex gap-6 items-center mt-4">
                                 @foreach($kelas->siswa as $siswa => $image)
-                                @if($siswa > 2 && $loop->index < 3)
-                                <img class="w-8 h-8 object-cover rounded-full absolute z-{{ ($loop->index + 1) * 10 }} left-{{ ($loop->index * 4) + 4 }}" src="{{ asset('berkas_ujis/' . $image->pengguna->foto_profile) }}" alt="">
-                                @endif
+                                    @if($loop->index < 3)
+                                    <img class="w-8 h-8 object-cover rounded-full ms-10 absolute z-{{ ($loop->index * 10) }} left-{{ ($loop->index * 4) }}" src="{{ asset('berkas_ujis/' . $image->pengguna->foto_profile) }}" alt="">
+                                    @endif
                                 @endforeach
+                                <p class="text-greyIcon relative ms-2 left-{{ $kelas->total_siswa > 1 ? '16' : '8' }} text-smallContent">{{ $kelas->total_siswa }} Siswa</p>
                             </div>
                             
                             <a href="{{ url('/siswa/detailkelas/' . $kelas->id_kelas) }}"

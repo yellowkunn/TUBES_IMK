@@ -71,20 +71,15 @@
                                         </p>
                                     </div>
 
-                                    <div class="flex gap-6 items-center mt-4">
+                                    <div class="flex gap-6 items-center mt-4 mb-2">
                                         <div class="flex relative">
-                                            <!-- ini mmg yg di nampakkan 3 siswa kelasnya aja ya -->
-                                            <!-- <img class="w-8 h-8 object-cover rounded-full z-0" src="https://static.vecteezy.com/system/resources/thumbnails/005/346/410/small_2x/close-up-portrait-of-smiling-handsome-young-caucasian-man-face-looking-at-camera-on-isolated-light-gray-studio-background-photo.jpg" alt="">
-                                            <img class="w-8 h-8 object-cover rounded-full absolute z-10 left-4" src="https://bonnierpublications.com/app/uploads/2022/05/woman-1.jpg" alt="">
-                                            <img class="w-8 h-8 object-cover rounded-full absolute z-20 left-8" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCKhSSwriyDJ4jG9pHgrfUFjfM3jbemkw0Jw&s" alt="">
-                                         -->
-                                        @foreach($kelas->siswa as $siswa => $image)
-                                        @if($kelas->total_siswa > 2 && $loop->index < 3)
-                                        <img class="w-8 h-8 object-cover rounded-full absolute z-{{ ($loop->index + 1) * 10 }} left-{{ ($loop->index * 4) + 4 }}" src="{{ asset('berkas_ujis/' . $image->pengguna->foto_profile) }}" alt="">
-                                        @endif
-                                        @endforeach
+                                            @foreach($kelas->siswa as $siswa => $image)
+                                                @if($loop->index < 3)
+                                                <img class="w-8 h-8 object-cover rounded-full absolute z-{{ ($loop->index * 10) }} left-{{ ($loop->index * 4) }}" src="{{ asset('berkas_ujis/' . $image->pengguna->foto_profile) }}" alt="">
+                                                @endif
+                                            @endforeach
+                                            <p class="text-greyIcon relative ms-2 left-{{ $kelas->total_siswa > 1 ? '16' : '8' }} top-1.5 text-smallContent">{{ $kelas->total_siswa }} Siswa</p>
                                         </div>
-                                        <p class="text-greyIcon relative left-3 top-0.5 text-smallContent">{{ $kelas->total_siswa }} Siswa</p>
                                     </div>
                                 </div>
 
