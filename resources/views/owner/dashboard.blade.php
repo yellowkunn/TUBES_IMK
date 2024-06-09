@@ -91,14 +91,16 @@
                             </div>
 
                             <div class="flex gap-6 items-center mt-4">
-                                <div class="flex relative">
-                                    <!-- ini mmg yg di nampakkan 3 siswa kelasnya aja ya -->
-                                    <img class="w-8 h-8 object-cover rounded-full z-0" src="https://static.vecteezy.com/system/resources/thumbnails/005/346/410/small_2x/close-up-portrait-of-smiling-handsome-young-caucasian-man-face-looking-at-camera-on-isolated-light-gray-studio-background-photo.jpg" alt="">
-                                    <img class="w-8 h-8 object-cover rounded-full absolute z-10 left-4" src="https://bonnierpublications.com/app/uploads/2022/05/woman-1.jpg" alt="">
-                                    <img class="w-8 h-8 object-cover rounded-full absolute z-20 left-8" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCKhSSwriyDJ4jG9pHgrfUFjfM3jbemkw0Jw&s" alt="">
-                                </div>
-                                <p class="text-greyIcon relative left-3 top-0.5 text-smallContent">{{ $kelas->total_siswa }} Siswa</p>
-                            </div>
+                                        @foreach($kelas->siswa as $siswa => $image)
+                                        @if($siswa === 0)
+                                        <img class="w-8 h-8 object-cover rounded-full z-0" src="{{ asset('berkas_ujis/' . $image->pengguna->foto_profile) }}" alt="">
+                                        @elseif($siswa === 1)
+                                        <img class="w-8 h-8 object-cover rounded-full absolute z-10 left-4" src="{{ asset('berkas_ujis/' . $image->pengguna->foto_profile) }}" alt="">
+                                        @else
+                                        <img class="w-8 h-8 object-cover rounded-full absolute z-20 left-8" src="{{ asset('berkas_ujis/' . $image->pengguna->foto_profile) }}" alt="">
+                                        @endif
+                                        @endforeach
+                                    </div>
                             
                             <a href="{{ url('/siswa/detailkelas/' . $kelas->id_kelas) }}"
                                 class="text-center text-white group-hover:font-semibold bg-baseBlue/80 group-hover:bg-baseBlue w-full rounded-lg py-2 mt-4">Lihat Detail

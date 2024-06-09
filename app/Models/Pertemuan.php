@@ -12,6 +12,11 @@ class Pertemuan extends Model
     protected $table = 'pertemuan';
     protected $primaryKey = 'id_pertemuan';
     protected $guarded = ['id_pertemuan'];
+    protected $casts = [
+        'tanggal_akses' => 'date',
+        'tanggal_akses_2' => 'date',
+        'batas_tanggal_akses_2' => 'date',
+    ];
 
     public function materi()
     {

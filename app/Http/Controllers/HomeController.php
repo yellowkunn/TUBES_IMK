@@ -9,6 +9,7 @@ use App\Models\Kelas;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Siswa;
 use App\Models\Pengajar;
+use App\Models\Pertemuan;
 
 class HomeController extends Controller
 {
@@ -39,6 +40,7 @@ class HomeController extends Controller
                         $kelasss = Kelas::leftJoin('siswa', 'kelas.id_kelas', '=', 'siswa.kelas_id')
                             ->select('kelas.*', DB::raw('COUNT(siswa.id_siswa) as total_siswa'))
                             ->whereNotNull('siswa.kelas_id')
+                            ->with('siswa')
                             ->whereIn('kelas.id_kelas', $kelas_ids) // Tambahkan kondisi whereIn untuk membatasi hasil query
                             ->groupBy('kelas.id_kelas', 'kelas.nama', 'kelas.tingkat_kelas', 'kelas.foto', 'kelas.deskripsi', 'kelas.harga', 'kelas.fasilitas', 'kelas.rentang', 'kelas.jadwal_hari', 'kelas.durasi', 'kelas.dibuat')
                             ->get();
@@ -52,12 +54,16 @@ class HomeController extends Controller
                     $kelas_id = Pengajar::where('pengguna_id', $user->id_pengguna)->distinct()->pluck('kelas_id');
                     $kelasss = Kelas::leftJoin('siswa', 'kelas.id_kelas', '=', 'siswa.kelas_id')
                     ->select('kelas.*', DB::raw('COUNT(siswa.id_siswa) as total_siswa'))
+                    ->withCount('siswa')
+                    ->with('siswa') // Menyertakan data siswa secara lengkap
                     ->whereNotNull('siswa.kelas_id')
-                    ->whereIn('kelas.id_kelas', $kelas_id) // Tambahkan kondisi whereIn untuk membatasi hasil query
+                    ->whereIn('kelas.id_kelas', $kelas_id)
                     ->groupBy('kelas.id_kelas', 'kelas.nama', 'kelas.tingkat_kelas', 'kelas.foto', 'kelas.deskripsi', 'kelas.harga', 'kelas.fasilitas', 'kelas.rentang', 'kelas.jadwal_hari', 'kelas.durasi', 'kelas.dibuat')
-                    ->get();
+                    ->get();        
 
-                    return view('pengajar.dashboard', compact('kelasss', 'siswaStatus'));
+                    $pertemuan = Pertemuan::where('pengajar_id', $user->id_pengguna)->first();
+
+                    return view('pengajar.dashboard', compact('kelasss', 'siswaStatus', 'pertemuan'));
 
 
                 case 'siswa':

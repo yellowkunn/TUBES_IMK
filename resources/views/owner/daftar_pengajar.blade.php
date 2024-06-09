@@ -48,7 +48,7 @@
                                 <th scope="col" class= "w-2 px-8 py-3">No.</th>
                                 <th scope="col" class= "px-8 py-3">Nama Lengkap</th>
                                 <th scope="col" class= "px-8 py-3">Jabatan</th>
-                                <th scope="col" class= "px-8 py-3">No. HP</th>
+                                <th scope="col" class= "px-8 py-3">Kelas</th>
                                 <th></th>
                                 <th scope="col" class= "px-8 py-3 text-center">Aksi</th>
                             </thead>
@@ -70,7 +70,7 @@
                                     </td>
                                     
                                     <td class="px-8 py-4">{{  $pengajar->jabatan }}</td>
-                                    <td class="px-8 py-4">{{  $pengajar->pengguna->biodataPengajar->no_hp }}</td>
+                                    <td class="px-8 py-4">{{  $pengajar->kelas->nama }}</td>
                                     <td class="py-4"><button onclick="showPopupUploadSertif({{ $pengajar->pengguna->biodataPengajar->id_biodata }})" id="sertif"><span class="material-symbols-outlined text-greyIcon mt-1.5">workspace_premium</span></button></td>
                                     <td class="px-8 py-4 flex items-center gap-4 justify-center">
                                         <button onclick="showPopupDetailPengajar({{ $pengajar->pengguna->biodataPengajar->id_biodata }})" class="text-baseBlue font-semibold w-16 h-8 rounded hover:bg-white hover:border-2 hover:border-baseBlue focus:bg-baseBlue focus:text-white">Detail</button>
