@@ -30,9 +30,9 @@
 
                     <!-- page hierarchy -->
                     <div class="flex items-center gap-2 text-smallContent">
-                        <a href="{{ route('home') }}">Dashboard</a>
+                        <a href="{{ route('home') }}" class="hover:font-semibold">Dashboard</a>
                         <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                        <a href="">Kelas</a>
+                        <a href="{{ route('pengajar.kelas') }}" class="hover:font-semibold">Kelas</a>
                     </div>
 
                     <p class="text-title font-semibold mt-8">Kelas Saya</p>   
@@ -43,6 +43,14 @@
                             <p class="font-semibold md:text-[20px] lg:text-subtitle">
                                 $kelas->nama
                             </p>
+
+                            <div class="flex items-center">
+                                <!-- if $kelas->foto -->
+                                <img src="asset('berkas_ujis/' . $kelas->foto)" alt="$kelas->nama" class="my-2 max-h-52 md:max-h-56 lg:max-h-44 w-full object-cover rounded-lg">
+                                <!-- else -->
+                                <p class="text-greyIcon">Foto tidak tersedia</p>
+                                <!-- endif -->
+                            </div>
                             
                             <div class="flex flex-col gap-1">
                                 <div class="flex gap-2 items-center mt-2">
@@ -57,14 +65,27 @@
                                         $kelas->durasi /sesi
                                     </p>
                                 </div>
+
+                                <div class="flex gap-6 items-center mt-4">
+                                    <div class="flex relative">
+                                        <!-- ini mmg yg di nampakkan 3 siswa kelasnya aja ya -->
+                                        <img class="w-8 h-8 object-cover rounded-full z-0" src="https://static.vecteezy.com/system/resources/thumbnails/005/346/410/small_2x/close-up-portrait-of-smiling-handsome-young-caucasian-man-face-looking-at-camera-on-isolated-light-gray-studio-background-photo.jpg" alt="">
+                                        <img class="w-8 h-8 object-cover rounded-full absolute z-10 left-4" src="https://bonnierpublications.com/app/uploads/2022/05/woman-1.jpg" alt="">
+                                        <img class="w-8 h-8 object-cover rounded-full absolute z-20 left-8" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCKhSSwriyDJ4jG9pHgrfUFjfM3jbemkw0Jw&s" alt="">
+                                    </div>
+                                    <p class="text-greyIcon relative left-3 top-0.5 text-smallContent">$kelas->total_siswa Siswa</p>
+                                </div>
                             </div>
 
-                            <a href="route('programkelas', ['kelas' => $kelas->id_kelas])"
+                            <a href=""
                                 class="text-center text-white group-hover:font-semibold bg-baseBlue/80 group-hover:bg-baseBlue w-full rounded-lg py-2 mt-4">Lihat Detail
                             </a>
+
+                            <div class="absolute bg-baseBlue/80 group-hover:bg-baseBlue h-1 rounded-full bottom-0 left-1/2 transform -translate-x-1/2 w-1/4 group-hover:w-2/3 duration-500"></div>
                         </div>
                     </div>
-                            <!-- akhir dari daftar kelas -->
+                    <!-- akhir dari daftar kelas -->
+                    
                 </div>
             </div>
         </div>
