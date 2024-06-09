@@ -53,8 +53,8 @@
                             <th scope="col" class= "px-8 py-3">Pelajaran</th>
                             <th scope="col" class= "px-8 py-3">Hari</th>
                             <th scope="col" class= "px-8 py-3">Waktu</th>
-                            <th scope="col" class= "px-8 py-3">Guru</th>
-                            <th scope="col" class= "px-8 py-3"></th>
+                            <!-- <th scope="col" class= "px-8 py-3">Guru</th> -->
+                            <th scope="col" class= "px-8 py-3">Aksi</th>
                         </thead>
                             
                         <tbody>
@@ -68,7 +68,7 @@
                                 <td class="px-8 py-4">{{  $siswa->kelas->nama }}</td>
                                 <td class="px-8 py-4">{{ $siswa->kelas->jadwal_hari }}</td>
                                 <td class="px-8 py-4">10.00 WIB, 11.00 WIB, 12.00 WIB</td>
-                                <td class="px-8 py-4">{{ $siswa->kelas->pengajar[0]->pengguna->biodataPengajar->nama_lengkap }}</td>
+                                <!-- <td class="px-8 py-4">{{ $siswa->kelas->pengajar[0]->pengguna->biodataPengajar->nama_lengkap }}</td> -->
                                 <td class="px-8 py-4 flex items-center gap-4">
                                     <i class="fa-solid fa-arrow-right-to-bracket rotate-90"></i>
                                     <i class="fa-regular fa-eye"></i>

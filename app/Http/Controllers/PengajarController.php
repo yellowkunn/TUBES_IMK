@@ -14,10 +14,12 @@ class PengajarController extends Controller
     //     $kelass = Kelas::all();
     //     return view('pengajar.dashboard', compact('kelass'));
     // }
-    public function absensipengajar()
+    public function absensi(Kelas $kelas)
     {
-        return view('pengajar.absensi_pengajar');
+        $siswas = Siswa::where('kelas_id', $kelas->id_kelas)->get();
+        return view('pengajar.absensi_pengajar', compact('kelas', 'siswas'));
     }
+    
 
     public function kelaspengajar(){
         return view('pengajar.kelas_ajar');
@@ -34,7 +36,7 @@ class PengajarController extends Controller
 
         $siswa = Siswa::where('kelas_id', $kelas->id_kelas)->get();
 
-        return view('pengajar.detail_kelas', compact('kelasDetail', 'siswa'));
+        return view('pengajar.detail_kelas', compact('kelasDetail', 'siswa', 'kelas'));
     }
     public function tambahpertemuanpengajar(Kelas $kelas)
     {
@@ -58,14 +60,14 @@ class PengajarController extends Controller
 
     }
 
-    public function destroy(Request $request): RedirectResponse
-    {
-        Auth::guard('web')->logout();
+    // public function destroy(Request $request): RedirectResponse
+    // {
+    //     Auth::guard('web')->logout();
 
-        $request->session()->invalidate();
+    //     $request->session()->invalidate();
 
-        $request->session()->regenerateToken();
+    //     $request->session()->regenerateToken();
 
-        return redirect('/');
-    }
+    //     return redirect('/');
+    // }
 }

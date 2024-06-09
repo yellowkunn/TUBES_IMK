@@ -70,7 +70,7 @@
                             <i class="fa-solid fa-circle-plus fa-lg"></i>
                             <p>Tambah Pertemuan</p>
                         </a>
-                        <a href="{{ url('/absensipengajar') }}" class="bg-baseDarkerGreen text-white 
+                        <a href="{{ route('absensi', $kelasDetail->id_kelas) }}" class="bg-baseDarkerGreen text-white 
                             flex items-center gap-2 w-fit p-3 px-6 rounded-full" style="box-shadow: 
                             0px 4px 5px 0 rgba(105,212,220,0.3);">
                             <i class="fa-solid fa-file-circle-plus fa-lg"></i>
@@ -80,7 +80,7 @@
 
                         <!-- filter bds bulan -->
                         
-                        @livewire('filter-bulan')
+                        @livewire('filter-bulan', ['kelas' => $kelas])
 
                         <!-- akhir dari filter -->
 
