@@ -88,10 +88,13 @@ class Tambahpertemuan extends Component
             'judul' => $this->topikbahasan,
             'deskripsi' => $this->deskripsi
         ]);
+
+        $pertemuan_id = Pertemuan::orderBy('id_pertemuan', 'desc')->first()->id_pertemuan;
+
         foreach ($this->filemateri as $file) {
             $materiPath = $file->store('materi', 'public');
             Materi::create([
-                'pertemuan_id' => $this->pertemuan,
+                'pertemuan_id' => $pertemuan_id,
                 'file_materi' => $materiPath,
                 'nama_asli_file_materi' => $file->getClientOriginalName(), // Simpan nama asli file
                 'jam_akses' => $this->waktuakses,
@@ -101,7 +104,7 @@ class Tambahpertemuan extends Component
         foreach ($this->filelatihan as $file) {
             $tugasPath = $file->store('latihan', 'public');
             Tugas::create([
-                'pertemuan_id' => $this->pertemuan,
+                'pertemuan_id' => $pertemuan_id,
                 'file_tugas' => $tugasPath,
                 'nama_asli_file_tugas' => $file->getClientOriginalName(), // Simpan nama asli file
                 'jam_akses' => $this->waktuakses2,
@@ -111,7 +114,7 @@ class Tambahpertemuan extends Component
             ]);
         }
         Link::create([
-            'pertemuan_id' => $this->pertemuan,
+            'pertemuan_id' => $pertemuan_id,
             'url' => $this->link
         ]);
     }

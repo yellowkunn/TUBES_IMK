@@ -26,7 +26,7 @@ class SiswaController extends Controller
         // dd($request->get('kelas'));
         $request->validate([
             'gambar' => 'required|mimes:doc,docx,xls,xlsx,pdf,jpg,jpeg,png,bmp|max:2048'
-        ]);        
+        ]);
         $file = $request->file('gambar');
         if ($file) {
             // $judul = $request->get('gambar');
@@ -35,20 +35,26 @@ class SiswaController extends Controller
             $file->move(public_path('berkas_ujis'), $nama_file);
             $berkas = '' . $nama_file;
         }
-        DB::select('call kirimformulirpendaftaran(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
-        array($request->get('id_pengguna'), $berkas,
-        $request->get('namalengkap'), $request->get('gender'), 
-        $request->get('tempatlahir'), $request->get('tanggallahir'), 
-        $request->get('agama'), $request->get('kewarganegaraan'), 
-        $request->get('alamat'), $request->get('notelp'),
-        $request->get('nohp'),$request->get('pendidikanterakhir'),
-        $request->get('diterimakursus'),$request->get('tingkat_kelas'),$request->get('namaortu'),
-        $request->get('tempatlahirortu'),$request->get('tanggallahirortu'),
-        $request->get('agamaortu'),$request->get('pendidikanortu'),
-        $request->get('pekerjaanortu')));
-        DB::select('call insert_siswa(?,?,?)',
-        array($request->get('id_pengguna'), $request->get('kelas'), $request->get('status')));
-        return redirect()->back(); 
+        DB::select(
+            'call kirimformulirpendaftaran(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+            array(
+                $request->get('id_pengguna'), $berkas,
+                $request->get('namalengkap'), $request->get('gender'),
+                $request->get('tempatlahir'), $request->get('tanggallahir'),
+                $request->get('agama'), $request->get('kewarganegaraan'),
+                $request->get('alamat'), $request->get('notelp'),
+                $request->get('nohp'), $request->get('pendidikanterakhir'),
+                $request->get('diterimakursus'), $request->get('tingkat_kelas'), $request->get('namaortu'),
+                $request->get('tempatlahirortu'), $request->get('tanggallahirortu'),
+                $request->get('agamaortu'), $request->get('pendidikanortu'),
+                $request->get('pekerjaanortu')
+            )
+        );
+        DB::select(
+            'call insert_siswa(?,?,?)',
+            array($request->get('id_pengguna'), $request->get('kelas'), $request->get('status'))
+        );
+        return redirect()->back();
     }
 
     public function detailkelas(Kelas $kelas)
@@ -61,35 +67,35 @@ class SiswaController extends Controller
     {
         // Ambil data pertemuan beserta relasinya
         $pertemuans = Pertemuan::with('materi', 'tugas')
-                        ->where('kelas_id', $kelas->id_kelas)
-                        ->get()
-                        ->groupBy('pertemuan_ke'); // Kelompokkan berdasarkan pertemuan_ke
-    
-        // Buat array baru untuk menyimpan hasil penggabungan
+            ->where('kelas_id', $kelas->id_kelas)
+            ->get()
+            ->groupBy('pertemuan_ke'); // Kelompokkan berdasarkan pertemuan_ke
+
         $groupedPertemuans = [];
-    
+
         foreach ($pertemuans as $pertemuan_ke => $items) {
             // Gabungkan materi dan tugas
             $materi = collect();
             $tugas = collect();
-            
+
             foreach ($items as $item) {
                 $materi = $materi->merge($item->materi);
                 $tugas = $tugas->merge($item->tugas);
             }
-    
+
             // Tambahkan ke array hasil
             $groupedPertemuans[] = (object) [
                 'pertemuan_ke' => $pertemuan_ke,
-                'judul' => $items->first()->judul, // Ambil judul dari item pertama
+                'judul' => $items->first()->judul,
                 'materi' => $materi,
                 'tugas' => $tugas,
             ];
         }
-    
+        // dd($groupedPertemuans);
+
         return view('siswa.detail_kelas', compact('kelas', 'groupedPertemuans'));
     }
-    
+
 
     public function dashboardsiswa()
     {
@@ -99,7 +105,7 @@ class SiswaController extends Controller
     }
     public function berandasiswa()
     {
-        
+
         try {
             $kelass = Kelas::all();
         } catch (\Exception $e) {
@@ -107,7 +113,7 @@ class SiswaController extends Controller
             return redirect()->back()->with('error', 'Tidak dapat terhubung ke database.');
         }
 
-        return view('beranda', compact('kelass')); 
+        return view('beranda', compact('kelass'));
     }
 
     public function kelassaya()
