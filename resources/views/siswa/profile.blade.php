@@ -123,7 +123,7 @@
             </div>
         </div>
 
-        <div id="biodataContent" class="hidden mt-4">
+        <div id="biodataContent" class="hidden mt-6">
             <p class="text-subtitle font-semibold mb-6">Data diri</p>
 
             <div class="grid grid-cols-2">

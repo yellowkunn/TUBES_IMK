@@ -31,7 +31,7 @@
                     </div>
                     <div class="flex my-auto gap-6">
                         <p class="text-baseDarkerGreen bg-baseDarkerGreen/20 h-fit p-2 px-4 rounded-full">{{ $this->selectedMonth }}</p>
-                        <button class="bg-white border-2 border-baseBlue text-baseBlue px-4 rounded-full">Lihat Detail</button>
+                        <a href=" route('pengajar.kelas.pertemuan') " class="bg-baseBlue/85 hover:bg-baseBlue text-white hover:font-semibold p-2 px-4 rounded-full">Lihat Detail</a>
                     </div>
                 </div>
             </div>

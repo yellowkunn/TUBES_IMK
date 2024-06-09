@@ -30,11 +30,11 @@
                 <div id="content" class="p-8">
                     <!-- page hierarchy -->
                     <div class="flex items-center gap-2 text-smallContent">
-                        <a href="{{ url('home') }}">Dashboard</a>
+                        <a href="{{ route('home') }}" class="hover:font-semibold">Dashboard</a>
                         <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                        <!-- <a href="">Kelas</a>
-                        <i class="fa-solid fa-caret-right text-baseBlue"></i> -->
-                        <a href="">{{ $kelasDetail->nama }} {{ $kelasDetail->tingkat_kelas }}</a>
+                        <a href="{{ route('pengajar.kelas') }}" class="hover:font-semibold">Kelas</a>
+                        <i class="fa-solid fa-caret-right text-baseBlue"></i>
+                        <a href="" class="hover:font-semibold">{{ $kelasDetail->nama }} {{ $kelasDetail->tingkat_kelas }}</a>
                     </div>
 
                     <div class="flex justify-between mt-7">
@@ -64,13 +64,13 @@
 
                     <!-- button -->
                     <div class="flex gap-4">
-                        <a href="{{ route('tambah_pertemuan', $kelasDetail->id_kelas) }}" class="bg-baseDarkerGreen text-white 
+                        <a href="{{ route('tambah_pertemuan', $kelasDetail->id_kelas) }}" class="bg-baseDarkerGreen/90 hover:font-semibold hover:bg-baseDarkerGreen text-white 
                             flex items-center gap-2 w-fit p-3 px-6 rounded-full" style="box-shadow: 
                             0px 4px 5px 0 rgba(105,212,220,0.3);">
                             <i class="fa-solid fa-circle-plus fa-lg"></i>
                             <p>Tambah Pertemuan</p>
                         </a>
-                        <a href="{{ url('/absensipengajar') }}" class="bg-baseDarkerGreen text-white 
+                        <a href="{{ route('absensipengajar') }}" class="bg-baseDarkerGreen/90 hover:font-semibold hover:bg-baseDarkerGreen text-white 
                             flex items-center gap-2 w-fit p-3 px-6 rounded-full" style="box-shadow: 
                             0px 4px 5px 0 rgba(105,212,220,0.3);">
                             <i class="fa-solid fa-file-circle-plus fa-lg"></i>
@@ -138,9 +138,6 @@
         document.getElementById('popupListSiswa').classList.toggle('hidden');
     }
     </script>
-
-
-    <script src="{{asset('js/style.js')}}"></script>
     @endif
 
 </body>

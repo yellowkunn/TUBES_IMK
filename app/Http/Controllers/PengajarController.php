@@ -40,6 +40,12 @@ class PengajarController extends Controller
     {
         return view('pengajar.tambah_pertemuan', compact('kelas'));
     }
+
+    public function detailpertemuanpengajar(Kelas $kelas)
+    {
+        return view('pengajar.detail_pertemuan', compact('kelas'));
+    }
+
     public function jadwalpengajar()
     {
         return view('pengajar.jadwal');

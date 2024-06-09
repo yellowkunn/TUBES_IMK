@@ -27,15 +27,15 @@
             <div id="content" class="p-8">
                 <!-- page hierarchy -->
                 <div class="flex items-center gap-2 text-smallContent">
-                    <a href="">Dashboard</a>
+                    <a href="{{ route('home') }}" class="hover:font-semibold">Dashboard</a>
                     <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                    <a href="">Kelas</a>
+                    <a href="{{ route('pengajar.kelas') }}" class="hover:font-semibold">Kelas</a>
                     <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                    <a href="">Matematika SMP</a>
+                    <a href="route('')" class="hover:font-semibold">Matematika SMP</a>
                     <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                    <a href="">Pertemuan 4</a>
+                    <a href="route('')" class="hover:font-semibold">Pertemuan 4</a>
                     <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                    <a href="">Absensi</a>
+                    <a href="{{ route('absensipengajar') }}" class="hover:font-semibold">Absensi</a>
                 </div>
 
                 <p class="text-title font-semibold mt-7">Absensi</p>

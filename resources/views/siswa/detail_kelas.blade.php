@@ -108,7 +108,7 @@
                                             </div>
                                             <div class="flex gap-4">
                                                 <p>
-                                                    <span class="font-semibold">Batas akses:</span>
+                                                    <span class="font-semibold">Tenggat:</span>
                                                     {{ \Carbon\Carbon::parse($pertemuan->tugas[0]->tgl_batas_akses)->translatedFormat('d F Y') }},
                                                     {{ \Carbon\Carbon::parse($pertemuan->tugas[0]->jam_batas_akses)->format('g:i A') }}
                                                 </p>
