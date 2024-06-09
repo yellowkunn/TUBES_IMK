@@ -137,7 +137,7 @@
                                 </div>
                                 <div class="ms-1">
                                     <p class="font-semibold">Belum ada pertemuan </p>
-                                    <p class="text-smallContent">-</p>
+                                    <p class="text-smallContent">-~</p>
                                 </div>
                             </div>
                         </div>

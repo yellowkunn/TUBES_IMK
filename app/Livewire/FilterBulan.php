@@ -5,13 +5,16 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Pertemuan;
 use Carbon\Carbon;
+use App\Models\Kelas;
+
 
 class FilterBulan extends Component
 {
     public $selectedMonth;
     public $filterBulan;
+    public $kelas;
 
-    public function mount()
+    public function mount(Kelas $kelas)
     {
         // Set the default selected month to the current month
         $currentMonthNumber = Carbon::now()->format('m');
@@ -30,9 +33,11 @@ class FilterBulan extends Component
             '12' => 'Desember'
         ];
         $this->selectedMonth = $months[$currentMonthNumber];
-        
+
         // Initialize filterBulan with the current month's data
         $this->filter_bulan_pertemuan();
+
+        $this->kelas = $kelas;
     }
 
     public function filter_bulan_pertemuan()
@@ -55,7 +60,9 @@ class FilterBulan extends Component
         $monthNumber = $months[$this->selectedMonth] ?? null;
 
         if ($monthNumber) {
-            $this->filterBulan = Pertemuan::whereMonth('tgl_pertemuan', $monthNumber)->get();
+            $this->filterBulan = Pertemuan::whereMonth('tgl_pertemuan', $monthNumber)
+                ->where('kelas_id', $this->kelas->id_kelas)
+                ->get();
         } else {
             $this->filterBulan = collect();
         }
