@@ -12,6 +12,11 @@ class Tugas extends Model
     protected $table = 'tugas';
     protected $primaryKey = 'id_tugas';
     protected $guarded = ['id_tugas'];
+    protected $casts = [
+        'tanggal_akses' => 'date',
+        'tanggal_akses_2' => 'date',
+        'batas_tanggal_akses_2' => 'date',
+    ];
 
     public function pertemuan()
     {
