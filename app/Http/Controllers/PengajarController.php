@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Siswa;
 use App\Models\Biodata_siswa;
 use App\Models\Pengajar;
+use App\Models\Absensi;
 use Illuminate\Support\Facades\DB;
 
 class PengajarController extends Controller
@@ -20,7 +21,8 @@ class PengajarController extends Controller
     public function absensi(Kelas $kelas)
     {
         $siswas = Siswa::where('kelas_id', $kelas->id_kelas)->get();
-        return view('pengajar.absensi_pengajar', compact('kelas', 'siswas'));
+        $kehadiran_siswa = Absensi::where('kelas_id', $kelas->id_kelas)->get();
+        return view('pengajar.absensi_pengajar', compact('kelas', 'siswas', 'kehadiran_siswa'));
     }
 
     public function kelaspengajar(){
