@@ -58,7 +58,7 @@
                         <div class="flex flex-col gap-3">
                             <div class="flex justify-between items-center mt-6">
                                 <p class="text-subtitle font-semibold">Materi</p>
-                                <button type="button" onclick="showPopupMateri()"><i class="fa-solid fa-plus p-2 px-[9px] bg-baseBlue text-white rounded-full"></i></button>
+                                <button type="button" onclick="showPopupMateri()"><i class="fa-solid fa-plus p-2 px-[9px] bg-baseBlue/80 hover:bg-baseBlue text-white rounded-full"></i></button>
                             </div>
                            
                             <div class="md:grid grid-cols-2 gap-20">
@@ -83,7 +83,7 @@
                                     <div class="flex gap-3 items-center">
                                         <button><span class="material-symbols-outlined">visibility</span></button>
                                         <button><span class="material-symbols-outlined">download</span></button>
-                                        <button><i class="fa-solid fa-pen text-white p-1.5 bg-baseBlue rounded-full"></i></button>
+                                        <button><i class="fa-solid fa-pen text-white p-1.5 bg-baseBlue/80 hover:bg-baseBlue rounded-full"></i></button>
                                     </div>
                                 </div>
                                 <!-- akhir dari isi card -->
@@ -98,12 +98,35 @@
                         <div class="flex flex-col gap-3">
                             <div class="flex justify-between items-center mt-10">
                                 <p class="text-subtitle font-semibold">Latihan</p>
-                                <button type="button" onclick="showPopupLatihan()"><i class="fa-solid fa-plus p-2 px-[9px] bg-baseBlue text-white rounded-full"></i></button>
+                                <button type="button" onclick="showPopupLatihan()"><i class="fa-solid fa-plus p-2 px-[9px] bg-baseBlue/80 hover:bg-baseBlue text-white rounded-full"></i></button>
                             </div>
                            
                             <div class="md:grid grid-cols-2 gap-20">
                                 <div class="shadow rounded-3xl p-4 h-fit">
-                                    tes
+                                     <!-- isi card -->
+                                <div class="flex justify-between items-center px-4 py-2">
+                                    <div>
+                                        <div class="flex gap-3 items-center">
+                                            <i class="fa-regular fa-file"></i>
+                                            
+                                            <a href=" $fileUrl " target="_blank"> $materi->nama_asli_file_materi </a>
+                                        </div>
+                                        <div class="flex gap-4 mt-1 text-greyIcon text-smallContent">
+                                            <p>
+                                                <span class="font-semibold">Dapat diakses:</span>
+                                                <!-- \Carbon\Carbon::parse($pertemuan->materi[0]->tgl_akses)->translatedFormat('d F Y') ,
+                                                \Carbon\Carbon::parse($pertemuan->materi[0]->jam_akses)->format('g:i A')  -->
+                                                12.00, 24 Juni 2024
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="flex gap-3 items-center">
+                                        <button><span class="material-symbols-outlined">visibility</span></button>
+                                        <button><span class="material-symbols-outlined">download</span></button>
+                                        <a href=""><i class="fa-solid fa-caret-right fa-lg text-white p-2.5 py-3.5 bg-baseBlue/80 hover:bg-baseBlue rounded-full"></i></a>
+                                    </div>
+                                </div>
+                                <!-- akhir dari isi card -->
                                 </div>
                                 <div class="shadow rounded-3xl p-4 h-fit">
                                     tes
