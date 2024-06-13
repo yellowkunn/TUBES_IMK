@@ -91,6 +91,7 @@ class AdminController extends Controller
             return redirect()->back()->with('success', 'Berhasil menambahkan kelas');
         } catch (Exception $e){
             return redirect()->back()->with('error', 'Gagal menambahkan kelas');
+
         }
     }
 

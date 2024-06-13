@@ -118,7 +118,7 @@
                                         <div class="flex gap-3 p-3 px-8 items-center">
                                             <i class="fa-regular fa-file"></i>
                                             @php
-                                            $fileUrl = asset('storage/' . $pertemuan->materi[0]->file_materi);
+                                            $fileUrl = asset('storage/' . $pertemuan->tugas[0]->file_materi);
                                             @endphp
                                             <a href="{{ $fileUrl }}" target="_blank">{{ $pertemuan->tugas[0]->nama_asli_file_tugas }}</a>
                                         </div>

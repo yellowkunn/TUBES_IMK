@@ -26,4 +26,14 @@ class Pertemuan extends Model
     {
         return $this->hasMany(Tugas::class, 'pertemuan_id', 'id_pertemuan');
     }
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class, 'kelas_id', 'id_kelas');
+    }
+
+    public function pengajar()
+    {
+        return $this->belongsTo(Pengajar::class, 'pengajar_id', 'id_pengajar');
+    }
 }
