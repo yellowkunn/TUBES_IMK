@@ -187,16 +187,36 @@
                     @elseif($selectedBahan == 'Link')
                         <div class="flex justify-between items-center mt-10">
                             <p class="text-subtitle font-semibold">Link</p>
-                            {{-- belum ada livewire link --}}
                         </div>
-                        @if ($groupedPertemuans->link->isNotEmpty())
-                            @foreach ($groupedPertemuans->link as $link)
-                                <a href="{{ $link->url }}" target="_blank"
-                                    style="display: block; margin-bottom: 10px; color: #007bff; text-decoration: none; font-size: 16px;">
-                                    {{ $link->url }}
-                                </a>
-                            @endforeach
-                        @endif
+
+                        <div class="md:grid grid-cols-2 gap-20">
+                            @if ($groupedPertemuans->link->isNotEmpty())
+                                @foreach ($groupedPertemuans->link as $link)
+                                    <div class="shadow rounded-3xl p-4 h-fit">
+                                        <!-- isi card -->
+                                        <div class="flex justify-between items-center px-4 py-2">
+                                            <div class="flex gap-3 items-center">
+                                                <a href="{{ $link->url }}" target="_blank"
+                                                    style="display: block; text-decoration: none; font-size: 16px;">
+                                                    {{ $link->url }}
+                                                </a>
+                                            </div>
+                                            <div class="flex gap-2 items-center">
+                                                <button onclick="window.open('{{ $link->url }}', '_blank')">
+                                                    <span class="material-symbols-outlined">visibility</span>
+                                                </button>
+                                                <button class="ml-auto">
+                                                    <i
+                                                        class="fa-solid fa-pen text-white p-1.5 bg-baseBlue rounded-full"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!-- akhir dari isi card -->
+                                    </div>
+                                @endforeach
+                            @endif
+                        </div>
+
 
                         {{-- A L L --}}
                     @else
@@ -336,15 +356,50 @@
                                 @endif
                             </div>
                         </div>
-                    @endif
+
+                        <div class="flex justify-between items-center mt-10">
+                            <p class="text-subtitle font-semibold">Link</p>
+                            @livewire('detail_pertemuan-link', ['pertemuan' => $p1])
+                        </div>
+
+                        <div class="md:grid grid-cols-2 gap-20">
+                            @if ($groupedPertemuans->link->isNotEmpty())
+                                @foreach ($groupedPertemuans->link as $link)
+                                    <div class="shadow rounded-3xl p-4 h-fit">
+                                        <!-- isi card -->
+                                        <div class="flex justify-between items-center px-4 py-2">
+                                            <div class="flex gap-3 items-center">
+                                                <a href="{{ $link->url }}" target="_blank"
+                                                    style="display: block; text-decoration: none; font-size: 16px;">
+                                                    {{ $link->url }}
+                                                </a>
+                                            </div>
+                                            <div class="flex gap-2 items-center">
+                                                <button onclick="window.open('{{ $link->url }}', '_blank')">
+                                                    <span class="material-symbols-outlined">visibility</span>
+                                                </button>
+                                                <button class="ml-auto">
+                                                    <i
+                                                        class="fa-solid fa-pen text-white p-1.5 bg-baseBlue rounded-full"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!-- akhir dari isi card -->
+                                    </div>
+                                @endforeach
+                            @endif
+                        </div>
 
                 </div>
-
-                <div id="absensiContent" class="hidden mt-6">
-                    <p class="text-subtitle font-semibold">Absensi Siswa</p>
-                </div>
+                @endif
 
             </div>
+
+            <div id="absensiContent" class="hidden mt-6">
+                <p class="text-subtitle font-semibold">Absensi Siswa</p>
+            </div>
+
         </div>
     </div>
+</div>
 </div>

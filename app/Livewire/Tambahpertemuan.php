@@ -15,6 +15,8 @@ class Tambahpertemuan extends Component
 {
     public $boxinputmateri = [];
     public $boxinputlatihan = [];
+    public $boxinputlink = [];
+    public $links = [];
     public $inputType;
     public $waktutenggat = [];
     public $tanggaltenggat = [];
@@ -31,6 +33,11 @@ class Tambahpertemuan extends Component
     public function addlatihan($i){      
         $this->i = $i + 1;
         array_push($this->boxinputlatihan, $i);
+    }
+
+    public function addlink($i){      
+        $this->i = $i + 1;
+        array_push($this->boxinputlink, $i);
     }
 
     public function removemateri($key){
@@ -71,6 +78,10 @@ class Tambahpertemuan extends Component
         } elseif ($this->inputType == 'latihan') {
             foreach ($this->filelatihan as $key => $file) {
                 $file->store('latihan');
+            }
+        } elseif ($this->inputType == 'link') {
+            foreach ($this->link as $key => $file) {
+                $file->store('link');
             }
         }
         $user = Auth::user();
@@ -113,10 +124,12 @@ class Tambahpertemuan extends Component
                 'tgl_batas_akses' => $this->batas_tanggal_akses_2,
             ]);
         }
-        Link::create([
-            'pertemuan_id' => $pertemuan_id,
-            'url' => $this->link
-        ]);
+        foreach ($this->links as $link) {
+            Link::create([
+                'pertemuan_id' => $pertemuan_id,
+                'url' => $link
+            ]);
+        }
     }
     public function render()
     {

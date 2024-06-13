@@ -56,6 +56,10 @@ function showPopupLatihan() {
     document.getElementById('popupLatihan').classList.toggle('hidden');
 }
 
+function showPopupLink() {
+    document.getElementById('popupLink').classList.toggle('hidden');
+}
+
 </script>
 </body>
 </html>

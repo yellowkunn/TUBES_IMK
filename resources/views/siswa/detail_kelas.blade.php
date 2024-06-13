@@ -126,6 +126,28 @@
                                     </div>
                                     @endif
                                 </div>
+
+
+
+                                <div class="bg-white p-3 px-8 w-full rounded-t-xl drop-shadow-[0px_0px_2px_rgba(0,0,0,0.1)] mt-3">
+                                    <p class="font-semibold">Link</p>
+                                </div>
+
+                                <div class="bg-baseCream w-full rounded-b-xl">
+                                    @if($pertemuan->link->isNotEmpty())
+                                    <div class="grid divide-y-2">
+                                        @foreach($pertemuan->link as $link)
+                                        <div class="flex gap-3 p-3 px-8 items-center">
+                                            <i class="fa-regular fa-file"></i>
+                                            <a href="{{ $link->url }}" target="_blank"
+                                                style="display: block; text-decoration: none; font-size: 16px;">
+                                                {{ $link->url }}
+                                            </a>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                         @endforeach

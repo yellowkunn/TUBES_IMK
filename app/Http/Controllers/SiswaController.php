@@ -88,7 +88,7 @@ class SiswaController extends Controller
     public function programkelas(Kelas $kelas)
     {
         // Ambil data pertemuan beserta relasinya
-        $pertemuans = Pertemuan::with('materi', 'tugas')
+        $pertemuans = Pertemuan::with('materi', 'tugas', 'link')
             ->where('kelas_id', $kelas->id_kelas)
             ->get()
             ->groupBy('pertemuan_ke'); // Kelompokkan berdasarkan pertemuan_ke
@@ -99,10 +99,12 @@ class SiswaController extends Controller
             // Gabungkan materi dan tugas
             $materi = collect();
             $tugas = collect();
+            $link = collect();
 
             foreach ($items as $item) {
                 $materi = $materi->merge($item->materi);
                 $tugas = $tugas->merge($item->tugas);
+                $link = $link->merge($item->link);
             }
 
             // Tambahkan ke array hasil
@@ -111,6 +113,7 @@ class SiswaController extends Controller
                 'judul' => $items->first()->judul,
                 'materi' => $materi,
                 'tugas' => $tugas,
+                'link' => $link,
             ];
         }
         // dd($groupedPertemuans);
