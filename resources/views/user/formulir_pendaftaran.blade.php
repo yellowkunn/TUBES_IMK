@@ -25,11 +25,11 @@
 
         <!-- page hierarchy -->
         <div class="flex items-center gap-2 text-smallContent">
-            <a href="">Dashboard</a>
+            <a href="{{ route('home') }}" class="hover:font-semibold">Dashboard</a>
             <i class="fa-solid fa-caret-right text-baseBlue"></i>
-            <a href="">Detail Kelas</a>
+            <a href="" class="hover:font-semibold">Detail Kelas</a>
             <i class="fa-solid fa-caret-right text-baseBlue"></i>
-            <a href="">Formulir</a>
+            <a href="{{ route('formulirpendaftaran') }}" class="hover:font-semibold">Formulir</a>
         </div>
 
         <div class="text-center">
@@ -215,14 +215,9 @@
             <div class="flex justify-end gap-16 w-full mt-16">
                 <button id="btnPrevious" type="button" class="stepper-btn text-baseBlue hover:font-semibold">Sebelumnya</button>
                 <button id="btnReset" onclick="localStorage.clear();" type="reset" class="stepper-btn w-[50px] hover:font-semibold">Reset</button>
-                <button id="btnNext" type="button" class="stepper-btn w-[150px] p-3 bg-baseBlue text-white rounded hover:bg-baseBlue/90 hover:font-semibold">Selanjutnya</button>
+                <button id="btnNext" type="button" class="stepper-btn w-[150px] p-3 bg-baseBlue/90 text-white rounded hover:bg-baseBlue">Selanjutnya</button>
 
-                <button id="btnSubmit" type="submit" class="stepper-btn w-[220px] p-3 bg-baseBlue text-white rounded hover:bg-baseBlue/90 hover:font-semibold">Kirim</button>
-                <script>
-                    document.getElementById('btnSubmit').addEventListener('click', function() {
-                        window.location.href = 'url-halaman-pembayaran';
-                    });
-                </script>
+                <button id="btnSubmit" type="submit" class="stepper-btn w-[220px] p-3 bg-baseBlue/90 text-white rounded hover:bg-baseBlue">Kirim</button>
             </div>
         </form>
         </div>
@@ -233,11 +228,11 @@
 
     <script>
         //save data for unsubmitted form
-        function setDataForm() {
-            const inputElementIds = ['namalengkap', 'tempatlahir', 'agama', 'kewarganegaraan', 'gender', 
+        const inputElementIds = ['namalengkap', 'tempatlahir', 'agama', 'kewarganegaraan', 'gender', 
             'tanggallahir', 'alamat', 'nohp', 'notelp', 'pendidikanterakhir', 'diterimakursus', 'namaortu', 
             'tempatlahirortu', 'pendidikanortu', 'agamaortu', 'tanggallahirortu', 'pekerjaanortu'];
 
+        function setDataForm() {
             inputElementIds.forEach(function(inputId) {
                 const inputElement = document.getElementById(inputId);
 
@@ -246,10 +241,6 @@
         }
 
         function getDataForm() {
-            const inputElementIds = ['namalengkap', 'tempatlahir', 'agama', 'kewarganegaraan', 'gender', 
-            'tanggallahir', 'alamat', 'nohp', 'notelp', 'pendidikanterakhir', 'diterimakursus', 'namaortu', 
-            'tempatlahirortu', 'pendidikanortu', 'agamaortu', 'tanggallahirortu', 'pekerjaanortu'];
-
             inputElementIds.forEach(function(inputId) {
                 const inputElement = document.getElementById(inputId);
 
@@ -276,8 +267,7 @@
         const tabs = document.querySelectorAll('[id^="tab-"]');
         const btnPrevious = document.getElementById('btnPrevious');
         const btnNext = document.getElementById('btnNext');
-        const btnReset = document.getElementById('btnReset');
-
+        
         let currentTab = 0;
 
         function showTab(tabID) {
@@ -287,12 +277,12 @@
             currentTab = tabID;
 
             updateButtonVisibility();
+            updateButtonDisable();
             updateStepCircle(tabID);
         }
 
         function updateStepCircle(tabID) {
-
-        steps.forEach((circle, index) => {
+            steps.forEach((circle, index) => {
             if (index <= tabID) {
                 circle.style.background = '#7AA1E2';
             } else {
@@ -302,12 +292,28 @@
 
             const stepWidth = 36;
                 stepLine.style.width = `${tabID * stepWidth + (stepWidth / 2)}px`;
-            }
+        }
         
         function updateButtonVisibility() {
             btnPrevious.style.display = currentTab === 0 ? 'none' : 'inline-block';
             btnNext.style.display = currentTab === tabs.length - 1 ? 'none' : 'inline-block';
             btnSubmit.style.display = currentTab === 2 ? 'inline-block' : 'none';
+        }
+
+        function updateButtonDisable(){
+            inputElementIds.forEach(function(inputId) {
+                const inputElement = document.getElementById(inputId);
+
+                if(inputElement.value == ''){
+                    btnSubmit.classList.remove('bg-baseBlue/90', 'hover:bg-baseBlue');
+                    btnSubmit.classList.add('bg-slate-400');
+                    btnSubmit.disabled = true;
+                } else {
+                    btnSubmit.disabled = false;
+                    btnSubmit.classList.remove('bg-slate-400');
+                    btnSubmit.classList.add('bg-baseBlue/90', 'hover:bg-baseBlue');
+                }
+            });
         }
 
         btnNext.addEventListener('click', () => {

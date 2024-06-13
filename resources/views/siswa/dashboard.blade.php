@@ -112,7 +112,12 @@
                             </div>
                             <!-- akhir dari perulangan pertemuan -->
 
-                            <div class="sm:flex gap-6 mt-12 mb-3 md:mb-8">
+                            <div class="flex justify-between items-center mt-12">
+                                <p class="md:text-subtitle font-semibold">Kelas Saya</p>
+                                <a href="{{ route('kelas') }}" class="text-[#00e]">Selengkapnya</a>
+                            </div>
+
+                            <div class="sm:flex gap-6 mt-4 mb-3 md:mb-8">
                                 <!-- filter bds kelas aktif/tdk -->
                                 <div class="mb-3 md:mb-0">
                                     <select id="filterKelas" class="block appearance-none w-full sm:w-48 bg-white border border-greyBorder text-greyIcon px-4 py-2.5 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-greyIcon">
@@ -121,23 +126,21 @@
                                     </select>
                                 </div>
                                 <!-- akhir dari filter -->
-
-                                <div>
-                                    <a href=" {{url('/../formulirpendaftaran')}} " class="bg-white flex items-center gap-2 border border-greyBorder px-4 py-2 rounded-lg">
-                                        <span class="material-symbols-outlined text-greyIcon">add_circle</span>
-                                        <p class="text-greyIcon">Tambah kelas</p>
-                                    </a>
-                                </div>
                             </div>
 
                             <!-- daftar kelas -->
                             <div class="sm:grid grid-cols-2 gap-4 lg:gap-12 mt-8">
+                                @php
+                                $i = 1;
+                                @endphp
                                 @foreach($siswas as $siswa)
                                 @php
                                 $kelas = $siswa->kelas;
                                 @endphp
-                                @if($kelas)
-                                
+                                @if($kelas && $i <= 4)
+                                @php 
+                                $i++;
+                                @endphp
                                 <div class="p-6 lg:p-8 px-8 md:px-6 lg:px-10 bg-white drop-shadow-regularShadow rounded-lg flex flex-col gap-2 my-8 sm:my-4 md:my-0 group">
                                     <p class="font-semibold md:text-[20px] lg:text-subtitle">
                                         {{ $kelas->nama }}

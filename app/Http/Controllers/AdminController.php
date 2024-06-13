@@ -60,37 +60,46 @@ class AdminController extends Controller
     public function tambahkelasbaru(Request $request)
     {
         $request->validate([
-            'nama' => 'required|string|max:255|unique:kelas',
-            'deskripsi' => 'required|string|max:255',
-            'pengajar_id' => 'required|integer',
             'tingkat_kelas' => 'required|string|max:255',
-            'harga' => 'required|numeric',
+            'harga' => 'required|numeric|min:0',
             'rentang' => 'required|string|max:255',
-            'fasilitas' => 'required|string|max:255',
-            'gambar' => 'required|mimes:doc,docx,xls,xlsx,pdf,jpg,jpeg,png,bmp',
-            // 'jadwal_hari' => 'in:Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,Minggu',
+            'fasilitas' => 'required|string|max:1000', // Sesuaikan ukuran maksimal sesuai kebutuhan
+            'gambar' => 'nullable|file|mimes:jpg,jpeg,png,bmp|max:2048', // Maksimal 2 MB
+            // 'jadwal_hari' => 'required|in:Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,Minggu',
             'durasi' => 'required|string|max:255'
         ]);
-        
-        $file = $request->file('gambar');
-        if ($file) {
-            // $judul = $request->get('gambar');
-            $extension = $file->getClientOriginalExtension();
-            $nama_file = 'file_' . date('YmdHis') . '.' . $extension;
-            $file->move(public_path('berkas_ujis'), $nama_file);
-            $berkas = '' . $nama_file;
+
+        try{
+            $file = $request->file('gambar');
+            if ($file) {
+                // $judul = $request->get('gambar');
+                $extension = $file->getClientOriginalExtension();
+                $nama_file = 'file_' . date('YmdHis') . '.' . $extension;
+                $file->move(public_path('berkas_ujis'), $nama_file);
+                $berkas = '' . $nama_file;
+            }
+            DB::select('call kelas_baru(?,?,?,?,?,?,?,?,?)',
+            array($request->get('nama'),$request->get('tingkat_kelas'),
+            $berkas,
+            $request->get('deskripsi'),
+            $request->get('harga'),
+            $request->get('fasilitas'),
+            $request->get('rentang'),
+            $request->get('jadwal_hari'),
+            $request->get('durasi')
+        ));
+            return redirect()->back()->with('success', 'Berhasil menambahkan kelas');
+        } catch (Exception $e){
+            return redirect()->back()->with('error', 'Gagal menambahkan kelas');
         }
-        DB::select('call kelas_baru(?,?,?,?,?,?,?,?,?)',
-        array($request->get('nama'),$request->get('tingkat_kelas'),
-        $berkas,
-        $request->get('deskripsi'),
-        $request->get('harga'),
-        $request->get('fasilitas'),
-        $request->get('rentang'),
-        $request->get('jadwal_hari'),
-        $request->get('durasi')
-    ));
-        return redirect()->back()->with('success', 'Kelas berhasil ditambahkan');
+    }
+
+    public function hapuskelas(Request $request, $id){
+        $kelas = Kelas::findOrFail($id);
+        
+        $kelas->delete();
+
+        return redirect()->back()->with('success', 'Kelas berhasil dihapus');
     }
 
     // public function destroy(Request $request): RedirectResponse

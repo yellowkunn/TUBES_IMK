@@ -28,11 +28,14 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
     // Route::get('/admindashboard', [AdminController::class, 'dashboardadmin'])->name('dashboardadmin');
     Route::get('/pengaturanruangan', [AdminController::class, 'pengaturanruangan'])->name('pengaturanruangan');
-    Route::get('/editdaftarkelas', [AdminController::class, 'editdaftarkelas'])->name('editdaftarkelas');
-    Route::post('/tambahkelasbaru', [AdminController::class, 'tambahkelasbaru'])->name('tambahkelasbaru');
+
     Route::get('/editdaftarsiswa', [AdminController::class, 'editdaftarsiswa'])->name('editdaftarsiswa');
     Route::get('/editdaftarpengajar', [AdminController::class, 'editdaftarpengajar'])->name('editdaftarpengajar');
+
+    Route::post('/tambahkelasbaru', [AdminController::class, 'tambahkelasbaru']);
     Route::get('/editdetailkelas/{kelas}', [AdminController::class, 'editdetailkelas'])->name('editdetailkelas');
+    Route::get('/editdaftarkelas', [AdminController::class, 'editdaftarkelas'])->name('editdaftarkelas');
+    Route::post('/hapuskelas/{id}', [AdminController::class,'hapuskelas'])->name('kelas.hapus');
 });
 
 //Pengajar
@@ -66,7 +69,7 @@ Route::middleware(['role:siswa', 'auth', 'verified'])->group(function () {
 });
 
 // User
-Route::get('/formulirpendaftaran', [SiswaController::class, 'formulirpendaftaran']);
+Route::get('/formulirpendaftaran', [SiswaController::class, 'formulirpendaftaran'])->name('formulirpendaftaran');
 Route::post('/formulirpendaftaran', [SiswaController::class, 'kirimformulirpendaftaran']);
 require __DIR__.'/auth.php';
 
