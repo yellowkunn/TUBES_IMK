@@ -6,6 +6,7 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Models\Pengajar;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -29,7 +30,7 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
     // Route::get('/admindashboard', [AdminController::class, 'dashboardadmin'])->name('dashboardadmin');
     Route::get('/pengaturanruangan', [AdminController::class, 'pengaturanruangan'])->name('pengaturanruangan');
     Route::get('/editdaftarkelas', [AdminController::class, 'editdaftarkelas'])->name('editdaftarkelas');
-    Route::post('/tambahkelasbaru', [AdminController::class, 'tambahkelasbaru'])->name('tambahkelasbaru');
+    Route::post('/tambahkelasbaru', [AdminController::class, 'tambahkelasbaru']);
     Route::get('/editdaftarsiswa', [AdminController::class, 'editdaftarsiswa'])->name('editdaftarsiswa');
     Route::get('/editdaftarpengajar', [AdminController::class, 'editdaftarpengajar'])->name('editdaftarpengajar');
     Route::get('/editdetailkelas/{kelas}', [AdminController::class, 'editdetailkelas'])->name('editdetailkelas');
@@ -49,6 +50,7 @@ Route::middleware(['role:pengajar', 'auth', 'verified'])->group(function () {
     Route::get('/raporpengajar', [PengajarController::class, 'raporpengajar'])->name('raporpengajar');
     Route::get('/sertifikatpengajar', [PengajarController::class, 'sertifikatpengajar'])->name('sertifikatpengajar');
     Route::post('/kirimtambahpertemuan', [PengajarController::class, 'kirimtambahpertemuan']);
+    Route::get('/detail_pertemuan/{pertemuan}', [PengajarController::class, 'detail_pertemuan'])->name('detail_pertemuan');
 });
 
 //Siswa

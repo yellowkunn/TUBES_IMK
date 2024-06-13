@@ -60,17 +60,14 @@ class AdminController extends Controller
     public function tambahkelasbaru(Request $request)
     {
         $request->validate([
-            'nama' => 'required|string|max:255|unique:kelas',
-            'deskripsi' => 'required|string|max:255',
-            'pengajar_id' => 'required|integer',
             'tingkat_kelas' => 'required|string|max:255',
-            'harga' => 'required|numeric',
+            'harga' => 'required|numeric|min:0',
             'rentang' => 'required|string|max:255',
-            'fasilitas' => 'required|string|max:255',
-            'gambar' => 'required|mimes:doc,docx,xls,xlsx,pdf,jpg,jpeg,png,bmp',
-            // 'jadwal_hari' => 'in:Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,Minggu',
+            'fasilitas' => 'required|string|max:1000', // Sesuaikan ukuran maksimal sesuai kebutuhan
+            'gambar' => 'nullable|file|mimes:jpg,jpeg,png,bmp|max:2048', // Maksimal 2 MB
+            // 'jadwal_hari' => 'required|in:Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,Minggu',
             'durasi' => 'required|string|max:255'
-        ]);
+        ]);        
         
         $file = $request->file('gambar');
         if ($file) {

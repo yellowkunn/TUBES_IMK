@@ -9,6 +9,7 @@ use App\Models\Siswa;
 use App\Models\Biodata_siswa;
 use App\Models\Pengajar;
 use App\Models\Absensi;
+use App\Models\Pertemuan;
 use Illuminate\Support\Facades\DB;
 
 class PengajarController extends Controller
@@ -60,6 +61,38 @@ class PengajarController extends Controller
     {
         return view('pengajar.detail_pertemuan', compact('kelas'));
     }
+
+    public function detail_pertemuan(Pertemuan $pertemuan)
+    {
+        // Ambil data pertemuan beserta relasinya
+        $pertemuan = Pertemuan::with('materi', 'tugas')
+            ->where('id_pertemuan', $pertemuan->id_pertemuan)
+            ->first();
+        
+        // Inisialisasi koleksi untuk menyimpan materi dan tugas
+        $materi = collect();
+        $tugas = collect();
+    
+        // Gabungkan materi dan tugas dari pertemuan
+        if ($pertemuan) {
+            $materi = $materi->merge($pertemuan->materi);
+            $tugas = $tugas->merge($pertemuan->tugas);
+        }
+    
+        // Buat objek hasil gabungan materi dan tugas
+        $groupedPertemuans = (object) [
+            'materi' => $materi,
+            'tugas' => $tugas,
+        ];
+    
+        // Ambil data pertemuan untuk detail tampilan
+        $p1 = Pertemuan::where('id_pertemuan', $pertemuan->id_pertemuan)->first();
+        // dd($groupedPertemuans);
+    
+        // Tampilkan view dengan data yang diperlukan
+        return view('pengajar.detail_pertemuan', compact('p1', 'groupedPertemuans'));
+    }
+    
 
     public function jadwalpengajar()
     {

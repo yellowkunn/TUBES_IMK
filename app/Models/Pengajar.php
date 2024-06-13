@@ -23,4 +23,9 @@ class Pengajar extends Model
     {
         return $this->belongsTo(User::class, 'pengguna_id', 'id_pengguna');
     }
+
+    public function pertemuan()
+    {
+        return $this->hasMany(Pertemuan::class, 'pengajar_id', 'id_pengajar');
+    }
 }

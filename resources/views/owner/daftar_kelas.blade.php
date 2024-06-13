@@ -98,7 +98,7 @@
                                 </button>
                             </div>
                             <div class="bg-white p-7 pt-4 rounded-b-xl px-10 py-8">
-                                <form action="/tambahkelasbaru" method="POST" enctype="multipart/form-data">
+                                <form action="{{ url('/tambahkelasbaru') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="overflow-y-auto max-h-96 pe-7 flex flex-col gap-5 mt-5 px-0.5">
                                         <div class="flex justify-between gap-14">
