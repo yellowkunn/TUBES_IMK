@@ -27,4 +27,9 @@ class Kelas extends Model
     {
         return $this->hasMany(Pertemuan::class, 'kelas_id', 'id_kelas');
     }
+
+    public function barudiakses()
+    {
+        return $this->hasMany(BaruDiakses::class, 'kelas_id', 'id_kelas');
+    }
 }

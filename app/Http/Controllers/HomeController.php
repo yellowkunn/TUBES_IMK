@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BaruDiakses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
@@ -67,13 +68,15 @@ class HomeController extends Controller
 
 
                 case 'siswa':
+                    $barudiakses = BaruDiakses::orderBy('baru_diakses', 'desc')
+                    ->first();                    
                     $siswa = Siswa::where('pengguna_id', $user->id_pengguna)->first();
                     if ($siswa) {
                         $status = $siswa->status;
                         if ($status == 'MenungguVerif') {
                             return view('beranda', compact('kelass', 'siswaStatus'));
                         } elseif ($status == 'Aktif' || $status == 'TidakAktif') {
-                            return view('siswa.dashboard', compact('siswa', 'siswas'));
+                            return view('siswa.dashboard', compact('siswa', 'siswas', 'barudiakses'));
                         }
                     }
 
