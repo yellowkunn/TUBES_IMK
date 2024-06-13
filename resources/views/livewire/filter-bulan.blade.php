@@ -2,7 +2,8 @@
     <div class="flex justify-between items-center mt-12">
         <p class="text-subtitle font-semibold">Pertemuan yang telah dilakukan</p>
         <div>
-            <select wire:model="selectedMonth" wire:change="filter_bulan_pertemuan" id="filterBulan" class="block appearance-none w-44 bg-white border border-greyBorder text-greyIcon px-4 py-2 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-greyIcon">
+            <select wire:model="selectedMonth" wire:change="filter_bulan_pertemuan" id="filterBulan"
+                class="block appearance-none w-44 bg-white border border-greyBorder text-greyIcon px-4 py-2 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-greyIcon">
                 <option value="">Bulan</option>
                 <option value="Januari">Januari</option>
                 <option value="Februari">Februari</option>
@@ -21,8 +22,8 @@
     </div>
 
     <!-- card pertemuan -->
-    @if($filterBulan->isNotEmpty())
-        @foreach($filterBulan as $pertemuan)
+    @if ($filterBulan->isNotEmpty())
+        @foreach ($filterBulan as $pertemuan)
             <div class="bg-white p-5 px-8 rounded-lg shadow-meetCardShadow my-8">
                 <div class="flex justify-between">
                     <div class="flex flex-col">
@@ -31,8 +32,12 @@
                         <p class="text-greyIcon text-smallContent mt-3">{{ $pertemuan->tgl_pertemuan }}</p>
                     </div>
                     <div class="flex my-auto gap-6">
-                        <p class="text-baseDarkerGreen bg-baseDarkerGreen/20 h-fit p-2 px-4 rounded-full">{{ $this->getMonthName($pertemuan->tgl_pertemuan) }}</p>
-                        <a href=" {{ route('detail_pertemuan', $pertemuan->id_pertemuan) }} " class="bg-baseBlue/85 hover:bg-baseBlue text-white hover:font-semibold p-2 px-4 rounded-full">Lihat Detail</a>
+                        <p class="text-baseDarkerGreen bg-baseDarkerGreen/20 h-fit p-2 px-4 rounded-full">
+                            {{ $this->getMonthName($pertemuan->tgl_pertemuan) }}</p>
+                        <a href="{{ route('detail_pertemuan', $pertemuan->id_pertemuan) }}"
+                            class="bg-baseBlue/85 hover:bg-baseBlue text-white hover:font-semibold p-2 px-4 rounded-full">
+                            Lihat Detail
+                        </a>
                     </div>
                 </div>
             </div>

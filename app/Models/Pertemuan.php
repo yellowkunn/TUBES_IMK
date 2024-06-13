@@ -26,6 +26,10 @@ class Pertemuan extends Model
     {
         return $this->hasMany(Tugas::class, 'pertemuan_id', 'id_pertemuan');
     }
+    public function link()
+    {
+        return $this->hasMany(Link::class, 'pertemuan_id', 'id_pertemuan');
+    }
 
     public function kelas()
     {

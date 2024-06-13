@@ -65,13 +65,14 @@ class PengajarController extends Controller
     public function detail_pertemuan(Pertemuan $pertemuan)
     {
         // Ambil data pertemuan beserta relasinya
-        $pertemuan = Pertemuan::with('materi', 'tugas')
+        $pertemuan = Pertemuan::with('materi', 'tugas', 'link')
             ->where('id_pertemuan', $pertemuan->id_pertemuan)
             ->first();
         
         // Inisialisasi koleksi untuk menyimpan materi dan tugas
         $materi = collect();
         $tugas = collect();
+        $link = collect();
     
         // Gabungkan materi dan tugas dari pertemuan
         if ($pertemuan) {
