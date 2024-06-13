@@ -71,6 +71,7 @@
                                 @if ($groupedPertemuans->materi->isNotEmpty())
                                     @foreach ($groupedPertemuans->materi as $materi)
                                 <div class="shadow rounded-3xl p-4 h-fit">
+
                                             <!-- isi card -->
                                             <div class="flex justify-between items-center px-4 py-2">
                                                 <div>
@@ -136,6 +137,7 @@
                                 @if ($groupedPertemuans->tugas->isNotEmpty())
                                     @foreach ($groupedPertemuans->tugas as $tugas)
                                 <div class="shadow rounded-3xl p-4 h-fit">
+
                                             <!-- isi card -->
                                             <div class="flex justify-between items-center px-4 py-2">
                                                 <div>

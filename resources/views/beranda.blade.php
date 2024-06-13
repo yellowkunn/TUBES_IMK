@@ -21,13 +21,40 @@
 <body class="font-Inter text-regularContent">
     @include('components.navbar')
 
+    <div class=" px-8 sm:px-16 lg:px-20 flex justify-center" id="session">
+    @if (session('success_fp'))
+        <div id="success" class="mt-5 bg-[#f7fff4] border border-[#8bdc64] shadow-[0px_0px_6px_1px_rgba(86,169,47,0.2)] z-20 w-fit gap-2 items-center px-8 py-3 justify-center rounded-2xl flex unselectable">
+            <div class="flex justify-between items-center gap-4 lg:gap-36">
+                <div class="flex gap-4 items-center">
+                    <i class="fa-solid fa-check fa-lg p-2 py-4 bg-success rounded-full text-white"></i>
+                    <p class="text-lg text-greyIcon">{{ session('success_fp') }}</p>
+                </div>
+
+                <i class="fa-solid fa-xmark fa-lg p-2 py-4 h-fit text-greyIcon hover:bg-gray-200 rounded-full" onclick="document.getElementById('success').classList.add('hidden')"></i>
+            </div>
+        </div>
+    
+        @elseif (session('error_fp'))
+        <div id="error" class="bg-[#ffefef] border border-[#ff3838] shadow-[0px_0px_6px_2px_rgba(227,0,0,0.2)] z-20 gap-2 items-center w-fit px-8 py-3 justify-center rounded-2xl flex unselectable">
+            <div class="flex justify-between items-center gap-36">
+                <div class="flex gap-4 items-center">
+                    <i class="fa-solid fa-exclamation fa-lg p-4 bg-error rounded-full text-white"></i>
+                    <p class="text-lg text-greyIcon">{{ session('error_fp') }}</p>
+                </div>
+
+                <i class="fa-solid fa-xmark fa-lg p-2 py-4 h-fit text-greyIcon hover:bg-gray-200 rounded-full" onclick="document.getElementById('error').classList.add('hidden')"></i>
+            </div>
+        </div>
+    @endif
+    </div>
+
     <main class="flex flex-col self-center w-full max-md:max-w-full sm:pt-4 lg:pt-6 bg-white">
         @if(session('error'))
         <div class="alert alert-danger">
             {{ session('error') }}
         </div>
         @endif
-
+       
         <!-- section 1 -->
         <div class="flex justify-between px-8 sm:px-16 lg:px-20">
             <div class="mt-10 flex flex-col gap-8">
@@ -59,21 +86,21 @@
 
                 <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8 sm:mt-12">
                     @if(count($kelass) > 0)
-                    @foreach($kelass as $kelas)
+                    @foreach($kelass->slice(0, 8) as $kelas)
                     <article class="flex flex-col">
                         <a href="{{ url('/detailkelas/' . $kelas->id_kelas) }}" class="flex flex-col justify-center">
-                            <div class="flex flex-col p-5 sm:p-7 w-full drop-shadow-regularShadow bg-white hover:bg-white/75 hover:bg-white hover:drop-shadow-none rounded-xl">
+                            <div class="group transform transition-transform hover:scale-95 flex flex-col p-5 sm:p-7 w-full drop-shadow-regularShadow bg-white hover:drop-shadow-none rounded-xl">
                                 <div class="flex flex-col items-start text-neutral-700">
                                     <h4 class="font-semibold text-subtitle  ">{{ $kelas->nama }}</h4>
                                     <!-- <p class="text-smallContent italic font-light">kurikulum nasional</p> -->
                                 </div>
-                                <img loading="lazy" src="{{ asset('berkas_ujis/' . $kelas->foto) }}" alt="{{ $kelas->nama }} alt="" class=" mt-4 max-h-64 w-full object-cover rounded-lg" />
+                                <img loading="lazy" src="{{ asset('berkas_ujis/' . $kelas->foto) }}" alt="{{ $kelas->nama }}" class="mt-4 max-h-48 w-full object-cover rounded-lg" />
 
                                 <div class="flex flex-col gap-1">
-                                    <div class="flex gap-2 items-center mt-2">
+                                    <div class="flex gap-2 items-center mt-3">
                                         <span class="material-symbols-outlined text-[20px]">calendar_today</span>  
                                         <p class="my-auto font-normal">
-                                            3 pertemuan/minggu
+                                            3 pertemuan /minggu
                                         </p>
                                     </div>
                                     <div class="flex gap-2 items-center">
@@ -87,7 +114,7 @@
                                 <p class="text-justify text-neutral-600 mt-2 break-pretty">
                                     <span class="text-[20px] sm:text-subtitle font-semibold text-amber-500">Rp{{ number_format($kelas->harga, 0, ',', '.') }}</span>/bulan
                                 </p>
-                                <a href="{{ url('/detailkelas/' . $kelas->id_kelas) }}" class="py-2 w-full font-semibold text-white bg-baseBlue hover:bg-[#607FB2] rounded-lg mt-3">
+                                <a href="{{ url('/detailkelas/' . $kelas->id_kelas) }}" class="py-2 w-full text-white bg-baseBlue/90 group-hover:bg-baseBlue rounded-lg mt-3">
                                     Lihat
                                 </a>
 
@@ -96,7 +123,7 @@
                     </article>
                     @endforeach
                     @else
-                    <p class="font-semibold text-subtitle sm:text-title md:text-[20px] text-[#333333]">Ooppss..tidak ada data kelas :(</p>
+                    <p class="font-semibold text-subtitle sm:text-title md:text-[20px] text-[#333333]">Belum ada kelas yang tersedia saat ini.</p>
                     @endif
 
                 </div>
@@ -174,6 +201,14 @@
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
+        setTimeout(function() {
+            const session = document.getElementById('session');
+            if (session) {
+                session.classList.add('hidden');
+            }
+        }, 6000);
+
+        
         const words = ["Education Beyond Boundaries.", "Join & be part of us now!", "Fortunate Education Center."];
         let i = 0;
         let j = 0;
