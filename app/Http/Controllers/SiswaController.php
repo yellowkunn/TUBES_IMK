@@ -23,7 +23,25 @@ class SiswaController extends Controller
     public function kirimformulirpendaftaran(Request $request)
     {
         $request->validate([
-            'gambar' => 'required|mimes:doc,docx,xls,xlsx,pdf,jpg,jpeg,png,bmp|max:2048'
+            'gambar' => 'required|mimes:jpg,jpeg,png,bmp|max:2048', // File gambar
+            'namalengkap' => 'required|string|max:255', // String dengan maksimal panjang 255 karakter
+            'gender' => 'required|in:Laki-laki,Perempuan', // Harus salah satu dari dua nilai ini
+            'tempatlahir' => 'required|string|max:255',
+            'tanggallahir' => 'required|date', // Harus dalam format tanggal
+            'agama' => 'required|string|max:255',
+            'kewarganegaraan' => 'required|string|max:255',
+            'alamat' => 'required|string', // Tidak ada batasan ukuran di MySQL untuk TEXT
+            'notelp' => 'required|string|max:255',
+            'nohp' => 'required|string|max:255',
+            'pendidikanterakhir' => 'required|string|max:255',
+            'diterimakursus' => 'required|string|max:255',
+            'tingkat_kelas' => 'required|string|max:255',
+            'namaortu' => 'required|string|max:255',
+            'tempatlahirortu' => 'required|string|max:255',
+            'tanggallahirortu' => 'required|date',
+            'agamaortu' => 'required|string|max:255',
+            'pendidikanortu' => 'required|string|max:255',
+            'pekerjaanortu' => 'required|string|max:255'
         ]);
 
         try{
