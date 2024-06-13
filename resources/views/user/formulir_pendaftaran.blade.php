@@ -25,11 +25,11 @@
 
         <!-- page hierarchy -->
         <div class="flex items-center gap-2 text-smallContent">
-            <a href="">Dashboard</a>
+            <a href="{{ route('home') }}" class="hover:font-semibold">Dashboard</a>
             <i class="fa-solid fa-caret-right text-baseBlue"></i>
-            <a href="">Detail Kelas</a>
+            <a href="" class="hover:font-semibold">Detail Kelas</a>
             <i class="fa-solid fa-caret-right text-baseBlue"></i>
-            <a href="">Formulir</a>
+            <a href="{{ route('formulirpendaftaran') }}" class="hover:font-semibold">Formulir</a>
         </div>
 
         <div class="text-center">
@@ -43,13 +43,14 @@
             <div id="step-circle-3" class="rounded-full bg-white border-2 border-[#7AA1E2] p-2 px-5 text-white text-subtitle text-center">3</div>
         </div>
 
-        <form action="{{ url('/formulirpendaftaran') }}" id="formId" method="POST" enctype="multipart/form-data" autocomplete="off">
+        <div x-data="formHandler()">
+        <form action="{{ url('/formulirpendaftaran') }}" id="formId" method="POST" enctype="multipart/form-data" autocomplete="off" onchange="setDataForm()">
             @csrf
             <div class=" flex flex-col mt-8 rounded-lg" id="tab-1">
                 <p class="text-subtitle font-semibold">Biodata</p>
                 <div class="w-[150px] mb-10 mx-auto">
-                    <input type="file" name="gambar" id="file2" class="invisible" accept="image/*" onchange="showFile(this)" required>
-                    <button id="file" onclick="document.getElementById('file2').click(); return false;" class="p-2 py-3 w-full border rounded-xl shadow">
+                    <input type="file" name="gambar" id="gambar" class="invisible" accept="image/*" onchange="showFile(this)" required>
+                    <button id="file" onclick="document.getElementById('gambar').click(); return false;" class="p-2 py-3 w-full border rounded-xl shadow">
                         <div class="w-[130px] h-[170px] p-1 mb-2 flex justify-center">
                             <img src="" alt="" id="uploadedFile" class="max-w-full max-h-full rounded">
                         </div>
@@ -65,19 +66,19 @@
                     <div class="flex flex-col gap-8 w-full">
                         <div class="relative flex flex-col gap-3 w-full">
                             <p>Nama Lengkap</p>
-                            <input type="text" id="text" name="namalengkap" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                            <input type="text" id="namalengkap" name="namalengkap" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
                         </div>
                         <div class="relative flex flex-col gap-3 w-full">
                             <p>Tempat lahir</p>
-                            <input type="text" id="text" name="tempatlahir" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                            <input type="text" id="tempatlahir" name="tempatlahir" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
                         </div>
                         <div class="relative flex flex-col gap-3 w-full">
                             <p>Agama</p>
-                            <input type="text" id="text" name="agama" required class="px-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                            <input type="text" id="agama" name="agama" required class="px-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
                         </div>
                         <div class="relative flex flex-col gap-3">
                             <p>Kewarganegaraan</p>
-                            <input type="text" id="text" name="kewarganegaraan" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                            <input type="text" id="kewarganegaraan" name="kewarganegaraan" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
                         </div>
                     </div>
 
@@ -87,7 +88,7 @@
                             <div>
                                 <p>Jenis Kelamin</p>
                                 <div class="relative w-full">
-                                    <select id="genderSelect" name="gender" class="block mt-2 appearance-none w-full bg-greyBackground border border-greyBorder text-greyIcon py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-greyIcon">
+                                    <select id="gender" name="gender" class="block mt-2 appearance-none w-full bg-greyBackground border border-greyBorder text-greyIcon py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-greyIcon">
                                         <option value="" class="text-greyIcon">Jenis Kelamin</option>
                                         <option value="Laki-laki" class="text-greyIcon">Laki-laki</option>
                                         <option value="Perempuan" class="text-greyIcon">Perempuan</option>
@@ -98,11 +99,11 @@
 
                             <div class="relative flex flex-col gap-3 w-full">
                                 <p>Tanggal lahir</p>
-                                <input type="date" id="text" name="tanggallahir" required class="px-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                                <input type="date" id="tanggallahir" name="tanggallahir" required class="px-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
                             </div>
                             <div class="relative flex flex-col gap-3 w-full">
                                 <p>Alamat</p>
-                                <input type="text" id="text" name="alamat" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                                <input type="text" id="alamat" name="alamat" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
                             </div>
                         </div>
                     </div>
@@ -113,11 +114,11 @@
                 <div class="flex gap-24 justify-between w-full">
                     <div class="relative flex flex-col gap-3 w-full">
                         <p>No. HP</p>
-                        <input type="text" id="text" name="nohp" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                        <input type="text" id="nohp" name="nohp" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
                     </div>
                     <div class="relative flex flex-col gap-3 w-full">
                         <p>No. Telp</p>
-                        <input type="text" id="text" name="notelp" required class="px-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                        <input type="text" id="notelp" name="notelp" required class="px-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
                     </div>
                 </div>
 
@@ -125,11 +126,11 @@
                 <div class="flex gap-24 justify-between w-full">
                     <div class="relative flex flex-col gap-3 w-full">
                         <p>Pendidikan Terakhir</p>
-                        <input type="text" id="text" name="pendidikanterakhir" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                        <input type="text" id="pendidikanterakhir" name="pendidikanterakhir" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
                     </div>
                     <div class="relative flex flex-col gap-3 w-full">
                         <p>Diterima di kursus ini</p>
-                        <input type="text" id="text" name="diterimakursus" required class="px-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                        <input type="text" id="diterimakursus" name="diterimakursus" required class="px-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
                     </div>
                 </div>
             </div>
@@ -141,16 +142,16 @@
                     <div class="flex flex-col gap-8 w-full">
                         <div class="relative flex flex-col gap-3 w-full">
                             <p>Nama Orang Tua</p>
-                            <input type="text" id="text" name="namaortu" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                            <input type="text" id="namaortu" name="namaortu" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
                         </div>
 
                         <div class="relative flex flex-col gap-3 w-full">
                             <p>Tempat Lahir</p>
-                            <input type="text" id="text" name="tempatlahirortu" required class="px-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                            <input type="text" id="tempatlahirortu" name="tempatlahirortu" required class="px-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
                         </div>
                         <div class="relative flex flex-col gap-3">
                             <p>Pendidikan</p>
-                            <input type="text" id="text" name="pendidikanortu" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                            <input type="text" id="pendidikanortu" name="pendidikanortu" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
                         </div>
                     </div>
 
@@ -158,15 +159,15 @@
                         <div class="flex flex-col gap-8 w-full">
                             <div class="relative flex flex-col gap-3 w-full">
                                 <p>Agama</p>
-                                <input type="text" id="text" name="agamaortu" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                                <input type="text" id="agamaortu" name="agamaortu" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
                             </div>
                             <div class="relative flex flex-col gap-3 w-full">
                                 <p>Tanggal lahir</p>
-                                <input type="date" id="text" name="tanggallahirortu" required class="px-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                                <input type="date" id="tanggallahirortu" name="tanggallahirortu" required class="px-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
                             </div>
                             <div class="relative flex flex-col gap-3 w-full">
                                 <p>Pekerjaan</p>
-                                <input type="text" id="text" name="pekerjaanortu" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                                <input type="text" id="pekerjaanortu" name="pekerjaanortu" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
                             </div>
                         </div>
                     </div>
@@ -181,35 +182,6 @@
                 <p class="text-subtitle font-semibold mb-4">Keterangan kelas</p>
                 <div class="grid grid-cols-2 gap-48 w-full">
                     <!-- dd daftar kelas -->
-                    <!-- <div>
-                <button type="button" id="ddDaftarKelas-0" class="bg-white flex justify-between items-center border border-greyBorder px-4 py-2 rounded-lg w-full">
-                    <p class="text-greyIcon">Matematika</p>
-                    <i class="fa-solid fa-angle-down"></i>
-                </button>
-                
-                <div id="menuDaftarKelas-0" class="hidden ps-5 w-1/3 bg-white mt-2 py-2 rounded-md drop-shadow-regularShadow absolute" style="color: #949494;">
-                    <a href="#" class="block py-1">Bahasa Inggris</a>
-                    <a href="#" class="block py-1">Kimia</a>
-                    <a href="#" class="block py-1">Fisika</a>
-                    <a href="#" class="block py-1">TOEFL</a>
-                    <a href="#" class="block py-1">IELTS</a>
-                </div>
-            </div> -->
-                    <!-- akhir dari dd daftar kelas -->
-                    <!-- dd tingkatan -->
-                    <!-- <div> -->
-                    <!-- <button type="button" id="ddTingkatan-0" class="bg-white flex justify-between items-center border border-greyBorder px-4 py-2 rounded-lg w-full">
-                    <p class="text-greyIcon">SMP</p>
-                    <i class="fa-solid fa-angle-down"></i>
-                </button>
-                
-                <div id="menuTingkatan-0" class="hidden ps-5 w-1/3 bg-white mt-2 py-2 rounded-md drop-shadow-regularShadow absolute" style="color: #949494;">
-                    <a href="#" class="block py-1">SD</a>
-                    <a href="#" class="block py-1">SMP</a>
-                    <a href="#" class="block py-1">SMA</a>
-                </div> -->
-                    <!-- </div> -->
-                    <!-- akhir dari dd tingkatan -->
                     <div>
                         <div class="relative w-full">
                             <select id="" name="kelas" class="block mt-2 appearance-none w-full bg-greyBackground border border-greyBorder text-greyIcon py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-greyIcon">
@@ -242,23 +214,43 @@
 
             <div class="flex justify-end gap-16 w-full mt-16">
                 <button id="btnPrevious" type="button" class="stepper-btn text-baseBlue hover:font-semibold">Sebelumnya</button>
-                <button id="btnReset" type="reset" class="stepper-btn w-[50px] hover:font-semibold">Reset</button>
-                <button id="btnNext" type="button" class="stepper-btn w-[150px] p-3 bg-baseBlue text-white rounded hover:bg-baseBlue/90 hover:font-semibold">Selanjutnya</button>
+                <button id="btnReset" onclick="localStorage.clear();" type="reset" class="stepper-btn w-[50px] hover:font-semibold">Reset</button>
+                <button id="btnNext" type="button" class="stepper-btn w-[150px] p-3 bg-baseBlue/90 text-white rounded hover:bg-baseBlue">Selanjutnya</button>
 
-                <button id="btnSubmit" type="submit" class="stepper-btn w-[220px] p-3 bg-baseBlue text-white rounded hover:bg-baseBlue/90 hover:font-semibold">Lanjut ke pembayaran</button>
-                <script>
-                    document.getElementById('btnSubmit').addEventListener('click', function() {
-                        window.location.href = 'url-halaman-pembayaran';
-                    });
-                </script>
+                <button id="btnSubmit" type="submit" class="stepper-btn w-[220px] p-3 bg-baseBlue/90 text-white rounded hover:bg-baseBlue">Kirim</button>
             </div>
         </form>
+        </div>
 
     </div>
 
     @include('components.footer')
 
     <script>
+        //save data for unsubmitted form
+        const inputElementIds = ['namalengkap', 'tempatlahir', 'agama', 'kewarganegaraan', 'gender', 
+            'tanggallahir', 'alamat', 'nohp', 'notelp', 'pendidikanterakhir', 'diterimakursus', 'namaortu', 
+            'tempatlahirortu', 'pendidikanortu', 'agamaortu', 'tanggallahirortu', 'pekerjaanortu'];
+
+        function setDataForm() {
+            inputElementIds.forEach(function(inputId) {
+                const inputElement = document.getElementById(inputId);
+
+                localStorage.setItem('"'+ inputId +'"', inputElement.value);
+            });
+        }
+
+        function getDataForm() {
+            inputElementIds.forEach(function(inputId) {
+                const inputElement = document.getElementById(inputId);
+
+                inputElement.value = localStorage.getItem('"'+ inputId +'"');
+            });
+        }
+
+        window.onload = getDataForm();
+
+
         function showFile(input) {
             const getFile = document.getElementById('uploadedFile');
             if (input.files && input.files[0]) {
@@ -275,8 +267,7 @@
         const tabs = document.querySelectorAll('[id^="tab-"]');
         const btnPrevious = document.getElementById('btnPrevious');
         const btnNext = document.getElementById('btnNext');
-        const btnReset = document.getElementById('btnReset');
-
+        
         let currentTab = 0;
 
         function showTab(tabID) {
@@ -286,12 +277,12 @@
             currentTab = tabID;
 
             updateButtonVisibility();
+            updateButtonDisable();
             updateStepCircle(tabID);
         }
 
         function updateStepCircle(tabID) {
-
-        steps.forEach((circle, index) => {
+            steps.forEach((circle, index) => {
             if (index <= tabID) {
                 circle.style.background = '#7AA1E2';
             } else {
@@ -301,13 +292,28 @@
 
             const stepWidth = 36;
                 stepLine.style.width = `${tabID * stepWidth + (stepWidth / 2)}px`;
-            }
+        }
         
         function updateButtonVisibility() {
             btnPrevious.style.display = currentTab === 0 ? 'none' : 'inline-block';
             btnNext.style.display = currentTab === tabs.length - 1 ? 'none' : 'inline-block';
-            btnReset.style.display = currentTab === 2 ? 'inline-block' : 'none';
             btnSubmit.style.display = currentTab === 2 ? 'inline-block' : 'none';
+        }
+
+        function updateButtonDisable(){
+            inputElementIds.forEach(function(inputId) {
+                const inputElement = document.getElementById(inputId);
+
+                if(inputElement.value == ''){
+                    btnSubmit.classList.remove('bg-baseBlue/90', 'hover:bg-baseBlue');
+                    btnSubmit.classList.add('bg-slate-400');
+                    btnSubmit.disabled = true;
+                } else {
+                    btnSubmit.disabled = false;
+                    btnSubmit.classList.remove('bg-slate-400');
+                    btnSubmit.classList.add('bg-baseBlue/90', 'hover:bg-baseBlue');
+                }
+            });
         }
 
         btnNext.addEventListener('click', () => {

@@ -26,7 +26,7 @@
           <h3 class="mt-4 md:mt-8 text-subtitle font-semibold">Waktu</h3>
 
           <div class="flex flex-col gap-3">
-              <div class="flex gap-2 justify-center items-center mt-4">
+              <div class="flex gap-2 items-center mt-4">
                   <span class="material-symbols-outlined">calendar_today</span>  
                   <p class="my-auto font-normal">
                       <span class="font-semibold">Jadwal :</span> {{ $kelas->jadwal_hari }}
@@ -79,35 +79,46 @@
         @endforeach
       </ul>
   
-  <section class="flex gap-5 justify-between items-center mt-12 max-md:flex-wrap max-md:max-w-full">
-    <h3 class="text-subtitle font-semibold">Kelas Lainnya</h3>
+  <section class="flex gap-5 justify-between items-center mt-16 max-md:flex-wrap max-md:max-w-full">
+    <p class="text-title font-semibold">Kelas Lainnya</p>
     <a href="#" class="text-blue-700 whitespace-nowrap">
       Selengkapnya
     </a>
   </section>
-  <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 my-8 md:mb-36 sm:mt-12">
-      @foreach($class as $kls)
+  <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 my-8 md:mb-36 sm:mt-12">
+      @foreach($class->slice(0,4) as $kls)
       <article class="flex flex-col">
-          <a href="{{ url('/detailkelas/' . $kls->id_kelas) }}" class="flex flex-col justify-center">
-              <div class="flex flex-col p-5 sm:p-7 w-full drop-shadow-regularShadow bg-white hover:bg-white/75 hover:bg-white hover:drop-shadow-none rounded-xl">
-              <div class="flex flex-col items-start text-neutral-700">
-                  <h4 class="font-semibold">{{ $kls->nama }}</h4>
-                  <!-- <p class="text-smallContent italic font-light">kurikulum nasional</p> -->
+          <a href="{{ route('detailkelas', $kls->id_kelas) }}" class="flex flex-col justify-center">
+              <div class="group transform transition-transform hover:scale-95 flex flex-col p-5 sm:p-7 w-full drop-shadow-regularShadow bg-white rounded-xl">
+                  <div class="flex flex-col items-start text-neutral-700">
+                      <h4 class="font-semibold text-subtitle  ">{{ $kls->nama }}</h4>
+                      <!-- <p class="text-smallContent italic font-light">kurikulum nasional</p> -->
+                  </div>
+                  <img loading="lazy" src="{{ asset('berkas_ujis/' . $kls->foto) }}" alt="{{ $kls->nama }}" class="mt-4 max-h-48 w-full object-cover rounded-lg" />
+
+                  <div class="flex flex-col gap-1">
+                      <div class="flex gap-2 items-center mt-3">
+                          <span class="material-symbols-outlined text-[20px]">calendar_today</span>  
+                          <p class="my-auto font-normal">
+                              3 pertemuan /minggu
+                          </p>
+                      </div>
+                      <div class="flex gap-2 items-center">
+                          <i class="fa-lg fa-regular fa-clock fa-sm"></i>  
+                          <p class="my-auto font-normal">
+                              {{ $kls->durasi }} /sesi
+                          </p>
+                      </div>
+                  </div>
+
+                  <p class="text-justify text-neutral-600 mt-2 break-pretty">
+                      <span class="text-[20px] sm:text-subtitle font-semibold text-amber-500">Rp{{ number_format($kls->harga, 0, ',', '.') }}</span>/bulan
+                  </p>
+                  <a href="{{ route('detailkelas', $kls->id_kelas) }}" class="py-2 w-full text-white text-center bg-baseBlue/90 group-hover:bg-baseBlue rounded-lg mt-3">
+                      Lihat
+                  </a>
+
               </div>
-              <img loading="lazy" src="{{ asset('berkas_ujis/' . $kls->foto) }}" alt="{{ $kls->nama }}" class="mt-4 max-h-64 w-full object-cover rounded-lg" />
-              <p class="mt-6 text-smallContent text-neutral-700 text-start">
-              {{ $kls->deskripsi }}
-              </p>
-
-              <p class="text-justify text-neutral-600 mt-2 break-pretty">
-                  <span class="text-[20px] sm:text-subtitle font-semibold text-amber-500">Rp{{ number_format($kls->harga, 0, ',', '.') }}</span>/bulan
-              </p>
-
-              <a href="{{ url('/detailkelas/' . $kls->id_kelas) }}" class="py-2 mt-4 w-full text-center font-semibold text-white bg-baseBlue hover:bg-[#607FB2] rounded-lg">
-                  Lihat
-              </a>
-
-          </div>
           </a>
       </article>
       @endforeach

@@ -22,39 +22,43 @@ class SiswaController extends Controller
 
     public function kirimformulirpendaftaran(Request $request)
     {
-        // dd($request->all());
-        // dd($request->get('kelas'));
         $request->validate([
             'gambar' => 'required|mimes:doc,docx,xls,xlsx,pdf,jpg,jpeg,png,bmp|max:2048'
         ]);
-        $file = $request->file('gambar');
-        if ($file) {
-            // $judul = $request->get('gambar');
-            $extension = $file->getClientOriginalExtension();
-            $nama_file = 'file_' . date('YmdHis') . '.' . $extension;
-            $file->move(public_path('berkas_ujis'), $nama_file);
-            $berkas = '' . $nama_file;
+
+        try{
+            $file = $request->file('gambar');
+            if ($file) {
+                // $judul = $request->get('gambar');
+                $extension = $file->getClientOriginalExtension();
+                $nama_file = 'file_' . date('YmdHis') . '.' . $extension;
+                $file->move(public_path('berkas_ujis'), $nama_file);
+                $berkas = '' . $nama_file;
+            }
+            DB::select(
+                'call kirimformulirpendaftaran(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+                array(
+                    $request->get('id_pengguna'), $berkas,
+                    $request->get('namalengkap'), $request->get('gender'),
+                    $request->get('tempatlahir'), $request->get('tanggallahir'),
+                    $request->get('agama'), $request->get('kewarganegaraan'),
+                    $request->get('alamat'), $request->get('notelp'),
+                    $request->get('nohp'), $request->get('pendidikanterakhir'),
+                    $request->get('diterimakursus'), $request->get('tingkat_kelas'), $request->get('namaortu'),
+                    $request->get('tempatlahirortu'), $request->get('tanggallahirortu'),
+                    $request->get('agamaortu'), $request->get('pendidikanortu'),
+                    $request->get('pekerjaanortu')
+                )
+            );
+            DB::select(
+                'call insert_siswa(?,?,?)',
+                array($request->get('id_pengguna'), $request->get('kelas'), $request->get('status'))
+            );
+            return redirect('/berandasiswa')->with('success_fp', 'Formulir pendaftaran berhasil dikirim dan akan ditinjau dalam 2x24 jam oleh pihak FEC. 
+                                            Harap periksa progres pendaftaran anda secara berkala pada laman Progres Pendaftaran');
+        } catch(Exception $e){
+            return redirect('/berandasiswa')->with('error_fp','Gagal mengirim formulir pendaftaran Anda');
         }
-        DB::select(
-            'call kirimformulirpendaftaran(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
-            array(
-                $request->get('id_pengguna'), $berkas,
-                $request->get('namalengkap'), $request->get('gender'),
-                $request->get('tempatlahir'), $request->get('tanggallahir'),
-                $request->get('agama'), $request->get('kewarganegaraan'),
-                $request->get('alamat'), $request->get('notelp'),
-                $request->get('nohp'), $request->get('pendidikanterakhir'),
-                $request->get('diterimakursus'), $request->get('tingkat_kelas'), $request->get('namaortu'),
-                $request->get('tempatlahirortu'), $request->get('tanggallahirortu'),
-                $request->get('agamaortu'), $request->get('pendidikanortu'),
-                $request->get('pekerjaanortu')
-            )
-        );
-        DB::select(
-            'call insert_siswa(?,?,?)',
-            array($request->get('id_pengguna'), $request->get('kelas'), $request->get('status'))
-        );
-        return redirect()->back();
     }
 
     public function detailkelas(Kelas $kelas)
@@ -149,15 +153,4 @@ class SiswaController extends Controller
         $siswas = Siswa::where('pengguna_id', $user->id_pengguna)->with('kelas')->get();
         return view('siswa.sertifikat', compact('siswas'));
     }
-
-    // public function destroy(Request $request): RedirectResponse
-    // {
-    //     Auth::guard('web')->logout();
-
-    //     $request->session()->invalidate();
-
-    //     $request->session()->regenerateToken();
-
-    //     return redirect('/');
-    // }
 }

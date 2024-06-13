@@ -64,14 +64,16 @@
                         <div class="flex flex-col gap-3">
                             <div class="flex justify-between items-center mt-6">
                                 <p class="text-subtitle font-semibold">Materi</p>
+
                                 <button type="button" onclick="showPopupMateri()"><i
-                                        class="fa-solid fa-plus p-2 px-[9px] bg-baseBlue text-white rounded-full"></i></button>
+                                        class="fa-solid fa-plus p-2 px-[9px] bg-baseBlue/90 hover:bg-baseBlue text-white rounded-full"></i></button>
                             </div>
 
                             <div class="md:grid grid-cols-2 gap-20">
                                 @if ($groupedPertemuans->materi->isNotEmpty())
                                     @foreach ($groupedPertemuans->materi as $materi)
                                 <div class="shadow rounded-3xl p-4 h-fit">
+
                                             <!-- isi card -->
                                             <div class="flex justify-between items-center px-4 py-2">
                                                 <div>
@@ -130,14 +132,16 @@
                         <div class="flex flex-col gap-3">
                             <div class="flex justify-between items-center mt-10">
                                 <p class="text-subtitle font-semibold">Latihan</p>
+
                                 <button type="button" onclick="showPopupLatihan()"><i
-                                        class="fa-solid fa-plus p-2 px-[9px] bg-baseBlue text-white rounded-full"></i></button>
+                                        class="fa-solid fa-plus p-2 px-[9px] bg-baseBlue/90 hover:bg-baseBlue text-white rounded-full"></i></button>
                             </div>
 
                             <div class="md:grid grid-cols-2 gap-20">
                                 @if ($groupedPertemuans->materi->isNotEmpty())
                                     @foreach ($groupedPertemuans->materi as $materi)
                                 <div class="shadow rounded-3xl p-4 h-fit">
+
                                             <!-- isi card -->
                                             <div class="flex justify-between items-center px-4 py-2">
                                                 <div>

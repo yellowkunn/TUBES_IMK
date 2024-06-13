@@ -20,11 +20,13 @@ module.exports = {
             baseCream: '#F8F5E2',
             greyIcon: '#555555',
             greyBorder: '#D9D9D9',
-            greyBackground: '#FCFCFC'
+            greyBackground: '#FCFCFC',
+            success: '#56A92F',
+            error: '#D60101'
         },
         fontSize: {
             title: '32px',
-            subtitle: '24px',
+            subtitle: '22px',
             regularContent: '16px',
             smallContent: '14px',
         },
@@ -33,7 +35,7 @@ module.exports = {
         },
         boxShadow: {
             'meetCardShadow': '0px 4px 10px 0 rgba(0,0,0,0.1)',
-        }
+        },
     },
     },
 

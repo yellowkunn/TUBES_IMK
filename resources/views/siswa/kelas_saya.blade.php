@@ -35,7 +35,14 @@
                         <a href="{{ route('kelas') }}" class="hover:font-semibold">Kelas</a>
                     </div>
 
-                    <p class="text-title font-semibold mt-8">Kelas Saya</p>   
+                    <div class="flex justify-between mt-8">
+                        <p class="text-title font-semibold">Kelas Saya</p>   
+                        
+                        <a href=" {{url('/../formulirpendaftaran')}} " class="bg-baseBlue/90 hover:bg-baseBlue text-white flex items-center gap-2 px-4 py-2 rounded-lg">
+                            <span class="material-symbols-outlined">add_circle</span>
+                            <p>Tambah kelas</p>
+                        </a>
+                    </div>
                     
                     <!-- daftar kelas -->
                     <div class="sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-12 mt-8">
