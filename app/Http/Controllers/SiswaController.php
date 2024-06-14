@@ -109,6 +109,7 @@ class SiswaController extends Controller
 
             // Tambahkan ke array hasil
             $groupedPertemuans[] = (object) [
+                'id_pertemuan' => $items->first()->id_pertemuan,
                 'pertemuan_ke' => $pertemuan_ke,
                 'judul' => $items->first()->judul,
                 'materi' => $materi,

@@ -114,7 +114,7 @@
                         {{-- L A T I H A N --}}
                     @elseif($selectedBahan == 'Latihan')
                         <div class="flex flex-col gap-3">
-                            <div class="flex justify-between items-center mt-10">
+                            <div class="flex justify-between items-center mt-6">
                                 <p class="text-subtitle font-semibold">Latihan</p>
                                 @livewire('detail_pertemuan-latihan', ['pertemuan' => $p1])
                             </div>
@@ -185,9 +185,10 @@
 
                         {{-- L I N K --}}
                     @elseif($selectedBahan == 'Link')
-                        <div class="flex justify-between items-center mt-10">
-                            <p class="text-subtitle font-semibold">Link</p>
-                        </div>
+                    <div class="flex justify-between items-center mt-6">
+                        <p class="text-subtitle font-semibold">Link</p>
+                        @livewire('detail_pertemuan-link', ['pertemuan' => $p1])
+                    </div>
 
                         <div class="md:grid grid-cols-2 gap-20">
                             @if ($groupedPertemuans->link->isNotEmpty())

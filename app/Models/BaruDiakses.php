@@ -14,8 +14,14 @@ class BaruDiakses extends Model
     protected $guarded = ['id_barudiakses'];
     public $timestamps = false;
 
-    public function kelas()
+    public function pengguna()
     {
-        return $this->belongsTo(Kelas::class, 'kelas_id', 'id_kelas');
+        return $this->belongsTo(User::class, 'pengguna_id', 'id');
+    }
+
+    // Definisikan relasi dengan model Pertemuan
+    public function pertemuan()
+    {
+        return $this->belongsTo(Pertemuan::class, 'pertemuan_id', 'id_pertemuan');
     }
 }

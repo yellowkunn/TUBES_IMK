@@ -47,6 +47,10 @@ class Tambahpertemuan extends Component
     public function removelatihan($key){
         unset($this->boxinputlatihan[$key]);
     }
+
+    public function removelink($key){
+        unset($this->boxinputlink[$key]);
+    }
     use WithFileUploads;
 
     public $pertemuan;

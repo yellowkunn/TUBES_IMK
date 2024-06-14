@@ -95,7 +95,7 @@
     </div>
 
     <!-- konten pop up materi -->
-    <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow w-full h-screen"
+    <div wire:ignore.self class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow w-full h-screen"
         id="popupMateri">
         <div class="flex flex-col justify-center">
             <div class="flex justify-between md:min-w-[800px] bg-white px-10 pt-7 rounded-t-xl">
@@ -154,7 +154,7 @@
     </div>
 
     <!-- konten pop Latihan -->
-    <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow w-full h-screen"
+    <div wire:ignore.self class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow w-full h-screen"
         id="popupLatihan">
         <div class="flex flex-col justify-center">
             <div class="flex justify-between md:min-w-[800px] bg-white px-10 pt-7 rounded-t-xl">
@@ -229,7 +229,7 @@
     <!-- akhir dari konten pop Latihan -->
 
     <!-- link -->
-    <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow w-full h-screen"
+    <div wire:ignore.self class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow w-full h-screen"
         id="popupLink">
         <div class="flex flex-col justify-center">
             <div class="flex justify-between md:min-w-[800px] bg-white px-10 pt-7 rounded-t-xl">
@@ -275,10 +275,10 @@
                 </div>
 
                 <div class="bg-white text-center">
-                    <button type="submit" onclick="showPopupLink()"
+                    <button type="button" onclick="showPopupLink()"
                         class="w-fit h-11 px-4 text-baseBlue font-semibold border-2 border-baseBlue rounded-full hover:border-none hover:bg-baseBlue hover:text-white mt-5"
                         style="filter: drop-shadow(0px 0px 5px rgba(121,162,226,0.3));">
-                        Tambah
+                        Selesai
                     </button>
                 </div>
 

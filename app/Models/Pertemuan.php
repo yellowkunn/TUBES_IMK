@@ -40,4 +40,9 @@ class Pertemuan extends Model
     {
         return $this->belongsTo(Pengajar::class, 'pengajar_id', 'id_pengajar');
     }
+
+    public function baruDiakses()
+    {
+        return $this->hasMany(BaruDiakses::class, 'pertemuan_id', 'id_pertemuan');
+    }
 }

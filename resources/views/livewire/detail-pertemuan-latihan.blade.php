@@ -4,7 +4,7 @@
 
                         <!-- konten pop Latihan -->
                         <form wire:submit="tambahlatihan" action="" enctype="multipart/form-data">
-                        <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow w-full h-screen"
+                        <div wire:ignore.self class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow w-full h-screen"
                         id="popupLatihan">
                         <div class="flex flex-col justify-center">
                             <div class="flex justify-between md:min-w-[800px] bg-white px-10 pt-7 rounded-t-xl">
