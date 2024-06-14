@@ -29,6 +29,8 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
     // Route::get('/admindashboard', [AdminController::class, 'dashboardadmin'])->name('dashboardadmin');
     Route::get('/pengaturanruangan', [AdminController::class, 'pengaturanruangan'])->name('pengaturanruangan');
+
+    Route::get('/kalenderpendidikan', [AdminController::class, 'kalenderpendidikan'])->name('kalenderpendidikan');
   
     Route::get('/editdaftarsiswa', [AdminController::class, 'editdaftarsiswa'])->name('editdaftarsiswa');
     Route::get('/editdaftarpengajar', [AdminController::class, 'editdaftarpengajar'])->name('editdaftarpengajar');

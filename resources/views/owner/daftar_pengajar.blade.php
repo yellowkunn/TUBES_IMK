@@ -33,16 +33,24 @@
                         <a href="">Pengajar</a>
                     </div>
 
-                    <div class="flex justify-between items-center mt-7">
+                   
+                    <div class="flex justify-between items-center mt-4 my-7"> 
                         <p class="text-title font-semibold">Daftar Pengajar</p>
-                        <form action="" method="get" class="flex justify-between items-center relative">
-                            <input autocomplete="off" type="text" id="search" name="search" value="" class="py-2 px-5 w-full bg-greyBackground border-2 border-greyBorder rounded-full" placeholder="Cari">
-                            <button type="submit" class="absolute right-5"><i class="fa-solid fa-magnifying-glass text-greyIcon"></i></button>
-                        </form>
+
+                        <div class="flex gap-4">
+                            <form action="" method="get" class="flex justify-between items-center relative">
+                                <input autocomplete="off" type="text" id="search" name="search" value="" class="py-2 px-5 w-full bg-greyBackground border-2 border-greyBorder rounded-lg" placeholder="Cari">
+                                <button type="submit" class="absolute right-5"><i class="fa-solid fa-magnifying-glass text-greyIcon"></i></button>
+                            </form>
+                            <button onclick="showPopupTambahPengajar()" class="bg-baseBlue/5 hover:bg-baseBlue/10 border-2 border-baseBlue/80 flex items-center gap-3 px-3 py-2 rounded-lg">
+                            <i class="fa-solid fa-plus p-1 px-[5px] rounded-full text-white bg-baseBlue"></i>
+                                <p class="text-greyIcon font-semibold">Tambah pengajar</p>
+                            </button>
+                        </div>
                     </div>
                     
                     <div class="bg-white drop-shadow-regularShadow py-3 my-5 rounded-lg border">
-                        <!-- tabel rapor -->
+                        <!-- tabel pengajar -->
                         <table class="min-w-full text-left text-sm font-light text-surface dark:text-white" style="color: #191919">
                             <thead class="border-b-2 border-neutral-200 font-semibold bg-greyBackground" style="color: #717171">
                                 <th scope="col" class= "w-2 px-8 py-3">No.</th>
@@ -91,9 +99,72 @@
                                 @endif
                             </tbody>
                         </table>
-                        <!-- akhir dari tabel rapor -->
+                        <!-- akhir dari tabel pengajar -->
                     </div>
                 </div>
+
+                <!-- pop up tambah pengajar -->
+                <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow w-full h-screen" id="popupTambahPengajar">
+                    <div class="flex flex-col justify-center w-[60%]">
+                        <div class="flex justify-between bg-baseBlue px-10 py-4 rounded-t-xl text-white">
+                            <p class="text-title">Tambah Pengajar</p>
+                            <button onclick="showPopupTambahPengajar()">
+                                <i class="fa-solid fa-xmark fa-lg"></i>
+                            </button>
+                        </div>
+                        <div class="bg-white p-7 pt-4 rounded-b-xl px-10 py-8">
+                        
+                            <form action="/tambahpengajarbaru" method="POST" enctype="multipart/form-data" onchange="setDataForm()">
+                                @csrf
+                                <div class="overflow-y-auto max-h-96 pe-7 flex flex-col gap-5 mt-5 px-0.5">
+                                    <div class="flex justify-between gap-14">
+                                        <!-- kiri -->
+                                        <div class="w-full flex flex-col gap-6">
+                                            <div>
+                                                <p class="font-semibold mb-2">Nama Lengkap</p>
+                                                <input class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" type="text" name="nama" id="nama">
+                                            </div>
+
+                                            <div>
+                                                <p class="font-semibold mb-2">Tanggal Lahir</p>
+                                                <input class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" type="text" name="fasilitas" id="fasilitas">
+                                            </div>
+
+                                            <div>
+                                                <p class="font-semibold mb-2">Tempat</p>
+                                                <input type="text" class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" type="text" name="durasi" id="durasi">
+                                            </div>
+                                        </div>
+                                        <!-- kanan -->
+                                        <div class="w-full flex flex-col gap-6">
+                                            <div>
+                                                <p class="font-semibold mb-2">Pendidikan</p>
+                                                <input class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" type="text" name="fasilitas" id="fasilitas">
+                                            </div>
+
+                                            <div>
+                                                <p class="font-semibold mb-2">Jabatan</p>
+                                                <input type="text" class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" type="text" name="durasi" id="durasi">
+                                            </div>
+
+                                            <div>
+                                                <p class="font-semibold mb-2">No HP</p>
+                                                <input type="text" class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" type="text" name="durasi" id="durasi">
+                                            </div>
+                                        </div>
+                                </div>
+
+                                <div class="mt-8 flex justify-center gap-6">
+                                    <button type="button" onclick="showPopupTambahPengajar()" class="text-greyIcon hover:font-semibold">Batal</button>
+                                    <button type="submit" class="text-baseBlue bg-white border-2 border-baseBlue p-1.5 px-7 rounded-full
+                                        hover:bg-baseBlue hover:text-white hover:font-semibold" style="box-shadow: 
+                                        0px 0px 5px 1px rgba(122,161,226,0.3);">Tambah</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- akhir dari pop up tambah pengajar -->
 
                 <!-- pop up detail pengajar -->
                 <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow 
@@ -232,6 +303,10 @@
         tippy('#sertif', {
         content: 'Upload Sertifikat',
         });
+
+        function showPopupTambahPengajar() {
+            document.getElementById('popupTambahPengajar').classList.toggle('hidden');
+        }
 
         function showPopupDetailPengajar(i) {
             document.getElementById('popupDetailPengajar'+i).classList.toggle('hidden');

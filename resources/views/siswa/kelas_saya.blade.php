@@ -38,9 +38,9 @@
                     <div class="flex justify-between mt-8">
                         <p class="text-title font-semibold">Kelas Saya</p>   
                         
-                        <a href=" {{url('/../formulirpendaftaran')}} " class="bg-baseBlue/90 hover:bg-baseBlue text-white flex items-center gap-2 px-4 py-2 rounded-lg">
-                            <span class="material-symbols-outlined">add_circle</span>
-                            <p>Tambah kelas</p>
+                        <a href=" {{url('/../formulirpendaftaran')}} " class="bg-baseBlue/5 hover:bg-baseBlue/10 border-2 border-baseBlue/80 flex items-center gap-3 px-5 py-2 rounded-lg">
+                        <i class="fa-solid fa-plus p-1 px-[5px] rounded-full text-white bg-baseBlue"></i>
+                            <p class="text-greyIcon font-semibold">Tambah kelas</p>
                         </a>
                     </div>
                     
