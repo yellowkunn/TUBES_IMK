@@ -27,10 +27,10 @@
             </div>
         </div>
 
-        <div class="flex items-center gap-8">
-            <div>
-                <button id="darkModeBtn" class=""><i class="fa-solid fa-sun fa-lg text-greyIcon"></i></button>
-                <button id="lightModeBtn" class="hidden"><i class="fa-solid fa-moon fa-lg"></i></button>
+        <div class="flex gap-6">
+            <div class="group" id="setTheme">
+                <button onclick="changeToDark()" id="darkModeBtn" class="bg-yellow-400/30 group-hover:bg-black p-1.5 px-2"><i class="group-hover:text-white text-yellow-400 fa-regular fa-moon fa-xl text-greyIcon"></i></button>
+                <button onclick="changeToLight()" id="lightModeBtn" class="hidden group-hover:bg-slate-500/30 p-1.5 px-2"><i class="fa-solid fa-sun fa-lg"></i></button>
             </div>
 
             @if (Route::has('login'))
@@ -134,10 +134,10 @@
         content: 'Masuk/Daftar',
     }),
     tippy('#darkModeBtn', {
-        content: 'Light',
+        content: 'Dark',
     }),
     tippy('#lightModeBtn', {
-        content: 'Dark',
+        content: 'Light',
     });
 
 

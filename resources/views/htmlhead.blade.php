@@ -10,15 +10,28 @@
             lightModeBtn.classList.remove('hidden');
             darkModeBtn.classList.add('hidden');
             document.documentElement.classList.add('dark');
+            localStorage.setItem('darkMode', 'true');
         }
 
         function changeToLight(){
             darkModeBtn.classList.remove('hidden');
             lightModeBtn.classList.add('hidden');
             document.documentElement.classList.remove('dark');
+            localStorage.setItem('darkMode', 'false');
         }
 
-        darkModeBtn.onclick = changeToDark;
-        lightModeBtn.onclick = changeToLight;
+        darkModeBtn.onclick = function() {
+            changeToDark();
+        };
+        lightModeBtn.onclick = function() {
+            changeToLight();
+        };
+
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+        if (isDarkMode) {
+            changeToDark();
+        } else {
+            changeToLight();
+        }
     });
 </script>
