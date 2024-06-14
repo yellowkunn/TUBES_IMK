@@ -71,15 +71,28 @@
                                         </p>
                                     </div>
 
-                                    <div class="flex gap-6 items-center mt-4 mb-2">
-                                        <div class="flex relative">
-                                            @foreach($kelas->siswa as $siswa => $image)
-                                                @if($loop->index < 3)
-                                                <img class="w-8 h-8 object-cover rounded-full absolute z-{{ ($loop->index * 10) }} left-{{ ($loop->index * 4) }}" src="{{ asset('berkas_ujis/' . $image->pengguna->foto_profile) }}" alt="">
-                                                @endif
-                                            @endforeach
-                                            <p class="text-greyIcon relative ms-2 left-{{ $kelas->total_siswa > 1 ? '16' : '8' }} top-1.5 text-smallContent">{{ $kelas->total_siswa }} Siswa</p>
-                                        </div>
+                                    <div class="flex gap-6 items-center mt-4">
+                                    <div class="flex items-center relative">
+                                        @php
+                                            $index = 0;
+                                        @endphp
+                                        @foreach($kelas->siswa as $siswa => $image)
+                                            @if($index < 3)
+                                                <img class="w-8 h-8 object-cover rounded-full ms-10 fixed z-{{ ($index * 10) }} left-{{ ($index * 4) }}" src="{{ asset('berkas_ujis/' . $image->pengguna->foto_profile) }}" alt="">
+                                            @endif
+                                        @php
+                                        $index++;
+                                        @endphp
+                                        @endforeach
+                                        
+                                        @if($kelas->total_siswa < 2)
+                                        <p class="mt-1 text-greyIcon text-smallContent ms-10">{{ $kelas->total_siswa }} siswa</p>
+                                        @elseif($kelas->total_siswa == 2)
+                                        <p class="mt-1 text-greyIcon text-smallContent ms-14">{{ $kelas->total_siswa }} siswa</p>
+                                        @elseif($kelas->total_siswa > 2)
+                                        <p class="mt-1 text-greyIcon text-smallContent ms-[70px]">{{ $kelas->total_siswa }} siswa</p>
+                                        @endif
+                                    </div>
                                     </div>
                                 </div>
 

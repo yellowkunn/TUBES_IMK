@@ -90,15 +90,27 @@
                                 </p>
                             </div>
 
-                            <div class="flex items-center mt-4 space-x-4">
+                            <div class="flex items-center mt-4 relative">
+                                @php
+                                    $index = 0;
+                                @endphp
                                 @foreach($kelas->siswa as $siswa => $image)
-                                    @if($loop->index < 3)
-                                        <img class="w-8 h-8 object-cover rounded-full" src="{{ asset('berkas_ujis/' . $image->pengguna->foto_profile) }}" alt="" style="z-index: {{ ($loop->index * 10) }}; left: {{ ($loop->index * 4) }}px;">
+                                    @if($index < 3)
+                                        <img class="w-8 h-8 object-cover rounded-full ms-10 fixed z-{{ ($index * 10) }} left-{{ ($index * 4) }}" src="{{ asset('berkas_ujis/' . $image->pengguna->foto_profile) }}" alt="">
                                     @endif
+                                @php
+                                $index++;
+                                @endphp
                                 @endforeach
-                                <p class="text-greyIcon text-smallContent ml-4">{{ $kelas->total_siswa }} Siswa</p>
+                                
+                                @if($kelas->total_siswa < 2)
+                                <p class="mt-1 text-greyIcon text-smallContent ms-10">{{ $kelas->total_siswa }} siswa</p>
+                                @elseif($kelas->total_siswa == 2)
+                                <p class="mt-1 text-greyIcon text-smallContent ms-14">{{ $kelas->total_siswa }} siswa</p>
+                                @elseif($kelas->total_siswa > 2)
+                                <p class="mt-1 text-greyIcon text-smallContent ms-[70px]">{{ $kelas->total_siswa }} siswa</p>
+                                @endif
                             </div>
-                            
                             
                             <a href="{{ url('/siswa/detailkelas/' . $kelas->id_kelas) }}"
                                 class="text-center text-white group-hover:font-semibold bg-baseBlue/80 group-hover:bg-baseBlue w-full rounded-lg py-2 mt-4">Lihat Detail
