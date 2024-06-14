@@ -51,6 +51,7 @@
                             </div>
 
                             <!-- baru diakses -->
+                            @if($barudiakses)
                             <div class="flex flex-col gap-4 my-5">
                                 <div class="bg-white p-5 px-8 rounded-lg shadow-meetCardShadow relative group">
                                     <div>
@@ -58,19 +59,22 @@
                                     </div>
                                     <div class="flex justify-between">
                                         <div class="flex flex-col">
-                                            <p class="font-semibold">Pertemuan {{ $pertemuan->pertemuan_ke }}</p>
-                                            <p class="">{{ $pertemuan->judul }}</p>
-                                            <p class="text-greyIcon text-smallContent mt-3">{{ $pertemuan->tgl_pertemuan }}</p>
+                                            <p class="font-semibold">Pertemuan {{ $barudiakses->pertemuan->pertemuan_ke }}</p>
+                                            <p class="">{{ $barudiakses->pertemuan->judul }}</p>
+                                            <p class="text-greyIcon text-smallContent mt-3">{{ $barudiakses->pertemuan->tgl_pertemuan }}</p>
                                         </div>
                                         <div class="flex my-auto gap-6">
                                             <p class="text-baseDarkerGreen bg-baseDarkerGreen/20 h-fit p-2 px-4 rounded-full">
-                                                {{ \Carbon\Carbon::parse($pertemuan->tgl_pertemuan)->format('F') }}
+                                                {{ \Carbon\Carbon::parse($barudiakses->pertemuan->tgl_pertemuan)->format('F') }}
                                             </p>
-                                            <a href="{{ url('pengajardetailkelas', $pertemuan->kelas_id) }}" class="bg-baseBlue/80 hover:bg-baseBlue hover:font-semibold text-white px-4 py-2 rounded-full">Lihat Detail</a>
+                                            <a href="{{ url('pengajardetailkelas', $barudiakses->pertemuan->id_pertemuan) }}" class="bg-baseBlue/80 hover:bg-baseBlue hover:font-semibold text-white px-4 py-2 rounded-full">Lihat Detail</a>
                                         </div>
+                                       
                                     </div>
                                 </div>
                             </div>
+                            @else
+                            @endif
 
                             <!-- daftar kelas -->
                             <div class="flex justify-between my-5 mt-12">

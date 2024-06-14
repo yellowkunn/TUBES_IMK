@@ -62,15 +62,19 @@ class HomeController extends Controller
                         ->get();
 
                     $pertemuan = Pertemuan::where('pengajar_id', $user->id_pengguna)->first();
-
-                    return view('pengajar.dashboard', compact('kelasss', 'siswaStatus', 'pertemuan'));
+                    $barudiakses = BaruDiakses::where('pengguna_id', $user->id_pengguna)
+                    ->orderBy('baru_diakses', 'desc')
+                    ->first();
+                    return view('pengajar.dashboard', compact('kelasss', 'siswaStatus', 'pertemuan', 'barudiakses'));
 
 
                 case 'siswa':
 
                     // Ambil kelasId dari BaruDiakses yang paling baru
-                    $barudiakses = BaruDiakses::orderBy('baru_diakses', 'desc')->first();
-
+                    $barudiakses = BaruDiakses::where('pengguna_id', $user->id_pengguna)
+                    ->orderBy('baru_diakses', 'desc')
+                    ->first();
+                    
                     if ($barudiakses && $barudiakses->pertemuan) {
                         $kelasId = $barudiakses->pertemuan->kelas_id;
                         $pertemuanId = $barudiakses->pertemuan_id;

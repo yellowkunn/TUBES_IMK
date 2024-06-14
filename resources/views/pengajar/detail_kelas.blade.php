@@ -104,18 +104,29 @@
                     <div class="grid grid-cols-3 gap-2 my-3">
 
                         <!-- perulangan data per siswa -->
-                        @foreach($siswa as $siswas)
-                        <div class="p-3 px-5 bg-baseDarkerGreen/10 rounded-lg">
-                            <div class="flex gap-3 items-center">
-                                <img src="{{ asset('berkas_ujis/' . $siswas->pengguna->foto_profile) }}" class="w-10 h-10 object-cover rounded-full" alt="">
-
-                                <div>
-                                    <p class=font-semibold">{{ $siswas->pengguna->biodataSiswa->nama_lengkap }}</p>
-                                    <p class="text-smallContent text-greyIcon">{{ $siswas->pengguna->email }}</p>
+                        @if($siswa->isEmpty() || $siswa->contains(function($siswas) {
+                            return is_null($siswas->pengguna) || 
+                                   is_null($siswas->pengguna->foto_profile) || 
+                                   is_null($siswas->pengguna->biodataSiswa) || 
+                                   is_null($siswas->pengguna->biodataSiswa->nama_lengkap) || 
+                                   is_null($siswas->pengguna->email);
+                        }))
+                            <p>Terdapat kesalahan data siswa</p>
+                        @else
+                            @foreach($siswa as $siswas)
+                                <div class="p-3 px-5 bg-baseDarkerGreen/10 rounded-lg">
+                                    <div class="flex gap-3 items-center">
+                                        <img src="{{ asset('berkas_ujis/' . $siswas->pengguna->foto_profile) }}" class="w-10 h-10 object-cover rounded-full" alt="">
+                        
+                                        <div>
+                                            <p class="font-semibold">{{ $siswas->pengguna->biodataSiswa->nama_lengkap }}</p>
+                                            <p class="text-smallContent text-greyIcon">{{ $siswas->pengguna->email }}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        @endforeach
+                            @endforeach
+                        @endif
+                        
 
                     </div>
 
