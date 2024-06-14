@@ -310,7 +310,7 @@
                                     <form action="{{ route('kelas.hapus', $kelas->id_kelas) }}" method="post">
                                     @csrf
                                         <div class="flex justify-between gap-4 mt-4">
-                                            <button type="button" onclick="showPopupHapusKelas()" class="text-greyIcon w-full hover:font-semibold">Batal</button>
+                                            <button type="button" onclick="showPopupHapusKelas({{ $kelas->id_kelas }})" class="text-greyIcon w-full hover:font-semibold">Batal</button>
                                             <button type="submit" class="text-[#d60101] bg-white border-2 border-[#d60101] p-1.5 w-full rounded-full
                                             hover:bg-[#d60101] hover:text-white hover:font-semibold" style="box-shadow: 0px 0px 5px 1px rgba(214,1,1,0.3);">Hapus</button>
                                         </div>
@@ -334,39 +334,6 @@
     </div>
 
     <script>
-        //save data for unsubmitted form
-        const inputElementIds = ['nama', 'fasilitas', 'durasi', 'tingkat_kelas', 'harga', 
-            'rentang', 'jadwal_hari', 'deskripsi'];
-
-        function setDataForm() {
-            inputElementIds.forEach(function(inputId) {
-                const inputElement = document.getElementById(inputId);
-
-                localStorage.setItem('"'+ inputId +'"', inputElement.value);
-            });
-        }
-
-        function getDataForm() {
-            inputElementIds.forEach(function(inputId) {
-                const inputElement = document.getElementById(inputId);
-
-                inputElement.value = localStorage.getItem('"'+ inputId +'"');
-            });
-        }
-
-        window.onload = getDataForm();
-
-        setTimeout(function() {
-            const session = document.getElementById('session');
-            if (session) {
-                session.classList.add('hidden');
-            }
-        }, 1500);
-
-        function showPopupTambahKelas() {
-            document.getElementById('popupTambahKelas').classList.toggle('hidden');
-        }
-
         function showPopupEditKelas(i) {
             document.getElementById('popupEditKelas'+i).classList.toggle('hidden');
         }
@@ -409,6 +376,40 @@
                 initializeDropdown(`dd-more${index}`, `dd-menu${index}`);
             });
         });
+
+        
+        //save data for unsubmitted form
+        const inputElementIds = ['nama', 'fasilitas', 'durasi', 'tingkat_kelas', 'harga', 
+            'rentang', 'jadwal_hari', 'deskripsi'];
+
+        function setDataForm() {
+            inputElementIds.forEach(function(inputId) {
+                const inputElement = document.getElementById(inputId);
+
+                localStorage.setItem('"'+ inputId +'"', inputElement.value);
+            });
+        }
+
+        function getDataForm() {
+            inputElementIds.forEach(function(inputId) {
+                const inputElement = document.getElementById(inputId);
+
+                inputElement.value = localStorage.getItem('"'+ inputId +'"');
+            });
+        }
+
+        getDataForm();
+
+        setTimeout(function() {
+            const session = document.getElementById('session');
+            if (session) {
+                session.classList.add('hidden');
+            }
+        }, 1500);
+
+        function showPopupTambahKelas() {
+            document.getElementById('popupTambahKelas').classList.toggle('hidden');
+        }
 
         function showFile(input) {
             const getFile = document.getElementById('uploadedFile');
