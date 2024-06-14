@@ -175,7 +175,21 @@
                                                 
                                                 <div>
                                                     <p class="font-semibold mb-2">Pilih Hari</p>
-                                                    <input class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" type="text" name="jadwal_hari" id="jadwal_hari">
+                                                    <!-- <input class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" type="text" name="jadwal_hari" id="jadwal_hari"> -->
+                                                    <div class="flex gap-8">
+                                                        <div class="flex flex-col gap-4">
+                                                            <div class="flex items-center gap-2"><input type="checkbox" class="rounded appearance-none checked:bg-baseBlue" id="senin" nama="hari" value="senin"><label for="senin">Senin</label></div>
+                                                            <div class="flex items-center gap-2"><input type="checkbox" class="rounded appearance-none checked:bg-baseBlue" id="kamis" nama="hari" value="kamis"><label for="kamis">Kamis</label></div> 
+                                                        </div>
+                                                        <div class="flex flex-col gap-4">
+                                                            <div class="flex items-center gap-2"><input type="checkbox" class="rounded appearance-none checked:bg-baseBlue" id="selasa" nama="hari" value="selasa"><label for="selasa">Selasa</label></div> 
+                                                            <div class="flex items-center gap-2"><input type="checkbox" class="rounded appearance-none checked:bg-baseBlue" id="jumat" nama="hari" value="jumat"><label for="jumat">Jumat</label></div> 
+                                                        </div>
+                                                        <div class="flex flex-col gap-4">
+                                                            <div class="flex items-center gap-2"><input type="checkbox" class="rounded appearance-none checked:bg-baseBlue" id="rabu" nama="hari" value="rabu"><label for="rabu">Rabu</label></div> 
+                                                            <div class="flex items-center gap-2"><input type="checkbox" class="rounded appearance-none checked:bg-baseBlue" id="sabtu" nama="hari" value="sabtu"><label for="sabtu">Sabtu</label></div> 
+                                                        </div>
+                                                    </div>
                                                 </div>
 
                                             </div>

@@ -1,8 +1,8 @@
-<div class="mt-2 bg-white hidden md:block text-smallContent">
+<div class="mt-2 bg-white hidden md:block text-smallContent dark:dark-mode">
     <div class="flex justify-between items-center px-8 lg:px-12 py-5">
 
         <div class="flex gap-8 lg:gap-24">
-            <a href="{{ route('berandasiswa') }}"><p class="text-baseBlue text-center font-bold lg:text-[18px] leading-snug">Fortunate<br>Education Center</p></a>
+            <a href="{{ route('berandasiswa') }}"><p class="dark:dark-mode text-baseBlue text-center font-bold lg:text-[18px] leading-snug">Fortunate<br>Education Center</p></a>
             <div id="menus" class="flex gap-5 lg:gap-12 items-center">
                 @if (Route::has('login'))
                 @auth

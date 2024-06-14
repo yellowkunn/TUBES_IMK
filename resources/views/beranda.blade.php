@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+@include('htmlhead')
 
 <head>
     <meta charset="UTF-8">
@@ -48,7 +47,7 @@
     @endif
     </div>
 
-    <main class="flex flex-col self-center w-full max-md:max-w-full sm:pt-4 lg:pt-6 bg-white">
+    <main class="flex flex-col self-center w-full max-md:max-w-full sm:pt-4 lg:pt-6 bg-white dark:dark-mode">
         @if(session('error'))
         <div class="alert alert-danger">
             {{ session('error') }}
@@ -61,12 +60,12 @@
 
                 <p id="typewriter" class="font-semibold text-red-700 text-[50px] lg:text-[55px] xl:text-[70px] leading-tight lg:w-2/3 h-[180px] hidden md:block"></p>
                 <p class="md:hidden text-red-700 font-semibold text-subtitle text-balance">Gabung dan dapatkan pembelajaran terbaik dari kami!</p>
-                <p class="leading-tight sm:text-subtitle w-full lg:w-3/4">Di setiap langkah yang kami ambil, kami percaya bahwa pendidikan adalah kunci untuk membuka pintu masa depan yang gemilang.</p>
+                <p class="leading-tight sm:text-subtitle w-full lg:w-3/4 dark:dark-mode">Di setiap langkah yang kami ambil, kami percaya bahwa pendidikan adalah kunci untuk membuka pintu masa depan yang gemilang.</p>
                 @if (Route::has('login'))
                 @auth
-                <a href="{{ url('/formulirpendaftaran') }}" class="text-red-700 sm:text-[20px] w-[120px] sm:w-[150px] py-2 border-2 border-red-700/50 text-center hover:text-white hover:bg-red-700 hover:border-none mb-16">Daftar Kelas</a>
+                <a href="{{ url('/formulirpendaftaran') }}" class="dark:text-red-500 text-red-700 sm:text-[20px] w-[120px] sm:w-[150px] py-2 border-2 border-red-700/50 text-center hover:text-white hover:bg-red-700 hover:border-none mb-16">Daftar Kelas</a>
                 @else
-                <a href=" {{ route('login') }} " class="text-red-700 sm:text-[20px] w-[120px] sm:w-[150px] py-2 border-2 border-red-700/50 text-center hover:text-white hover:bg-red-700 hover:border-none mb-16">Daftar Kelas</a>
+                <a href=" {{ route('login') }} " class="dark:text-red-500 text-red-700 sm:text-[20px] w-[120px] sm:w-[150px] py-2 border-2 border-red-700/50 text-center hover:text-white hover:bg-red-700 hover:border-none mb-16">Daftar Kelas</a>
                 @endauth
                 @endif
 
@@ -79,10 +78,10 @@
         <!-- akhir section 1 -->
 
         <!-- section 2 -->
-        <div class="p-8 sm:px-16 sm:py-12 lg:p-20 bg-baseCream text-center">
+        <div class="p-8 sm:px-16 sm:py-12 lg:p-20 bg-baseCream text-center dark:dark-mode dark:border-2 dark:border-t-lg dark:border-white">
             <div data-aos="fade-up">
 
-                <p class="font-semibold text-subtitle sm:text-title md:text-[40px] text-[#333333]">Program Unggulan FEC</p>
+                <p class="font-semibold text-subtitle sm:text-title md:text-[40px] text-[#333333] dark:text-white">Program Unggulan FEC</p>
 
                 <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8 sm:mt-12">
                     @if(count($kelass) > 0)

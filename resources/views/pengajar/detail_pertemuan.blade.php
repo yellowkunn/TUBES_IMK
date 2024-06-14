@@ -32,9 +32,6 @@
         const kontenBahanAjar = document.getElementById('BahanAjarContent');
         const kontenAbsensi = document.getElementById('absensiContent');
 
-        tabBahanAjar.classList.remove('bg-white', 'text-baseBlue');
-        tabBahanAjar.classList.add('bg-baseBlue', 'text-white', 'font-semibold');
-
         tabBahanAjar.addEventListener("click", function() {
             if (kontenBahanAjar.classList.contains('hidden')) {
                 kontenAbsensi.classList.add('hidden');

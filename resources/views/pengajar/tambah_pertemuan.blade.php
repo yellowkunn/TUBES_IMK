@@ -33,7 +33,7 @@
                     <i class="fa-solid fa-caret-right text-baseBlue"></i>
                     <a href="{{ route('pengajar.kelas') }}" class="hover:font-semibold">Kelas</a>
                     <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                    <a href="" class="hover:font-semibold"> $kelasDetail->nama  $kelasDetail->tingkat_kelas </a>
+                    <a href="" class="hover:font-semibold"> {{ $kelas->nama }} </a>
                     <i class="fa-solid fa-caret-right text-baseBlue"></i>
                     <a href=" route('tambah_pertemuan') " class="hover:font-semibold">Tambah</a>
                 </div>

@@ -24,7 +24,7 @@
 
                 <div class="border-b-2 border-baseBlue w-full flex gap-6 mt-7">
                     <button type="button" id="BahanAjarBtn"
-                        class="rounded-t-lg bg-white py-2 px-4 text-white focus:font-semibold">Bahan Ajar</button>
+                        class="rounded-t-lg bg-baseBlue py-2 px-4 text-white focus:font-semibold">Bahan Ajar</button>
                     <button type="button" id="absensiBtn"
                         class="rounded-t-lg py-2 px-4 bg-white text-baseBlue focus:font-semibold">Absensi</button>
                 </div>

@@ -119,7 +119,7 @@
 
                     </div>
 
-                    <div class="bg-white text-center">
+                    <div class="bg-white text-center mt-5">
                         <button onclick="showPopupListSiswa()" class="w-fit p-2 px-4 text-baseDarkerGreen font-semibold border-2 border-baseDarkerGreen rounded-full" style="box-shadow: 0px 0px 5px 1px rgba(105,212,220,0.3);">
                             Tutup
                         </button>

@@ -16,4 +16,8 @@
     .nav:hover::after {
       @apply w-[100%]
     }
+
+    .dark-mode{
+      @apply bg-[#253247] text-white/90 border-white
+    }
   }
