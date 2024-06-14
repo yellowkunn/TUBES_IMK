@@ -22,7 +22,7 @@
                                 <td class="text-center">
                                     <input type="checkbox" wire:model="kehadiran_siswas.{{ $siswa->id_siswa }}"
                                         value="{{ $siswa->id_siswa }}"
-                                        class="bg-white/10 border-2 border-greyIcon rounded drop-shadow-regularShadow"
+                                        class="rounded appearance-none checked:bg-baseDarkerGreen"
                                         name="" id="">
                                     <input type="text" wire:model="pengajar"
                                         value="{{ $siswa->kelas->pengajar[0]->id_pengajar }}" style="display: none;">
