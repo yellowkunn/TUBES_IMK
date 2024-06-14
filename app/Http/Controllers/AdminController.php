@@ -32,6 +32,11 @@ class AdminController extends Controller
         return view ('owner.pengaturan_ruangan', compact('kelass'));
     }
 
+    public function kalenderpendidikan()
+    {
+        return view ('owner.kalender_pendidikan');
+    }
+
     public function editdaftarkelas()
     {
         $kelass = Kelas::all();
