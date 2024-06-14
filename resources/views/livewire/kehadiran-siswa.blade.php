@@ -49,21 +49,7 @@
         </thead>
         <tbody class="bg-baseDarkerGreen/10">
             @php $nomor = 1; @endphp
-<<<<<<< HEAD
-            @if($siswas->isNotEmpty())
-                @foreach($siswas as $siswa)
-                <tr>
-                    <td class="px-12 py-4 font-semibold">{{ $nomor++ }}</td>
-                    <td class="px-12 py-4 flex items-center gap-4">
-                        <img src="{{ asset('berkas_ujis/' . $siswa->pengguna->foto_profile) }}" class="w-10 h-10 object-cover rounded-full" alt="">
-                        <p>{{ $siswa->pengguna->biodataSiswa->nama_lengkap }}</p>
-                    </td>
-                    <td class="text-center">
-                        <input type="checkbox" wire:model="kehadiran_siswas.{{ $siswa->id_siswa }}" value="{{ $siswa->id_siswa }}" class="rounded appearance-none checked:bg-baseDarkerGreen" name="" id="">
-                        <input type="text" wire:model="pengajar" value="{{ $siswa->kelas->pengajar[0]->id_pengajar }}" style="display: none;">
-                        </td>
-                </tr>
-=======
+
             @if ($siswaHadir->isNotEmpty())
                 @foreach ($siswaHadir as $siswa)
                     @if ($siswa->status == 'Hadir')
@@ -77,7 +63,7 @@
                             <td></td>
                         </tr>
                     @endif
->>>>>>> 5cfca83c3e67fbdee6a843b574f3927d405f9ec8
+
                 @endforeach
             @endif
         </tbody>
