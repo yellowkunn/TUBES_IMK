@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Siswa;
 use App\Models\Kelas;
 use App\Models\Absensi;
+use App\Models\Pertemuan;
 use Carbon\Carbon;
 
 
@@ -15,9 +16,10 @@ class KehadiranSiswa extends Component
     public $kelas;
     public $kehadiran_siswas = [];
     public $pengajar;
-    public function mount(Kelas $kelas)
+    public $pertemuan;
+    public function mount(Pertemuan $pertemuan)
     {
-        $this->kelas = $kelas;
+        $this->pertemuan = $pertemuan;
     }
 
     public function kehadiranSiswas()
@@ -25,9 +27,9 @@ class KehadiranSiswa extends Component
         foreach ($this->kehadiran_siswas as $siswa_id => $kehadiran) {
             if ($kehadiran) {
                 Absensi::insert([
-                    'pengajar_id' => $this->kelas->pengajar[0]->id_pengajar,
+                    'kelas_id' => $this->pertemuan->kelas_id,
                     'siswa_id' => $siswa_id,
-                    'kelas_id' => $this->kelas->id_kelas,
+                    'pertemuan_id' => $this->pertemuan->kelas_id,
                     'tanggal' => \Carbon\Carbon::now(),
                     'status' => 'Hadir',
                     'role' => 'Siswa',
@@ -36,10 +38,11 @@ class KehadiranSiswa extends Component
         }
         
     }
-    public function render(Kelas $kelas)
+    public function render(Pertemuan $pertemuan)
     {
-        $siswas = Siswa::where('kelas_id', $this->kelas->id_kelas)->get();
-        $kehadiran_siswa = Absensi::where('kelas_id', $kelas->id_kelas)->first();
-        return view('livewire.kehadiran-siswa', compact('siswas', 'kelas', 'kehadiran_siswa'));
+        $siswas = Siswa::where('kelas_id', $this->pertemuan->kelas_id)->get();
+        $siswaHadir = Absensi::where('kelas_id', $this->pertemuan->kelas_id)->get();
+        // $kehadiran_siswa = Absensi::where('kelas_id', $kelas->id_kelas)->first();
+        return view('livewire.kehadiran-siswa', compact('siswas', 'pertemuan', 'siswaHadir'));
     }
 }

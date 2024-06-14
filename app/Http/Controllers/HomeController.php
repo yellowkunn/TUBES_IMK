@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Siswa;
 use App\Models\Pengajar;
 use App\Models\Pertemuan;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -62,14 +63,25 @@ class HomeController extends Controller
                         ->get();
 
                     $pertemuan = Pertemuan::where('pengajar_id', $user->id_pengguna)->first();
+                    $today = Carbon::today()->toDateString();
+                    // Ambil pertemuan terdekat berdasarkan pengajar_id dan tgl_pertemuan
+                    $pertemuanSelanjutnya = Pertemuan::where('pengajar_id', $user->id_pengguna)
+                        ->where('tgl_pertemuan', '>=', $today)
+                        ->orderBy('tgl_pertemuan', 'asc')
+                        ->first();
 
-                    return view('pengajar.dashboard', compact('kelasss', 'siswaStatus', 'pertemuan'));
+                    $barudiakses = BaruDiakses::where('pengguna_id', $user->id_pengguna)
+                        ->orderBy('baru_diakses', 'desc')
+                        ->first();
+                    return view('pengajar.dashboard', compact('kelasss', 'siswaStatus', 'pertemuan', 'barudiakses', 'pertemuanSelanjutnya'));
 
 
                 case 'siswa':
 
                     // Ambil kelasId dari BaruDiakses yang paling baru
-                    $barudiakses = BaruDiakses::orderBy('baru_diakses', 'desc')->first();
+                    $barudiakses = BaruDiakses::where('pengguna_id', $user->id_pengguna)
+                        ->orderBy('baru_diakses', 'desc')
+                        ->first();
 
                     if ($barudiakses && $barudiakses->pertemuan) {
                         $kelasId = $barudiakses->pertemuan->kelas_id;
@@ -78,7 +90,7 @@ class HomeController extends Controller
                         $kelasId = null;
                         $pertemuanId = null;
                     }
-                    
+
                     // Pastikan $pertemuanId tidak null sebelum melakukan kueri
                     if ($kelasId && $pertemuanId) {
                         $pertemuans = Pertemuan::with('materi', 'tugas', 'link')
@@ -89,7 +101,7 @@ class HomeController extends Controller
                     } else {
                         $pertemuans = collect(); // Atau nilai default lain, seperti koleksi kosong
                     }
-                    
+
 
                     // Debug untuk melihat hasilnya
 
