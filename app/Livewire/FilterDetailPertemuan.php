@@ -25,6 +25,7 @@ class FilterDetailPertemuan extends Component
     public function render()
     {
         $p1 = $this->pertemuan;
+        $kelas = $this->pertemuan->kelas_id;
 
         $pertemuan = Pertemuan::with('materi', 'tugas', 'link')
             ->where('id_pertemuan', $this->pertemuan->id_pertemuan)
@@ -48,7 +49,9 @@ class FilterDetailPertemuan extends Component
 
         return view('livewire.filter-detail-pertemuan', [
             'p1' => $p1,
-            'groupedPertemuans' => $groupedPertemuans        ]);
+            'groupedPertemuans' => $groupedPertemuans,
+            'kelas' => $kelas
+        ]);
     }
 }
 

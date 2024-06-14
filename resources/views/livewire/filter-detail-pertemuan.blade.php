@@ -22,7 +22,7 @@
                     <a href="" class="hover:font-semibold">Pertemuan ke {{ $p1->pertemuan_ke }}</a>
                 </div>
 
-                <div class="border-b-2 border-baseBlue w-full flex gap-6 mt-7">
+                <div wire:ignore class="border-b-2 border-baseBlue w-full flex gap-6 mt-7">
                     <button type="button" id="BahanAjarBtn"
                         class="rounded-t-lg bg-white py-2 px-4 text-white focus:font-semibold">Bahan Ajar</button>
                     <button type="button" id="absensiBtn"
@@ -397,7 +397,7 @@
             </div>
 
             <div id="absensiContent" class="hidden mt-6">
-                <p class="text-subtitle font-semibold">Absensi Siswa</p>
+                @livewire('kehadiran-siswa', ['pertemuan' => $p1])
             </div>
 
         </div>

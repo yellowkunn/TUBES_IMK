@@ -26,4 +26,9 @@ class Absensi extends Model
     {
         return $this->belongsTo(Kelas::class, 'kelas_id', 'id_kelas');
     }
+
+    public function pertemuan()
+    {
+        return $this->belongsTo(Pertemuan::class, 'pertemuan_id', 'id_pertemuan');
+    }
 }

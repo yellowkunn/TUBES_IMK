@@ -72,25 +72,27 @@
                                     <td class="px-8 py-4 font-semibold">{{ $no++ }}.</td>
                                     <td class="px-8 py-4">
                                         <div class="flex gap-2 items-center">
-                                            <img src="{{ asset('berkas_ujis/' . $pengajar->pengguna->foto_profile) }}" alt="pic" class="w-10 h-10 object-cover rounded-full">
-                                            <p class="font-semibold">{{ $pengajar->pengguna->biodataPengajar->nama_lengkap }}</p>
+                                            <img src="{{ asset('berkas_ujis/' . ($pengajar->pengguna->foto_profile ?? 'default.jpg')) }}" alt="pic" class="w-10 h-10 object-cover rounded-full">
+                                            <p class="font-semibold">{{ $pengajar->pengguna->biodataPengajar->nama_lengkap ?? '-' }}</p>
                                         </div>
                                     </td>
-                                    
-                                    <td class="px-8 py-4">{{  $pengajar->jabatan }}</td>
-                                    <td class="px-8 py-4">{{  $pengajar->kelas->nama }}</td>
-                                    <td class="py-4"><button onclick="showPopupUploadSertif({{ $pengajar->pengguna->biodataPengajar->id_biodata }})" id="sertif"><span class="material-symbols-outlined text-greyIcon mt-1.5">workspace_premium</span></button></td>
-                                    <td class="px-8 py-4 flex items-center gap-4 justify-center">
-                                        <button onclick="showPopupDetailPengajar({{ $pengajar->pengguna->biodataPengajar->id_biodata }})" class="text-baseBlue font-semibold w-16 h-8 rounded hover:bg-white hover:border-2 hover:border-baseBlue focus:bg-baseBlue focus:text-white">Detail</button>
-                                        <button onclick="showPopupEditPengajar({{ $pengajar->pengguna->biodataPengajar->id_biodata }})" class="flex items-center gap-2">
-                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    <td class="px-8 py-4">{{ $pengajar->jabatan ?? '-' }}</td>
+                                    <td class="px-8 py-4">{{ $pengajar->kelas->nama ?? '-' }}</td>
+                                    <td class="py-4">
+                                        <button onclick="showPopupUploadSertif({{ $pengajar->pengguna->biodataPengajar->id_biodata ?? '0' }})" id="sertif">
+                                            <span class="material-symbols-outlined text-greyIcon mt-1.5">workspace_premium</span>
                                         </button>
-                                        <button onclick="showPopupHapusPengajar({{ $pengajar->pengguna->biodataPengajar->id_biodata }})" class="flex items-center gap-2">
+                                    </td>
+                                    <td class="px-8 py-4 flex items-center gap-4 justify-center">
+                                        <button onclick="showPopupDetailPengajar({{ $pengajar->pengguna->biodataPengajar->id_biodata ?? '0' }})" class="text-baseBlue font-semibold w-16 h-8 rounded hover:bg-white hover:border-2 hover:border-baseBlue focus:bg-baseBlue focus:text-white">Detail</button>
+                                        <button onclick="showPopupEditPengajar({{ $pengajar->pengguna->biodataPengajar->id_biodata ?? '0' }})" class="flex items-center gap-2">
+                                            <i class="fa-regular fa-pen-to-square"></i>
+                                        </button>
+                                        <button onclick="showPopupHapusPengajar({{ $pengajar->pengguna->biodataPengajar->id_biodata ?? '0' }})" class="flex items-center gap-2">
                                             <i class="fa-regular fa-trash-can"></i>
                                         </button>
                                     </td>
                                 </tr>
-
                                 </div>
                                 @php
                                     $i++;
