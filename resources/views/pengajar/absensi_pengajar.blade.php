@@ -31,9 +31,7 @@
                     <i class="fa-solid fa-caret-right text-baseBlue"></i>
                     <a href="{{ route('pengajar.kelas') }}" class="hover:font-semibold">Kelas</a>
                     <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                    <a href="route('')" class="hover:font-semibold">Matematika SMP</a>
-                    <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                    <a href="route('')" class="hover:font-semibold">Pertemuan 4</a>
+                    <a href="{{ route('pengajar.kelas.detail', ['kelas' => $kelas->id_kelas]) }}" class="hover:font-semibold">{{ $kelas->nama }}</a>
                     <i class="fa-solid fa-caret-right text-baseBlue"></i>
                     <a href="{{ route('absensi', ['kelas' => $kelas->id_kelas]) }}" class="hover:font-semibold">Absensi</a>
                 </div>

@@ -49,6 +49,7 @@
         </thead>
         <tbody class="bg-baseDarkerGreen/10">
             @php $nomor = 1; @endphp
+
             @if ($siswaHadir->isNotEmpty())
                 @foreach ($siswaHadir as $siswa)
                     @if ($siswa->status == 'Hadir')
@@ -62,6 +63,7 @@
                             <td></td>
                         </tr>
                     @endif
+
                 @endforeach
             @endif
         </tbody>

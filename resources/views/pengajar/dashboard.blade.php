@@ -130,7 +130,7 @@
                                         @elseif($kelas->total_siswa == 2)
                                         <p class="mt-1 text-greyIcon text-smallContent ms-14">{{ $kelas->total_siswa }} siswa</p>
                                         @elseif($kelas->total_siswa > 2)
-                                        <p class="mt-1 text-greyIcon text-smallContent ms-[70px]">{{ $kelas->total_siswa }} siswa</p>
+                                        <p class="mt-1 text-greyIcon text-smallContent ms-20">{{ $kelas->total_siswa }} siswa</p>
                                         @endif
                                     </div>
 

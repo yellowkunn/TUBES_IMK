@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+@include('htmlhead')
 
 <head>
   <meta charset="UTF-8">
