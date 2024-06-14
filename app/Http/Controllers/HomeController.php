@@ -44,7 +44,7 @@ class HomeController extends Controller
                         ->with('siswa')
                         ->whereIn('kelas.id_kelas', $kelas_ids) // Tambahkan kondisi whereIn untuk membatasi hasil query
                         ->groupBy('kelas.id_kelas', 'kelas.nama', 'kelas.tingkat_kelas', 'kelas.foto', 'kelas.deskripsi', 'kelas.harga', 'kelas.fasilitas', 'kelas.rentang', 'kelas.jadwal_hari', 'kelas.durasi', 'kelas.dibuat')
-                        ->get();
+                        ->paginate(4);
 
                     $siswaa = Siswa::all();
                     $pengajarr = Pengajar::distinct()->pluck('pengguna_id');

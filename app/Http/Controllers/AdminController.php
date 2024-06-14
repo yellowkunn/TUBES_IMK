@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Kelas;
 use App\Models\Siswa;
 use App\Models\Pengajar;
+use App\Models\User;
+use App\Models\Biodata_Pengajar;
 
 class AdminController extends Controller
 {
@@ -59,8 +61,55 @@ class AdminController extends Controller
     public function editdaftarpengajar()
     {
         $pengajars = Pengajar::all();
-        return view ('owner.daftar_pengajar', compact('pengajars'));
+        $kelas = Kelas::all();
+        $pengguna = User::where('role', 'user')->get();
+        return view ('owner.daftar_pengajar', compact('pengajars', 'pengguna', 'kelas'));
     }
+
+    public function tambahpengajarbaru(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'pengajar' => 'required|exists:users,id_pengguna',
+            'nama' => 'required|string|max:255',
+            'tanggal_lahir' => 'required|date',
+            'tempat' => 'required|string|max:255',
+            'agama' => 'required|string|max:50',
+            'jabatan' => 'nullable|string|max:255',
+            'kelas' => 'nullable|exists:kelas,id_kelas',
+            'pendidikan' => 'required|string|max:255',
+            'noHp' => 'required|string|max:15',
+            'noTelp' => 'required|string|max:15',
+            'kewarganegaraan' => 'required|string|max:50',
+        ]);
+
+        // Insert data ke tabel biodata_pengajar menggunakan create
+        Biodata_Pengajar::insert([
+            'pengguna_id' => $request->pengajar,
+            'nama_lengkap' => $request->nama,
+            'tmpt_tgl_lahir' => $request->tanggal_lahir,
+            'alamat' => $request->tempat,
+            'agama' => $request->agama,
+            'kewarganegaraan' => $request->kewarganegaraan,
+            'no_hp' => $request->noHp,
+            'no_telepon' => $request->noTelp,
+            'pendidikan' => $request->pendidikan,
+        ]);
+
+        // Insert data ke tabel pengajar menggunakan create
+        Pengajar::insert([
+            'pengguna_id' => $request->pengajar,
+            'kelas_id' => $request->kelas,
+            'jabatan' => $request->jabatan,
+        ]);
+
+        User::where('id_pengguna', $request->pengajar)->update([
+            'role' => 'pengajar',
+        ]);
+
+        return redirect()->back()->with('success', 'Pengajar berhasil ditambahkan');
+    }
+
 
     public function tambahkelasbaru(Request $request)
     {

@@ -12,6 +12,8 @@
     <!-- google font for icon -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
     @vite('resources/css/app.css')
 </head>
 
@@ -120,6 +122,7 @@
                         </div>
                         @endforeach
                         @endif
+                        {{ $kelasss->links() }}
                     </div>
                     <!-- akhir dari daftar kelas -->
 
