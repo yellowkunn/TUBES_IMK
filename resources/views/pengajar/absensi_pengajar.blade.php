@@ -48,6 +48,11 @@
                     <p>50 menit/sesi</p>
                 </div>
 
+                <div class="border-b-2 border-baseBlue w-full flex gap-6 mb-10">
+                    <button type="button" id="daftarHadirBtn" class="rounded-t-lg bg-baseBlue py-2 px-4 text-white">Daftar Hadir</button>
+                    <button type="button" id="siswaYangHadirBtn" class="rounded-t-lg py-2 px-4 bg-white text-baseBlue">Siswa yang Hadir</button>
+                </div>
+
                 <!-- tabel rapor -->
                 @livewire('kehadiran-siswa', ['kelas' => $kelas])
                 <!-- akhir dari tabel rapor -->
@@ -58,5 +63,36 @@
     </div>
 
     @include('components.footer')
+
+    <script>
+        const tabdaftarHadir = document.getElementById('daftarHadirBtn');
+        const tabsiswaYangHadir = document.getElementById('siswaYangHadirBtn');
+        const kontendaftarHadir = document.getElementById('daftarHadirContent');
+        const kontensiswaYangHadir = document.getElementById('siswaYangHadirContent');
+
+        tabsiswaYangHadir.addEventListener("click", function() {
+            if (kontensiswaYangHadir.classList.contains('hidden')) {
+                kontendaftarHadir.classList.add('hidden');
+                kontensiswaYangHadir.classList.remove('hidden');
+            
+                tabsiswaYangHadir.classList.add('bg-baseBlue', 'text-white');
+                tabsiswaYangHadir.classList.remove('bg-white', 'text-baseBlue');
+                tabdaftarHadir.classList.remove('bg-baseBlue', 'text-white');
+                tabdaftarHadir.classList.add('bg-white', 'text-baseBlue');
+            }
+        });
+
+        tabdaftarHadir.addEventListener("click", function() {
+            if (kontendaftarHadir.classList.contains('hidden')) {
+                kontensiswaYangHadir.classList.add('hidden');
+                kontendaftarHadir.classList.remove('hidden');
+             
+                tabdaftarHadir.classList.add('bg-baseBlue', 'text-white');
+                tabdaftarHadir.classList.remove('bg-white', 'text-baseBlue');
+                tabsiswaYangHadir.classList.remove('bg-baseBlue', 'text-white');
+                tabsiswaYangHadir.classList.add('bg-white', 'text-baseBlue');
+            }
+        });
+    </script>
 </body>
 </html>
