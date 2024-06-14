@@ -6,6 +6,8 @@ use Livewire\Component;
 use App\Models\Pertemuan;
 use Carbon\Carbon;
 use App\Models\Kelas;
+use App\Models\BaruDiakses;
+use Illuminate\Support\Facades\Auth;
 
 
 class FilterBulan extends Component
@@ -13,6 +15,7 @@ class FilterBulan extends Component
     public $selectedMonth;
     public $filterBulan;
     public $kelas;
+    public $pertemuan;
 
     public function mount(Kelas $kelas)
     {
@@ -92,6 +95,36 @@ class FilterBulan extends Component
         return $months[$monthNumber];
     }
 
+
+    public function baru_diakses($pertemuan_id)
+    {
+        $pertemuan = Pertemuan::find($pertemuan_id);
+        if (!$pertemuan) {
+            // Jika kelas tidak ditemukan, bisa Anda tambahkan logika untuk menangani hal ini
+            return;
+        }
+
+        $pengguna_id = Auth::user()->id_pengguna;
+
+        // Cek apakah sudah ada data dengan kelas_id yang sama
+        $baruDiakses = BaruDiakses::where('pertemuan_id', $pertemuan_id)->first();
+
+        if ($baruDiakses) {
+            // Jika ada, update data
+            $baruDiakses->update([
+                'pengguna_id' => $pengguna_id,
+                'pertemuan_id' => $pertemuan_id,
+                'baru_diakses' => now()->toTimeString(), // Waktu saat fungsi dijalankan
+            ]);
+        } else {
+            // Jika tidak ada, buat data baru
+            BaruDiakses::insert([
+                'pengguna_id' => $pengguna_id,
+                'pertemuan_id' => $pertemuan_id,
+                'baru_diakses' => now()->toTimeString(),
+            ]);
+        }
+    }
     public function render()
     {
         return view('livewire.filter-bulan', [
