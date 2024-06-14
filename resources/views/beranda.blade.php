@@ -59,13 +59,13 @@
             <div class="mt-10 flex flex-col gap-8">
 
                 <p id="typewriter" class="font-semibold text-red-700 text-[50px] lg:text-[55px] xl:text-[70px] leading-tight lg:w-2/3 h-[180px] hidden md:block"></p>
-                <p class="md:hidden text-red-700 font-semibold text-subtitle text-balance">Gabung dan dapatkan pembelajaran terbaik dari kami!</p>
+                <p class="md:hidden  text-red-700 font-semibold text-subtitle text-balance">Gabung dan dapatkan pembelajaran terbaik dari kami!</p>
                 <p class="leading-tight sm:text-subtitle w-full lg:w-3/4 dark:dark-mode">Di setiap langkah yang kami ambil, kami percaya bahwa pendidikan adalah kunci untuk membuka pintu masa depan yang gemilang.</p>
                 @if (Route::has('login'))
                 @auth
-                <a href="{{ url('/formulirpendaftaran') }}" class="dark:text-red-500 text-red-700 sm:text-[20px] w-[120px] sm:w-[150px] py-2 border-2 border-red-700/50 text-center hover:text-white hover:bg-red-700 hover:border-none mb-16">Daftar Kelas</a>
+                <a href="{{ url('/formulirpendaftaran') }}" class=" text-red-700 sm:text-[20px] w-[120px] sm:w-[150px] py-2 border-2 border-red-700/50 dark:bg-red-700 dark:text-white text-center hover:text-white hover:bg-red-700 hover:border-none mb-16">Daftar Kelas</a>
                 @else
-                <a href=" {{ route('login') }} " class="dark:text-red-500 text-red-700 sm:text-[20px] w-[120px] sm:w-[150px] py-2 border-2 border-red-700/50 text-center hover:text-white hover:bg-red-700 hover:border-none mb-16">Daftar Kelas</a>
+                <a href=" {{ route('login') }} " class=" text-red-700 sm:text-[20px] w-[120px] sm:w-[150px] py-2 border-2 border-red-700/50 text-center dark:bg-red-700 dark:text-white hover:text-white hover:bg-red-700 hover:border-none mb-16">Daftar Kelas</a>
                 @endauth
                 @endif
 
@@ -78,7 +78,7 @@
         <!-- akhir section 1 -->
 
         <!-- section 2 -->
-        <div class="p-8 sm:px-16 sm:py-12 lg:p-20 bg-baseCream text-center dark:dark-mode dark:border-2 dark:border-t-lg dark:border-white">
+        <div class="p-8 sm:px-16 sm:py-12 lg:p-20 bg-baseCream text-center dark:dark-mode dark:border-t-2 dark:border-b-2 dark:border-white">
             <div data-aos="fade-up">
 
                 <p class="font-semibold text-subtitle sm:text-title md:text-[40px] text-[#333333] dark:text-white">Program Unggulan FEC</p>
@@ -88,9 +88,9 @@
                     @foreach($kelass->slice(0, 8) as $kelas)
                     <article class="flex flex-col">
                         <a href="{{ url('/detailkelas/' . $kelas->id_kelas) }}" class="flex flex-col justify-center">
-                            <div class="group transform transition-transform hover:scale-95 flex flex-col p-5 sm:p-7 w-full drop-shadow-regularShadow bg-white hover:drop-shadow-none rounded-xl">
-                                <div class="flex flex-col items-start text-neutral-700">
-                                    <h4 class="font-semibold text-subtitle  ">{{ $kelas->nama }}</h4>
+                            <div class="group transform transition-transform hover:scale-95 flex flex-col p-5 sm:p-7 w-full drop-shadow-regularShadow bg-white dark:bg-[#374151]/40 hover:drop-shadow-none rounded-xl">
+                                <div class="flex flex-col items-start text-neutral-700 dark:text-white">
+                                    <h4 class="font-semibold text-subtitle">{{ $kelas->nama }}</h4>
                                     <!-- <p class="text-smallContent italic font-light">kurikulum nasional</p> -->
                                 </div>
                                 <img loading="lazy" src="{{ asset('berkas_ujis/' . $kelas->foto) }}" alt="{{ $kelas->nama }}" class="mt-4 max-h-48 w-full object-cover rounded-lg" />
@@ -110,10 +110,10 @@
                                     </div>
                                 </div>
 
-                                <p class="text-justify text-neutral-600 mt-2 break-pretty">
-                                    <span class="text-[20px] sm:text-subtitle font-semibold text-amber-500">Rp{{ number_format($kelas->harga, 0, ',', '.') }}</span>/bulan
+                                <p class="text-justify text-neutral-600 dark:text-white mt-2 break-pretty">
+                                    <span class="text-[20px] sm:text-subtitle font-semibold text-amber-500">Rp{{ number_format($kelas->harga, 0, ',', '.') }} </span>/bulan
                                 </p>
-                                <a href="{{ url('/detailkelas/' . $kelas->id_kelas) }}" class="py-2 w-full text-white bg-baseBlue/90 group-hover:bg-baseBlue rounded-lg mt-3">
+                                <a href="{{ url('/detailkelas/' . $kelas->id_kelas) }}" class="py-2 w-full text-white dark:bg-[#313A49] bg-baseBlue/90 group-hover:bg-baseBlue rounded-lg mt-3">
                                     Lihat
                                 </a>
 
@@ -164,14 +164,14 @@
         <!-- akhir section 3 -->
 
         <!-- section 4 -->
-        <div class="p-16 lg:p-20">
+        <div class="p-16 lg:p-20 dark:border-t-2 dark:border-white">
             <div data-aos="fade-up" class="flex flex-col items-center">
                 <p class="font-semibold text-title w-1/2">Apa kata mereka yang sudah belajar di FEC?</p>
 
                 <div class="flex justify-between items-center mt-20 mb-12 lg:w-[850px]">
                     <button class="flex p-3 py-6 hover:rounded-full hover:bg-baseBlue/20">
-                        <i class="fa-solid fa-angle-left fa-lg text-baseBlue"></i>
-                        <i class="fa-solid fa-angle-left fa-lg text-baseBlue"></i>
+                        <i class="fa-solid fa-angle-left fa-lg text-baseBlue dark:text-white"></i>
+                        <i class="fa-solid fa-angle-left fa-lg text-baseBlue dark:text-white"></i>
                     </button>
 
                     <div class="flex flex-col items-center text-center">
@@ -180,14 +180,14 @@
                             <img src="https://t4.ftcdn.net/jpg/03/83/25/83/360_F_383258331_D8imaEMl8Q3lf7EKU2Pi78Cn0R7KkW9o.jpg" class="w-10 h-10 object-cover rounded-full" alt="">
                             <div class="text-start">
                                 <p class="font-semibold">Marissa</p>
-                                <p class="text-neutral-700 text-smallContent">Mengikuti kelas IPA SMP 2017</p>
+                                <p class="text-neutral-700 text-smallContent dark:dark-mode">Mengikuti kelas IPA SMP 2017</p>
                             </div>
                         </div>
                     </div>
 
                     <button class="flex p-3 py-6 hover:rounded-full hover:bg-baseBlue/20">
-                        <i class="fa-solid fa-angle-right fa-lg text-baseBlue"></i>
-                        <i class="fa-solid fa-angle-right fa-lg text-baseBlue"></i>
+                        <i class="fa-solid fa-angle-right fa-lg text-baseBlue dark:text-white"></i>
+                        <i class="fa-solid fa-angle-right fa-lg text-baseBlue dark:text-white"></i>
                     </button>
                 </div>
 

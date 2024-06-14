@@ -18,6 +18,6 @@
     }
 
     .dark-mode{
-      @apply bg-[#253247] text-white/90 border-white
+      @apply bg-[#111827] text-white/90 border-white
     }
   }
