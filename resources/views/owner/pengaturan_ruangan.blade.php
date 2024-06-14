@@ -31,9 +31,9 @@
 
                     <!-- page hierarchy -->
                     <div class="flex items-center gap-2 text-smallContent">
-                        <a href="{{ route('home') }}">Dashboard</a>
+                        <a href="{{ route('home') }}" class="hover:font-semibold">Dashboard</a>
                         <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                        <a href="{{ route('pengaturanruangan') }}">Pengaturan Ruangan</a>
+                        <a href="{{ route('pengaturanruangan') }}" class="hover:font-semibold">Pengaturan Ruangan</a>
                     </div>
 
                     <div class="flex justify-between items-center my-7">
@@ -44,166 +44,109 @@
                         </form>
                     </div>
 
-                    <div class="grid grid-cols-3 gap-x-24 gap-y-16">
+                    <div class="border-b-2 border-baseBlue w-full flex gap-6 mb-10">
+                        <button type="button" id="belumDiaturBtn" class="rounded-t-lg bg-baseBlue py-2 px-4 text-white">Belum diatur</button>
+                        <button type="button" id="sudahDiaturBtn" class="rounded-t-lg py-2 px-4 bg-white text-baseBlue">Sudah diatur</button>
+                    </div>
+
+                    <div id="belumDiaturContent">
+                        <div class="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-x-24 gap-y-16">
                         @foreach($kelass as $kelas)
-                        <div class="bg-white rounded-lg pt-6 pb-8 px-12 drop-shadow-regularShadow relative">
+                            <div class="bg-white h-fit rounded-lg p-6 px-10 lg:px-12 drop-shadow-regularShadow relative group my-8 sm:my-0">
+                                <div class="flex items-center gap-2 w-full">
+                                    <span class="relative flex h-3 w-3">
+                                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                        <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                                    </span>
+                                    <p class="text-red-500 text-smallContent font-semibold">Belum diatur</p>
+                                </div>
 
-                            <!-- dd more (edit & hapus) -->
-                            <div>
-                                <button id="dd-more{{ $loop->index }}" class="text-end w-full"><i class="fa-solid fa-ellipsis-vertical text-lg"></i></button>
-
-                                <div id="dd-menu{{ $loop->index }}" class="hidden grid grid-cols-1 divide-y bg-white mt-2 rounded-md drop-shadow-regularShadow absolute top-7 right-14" style="color: #949494;">
-                                    <button onclick="showPopupEditKelas()" class="w-full h-full flex items-center gap-2 py-1.5 px-5">
-                                        <i class="fa-regular fa-pen-to-square"></i>
-                                        <p>Edit</p>
-                                    </button>
-                                    <button onclick="showPopupHapusKelas()" class="w-full h-full flex items-center gap-2 py-1.5 px-5">
-                                        <i class="fa-regular fa-trash-can"></i>
-                                        <p>Hapus</p>
-                                    </button>
+                                <div class="flex flex-col gap-2 mt-4">
+                                    <p class="font-semibold md:text-[20px] lg:text-subtitle capitalize">{{ $kelas->nama }}</p>
+                                    
+                                    <button id="dd-more{{ $loop->index }}" onclick="showPopupAturRuangan({{ $kelas->id_kelas }})" class="rounded-lg bg-baseBlue/90 group-hover:bg-baseBlue text-white py-2 my-3 inline-block text-center">Atur Ruangan</button>
                                 </div>
                             </div>
-                            <!-- akhir dari dd more (edit & hapus) -->
-                            <div class="flex flex-col gap-2">
-                                <p class="font-semibold">{{ $kelas->nama }} </p>
-                                <p class="text-greyIcon text-smallContent hyphens-auto line-clamp-3">{{ $kelas->deskripsi }}</p>
-                                <p class="font-semibold text-[#E9940C]">Rp{{ number_format($kelas->harga, 0, ',', '.') }} <br><span class="text-smallContent text-greyIcon font-normal">{{ $kelas->rentang }} / bulan</span></p>
-                                <a href="{{ url('/editdetailkelas/' . $kelas->id_kelas) }}" class="rounded-full bg-baseBlue text-white font-semibold py-2 my-3 inline-block text-center">Detail</a>
-                            </div>
-                            <div class="absolute bg-baseBlue h-1 rounded-full bottom-0 left-1/2 transform -translate-x-1/2 w-3/4"></div>
-                        </div>
                         @endforeach
-
-                        <div class="bg-[#7AA1E2]/10 rounded-lg p-8 px-12 drop-shadow-regularShadow hover:bg-[#7AA1E2]/20">
-                            <button onclick="showPopupTambahKelas()" class="text-end w-full h-full flex justify-center items-center gap-2 text-baseBlue">
-                                <div class="p-0.5 px-[7px] border-2 border-[#7AA1E2] rounded-full">
-                                    <i class="fa-solid fa-plus"></i>
-                                </div>
-                                <p class="font-semibold text-baseBlue">Kelas Baru</p>
-                            </button>
                         </div>
                     </div>
 
-                    <!-- pop up tambah kelas baru -->
-                    <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow 
-                    w-full h-screen" id="popupTambahKelas">
-                        <div class="flex flex-col justify-center max-w-[600px]">
-                            <div class="flex justify-between bg-baseBlue px-10 py-4 rounded-t-xl text-white">
-                                <p class="text-title">Tambah Kelas</p>
-                                <button onclick="showPopupTambahKelas()">
-                                    <i class="fa-solid fa-xmark fa-lg"></i>
-                                </button>
-                            </div>
-                            <div class="bg-white p-7 pt-4 rounded-b-xl px-10 py-8">
-                                <form action="/tambahkelasbaru" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="overflow-y-auto max-h-96 pe-7 flex flex-col gap-5 mt-5 px-0.5">
-                                        <div>
-                                            <p class="font-semibold mb-1">Nama Kelas</p>
-                                            <input class="rounded w-full h-9" type="text" name="nama" id="nama">
+                    <div id="sudahDiaturContent" class="hidden">
+                        <div class="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-x-24 gap-y-16">
+                        @foreach($kelass as $kelas)
+                            <div class="bg-white h-fit rounded-lg p-6 px-10 lg:px-12 drop-shadow-regularShadow relative group my-8 sm:my-0">
+                                <div>
+                                    <div class="flex justify-between mb-3">
+                                        <div class="flex items-center gap-2 w-full">
+                                            <span class="relative flex h-3 w-3">
+                                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-300 opacity-75"></span>
+                                                <span class="relative inline-flex rounded-full h-3 w-3 bg-green-400"></span>
+                                            </span>
+                                            <p class="text-green-500 text-smallContent font-semibold">Sudah diatur</p>
                                         </div>
 
-                                        <div>
-                                            <p class="font-semibold mb-1">Tingkat Kelas</p>
-                                            <select id="" name="tingkat_kelas" class="rounded w-full h-9">
-                                                <option value="" class="text-greyIcon">Kelas</option>
-                                                <option value="SD">SD</option>
-                                                <option class="text-greyIcon" value="SMP">SMP</option>
-                                                <option class="text-greyIcon" value="SMA">SMA</option>
-                                                <option class="text-greyIcon" value="Gap Year">Gap Year</option>
-                                                <option class="text-greyIcon" value="TOEFL">TOEFL</option>
-                                                <option class="text-greyIcon" value="IELTS">IELTS</option>
-                                            </select>
-                                        </div>
-
-                                        <div>
-                                            <p class="font-semibold mb-1">Keterangan</p>
-                                            <input class="rounded w-full h-9" type="text" name="deskripsi" id="deskripsi">
-                                        </div>
-
-                                        <div>
-                                            <p for="harga" class="font-semibold">Harga</p>
-
-                                            <div class="flex justify-between gap-2 h-9">
-                                                <input class="rounded w-5/6" type="number" name="harga" id="harga">
-                                                <p class="text-2xl text-greyIcon my-auto">/</p>
-                                                <input class="rounded w-1/3" type="text" name="rentang" id="rentang" placeholder="Rentang">
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <p class="font-semibold mb-1">Fasilitas</p>
-                                            <input class="rounded w-full h-9" type="text" name="fasilitas" id="fasilitas">
-                                        </div>
-
-                                        <div>
-                                            <p class="font-semibold mb-1">Pilih Hari</p>
-                                            <input class="rounded w-full h-9" type="text" name="jadwal_hari" id="jadwal_hari">
-                                        </div>
-                                        
-                                        <div>
-                                            <p class="font-semibold mb-1">Durasi</p>
-                                            <input class="rounded w-full h-9" type="text" name="durasi" id="durasi">
-                                        </div>
-
-                                        <div>
-                                            <p class="font-semibold mb-1">Foto Kelas</p>
-                                            <input type="file" accept="image/*" name="gambar" id="gambar" class="file:text-baseBlue file:font-semibold 
-                                                    file:bg-baseBlue/20 file:rounded-full file:py-2 file:px-4 file:border-none file:cursor-pointer mt-1" required>
-                                        </div>
+                                        <button id="dd-more{{ $loop->index }}" onclick="showPopupHapusRuangan({{ $kelas->id_kelas }})">
+                                            <i class="fa-regular fa-trash-can" id="hapus"></i>
+                                        </button>
                                     </div>
-
-                                    <div class="mt-8 flex justify-end gap-6">
-                                        <button type="button" onclick="showPopupTambahKelas()" class="text-greyIcon hover:font-semibold">Batal</button>
-                                        <button type="submit" class="text-baseBlue bg-white border-2 border-baseBlue p-1.5 px-7 rounded-full
-                                            hover:bg-baseBlue hover:text-white" style="box-shadow: 
-                                            0px 0px 5px 1px rgba(122,161,226,0.3);">Tambah</button>
-                                    </div>
-                                </form>
-                                @if (session('success'))
-                                <div class="alert alert-success">
-                                    {{ session('success') }}
                                 </div>
-                                @endif
+                            
+                                <div class="flex flex-col gap-2">
+                                    <p class="font-semibold md:text-[20px] lg:text-subtitle capitalize mb-4">{{ $kelas->nama }}</p>
+                                    
+                                    <p class="font-semibold">Pengajar: <span class="font-normal">Yohana Septamia</span></p>
+                                    <p class="font-semibold">Hari: <span class="font-normal">Senin,</span> Jam: <span class="font-normal">14.50</span></p>
+                                    <p class="font-semibold">Hari: <span class="font-normal">Kamis,</span> Jam: <span class="font-normal">14.50</span></p>
+                                    
+                                    <button id="dd-more{{ $loop->index }}" onclick="showPopupEditRuangan({{ $kelas->id_kelas }})" class="rounded-lg bg-baseBlue/90 group-hover:bg-baseBlue text-white py-2 my-3 inline-block text-center">Edit Ruangan</button>
+                                </div>
                             </div>
+                        @endforeach
                         </div>
                     </div>
-                    <!-- akhir dari pop up tambah kelas baru -->
 
-                    <!-- pop up edit kelas -->
-                    <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow 
-                    w-full h-screen" id="popupEditKelas">
-                        <div class="flex flex-col justify-center max-w-[450px]">
+                    @foreach($kelass as $kelas)
+                    <!-- pop up atur pengaturan ruang kelas -->
+                    <div class="hidden top-0 left-0 flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow 
+                    w-full h-screen" id="popupAturRuangan{{ $kelas->id_kelas }}">
+                        <div class="flex flex-col justify-center min-w-[450px]">
                             <div class="flex justify-between bg-baseBlue px-10 py-4 rounded-t-xl text-white">
-                                <p class="text-title">Edit Kelas</p>
-                                <button onclick="showPopupEditKelas()">
+                                <p class="text-title">Atur Kelas</p>
+                                <button onclick="showPopupAturRuangan({{ $kelas->id_kelas }})">
                                     <i class="fa-solid fa-xmark fa-lg"></i>
                                 </button>
                             </div>
                             <div class="bg-white p-7 pt-4 rounded-b-xl px-10 py-8">
                                 <form action="" method="post" class="flex flex-col gap-5">
+                                    @csrf
                                     <div>
-                                        <p class="font-semibold mb-1">Nama Kelas</p>
-                                        <input class="rounded w-full h-9" type="text" name="namaKelas" id="namaKelas" value="Nama Kelas">
+                                        <p class="font-semibold mb-1">Pengaturan ruang kelas </p>
+                                        <p class="font-semibold mb-1 text-subtitle">{{ $kelas->nama }}</p>
+                                        <input type="hidden" name="namaKelas" id="namaKelas" value="{{ $kelas->nama }}">
                                     </div>
 
                                     <div>
-                                        <p class="font-semibold mb-1">Keterangan</p>
-                                        <input class="rounded w-full h-9" type="text" name="keterangan" id="keterangan" value="Lorem ipsum">
+                                        <p class="font-semibold mb-1">Pengajar</p>
+                                        <input class="px-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" type="text" name="keterangan" id="keterangan" value="">
                                     </div>
 
                                     <div>
-                                        <p for="harga" class="font-semibold">Harga</p>
+                                        <p class="font-semibold mb-2">Jadwal</p>
 
-                                        <div class="flex justify-between gap-4 h-9">
-                                            <input class="rounded w-5/6" type="number" name="harga" id="harga" value="500000">
-                                            <p class="text-2xl text-greyIcon my-auto">/</p>
-                                            <input class="rounded w-1/3" type="text" name="rentang" id="rentang" placeholder="Rentang" value="8 Pertemuan">
+                                        <div class="overflow-y-auto max-h-30 flex flex-col gap-4 pe-3 ps-0.5">
+                                            <!-- foreach jadwal_hari -->
+                                            <div>
+                                                <p>Senin</p>
+                                                <div class="flex gap-3 items-center mt-1">
+                                                    <i class="fa-lg fa-regular fa-clock fa-sm"></i> 
+                                                    <input class="px-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" type="text" name="jam" id="jam" value="">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
                                     <div class="mt-8 flex justify-end gap-6">
-                                        <button type="button" onclick="showPopupEditKelas()" class="text-greyIcon hover:text-black">Batal</button>
+                                        <button type="button" onclick="showPopupAturRuangan({{ $kelas->id_kelas }})" class="text-greyIcon hover:text-black">Batal</button>
                                         <button type="submit" class="text-baseBlue bg-white border-2 border-baseBlue p-1.5 px-7 rounded-full
                                             hover:bg-baseBlue hover:text-white" style="box-shadow: 
                                             0px 0px 5px 1px rgba(122,161,226,0.3);">Simpan</button>
@@ -213,15 +156,66 @@
                             </div>
                         </div>
                     </div>
-                    <!-- akhir dari pop up edit kelas -->
+                    <!-- akhir dari pop up atur pengaturan ruang kelas -->
 
-                    <!-- pop up hapus kelas -->
+                    <!-- pop up edit pengaturan ruang kelas -->
                     <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow 
-                    w-full h-screen" id="popupHapusKelas">
+                    w-full h-screen" id="popupEditRuangan{{ $kelas->id_kelas }}">
+                        <div class="flex flex-col justify-center min-w-[450px]">
+                            <div class="flex justify-between bg-baseBlue px-10 py-4 rounded-t-xl text-white">
+                                <p class="text-title">Edit Kelas</p>
+                                <button onclick="showPopupEditRuangan({{ $kelas->id_kelas }})">
+                                    <i class="fa-solid fa-xmark fa-lg"></i>
+                                </button>
+                            </div>
+                            <div class="bg-white p-7 pt-4 rounded-b-xl px-10 py-8">
+                                <form action="" method="post" class="flex flex-col gap-5">
+                                    @csrf
+                                    <div>
+                                        <p class="font-semibold mb-1">Pengaturan ruang kelas </p>
+                                        <p class="font-semibold mb-1 text-subtitle">{{ $kelas->nama }}</p>
+                                        <input type="hidden" name="namaKelas" id="namaKelas" value="{{ $kelas->nama }}">
+                                    </div>
+
+                                    <div>
+                                        <p class="font-semibold mb-1">Pengajar</p>
+                                        <input class="px-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" type="text" name="keterangan" id="keterangan" value="nama pengajar">
+                                    </div>
+
+                                    <div>
+                                        <p class="font-semibold mb-2">Jadwal</p>
+
+                                        <div class="overflow-y-auto max-h-30 flex flex-col gap-4 pe-3 ps-0.5">
+                                            <!-- foreach jadwal_hari -->
+                                            <div>
+                                                <p>Senin</p>
+                                                <div class="flex gap-3 items-center mt-1">
+                                                    <i class="fa-lg fa-regular fa-clock fa-sm"></i> 
+                                                    <input class="px-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" type="text" name="jam" id="jam" value="jamnya">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-8 flex justify-end gap-6">
+                                        <button type="button" onclick="showPopupEditRuangan({{ $kelas->id_kelas }})" class="text-greyIcon hover:text-black">Batal</button>
+                                        <button type="submit" class="text-baseBlue bg-white border-2 border-baseBlue p-1.5 px-7 rounded-full
+                                            hover:bg-baseBlue hover:text-white" style="box-shadow: 
+                                            0px 0px 5px 1px rgba(122,161,226,0.3);">Simpan</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- akhir dari pop up edit pengaturan ruang kelas -->
+
+                    <!-- pop up hapus pengaturan ruang kelas -->
+                    <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow 
+                    w-full h-screen" id="popupHapusRuangan{{ $kelas->id_kelas }}">
                         <div class="flex flex-col justify-center max-w-[350px]">
                             <div class="bg-white rounded-xl px-10 py-8">
                                 <div class="text-end">
-                                    <button onclick="showPopupHapusKelas()">
+                                    <button onclick="showPopupHapusRuangan({{ $kelas->id_kelas }})">
                                         <i class="fa-solid fa-xmark fa-lg text-greyIcon"></i>
                                     </button>
                                 </div>
@@ -242,12 +236,12 @@
                                     </svg>
 
                                     <p class="font-semibold text-greyIcon text-balance text-center">
-                                        Apakah anda yakin ingin menghapus kelas Matematika?
+                                        Apakah anda yakin ingin menghapus pengaturan ruang untuk kelas {{ $kelas->nama }}?
                                     </p>
 
                                     <form action="" method="post">
                                         <div class="flex justify-between gap-4 mt-4">
-                                            <button type="button" onclick="showPopupHapusKelas()" class="text-greyIcon hover:text-black w-full">Batal</button>
+                                            <button type="button" onclick="showPopupHapusRuangan({{ $kelas->id_kelas }})" class="text-greyIcon hover:text-black w-full">Batal</button>
                                             <button type="submit" class="text-[#d60101] bg-white border-2 border-[#d60101] p-1.5 w-full rounded-full
                                     hover:bg-[#d60101] hover:text-white" style="box-shadow: 0px 0px 5px 1px rgba(214,1,1,0.3);">Hapus</button>
                                         </div>
@@ -256,9 +250,10 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- akhir dari pop up hapus kelas -->
+                        <!-- akhir dari pop up hapus pengaturan ruang kelas -->
 
                     </div>
+                    @endforeach
 
                 </div>
             </div>
@@ -268,34 +263,45 @@
     @include('components.footer')
 
     <script>
-        const showPopupTambahKelas = () => {
-            const popup = document.getElementById('popupTambahKelas');
+        const tabBelumDiatur = document.getElementById('belumDiaturBtn');
+        const tabSudahDiatur = document.getElementById('sudahDiaturBtn');
+        const kontenBelumDiatur = document.getElementById('belumDiaturContent');
+        const kontenSudahDiatur = document.getElementById('sudahDiaturContent');
 
-            if (popup.classList.contains('hidden')) {
-                popup.classList.remove('hidden')
-            } else {
-                popup.classList.add('hidden')
+        tabSudahDiatur.addEventListener("click", function() {
+            if (kontenSudahDiatur.classList.contains('hidden')) {
+                kontenBelumDiatur.classList.add('hidden');
+                kontenSudahDiatur.classList.remove('hidden');
+            
+                tabSudahDiatur.classList.add('bg-baseBlue', 'text-white');
+                tabSudahDiatur.classList.remove('bg-white', 'text-baseBlue');
+                tabBelumDiatur.classList.remove('bg-baseBlue', 'text-white');
+                tabBelumDiatur.classList.add('bg-white', 'text-baseBlue');
             }
+        });
+
+        tabBelumDiatur.addEventListener("click", function() {
+            if (kontenBelumDiatur.classList.contains('hidden')) {
+                kontenSudahDiatur.classList.add('hidden');
+                kontenBelumDiatur.classList.remove('hidden');
+             
+                tabBelumDiatur.classList.add('bg-baseBlue', 'text-white');
+                tabBelumDiatur.classList.remove('bg-white', 'text-baseBlue');
+                tabSudahDiatur.classList.remove('bg-baseBlue', 'text-white');
+                tabSudahDiatur.classList.add('bg-white', 'text-baseBlue');
+            }
+        });
+
+        function showPopupAturRuangan(i) {
+            document.getElementById('popupAturRuangan'+i).classList.toggle('hidden');
         }
 
-        const showPopupEditKelas = () => {
-            const popup = document.getElementById('popupEditKelas');
-
-            if (popup.classList.contains('hidden')) {
-                popup.classList.remove('hidden')
-            } else {
-                popup.classList.add('hidden')
-            }
+        function showPopupEditRuangan(i) {
+            document.getElementById('popupEditRuangan'+i).classList.toggle('hidden');
         }
 
-        const showPopupHapusKelas = () => {
-            const popup = document.getElementById('popupHapusKelas');
-
-            if (popup.classList.contains('hidden')) {
-                popup.classList.remove('hidden')
-            } else {
-                popup.classList.add('hidden')
-            }
+        function showPopupHapusRuangan(i) {
+            document.getElementById('popupHapusRuangan'+i).classList.toggle('hidden');
         }
 
         document.addEventListener('DOMContentLoaded', (event) => {
@@ -333,7 +339,9 @@
             });
         });
 
-
+        tippy('#hapus', {
+        content: 'Hapus Ruangan',
+        });
     </script>
 </body>
 

@@ -99,6 +99,7 @@
                                 </div>
                             </div>
                             <!-- akhir dari dd more (edit & hapus) -->
+                            
                             <div class="flex flex-col gap-2">
                                 <p class="font-semibold md:text-[20px] lg:text-subtitle capitalize">{{ $kelas->nama }} </p>
                                 @if($kelas->foto)

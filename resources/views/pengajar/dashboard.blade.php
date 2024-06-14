@@ -112,16 +112,27 @@
                                         </div>
                                     </div>
 
-                                    <div class="flex gap-6 items-center mt-4">
-                                    @foreach($kelas->siswa as $siswa => $image)
-                                        @if($loop->index < 3)
-                                        <img class="w-8 h-8 object-cover rounded-full absolute z-{{ ($loop->index * 10) }} ms-10 left-{{ ($loop->index * 4) }}" src="{{ asset('berkas_ujis/' . $image->pengguna->foto_profile) }}" alt="">
+                                    <div class="flex items-center mt-4 relative">
+                                        @php
+                                            $index = 0;
+                                        @endphp
+                                        @foreach($kelas->siswa as $siswa => $image)
+                                            @if($index < 3)
+                                                <img class="w-8 h-8 object-cover rounded-full ms-10 fixed z-{{ ($index * 10) }} left-{{ ($index * 4) }}" src="{{ asset('berkas_ujis/' . $image->pengguna->foto_profile) }}" alt="">
+                                            @endif
+                                        @php
+                                        $index++;
+                                        @endphp
+                                        @endforeach
+                                        
+                                        @if($kelas->total_siswa < 2)
+                                        <p class="mt-1 text-greyIcon text-smallContent ms-10">{{ $kelas->total_siswa }} siswa</p>
+                                        @elseif($kelas->total_siswa == 2)
+                                        <p class="mt-1 text-greyIcon text-smallContent ms-14">{{ $kelas->total_siswa }} siswa</p>
+                                        @elseif($kelas->total_siswa > 2)
+                                        <p class="mt-1 text-greyIcon text-smallContent ms-[70px]">{{ $kelas->total_siswa }} siswa</p>
                                         @endif
-                                    @endforeach
-                                    <p class="text-greyIcon relative ms-2 left-{{ $kelas->total_siswa > 1 ? '16' : '8' }} top-0.5 text-smallContent">{{ $kelas->total_siswa }} Siswa</p>
                                     </div>
-
-
 
                                     <a href="{{ url('pengajardetailkelas', $kelas->id_kelas) }}" class="text-center text-white group-hover:font-semibold bg-baseBlue/80 group-hover:bg-baseBlue w-full rounded-lg py-2 mt-4">Lihat Detail
                                     </a>
