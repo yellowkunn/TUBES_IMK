@@ -56,7 +56,7 @@
                     </div>
 
                     <div id="siswaContent">
-                        <div class="bg-white drop-shadow-regularShadow py-3 my-5 rounded-lg border">
+                        <div class="bg-white drop-shadow-regularShadow py-3 my-5 rounded-lg border overflow-x-auto">
                             <!-- tabel rapor -->
                             <table class="min-w-full text-left text-sm font-light text-surface dark:text-white"
                                 style="color: #191919">
@@ -95,8 +95,8 @@
                                                     {{ $siswa->kelas->pengajar->first()?->pengguna->biodataPengajar->nama_lengkap ?? '-' }}
                                                 </td>
                                                 <td class="px-8 py-4 flex items-center gap-4">
-                                                    <i class="fa-regular fa-eye"></i>
-                                                    <i class="fa-solid fa-pen text-white p-1.5 bg-baseBlue rounded-full"></i>
+                                                    <button><i class="fa-solid fa-arrow-right-to-bracket rotate-90"></i></button>
+                                                    <button onclick="showPopupHapusDataSiswa({{ $siswa->id_siswa }})"><i class="fa-regular fa-trash-can fa-lg"></i></button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -109,7 +109,7 @@
                     </div>
 
                     <div id="penggunaContent" class="hidden">
-                        <div class="bg-white drop-shadow-regularShadow py-3 my-5 rounded-lg border">
+                        <div class="bg-white drop-shadow-regularShadow py-3 my-5 rounded-lg border overflow-x-auto">
                             <!-- tabel rapor -->
                             <table class="min-w-full text-left text-sm font-light text-surface dark:text-white"
                                 style="color: #191919">
@@ -149,10 +149,57 @@
                                 </tbody>
                             </table>
                             <!-- akhir dari tabel rapor -->
+
                         </div>
                     </div>
-        
                 </div>
+
+                @if ($siswas)
+                    @foreach ($siswas as $siswa)
+                    <!-- Pop up hapus data siswa -->
+                    <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow 
+                                w-full h-screen" id="popupHapusDataSiswa{{ $siswa->id_siswa }}">
+                        <div class="flex flex-col justify-center max-w-[350px]">
+                            <div class="bg-white rounded-xl px-10 py-8">
+                                <div class="text-end">
+                                    <button onclick="showPopupHapusDataSiswa({{ $siswa->id_siswa }})">
+                                        <i class="fa-solid fa-xmark fa-lg text-greyIcon"></i>
+                                    </button>
+                                </div>
+                                <div class="flex flex-col gap-4">
+                                    <svg fill="none" xmlns="http://www.w3.org/2000/svg" class="w-[52px] h-[52px] mx-auto">
+                                        <circle cx="26" cy="26" r="26" fill="#FF3838" fill-opacity="0.1"></circle>
+                                        <circle cx="26" cy="26" r="21" fill="#FF3838" fill-opacity="0.15"></circle>
+                                        <g clip-path="url(#clip0_213_507)">
+                                            <path d="M27 20C27 19.4469 26.5531 19 26 19C25.4469 19 25 19.4469 25 20V28C25 28.5531 25.4469 29 26 29C26.5531 29 27 28.5531 27 28V20ZM26 33C26.3315 33 26.6495 32.8683 26.8839 32.6339C27.1183 32.3995 27.25 32.0815 27.25 31.75C27.25 31.4185 27.1183 31.1005 26.8839 30.8661C26.6495 30.6317 26.3315 30.5 26 30.5C25.6685 30.5 25.3505 30.6317 25.1161 30.8661C24.8817 31.1005 24.75 31.4185 24.75 31.75C24.75 32.0815 24.8817 32.3995 25.1161 32.6339C25.3505 32.8683 25.6685 33 26 33Z" fill="#D60101"></path>
+                                        </g>
+                                        <circle cx="26" cy="26" r="11" stroke="#D60101" stroke-width="2"></circle>
+                                        <defs>
+                                            <clipPath id="clip0_213_507">
+                                                <rect width="2" height="16" fill="white" transform="translate(25 18)"></rect>
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+
+                                    <p class="font-semibold text-greyIcon text-balance text-center">
+                                        Apakah anda yakin ingin menghapus siswa bernama {{ $siswa->pengguna->biodataSiswa->nama_lengkap ?? '-' }}?
+                                    </p>
+
+                                    <form action=" route('siswa.hapus', $siswa->id_siswa) " method="post">
+                                        @csrf
+                                        <div class="flex justify-between gap-4 mt-4">
+                                            <button type="button" onclick="showPopupHapusDataSiswa({{ $siswa->id_siswa }})" class="text-greyIcon w-full hover:font-semibold">Batal</button>
+                                            <button type="submit" class="text-[#d60101] bg-white border-2 border-[#d60101] p-1.5 w-full rounded-full
+                                                    hover:bg-[#d60101] hover:text-white hover:font-semibold" style="box-shadow: 0px 0px 5px 1px rgba(214,1,1,0.3);">Hapus</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Akhir dari pop up hapus data siswa -->
+                    @endforeach
+                @endif
 
             </div>
         </div>
@@ -190,6 +237,10 @@
                 penggunaBtn.classList.add('bg-white', 'text-baseBlue');
             }
         });
+
+        function showPopupHapusDataSiswa(i) {
+            document.getElementById('popupHapusDataSiswa'+i).classList.toggle('hidden');
+        }
     </script>
 </body>
 

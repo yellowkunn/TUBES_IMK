@@ -64,21 +64,24 @@
 
                     <div class="flex justify-between items-center my-7">
                         <p class="text-title font-semibold">Daftar Kelas</p>
-                        <form action="" method="get" class="flex justify-between items-center relative">
-                            <input autocomplete="off" type="text" id="search" name="search" value="" class="py-2 px-5 w-full bg-greyBackground border-2 border-greyBorder rounded-full" placeholder="Cari">
-                            <button type="submit" class="absolute right-5"><i class="fa-solid fa-magnifying-glass text-greyIcon"></i></button>
-                        </form>
+
+                        <div class="flex gap-4">
+                            <form action="" method="get" class="flex justify-between items-center relative">
+                                <input autocomplete="off" type="text" id="search" name="search" value=""
+                                    class="py-2 px-5 w-full bg-greyBackground border-2 border-greyBorder rounded-lg"
+                                    placeholder="Cari">
+                                <button type="submit" class="absolute right-5"><i class="fa-solid fa-magnifying-glass text-greyIcon"></i></button>
+                            </form>
+                            <button onclick="showPopupTambahKelas()"
+                                class="bg-baseBlue/5 hover:bg-baseBlue/10 border-2 border-baseBlue/80 flex items-center gap-3 px-3 py-2 rounded-lg">
+                                <i class="fa-solid fa-plus p-1 px-[5px] rounded-full text-white bg-baseBlue"></i>
+                                <p class="text-greyIcon font-semibold">Tambah kelas</p>
+                            </button>
+                        </div>
                     </div>
 
                     <!-- skeleton -->
-                    <div id="skeleton" class="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-x-24 gap-y-16">
-                        <div class="bg-slate-400/5 rounded-lg p-8 px-12 drop-shadow-regularShadow min-h-[400px] md:min-h-fit md:max-h-[200px]">
-                            <div class="text-end w-full h-full flex justify-center items-center gap-2">
-                                <div class="w-9 bg-slate-400/30 rounded-full h-8">
-                                </div>
-                                <p class="w-full h-8 bg-slate-400/30 rounded-lg"></p>
-                            </div>
-                        </div>
+                    <div id="skeleton" class="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-x-24 gap-y-16">                        
 
                         @foreach($kelass as $kelas)
                         <div class="bg-slate-400/5 rounded-lg p-6 px-10 lg:px-12 drop-shadow-regularShadow relative group my-8 sm:my-0">
@@ -98,14 +101,7 @@
 
                     <!-- hasil kelas -->
                     <div id="hasilKelas" class="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-x-24 gap-y-16">
-                        <div class="bg-[#7AA1E2]/10 rounded-lg p-8 px-12 drop-shadow-regularShadow hover:bg-[#7AA1E2]/20 min-h-[400px] md:min-h-fit md:max-h-[200px]">
-                            <button onclick="showPopupTambahKelas()" class="text-end w-full h-full flex justify-center items-center gap-2 text-baseBlue">
-                                <div class="p-0.5 px-[7px] border-2 border-[#7AA1E2] rounded-full">
-                                    <i class="fa-solid fa-plus"></i>
-                                </div>
-                                <p class="font-semibold text-baseBlue">Kelas Baru</p>
-                            </button>
-                        </div>
+                        
 
                         @foreach($kelass as $kelas)
                         <div class="bg-white rounded-lg p-6 px-10 lg:px-12 drop-shadow-regularShadow relative group my-8 sm:my-0">
