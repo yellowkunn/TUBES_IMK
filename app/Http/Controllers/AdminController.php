@@ -33,7 +33,7 @@ class AdminController extends Controller
     public function pengaturanruangan()
     {
         $kelasJamkos = Kelas::whereNull('jam')->get();
-        $kelass = Kelas::whereNotNull('jam')->get();
+        $kelass = Kelas::all();
         $pengajars = User::where('role', 'pengajar')->get();
         return view('owner.pengaturan_ruangan', compact('kelasJamkos', 'kelass', 'pengajars'));
     }
@@ -117,6 +117,12 @@ class AdminController extends Controller
 
     public function aturRuangan(Request $request)
     {
+        $request->validate([
+            'id_kelas' => 'required|exists:kelas,id_kelas',
+            'jam' => 'required|date_format:H:i',
+            'pengajar' => 'required|exists:users,id_pengguna'
+        ]);
+        
         Kelas::where('id_kelas', $request->id_kelas)->update([
             'jam' => $request->jam
         ]);

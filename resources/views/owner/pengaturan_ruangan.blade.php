@@ -51,16 +51,25 @@
 
                     <!-- Pesan Error -->
                     @if ($errors->any())
-                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
-                            <strong class="font-bold">Oops!</strong>
-                            <span class="block sm:inline">Terjadi kesalahan dengan input Anda:</span>
-                            <ul class="list-disc pl-5 mt-2">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+                    <div id="error-messages" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+                        <strong class="font-bold">Oops!</strong>
+                        <span class="block sm:inline">Terjadi kesalahan dengan input Anda:</span>
+                        <ul class="list-disc pl-5 mt-2">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                        <span class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer"
+                            onclick="dismissMessage('error-messages')">
+                            <svg class="fill-current h-6 w-6 text-red-500" role="button"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <title>Tutup</title>
+                                <path
+                                    d="M14.348 5.652a1 1 0 011.415 0l1.515 1.515a1 1 0 010 1.414l-8.648 8.648a1 1 0 01-1.415 0L2.122 8.59a1 1 0 010-1.415L3.637 5.652a1 1 0 011.414 0L10 10.586l4.348-4.348z" />
+                            </svg>
+                        </span>
+                    </div>
+                @endif
 
                     <!-- Pesan Sukses -->
                     @if (session('success'))
@@ -109,11 +118,13 @@
                                 message.style.display = 'none';
                             }, 1000);
                         }
-
-                        // Automatically dismiss the message after 5 seconds
+                    
+                        // Automatically dismiss the messages after 5 seconds
                         setTimeout(() => {
                             const successMessage = document.getElementById('success-message');
                             const pengajarMessage = document.getElementById('pesan-pengajar');
+                            const errorMessages = document.getElementById('error-messages');
+                            
                             if (successMessage) {
                                 successMessage.style.transition = 'opacity 1s ease-out';
                                 successMessage.style.opacity = '0';
@@ -128,9 +139,15 @@
                                     pengajarMessage.style.display = 'none';
                                 }, 1000);
                             }
+                            if (errorMessages) {
+                                errorMessages.style.transition = 'opacity 1s ease-out';
+                                errorMessages.style.opacity = '0';
+                                setTimeout(() => {
+                                    errorMessages.style.display = 'none';
+                                }, 1000);
+                            }
                         }, 5000);
                     </script>
-
 
                     <div class="border-b-2 border-baseBlue w-full flex gap-6 mb-10">
                         <button type="button" id="belumDiaturBtn"
@@ -215,7 +232,7 @@
                         </div>
                     </div>
 
-                    @foreach ($kelass as $kelas)
+                    @foreach ($kelasJamkos as $kelas)
                         <!-- pop up atur pengaturan ruang kelas -->
                         <div class="hidden top-0 left-0 flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow 
                     w-full h-screen"
