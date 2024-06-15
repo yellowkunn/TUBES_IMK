@@ -83,7 +83,7 @@
                                         <td class="px-4 sm:px-12 py-4">
                                             {{ \Carbon\Carbon::parse($sertifikat->dibuat)->format('d/m/Y H:i') }}
                                         </td>
-                                        <td class="flex gap-4 text-greyIcon py-4 px-4 sm:px-12">
+                                        <td class="flex gap-4 text-greyIcon dark:bg-[#374151]/40 dark:text-white py-4 px-4 sm:px-12">
                                         @php
                                             $fileUrl = asset('sertifikat/' . $sertifikat->sertifikat);
                                         @endphp
