@@ -5,7 +5,7 @@
             <!-- Tambahkan $index untuk membuat ID unik -->
             <div class="dropdown group" data-index="{{ $index }}">
                 <div id="tabPertemuan-{{ $index }}"
-                    class="rounded-xl drop-shadow-regularShadow bg-white p-4 px-8 flex justify-between items-center relative">
+                    class="rounded-xl drop-shadow-regularShadow bg-white dark:bg-[#374151]/40 p-4 px-8 flex justify-between items-center relative">
                     <div>
                         <div>
                             <div
@@ -26,7 +26,7 @@
                 <div id="contentPertemuan-{{ $index }}" class="hidden" wire:ignore>
                     <!-- Modifikasi ID agar unik -->
                     <div
-                        class="bg-white p-3 px-8 w-full rounded-t-xl drop-shadow-[0px_0px_2px_rgba(0,0,0,0.1)] mt-2.5">
+                        class="bg-white dark:bg-[#374151]/40 p-3 px-8 w-full rounded-t-xl drop-shadow-[0px_0px_2px_rgba(0,0,0,0.1)] mt-2.5">
                         <p class="font-semibold">Materi</p>
                     </div>
 
@@ -56,7 +56,7 @@
                     </div>
 
                     <div
-                        class="bg-white p-3 px-8 w-full rounded-t-xl drop-shadow-[0px_0px_2px_rgba(0,0,0,0.1)] mt-3">
+                        class="bg-white dark:bg-[#374151]/40 p-3 px-8 w-full rounded-t-xl drop-shadow-[0px_0px_2px_rgba(0,0,0,0.1)] mt-3">
                         <p class="font-semibold">Latihan</p>
                     </div>
 
@@ -98,7 +98,7 @@
 
 
                     <div
-                        class="bg-white p-3 px-8 w-full rounded-t-xl drop-shadow-[0px_0px_2px_rgba(0,0,0,0.1)] mt-3">
+                        class="bg-white dark:bg-[#374151]/40 p-3 px-8 w-full rounded-t-xl drop-shadow-[0px_0px_2px_rgba(0,0,0,0.1)] mt-3">
                         <p class="font-semibold">Link</p>
                     </div>
 

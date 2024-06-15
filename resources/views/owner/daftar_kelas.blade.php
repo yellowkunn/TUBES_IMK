@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Pengajar</title>
+    <title>Daftar Kelas</title>
 
     <!-- font awsome -->
     <script src="https://kit.fontawesome.com/8c8655eff1.js" crossorigin="anonymous"></script>
@@ -57,9 +57,9 @@
 
                     <!-- page hierarchy -->
                     <div class="flex items-center gap-2 text-smallContent">
-                        <a href="{{ route('home') }}">Dashboard</a>
+                        <a href="{{ route('home') }}" class="hover:font-semibold">Dashboard</a>
                         <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                        <a href="{{ route('editdaftarkelas') }}">Kelas</a>
+                        <a href="{{ route('editdaftarkelas') }}" class="hover:font-semibold">Kelas</a>
                     </div>
 
                     <div class="flex justify-between items-center my-7">
@@ -70,7 +70,34 @@
                         </form>
                     </div>
 
-                    <div class="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-x-24 gap-y-16">
+                    <!-- skeleton -->
+                    <div id="skeleton" class="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-x-24 gap-y-16">
+                        <div class="bg-slate-400/5 rounded-lg p-8 px-12 drop-shadow-regularShadow min-h-[400px] md:min-h-fit md:max-h-[200px]">
+                            <div class="text-end w-full h-full flex justify-center items-center gap-2">
+                                <div class="w-9 bg-slate-400/30 rounded-full h-8">
+                                </div>
+                                <p class="w-full h-8 bg-slate-400/30 rounded-lg"></p>
+                            </div>
+                        </div>
+
+                        @foreach($kelass as $kelas)
+                        <div class="bg-slate-400/5 rounded-lg p-6 px-10 lg:px-12 drop-shadow-regularShadow relative group my-8 sm:my-0">
+
+                            <div class="flex flex-col gap-2 mt-5">
+                                <p class="w-3/4 h-8 bg-slate-400/30 rounded-lg"></p>
+                            
+                                <div class="my-2 h-52 md:h-56 lg:h-44 w-full object-cover rounded-lg bg-slate-400/30"></div>
+                            
+                                <p class="w-1/2 h-7 bg-slate-400/30 rounded-lg"></p>
+                                <p class="w-2/3 h-5 bg-slate-400/30 rounded-lg"></p>
+                                <div class="rounded-full bg-slate-400/30 my-3 inline-block w-full h-10"></div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+
+                    <!-- hasil kelas -->
+                    <div id="hasilKelas" class="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-x-24 gap-y-16">
                         <div class="bg-[#7AA1E2]/10 rounded-lg p-8 px-12 drop-shadow-regularShadow hover:bg-[#7AA1E2]/20 min-h-[400px] md:min-h-fit md:max-h-[200px]">
                             <button onclick="showPopupTambahKelas()" class="text-end w-full h-full flex justify-center items-center gap-2 text-baseBlue">
                                 <div class="p-0.5 px-[7px] border-2 border-[#7AA1E2] rounded-full">
@@ -113,6 +140,11 @@
                             <div class="absolute bg-baseBlue/90 group-hover:bg-baseBlue h-1 rounded-full bottom-0 left-1/2 transform -translate-x-1/2 w-1/4 group-hover:w-2/3 duration-500"></div>
                         </div>
                         @endforeach
+                    </div>
+
+                    <!-- pagination -->
+                    <div class="mt-16">
+                        {{ $kelass->links() }}
                     </div>
 
                     <!-- pop up tambah kelas baru -->
@@ -331,9 +363,23 @@
 
     <div class="mt-16">
     @include('components.footer')
+    @push('additional-scripts') 
     </div>
 
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const load = $('#skeleton');
+            const show = $('#hasilKelas');
+            
+            load.show();
+            show.hide();
+
+            setTimeout(function() {
+                load.hide();
+                show.show();
+            }, 150);
+        });
+
         function showPopupEditKelas(i) {
             document.getElementById('popupEditKelas'+i).classList.toggle('hidden');
         }

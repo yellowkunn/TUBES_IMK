@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+@include('htmlhead')
 
 <head>
     <meta charset="UTF-8">
@@ -15,7 +14,7 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="font-Inter text-regularContent">
+<body class="font-Inter text-regularContent dark:dark-mode">
     <div>
         @include('components.siswa.navbar')
 
@@ -40,7 +39,7 @@
                         
                         <a href=" {{url('/../formulirpendaftaran')}} " class="bg-baseBlue/5 hover:bg-baseBlue/10 border-2 border-baseBlue/80 flex items-center gap-3 px-5 py-2 rounded-lg">
                         <i class="fa-solid fa-plus p-1 px-[5px] rounded-full text-white bg-baseBlue"></i>
-                            <p class="text-greyIcon font-semibold">Tambah kelas</p>
+                            <p class="text-greyIcon font-semibold dark:text-white dark:font-normal">Tambah kelas</p>
                         </a>
                     </div>
                     
@@ -52,7 +51,7 @@
                         @endphp
                         @if($kelas)
                         
-                        <div class="p-6 lg:p-8 px-8 md:px-6 lg:px-10 bg-white drop-shadow-regularShadow rounded-lg flex flex-col gap-2 my-8 sm:my-4 md:my-0 group">
+                        <div class="p-6 lg:p-8 px-8 md:px-6 lg:px-10 bg-white dark:dark:bg-[#374151]/40 drop-shadow-regularShadow rounded-lg flex flex-col gap-2 my-8 sm:my-4 md:my-0 group">
                             <p class="font-semibold md:text-[20px] lg:text-subtitle">
                                 {{ $kelas->nama }}
                             </p>
@@ -80,7 +79,7 @@
                             </div>
 
                             <a href="{{ route('programkelas', ['kelas' => $kelas->id_kelas]) }}"
-                                class="text-center text-white group-hover:font-semibold bg-baseBlue/80 group-hover:bg-baseBlue w-full rounded-lg py-2 mt-4">Lihat Detail
+                                class="dark:bg-[#313A49] text-center text-white group-hover:font-semibold bg-baseBlue/80 group-hover:bg-baseBlue w-full rounded-lg py-2 mt-4">Lihat Detail
                             </a>
 
                             <div class="absolute bg-baseBlue/80 group-hover:bg-baseBlue h-1 rounded-full bottom-0 left-1/2 transform -translate-x-1/2 w-1/4 group-hover:w-2/3 duration-500"></div>

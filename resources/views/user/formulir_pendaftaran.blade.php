@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+@include('htmlhead')
 
 <head>
     <meta charset="UTF-8">
@@ -18,10 +17,10 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="font-Inter">
+<body class="font-Inter dark:dark-mode">
     @include('components.navbar')
 
-    <div id="content" class="px-24 py-10">
+    <div id="content" class="px-24 py-10 dark:border-t-2 dark:border-white">
 
         <!-- page hierarchy -->
         <div class="flex items-center gap-2 text-smallContent">
@@ -55,30 +54,30 @@
                             <img src="" alt="" id="uploadedFile" class="max-w-full max-h-full rounded">
                         </div>
                         <div class="flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-arrow-up-from-bracket fa-sm text-greyIcon rounded-full w-fit"></i>
-                            <p class="text-greyIcon text-smallContent">Pas foto (3 x 4)</p>
+                            <i class="fa-solid fa-arrow-up-from-bracket fa-sm text-greyIcon dark:text-white rounded-full w-fit"></i>
+                            <p class="text-greyIcon text-smallContent dark:text-white">Pas foto (3 x 4)</p>
                         </div>
                     </button>
-                    <p class="text-xs mt-3">*Maks 2MB</p>
+                    <p class="text-xs mt-3 dark:text-white">*Maks 2MB</p>
                 </div>
 
                 <div class="flex gap-24 justify-between w-full mt-4">
                     <div class="flex flex-col gap-8 w-full">
                         <div class="relative flex flex-col gap-3 w-full">
                             <p>Nama Lengkap</p>
-                            <input type="text" id="namalengkap" name="namalengkap" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                            <input type="text" id="namalengkap" name="namalengkap" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground dark:bg-white/80 dark:rounded dark:text-black w-full p-1">
                         </div>
                         <div class="relative flex flex-col gap-3 w-full">
                             <p>Tempat lahir</p>
-                            <input type="text" id="tempatlahir" name="tempatlahir" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                            <input type="text" id="tempatlahir" name="tempatlahir" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground dark:bg-white/80 dark:rounded dark:text-black w-full p-1">
                         </div>
                         <div class="relative flex flex-col gap-3 w-full">
                             <p>Agama</p>
-                            <input type="text" id="agama" name="agama" required class="px-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                            <input type="text" id="agama" name="agama" required class="px-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground dark:bg-white/80 dark:rounded dark:text-black w-full p-1">
                         </div>
                         <div class="relative flex flex-col gap-3">
                             <p>Kewarganegaraan</p>
-                            <input type="text" id="kewarganegaraan" name="kewarganegaraan" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                            <input type="text" id="kewarganegaraan" name="kewarganegaraan" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground dark:bg-white/80 dark:rounded dark:text-black w-full p-1">
                         </div>
                     </div>
 
@@ -88,10 +87,10 @@
                             <div>
                                 <p>Jenis Kelamin</p>
                                 <div class="relative w-full">
-                                    <select id="gender" name="gender" class="block mt-2 appearance-none w-full bg-greyBackground border border-greyBorder text-greyIcon py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-greyIcon">
-                                        <option value="" class="text-greyIcon">Jenis Kelamin</option>
-                                        <option value="Laki-laki" class="text-greyIcon">Laki-laki</option>
-                                        <option value="Perempuan" class="text-greyIcon">Perempuan</option>
+                                    <select id="gender" name="gender" class="block mt-2 appearance-none w-full bg-greyBackground dark:bg-white/80 dark:rounded dark:text-black border border-greyBorder text-greyIcon py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-greyIcon">
+                                        <option value="" class="text-greyIcon dark:dark-mode">Jenis Kelamin</option>
+                                        <option value="Laki-laki" class="text-greyIcon dark:dark-mode">Laki-laki</option>
+                                        <option value="Perempuan" class="text-greyIcon dark:dark-mode">Perempuan</option>
                                     </select>
                                 </div>
                             </div>
@@ -99,11 +98,11 @@
 
                             <div class="relative flex flex-col gap-3 w-full">
                                 <p>Tanggal lahir</p>
-                                <input type="date" id="tanggallahir" name="tanggallahir" required class="px-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                                <input type="date" id="tanggallahir" name="tanggallahir" required class="px-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground dark:bg-white/80 dark:rounded dark:text-black w-full p-1">
                             </div>
                             <div class="relative flex flex-col gap-3 w-full">
                                 <p>Alamat</p>
-                                <input type="text" id="alamat" name="alamat" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                                <input type="text" id="alamat" name="alamat" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground dark:bg-white/80 dark:rounded dark:text-black w-full p-1">
                             </div>
                         </div>
                     </div>
@@ -114,11 +113,11 @@
                 <div class="flex gap-24 justify-between w-full">
                     <div class="relative flex flex-col gap-3 w-full">
                         <p>No. HP</p>
-                        <input type="text" id="nohp" name="nohp" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                        <input type="text" id="nohp" name="nohp" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground dark:bg-white/80 dark:rounded dark:text-black w-full p-1">
                     </div>
                     <div class="relative flex flex-col gap-3 w-full">
                         <p>No. Telp</p>
-                        <input type="text" id="notelp" name="notelp" required class="px-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                        <input type="text" id="notelp" name="notelp" required class="px-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground dark:bg-white/80 dark:rounded dark:text-black w-full p-1">
                     </div>
                 </div>
 
@@ -126,11 +125,11 @@
                 <div class="flex gap-24 justify-between w-full">
                     <div class="relative flex flex-col gap-3 w-full">
                         <p>Pendidikan Terakhir</p>
-                        <input type="text" id="pendidikanterakhir" name="pendidikanterakhir" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                        <input type="text" id="pendidikanterakhir" name="pendidikanterakhir" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground dark:bg-white/80 dark:rounded dark:text-black w-full p-1">
                     </div>
                     <div class="relative flex flex-col gap-3 w-full">
                         <p>Diterima di kursus ini</p>
-                        <input type="text" id="diterimakursus" name="diterimakursus" required class="px-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                        <input type="text" id="diterimakursus" name="diterimakursus" required class="px-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground dark:bg-white/80 dark:rounded dark:text-black w-full p-1">
                     </div>
                 </div>
             </div>
@@ -142,16 +141,16 @@
                     <div class="flex flex-col gap-8 w-full">
                         <div class="relative flex flex-col gap-3 w-full">
                             <p>Nama Orang Tua</p>
-                            <input type="text" id="namaortu" name="namaortu" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                            <input type="text" id="namaortu" name="namaortu" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground dark:bg-white/80 dark:rounded dark:text-black w-full p-1">
                         </div>
 
                         <div class="relative flex flex-col gap-3 w-full">
                             <p>Tempat Lahir</p>
-                            <input type="text" id="tempatlahirortu" name="tempatlahirortu" required class="px-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                            <input type="text" id="tempatlahirortu" name="tempatlahirortu" required class="px-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground dark:bg-white/80 dark:rounded dark:text-black w-full p-1">
                         </div>
                         <div class="relative flex flex-col gap-3">
                             <p>Pendidikan</p>
-                            <input type="text" id="pendidikanortu" name="pendidikanortu" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                            <input type="text" id="pendidikanortu" name="pendidikanortu" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground dark:bg-white/80 dark:rounded dark:text-black w-full p-1">
                         </div>
                     </div>
 
@@ -159,15 +158,15 @@
                         <div class="flex flex-col gap-8 w-full">
                             <div class="relative flex flex-col gap-3 w-full">
                                 <p>Agama</p>
-                                <input type="text" id="agamaortu" name="agamaortu" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                                <input type="text" id="agamaortu" name="agamaortu" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground dark:bg-white/80 dark:rounded dark:text-black w-full p-1">
                             </div>
                             <div class="relative flex flex-col gap-3 w-full">
                                 <p>Tanggal lahir</p>
-                                <input type="date" id="tanggallahirortu" name="tanggallahirortu" required class="px-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                                <input type="date" id="tanggallahirortu" name="tanggallahirortu" required class="px-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground dark:bg-white/80 dark:rounded dark:text-black w-full p-1">
                             </div>
                             <div class="relative flex flex-col gap-3 w-full">
                                 <p>Pekerjaan</p>
-                                <input type="text" id="pekerjaanortu" name="pekerjaanortu" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1">
+                                <input type="text" id="pekerjaanortu" name="pekerjaanortu" required class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground dark:bg-white/80 dark:rounded dark:text-black w-full p-1">
                             </div>
                         </div>
                     </div>
@@ -184,10 +183,10 @@
                     <!-- dd daftar kelas -->
                     <div>
                         <div class="relative w-full">
-                            <select id="" name="kelas" class="block mt-2 appearance-none w-full bg-greyBackground border border-greyBorder text-greyIcon py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-greyIcon">
-                                <option value="" class="text-greyIcon">Mata Pelajaran</option>
+                            <select id="" name="kelas" class="block mt-2 appearance-none w-full bg-greyBackground dark:bg-white/80 dark:rounded dark:text-black border border-greyBorder text-greyIcon py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-greyIcon">
+                                <option value="" class="text-greyIcon dark:dark-mode">Mata Pelajaran</option>
                                 @foreach ($kelass as $kelas)
-                                <option value="{{$kelas->id_kelas}}">{{$kelas->nama}}</option>
+                                <option value="{{$kelas->id_kelas}}" class="dark:dark-mode">{{$kelas->nama}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -195,14 +194,14 @@
 
                     <div>
                         <div class="relative w-full">
-                            <select id="" name="tingkat_kelas" class="block mt-2 appearance-none w-full bg-greyBackground border border-greyBorder text-greyIcon py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-greyIcon">
-                                <option value="" class="text-greyIcon">Kelas</option>
-                                <option value="SD">SD</option>
-                                <option class="text-greyIcon" value="SMP">SMP</option>
-                                <option class="text-greyIcon" value="SMA">SMA</option>
-                                <option class="text-greyIcon" value="Gap Year">Gap Year</option>
-                                <option class="text-greyIcon" value="TOEFL">TOEFL</option>
-                                <option class="text-greyIcon" value="IELTS">IELTS</option>
+                            <select id="" name="tingkat_kelas" class="block mt-2 appearance-none w-full bg-greyBackground dark:bg-white/80 dark:rounded dark:text-black border border-greyBorder text-greyIcon py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-greyIcon">
+                                <option value="" class="text-greyIcon dark:dark-mode">Kelas</option>
+                                <option value="SD" class="text-greyIcon dark:dark-mode">SD</option>
+                                <option class="text-greyIcon dark:dark-mode" value="SMP">SMP</option>
+                                <option class="text-greyIcon dark:dark-mode" value="SMA">SMA</option>
+                                <option class="text-greyIcon dark:dark-mode" value="Gap Year">Gap Year</option>
+                                <option class="text-greyIcon dark:dark-mode" value="TOEFL">TOEFL</option>
+                                <option class="text-greyIcon dark:dark-mode" value="IELTS">IELTS</option>
                             </select>
                         </div>
                     </div>
@@ -248,7 +247,7 @@
             });
         }
 
-        window.onload = getDataForm();
+        getDataForm();
 
 
         function showFile(input) {
