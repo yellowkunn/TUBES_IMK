@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Siswa</title>
+    <title>Verifikasi Pendaftar</title>
 
     <!-- font awsome -->
     <script src="https://kit.fontawesome.com/8c8655eff1.js" crossorigin="anonymous"></script>
@@ -34,13 +34,11 @@
                     <div class="flex items-center gap-2 text-smallContent">
                         <a href="{{ route('home') }}" class="hover:font-semibold">Dashboard</a>
                         <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                        <a href="" class="hover:font-semibold">Tahun Ajaran</a>
-                        <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                        <a href="{{ route('editdaftarsiswa') }}" class="hover:font-semibold">Daftar Siswa</a>
+                        <a href="{{ route('admin.verifikasi-pendaftar') }}" class="hover:font-semibold">Verifikasi Pendaftar</a>
                     </div>
 
                     <div class="flex justify-between items-center my-7">
-                        <p class="text-title font-semibold">Daftar Siswa</p>
+                        <p class="text-title font-semibold">Pendaftar</p>
                         <form action="" method="get" class="flex justify-between items-center relative">
                             <input autocomplete="off" type="text" id="search" name="search" value=""
                                 class="py-2 px-5 w-full bg-greyBackground border-2 border-greyBorder rounded-full"
@@ -50,66 +48,8 @@
                         </form>
                     </div>
 
-                    <div class="border-b-2 border-baseBlue w-full flex gap-6 mb-10">
-                        <button type="button" id="siswaBtn" class="rounded-t-lg bg-baseBlue py-2 px-4 text-white">Siswa</button>
-                        <button type="button" id="penggunaBtn" class="rounded-t-lg py-2 px-4 bg-white text-baseBlue">Pengguna</button>
-                    </div>
 
-                    <div id="siswaContent">
-                        <div class="bg-white drop-shadow-regularShadow py-3 my-5 rounded-lg border overflow-x-auto">
-                            <!-- tabel siswa -->
-                            <table class="min-w-full text-left text-sm font-light text-surface dark:text-white"
-                                style="color: #191919">
-                                <thead class="border-b-2 border-neutral-200 font-semibold bg-greyBackground"
-                                    style="color: #717171">
-                                    <th scope="col" class= "w-2 px-8 py-3">No.</th>
-                                    <th scope="col" class= "px-8 py-3">Nama Lengkap</th>
-                                    <th scope="col" class= "px-8 py-3">Tingkat</th>
-                                    <th scope="col" class= "px-8 py-3">Kelas</th>
-                                    <th scope="col" class= "px-8 py-3">Hari</th>
-                                    <th scope="col" class= "px-8 py-3">Waktu</th>
-                                    <th scope="col" class= "px-8 py-3">Guru</th>
-                                    <th scope="col" class= "px-8 py-3">Aksi</th>
-                                </thead>
-
-                                <tbody>
-                                    @php $nomor = 1; @endphp
-                                    @if ($siswas)
-                                        @foreach ($siswas as $siswa)
-                                            <tr class="bg-greyBackground">
-                                                <td class="px-8 py-4">{{ $nomor++ }}</td>
-                                                <td class="px-8 py-4">
-                                                    {{ $siswa->pengguna->biodataSiswa->nama_lengkap ?? '-' }}
-                                                </td>
-                                                <td class="px-8 py-4">
-                                                    {{ $siswa->pengguna->biodataSiswa->tingkat_kelas ?? '-' }}
-                                                </td>
-                                                <td class="px-8 py-4">{{ $siswa->kelas->nama ?? '-' }}
-                                                </td>
-                                                <td class="px-8 py-4">
-                                                    {{ $siswa->kelas->jadwal_hari ?? '-' }}</td>
-                                                <td class="px-8 py-4">
-                                                    {{ $siswa->kelas->jadwal_waktu ?? '-' }}
-                                                </td>
-                                                <td class="px-8 py-4">
-                                                    {{ $siswa->kelas->pengajar->first()?->pengguna->biodataPengajar->nama_lengkap ?? '-' }}
-                                                </td>
-                                                <td class="px-8 py-4 flex items-center gap-4">
-                                                    <button><i class="fa-solid fa-arrow-right-to-bracket rotate-90"></i></button>
-                                                    <button onclick="showPopupHapusDataSiswa({{ $siswa->id_siswa }})"><i class="fa-regular fa-trash-can fa-lg"></i></button>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-
-                                    @endif
-                                </tbody>
-                            </table>
-                            <!-- akhir dari tabel siswa -->
-                        </div>
-                    </div>
-
-                    <div id="penggunaContent" class="hidden">
-                        <div class="bg-white drop-shadow-regularShadow py-3 my-5 rounded-lg border overflow-x-auto">
+                    <div class="bg-white drop-shadow-regularShadow py-3 my-5 rounded-lg border overflow-x-auto">
                             <!-- tabel siswa -->
                             <table class="min-w-full text-left text-sm font-light text-surface dark:text-white"
                                 style="color: #191919">
@@ -117,52 +57,47 @@
                                     style="color: #717171">
                                     <th scope="col" class= "w-2 px-8 py-3">No.</th>
                                     <th scope="col" class= "px-8 py-3">Nama Pengguna</th>
-                                    <th scope="col" class= "px-8 py-3">Email</th>
-                                    <th scope="col" class= "px-8 py-3">Status</th>
+                                    <th scope="col" class= "px-8 py-3">Kelas</th>
+                                    <th scope="col" class= "px-8 py-3">Tingkat</th>
+                                    <th scope="col" class= "px-8 py-3">Waktu Mendaftar</th>
                                     <th scope="col" class= "px-8 py-3">Aksi</th>
                                 </thead>
 
                                 <tbody>
-                                    @php $nomor = 1; @endphp
-                                    @if ($penggunas)
-                                        @foreach ($penggunas as $p)
-                                            <tr class="bg-greyBackground">
-                                                <td class="px-8 py-4">{{ $nomor++ }}</td>
-                                                <td class="px-8 py-4">
-                                                    {{ $p->username ?? '-' }}
-                                                </td>
-                                                <td class="px-8 py-4">
-                                                    {{ $p->email ?? '-' }}
-                                                </td>
-                                                <td class="px-8 py-4">
-                                                    {{ $p->role ?? '-' }}
-                                                </td>
-                                                <td class="px-8 py-4 flex items-center gap-4">
-                                                    <i class="fa-solid fa-arrow-right-to-bracket rotate-90"></i>
-                                                    <i class="fa-regular fa-eye"></i>
-                                                    <span class="material-symbols-outlined text-xl">military_tech</span>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-
-                                    @endif
+                                    <tr class="bg-greyBackground">
+                                        <td class="px-8 py-4"> $nomor++ </td>
+                                        <td class="px-8 py-4">
+                                            Sakifa 
+                                        </td>
+                                        <td class="px-8 py-4">
+                                            Matematika
+                                        </td>
+                                        <td class="px-8 py-4">
+                                            SMP 
+                                        </td>
+                                        <td class="px-8 py-4">
+                                            2024-06-15 19:12:41 
+                                        </td>
+                                        <td class="px-8 py-4 flex items-center gap-4">
+                                            <i class="fa-solid fa-arrow-right-to-bracket rotate-90"></i>
+                                            <i class="fa-regular fa-eye"></i>
+                                            <span class="material-symbols-outlined text-xl">military_tech</span>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                             <!-- akhir dari tabel siswa -->
 
                         </div>
-                    </div>
                 </div>
 
-                @if ($siswas)
-                    @foreach ($siswas as $siswa)
                     <!-- Pop up hapus data siswa -->
                     <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow 
-                                w-full h-screen" id="popupHapusDataSiswa{{ $siswa->id_siswa }}">
+                                w-full h-screen" id="popupHapusDataSiswa $siswa->id_siswa ">
                         <div class="flex flex-col justify-center max-w-[350px]">
                             <div class="bg-white rounded-xl px-10 py-8">
                                 <div class="text-end">
-                                    <button onclick="showPopupHapusDataSiswa({{ $siswa->id_siswa }})">
+                                    <button onclick="showPopupHapusDataSiswa( $siswa->id_siswa )">
                                         <i class="fa-solid fa-xmark fa-lg text-greyIcon"></i>
                                     </button>
                                 </div>
@@ -182,13 +117,13 @@
                                     </svg>
 
                                     <p class="font-semibold text-greyIcon text-balance text-center">
-                                        Apakah anda yakin ingin menghapus siswa bernama {{ $siswa->pengguna->biodataSiswa->nama_lengkap ?? '-' }}?
+                                        Apakah anda yakin ingin menghapus siswa bernama  $siswa->pengguna->biodataSiswa->nama_lengkap ?? '-' ?
                                     </p>
 
                                     <form action=" route('siswa.hapus', $siswa->id_siswa) " method="post">
                                         @csrf
                                         <div class="flex justify-between gap-4 mt-4">
-                                            <button type="button" onclick="showPopupHapusDataSiswa({{ $siswa->id_siswa }})" class="text-greyIcon w-full hover:font-semibold">Batal</button>
+                                            <button type="button" onclick="showPopupHapusDataSiswa( $siswa->id_siswa )" class="text-greyIcon w-full hover:font-semibold">Batal</button>
                                             <button type="submit" class="text-[#d60101] bg-white border-2 border-[#d60101] p-1.5 w-full rounded-full
                                                     hover:bg-[#d60101] hover:text-white hover:font-semibold" style="box-shadow: 0px 0px 5px 1px rgba(214,1,1,0.3);">Hapus</button>
                                         </div>
@@ -198,8 +133,7 @@
                         </div>
                     </div>
                     <!-- Akhir dari pop up hapus data siswa -->
-                    @endforeach
-                @endif
+                    
 
             </div>
         </div>

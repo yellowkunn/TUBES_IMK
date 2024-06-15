@@ -157,10 +157,8 @@
                                         <p class="font-semibold md:text-[20px] lg:text-subtitle capitalize">
                                             {{ $kelas->nama }}</p>
 
-                                        <button id="dd-more{{ $loop->index }}"
-                                            onclick="showPopupAturRuangan({{ $kelas->id_kelas }})"
-                                            class="rounded-lg bg-baseBlue/90 group-hover:bg-baseBlue text-white py-2 my-3 inline-block text-center">Atur
-                                            Ruangan</button>
+                                        <button id="dd-more{{ $loop->index }}" onclick="showPopupAturRuangan({{ $kelas->id_kelas }})"
+                                            class="rounded-lg bg-baseBlue/90 group-hover:bg-baseBlue text-white py-2 my-3 inline-block text-center">Atur Ruangan</button>
                                     </div>
                                 </div>
                             @endforeach
@@ -215,7 +213,7 @@
                         </div>
                     </div>
 
-                    @foreach ($kelass as $kelas)
+                    @foreach ($kelasJamkos as $kelas)
                         <!-- pop up atur pengaturan ruang kelas -->
                         <div class="hidden top-0 left-0 flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow 
                     w-full h-screen"
@@ -460,41 +458,6 @@
         function showPopupHapusRuangan(i) {
             document.getElementById('popupHapusRuangan' + i).classList.toggle('hidden');
         }
-
-        document.addEventListener('DOMContentLoaded', (event) => {
-            function initializeDropdown(buttonId, menuId) {
-                const dropdownButton = document.getElementById(buttonId);
-                const dropdownMenu = document.getElementById(menuId);
-                let isDropdownOpen = false;
-
-                function toggleDropdown() {
-                    isDropdownOpen = !isDropdownOpen;
-                    if (isDropdownOpen) {
-                        dropdownMenu.classList.remove('hidden');
-                    } else {
-                        dropdownMenu.classList.add('hidden');
-                    }
-                }
-
-                dropdownButton.addEventListener('click', (event) => {
-                    event.stopPropagation();
-                    toggleDropdown();
-                });
-
-                window.addEventListener('click', (event) => {
-                    if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                        dropdownMenu.classList.add('hidden');
-                        isDropdownOpen = false;
-                    }
-                });
-            }
-
-            // Select all dropdown buttons and menus
-            const dropdownButtons = document.querySelectorAll('[id^="dd-more"]');
-            dropdownButtons.forEach((button, index) => {
-                initializeDropdown(`dd-more${index}`, `dd-menu${index}`);
-            });
-        });
 
         tippy('#hapus', {
             content: 'Hapus Ruangan',

@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+@include('htmlhead')
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +13,7 @@
 
     @vite('resources/css/app.css')
 </head>
-<body class="font-Inter text-regularContent">
+<body class="font-Inter text-regularContent dark:dark-mode">
     <div>
     @include('components.siswa.navbar')
 
@@ -28,18 +28,18 @@
 
             <!-- page hierarchy -->
             <div class="flex items-center gap-2 text-smallContent">
-                <a href="{{ route('home') }}">Dashboard</a>
+                <a href="{{ route('home') }}" class="hover:font-semibold">Dashboard</a>
                 <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                <a href="{{ route('sertifikat') }}">Sertifikat</a>
+                <a href="{{ route('sertifikat') }}" class="hover:font-semibold">Sertifikat</a>
             </div>
 
             <p class="text-title font-semibold mt-7 mb-4 md:mb-6">Sertifikat Saya</p>
                 
-            <div class="bg-white drop-shadow-regularShadow py-3 mb-8 rounded-lg border">
+            <div class="bg-white dark:bg-[#374151]/40 drop-shadow-regularShadow py-3 mb-8 rounded-lg border">
                 <!-- tabel rapor -->
                 <div class="overflow-x-auto">
                     <table class="min-w-full text-left text-sm font-light text-surface dark:text-white">
-                        <thead class="border-b-2 border-neutral-200 font-semibold bg-greyBackground" style="color: #717171">
+                        <thead class="border-b-2 border-neutral-200 font-semibold bg-greyBackground dark:bg-[#374151]/40 dark:text-white text-[#717171]">
                             <tr>
                                 <th scope="col" class="w-2 px-4 sm:px-12 py-3">No.</th>
                                 <th scope="col" class="px-4 sm:px-12 py-3">Nama Sertifikat</th>
@@ -58,7 +58,7 @@
                                     <i class="fa-regular fa-eye"></i>
                                 </td>
                             </tr>
-                            <tr class="border-b border-neutral-200 bg-greyBackground">
+                            <tr class="border-b border-neutral-200 bg-greyBackground dark:bg-[#374151]/40 ">
                                 <td class="px-4 sm:px-12 py-4">2.</td>
                                 <td class="px-4 sm:px-12 py-4">Sertif</td>
                                 <td class="px-4 sm:px-12 py-4">30 April 2024</td>
@@ -76,7 +76,7 @@
                                     <i class="fa-regular fa-eye"></i>
                                 </td>
                             </tr>
-                            <tr class="bg-greyBackground">
+                            <tr class="bg-greyBackground dark:bg-[#374151]/40 ">
                                 <td class="px-4 sm:px-12 py-4">4.</td>
                                 <td class="px-4 sm:px-12 py-4">Sertif</td>
                                 <td class="px-4 sm:px-12 py-4">30 April 2024</td>

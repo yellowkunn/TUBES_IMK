@@ -4,6 +4,8 @@
         <button onclick="sidebar()" id="buttonToggle">
             <i class="fa-solid fa-bars md:fa-xmark fa-lg p-3.5 py-5 rounded ms-3" style="background-color: #EAEAEA; color: #363636" id="toggle"></i>
         </button>
+
+        <a href="{{ route('admin.verifikasi-pendaftar') }}" class="text-regularContent font-semibold md:mx-2 lg:mx-4 nav" style="color: #363636">Verifikasi Pendaftar</a>
     </div>
 
     <!-- dd more (edit & hapus) -->

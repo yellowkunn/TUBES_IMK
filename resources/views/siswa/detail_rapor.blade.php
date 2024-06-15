@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+@include('htmlhead')
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +13,7 @@
 
     @vite('resources/css/app.css')
 </head>
-<body class="font-Inter text-regularContent">
+<body class="font-Inter text-regularContent dark:dark-mode">
     <div>
     @include('components.siswa.navbar')
 
@@ -38,18 +38,18 @@
 
             <p class="text-title font-semibold mt-7 mb-4 md:mb-6">Rapor Bulanan</p>
                 
-            <div class="bg-white drop-shadow-regularShadow py-3 mb-8 rounded-lg border">
+            <div class="bg-white dark:bg-[#374151]/40 drop-shadow-regularShadow py-3 mb-8 rounded-lg border">
                 <!-- tabel rapor -->
                 <div class="overflow-x-auto">
                     <div class="min-w-full text-left text-sm font-light text-surface dark:text-white">
-                        <div class="px-4 sm:px-12 flex justify-between border-b border-neutral-200 font-semibold" style="color: #717171">
+                        <div class="px-4 sm:px-12 flex justify-between border-b border-neutral-200 font-semibold text-[#717171] dark:text-white">
                             <p class="py-3 text-[18px] sm:text-[20px] md:text-subtitle">Nama Mapel</p>
                             <p class="py-4">Nama Pengajar, S.Pd</p>
                         </div>
                         
                         <table class="min-w-full text-left text-sm font-light text-surface dark:text-white">
-                            <thead class="border-b border-neutral-200 font-semibold bg-greyBackground" style="color: #717171">
-                                <tr>
+                            <thead class="border-b border-neutral-200 font-semibold bg-greyBackground dark:bg-[#374151]/40" style="color: #717171">
+                                <tr class="dark:text-white">
                                     <th scope="col" class="px-4 sm:px-12 py-2">No.</th>
                                     <th scope="col" class="w-full px-4 sm:px-12 py-2">Bidang</th>
                                     <th scope="col" class="px-4 sm:pe-24 py-2">Nilai</th>
@@ -91,8 +91,8 @@
 
 
             <!-- note -->
-            <div class="bg-white drop-shadow-regularShadow border-b rounded-lg">
-                <div class="bg-baseDarkerGreen rounded-t-lg p-4 px-6">
+            <div class="bg-white dark:bg-[#374151]/40 drop-shadow-regularShadow border-b rounded-lg">
+                <div class="bg-baseDarkerGreen dark:bg-baseDarkerGreen/80 rounded-t-lg p-4 px-6">
                     <p class="text-white font-semibold">Catatan</p>
                 </div>
                 <div class="p-4 px-6 min-h-[80px]">

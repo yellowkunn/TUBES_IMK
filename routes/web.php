@@ -42,6 +42,8 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
     Route::post('/uploadSertifikat', [AdminController::class, 'uploadSertifikat']);
     Route::delete('/pengajar/{id}', [AdminController::class, 'hapusPengajar'])->name('pengajar.hapus');
     Route::post('/aturRuangan', [AdminController::class, 'aturRuangan']);
+
+    Route::get('/verifikasipendaftar', [AdminController::class, 'verifikasipendaftar'])->name('admin.verifikasi-pendaftar');
 });
 
 //Pengajar
@@ -68,7 +70,7 @@ Route::middleware(['role:siswa', 'auth', 'verified'])->group(function () {
     Route::get('/dashboardsiswa', [SiswaController::class, 'dashboardsiswa'])->name('dashboardsiswa');
     Route::get('/pembayaran', [SiswaController::class, 'pembayaran'])->name('pembayaran');
     Route::get('/rapor', [SiswaController::class, 'rapor'])->name('rapor');
-    Route::get('/sertifikat', [SiswaController::class, 'sertifikat'])->name('sertifikat');
+    Route::get('/sertifikatt', [SiswaController::class, 'sertifikat'])->name('sertifikat');
     Route::get('/kelas', [SiswaController::class, 'kelassaya'])->name('kelas');
     Route::get('/detailkelas/{kelas}', [SiswaController::class, 'detailkelas'])->name('detailkelas');
     Route::get('/siswa/detailkelas/{kelas}', [SiswaController::class, 'programkelas'])->name('programkelas');
