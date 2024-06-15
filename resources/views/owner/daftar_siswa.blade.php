@@ -68,7 +68,7 @@
                                     <th scope="col" class= "px-8 py-3">Kelas</th>
                                     <th scope="col" class= "px-8 py-3">Hari</th>
                                     <th scope="col" class= "px-8 py-3">Waktu</th>
-                                    <!-- <th scope="col" class= "px-8 py-3">Guru</th> -->
+                                    <th scope="col" class= "px-8 py-3">Guru</th>
                                     <th scope="col" class= "px-8 py-3">Aksi</th>
                                 </thead>
 
@@ -95,9 +95,7 @@
                                                     {{ $siswa->kelas->pengajar->first()?->pengguna->biodataPengajar->nama_lengkap ?? '-' }}
                                                 </td>
                                                 <td class="px-8 py-4 flex items-center gap-4">
-                                                    <i class="fa-solid fa-arrow-right-to-bracket rotate-90"></i>
-                                                    <i class="fa-regular fa-eye"></i>
-                                                    <span class="material-symbols-outlined text-xl">military_tech</span>
+                                                    <i class="fa-solid fa-pen text-white p-1.5 bg-baseBlue rounded-full"></i>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -117,41 +115,30 @@
                                 <thead class="border-b-2 border-neutral-200 font-semibold bg-greyBackground"
                                     style="color: #717171">
                                     <th scope="col" class= "w-2 px-8 py-3">No.</th>
-                                    <th scope="col" class= "px-8 py-3">Nama Lengkap</th>
-                                    <th scope="col" class= "px-8 py-3">Tingkat</th>
-                                    <th scope="col" class= "px-8 py-3">Kelas</th>
-                                    <th scope="col" class= "px-8 py-3">Hari</th>
-                                    <th scope="col" class= "px-8 py-3">Waktu</th>
-                                    <!-- <th scope="col" class= "px-8 py-3">Guru</th> -->
+                                    <th scope="col" class= "px-8 py-3">Nama Pengguna</th>
+                                    <th scope="col" class= "px-8 py-3">Email</th>
+                                    <th scope="col" class= "px-8 py-3">Status</th>
                                     <th scope="col" class= "px-8 py-3">Aksi</th>
                                 </thead>
 
                                 <tbody>
                                     @php $nomor = 1; @endphp
-                                    @if ($siswas)
-                                        @foreach ($siswas as $siswa)
+                                    @if ($penggunas)
+                                        @foreach ($penggunas as $p)
                                             <tr class="bg-greyBackground">
                                                 <td class="px-8 py-4">{{ $nomor++ }}</td>
                                                 <td class="px-8 py-4">
-                                                    {{ $siswa->pengguna->biodataSiswa->nama_lengkap ?? '-' }}
+                                                    {{ $p->username ?? '-' }}
                                                 </td>
                                                 <td class="px-8 py-4">
-                                                    {{ $siswa->pengguna->biodataSiswa->tingkat_kelas ?? '-' }}
-                                                </td>
-                                                <td class="px-8 py-4">{{ $siswa->kelas->nama ?? '-' }}
+                                                    {{ $p->email ?? '-' }}
                                                 </td>
                                                 <td class="px-8 py-4">
-                                                    {{ $siswa->kelas->jadwal_hari ?? '-' }}</td>
-                                                <td class="px-8 py-4">
-                                                    {{ $siswa->kelas->jadwal_waktu ?? '-' }}
-                                                </td>
-                                                <td class="px-8 py-4">
-                                                    {{ $siswa->kelas->pengajar->first()?->pengguna->biodataPengajar->nama_lengkap ?? '-' }}
+                                                    {{ $p->role ?? '-' }}
                                                 </td>
                                                 <td class="px-8 py-4 flex items-center gap-4">
-                                                    <i class="fa-solid fa-arrow-right-to-bracket rotate-90"></i>
-                                                    <i class="fa-regular fa-eye"></i>
-                                                    <span class="material-symbols-outlined text-xl">military_tech</span>
+                                                    <i
+                                                    class="fa-solid fa-pen text-white p-1.5 bg-baseBlue rounded-full"></i>
                                                 </td>
                                             </tr>
                                         @endforeach

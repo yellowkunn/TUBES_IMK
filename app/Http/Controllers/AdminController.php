@@ -58,7 +58,8 @@ class AdminController extends Controller
     public function editdaftarsiswa()
     {
         $siswas = Siswa::all();
-        return view('owner.daftar_siswa', compact('siswas'));
+        $penggunas = User::where('role', 'user')->get();
+        return view('owner.daftar_siswa', compact('siswas', 'penggunas'));
     }
     public function editdaftarpengajar()
     {

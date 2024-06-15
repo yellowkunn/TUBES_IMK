@@ -68,7 +68,7 @@
                                             <p class="text-baseDarkerGreen bg-baseDarkerGreen/20 h-fit p-2 px-4 rounded-full">
                                                 {{ \Carbon\Carbon::parse($barudiakses->pertemuan->tgl_pertemuan)->format('F') }}
                                             </p>
-                                            <a href="{{ url('pengajardetailkelas', $barudiakses->pertemuan->id_pertemuan) }}" class="bg-baseBlue/80 hover:bg-baseBlue hover:font-semibold text-white px-4 py-2 rounded-full">Lihat Detail</a>
+                                            <a href="{{ url('detail_pertemuan', $barudiakses->pertemuan->id_pertemuan) }}" class="bg-baseBlue/80 hover:bg-baseBlue hover:font-semibold text-white px-4 py-2 rounded-full">Lihat Detail</a>
                                         </div>
                                        
                                     </div>
