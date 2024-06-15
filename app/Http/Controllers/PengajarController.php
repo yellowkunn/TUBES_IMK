@@ -10,6 +10,7 @@ use App\Models\Biodata_siswa;
 use App\Models\Pengajar;
 use App\Models\Absensi;
 use App\Models\Pertemuan;
+use App\Models\Sertifikat;
 use Illuminate\Support\Facades\DB;
 
 class PengajarController extends Controller
@@ -105,7 +106,9 @@ class PengajarController extends Controller
     }
     public function sertifikatpengajar()
     {
-        return view('pengajar.sertifikat');
+        $pengajar = Auth::user();
+        $sertifikats = Sertifikat::where('pengguna_id', $pengajar->id_pengguna)->get();
+        return view('pengajar.sertifikat', compact('sertifikats'));
     }
 
     public function kirimtambahpertemuan(Request $request)
