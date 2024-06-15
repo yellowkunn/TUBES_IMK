@@ -30,6 +30,11 @@ class AdminController extends Controller
     //     return view('owner.dashboard', compact('kelasss', 'totalkelas'));
     // }
 
+    public function verifikasipendaftar()
+    {
+        return view('owner.verifikasi_pendaftar');
+    }
+
     public function pengaturanruangan()
     {
         $kelasJamkos = Kelas::whereNull('jam')->get();

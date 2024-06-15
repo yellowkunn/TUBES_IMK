@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+@include('htmlhead')
 
 <head>
     <meta charset="UTF-8">
@@ -15,13 +14,19 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="font-Inter text-regularContent">
+<body class="font-Inter text-regularContent dark:dark-mode">
 
     <div class="flex flex-col gap-6 px-24 py-12">
-        <div class="flex items-center gap-6">
-            <a href="{{ route('home') }}"><i class="fa-solid fa-arrow-left rounded-full bg-white p-3 drop-shadow-regularShadow"></i></a>
+        <div class="flex justify-between items-center">
+            <div class="flex items-center gap-6">
+                <a href="{{ route('home') }}"><i class="fa-solid fa-arrow-left rounded-full bg-white p-3 drop-shadow-regularShadow dark:bg-[#313A49]"></i></a>
 
-            <p class="font-semibold text-subtitle">Profile</p>
+                <p class="font-semibold text-subtitle">Profile</p>
+            </div>
+            <div class="group" id="setTheme">
+                <button onclick="changeToDark()" id="darkModeBtn" class="bg-yellow-400/30 group-hover:bg-black p-1.5 px-2"><i class="group-hover:text-white text-yellow-400 fa-regular fa-moon fa-xl text-greyIcon"></i></button>
+                <button onclick="changeToLight()" id="lightModeBtn" class="hidden group-hover:bg-slate-500/30 p-1.5 px-2"><i class="fa-solid fa-sun fa-lg"></i></button>
+            </div>
         </div>
 
         <div class="flex justify-center">
@@ -38,8 +43,8 @@
         </div>
 
         <div class="border-b-2 border-baseBlue w-full flex gap-6">
-            <button type="button" id="akunBtn" class="rounded-t-lg bg-white py-2 px-4 text-white focus:font-semibold">Akun</button>
-            <button type="button" id="biodataBtn" class="rounded-t-lg py-2 px-4 bg-white text-baseBlue focus:font-semibold">Biodata</button>
+            <button type="button" id="akunBtn" class="rounded-t-lg bg-white dark:bg-[#313A49] dark:text-white py-2 px-4 text-white focus:font-semibold">Akun</button>
+            <button type="button" id="biodataBtn" class="rounded-t-lg py-2 px-4 bg-white dark:bg-[#313A49] dark:text-white text-baseBlue focus:font-semibold">Biodata</button>
         </div>
 
         <div id="akunContent" class="grid grid-cols-2 gap-12 divide-x-2 mt-6">
@@ -52,7 +57,7 @@
                     <div class="flex flex-col gap-6 mt-8">
                         <div>
                             <label for="username" class="font-semibold">Username</label>
-                            <input type="text" id="username" name="username" autocomplete="on" required="{{ old('username') }}" class="border-2 border-greyBorder w-full p-2.5 rounded mt-2" placeholder="Masukkan username" value="{{ Auth::user()->username }}" autofocus>
+                            <input type="text" id="username" name="username" autocomplete="on" required="{{ old('username') }}" class="border-2 border-greyBorder w-full p-2.5 rounded mt-2 dark:bg-white/80 dark:rounded dark:text-black" placeholder="Masukkan username" value="{{ Auth::user()->username }}" autofocus>
                             <x-input-error :messages="$errors->get('username')" class="mt-2" />
                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                             <script>
@@ -69,7 +74,7 @@
 
                         <div>
                             <label for="email" class="font-semibold">Email</label>
-                            <input type="email" id="email" name="email" autocomplete="on" required="{{ old('email') }}" class="border-2 border-greyBorder w-full p-2.5 rounded mt-2" placeholder="Masukkan email" value="{{ Auth::user()->email }}">
+                            <input type="email" id="email" name="email" autocomplete="on" required="{{ old('email') }}" class="border-2 border-greyBorder w-full p-2.5 rounded mt-2 dark:bg-white/80 dark:rounded dark:text-black" placeholder="Masukkan email" value="{{ Auth::user()->email }}">
                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
                         </div>
                     </div>
@@ -91,7 +96,7 @@
                         <div>
                             <label for="username" class="font-semibold">Password Lama</label>
                             <div class="relative flex justify-between">
-                                <input type="password" id="password" name="password" required class="border-2 border-greyBorder w-full p-2.5 rounded mt-2" placeholder="Masukkan password lama">
+                                <input type="password" id="password" name="password" required class="border-2 border-greyBorder w-full p-2.5 rounded mt-2 dark:bg-white/80 dark:rounded dark:text-black" placeholder="Masukkan password lama">
                                 <x-input-error :messages="$errors->get('password')" class="mt-1" />
                             </div>
                         </div>
@@ -100,7 +105,7 @@
                         <div>
                             <label for="username" class="font-semibold">Password Baru</label>
                             <div class="relative flex justify-between">
-                                <input type="password" id="password" name="password" required class="border-2 border-greyBorder w-full p-2.5 rounded mt-2" placeholder="Masukkan password naru">
+                                <input type="password" id="password" name="password" required class="border-2 border-greyBorder w-full p-2.5 rounded mt-2 dark:bg-white/80 dark:rounded dark:text-black" placeholder="Masukkan password baru">
                                 <i class="fas fa-eye-slash eye-icon text-gray-400 hover:text-gray-600 absolute top-6 right-4"></i>
                             </div>
                             <x-input-error :messages="$errors->get('password')" class="mt-2" />
@@ -109,7 +114,7 @@
                         <div>
                             <label for="username" class="font-semibold">Konfirmasi Password Baru</label>
                             <div class="relative flex justify-between">
-                                <input type="password" id="password_confirmation" name="password_confirmation" required class="border-2 border-greyBorder w-full p-2.5 rounded mt-2" placeholder="Konfirmasi Password">
+                                <input type="password" id="password_confirmation" name="password_confirmation" required class="border-2 border-greyBorder w-full p-2.5 rounded mt-2 dark:bg-white/80 dark:rounded dark:text-black" placeholder="Konfirmasi Password">
                                 <i class="fas fa-eye-slash eye-icon text-gray-400 hover:text-gray-600 absolute top-6 right-4"></i>
                             </div>
                             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
@@ -136,7 +141,7 @@
                     <p>Alamat</p>
                 </div>
 
-                <div class="flex flex-col gap-6 text-greyIcon">
+                <div class="flex flex-col gap-6 text-greyIcon dark:text-white">
                     <p>{{ $siswas->nama_lengkap }}</p>
                     <p>{{ $siswas->jenis_kelamin }}</p>
                     <p>{{ $siswas->tempat_lahir }}, {{ $siswas->tgl_lahir }}</p>
@@ -155,7 +160,7 @@
                     <p>No. Telp</p>
                 </div>
 
-                <div class="flex flex-col gap-6 text-greyIcon">
+                <div class="flex flex-col gap-6 text-greyIcon dark:text-white">
                     <p>{{ $siswas->no_hp }}</p>
                     <p>{{ $siswas->no_telepon }}</p>
                 </div>
@@ -172,7 +177,7 @@
                     <p>Pendidikan</p>
                 </div>
 
-                <div class="flex flex-col gap-6 text-greyIcon">
+                <div class="flex flex-col gap-6 text-greyIcon dark:text-white">
                     <p>{{ $siswas->nama_ortu }}</p>
                     <p>{{ $siswas->agama_ortu }}</p>
                     <p>{{ $siswas->tempat_lahir_ortu }}, {{ $siswas->tgl_lahir_ortu }}</p>
@@ -205,16 +210,16 @@
         const kontenBiodata = document.getElementById('biodataContent');
 
         tabAkun.classList.remove('bg-white', 'text-baseBlue');
-        tabAkun.classList.add('bg-baseBlue', 'text-white', 'font-semibold');
+        tabAkun.classList.add('bg-baseBlue', 'text-white', 'font-semibold', 'dark:bg-baseBlue/70');
 
         tabAkun.addEventListener("click", function() {
             if (kontenAkun.classList.contains('hidden')) {
                 kontenBiodata.classList.add('hidden');
                 kontenAkun.classList.remove('hidden');
              
-                tabAkun.classList.add('bg-baseBlue', 'text-white');
+                tabAkun.classList.add('bg-baseBlue', 'text-white', 'dark:bg-baseBlue/70');
                 tabAkun.classList.remove('bg-white', 'text-baseBlue');
-                tabBiodata.classList.remove('bg-baseBlue', 'text-white');
+                tabBiodata.classList.remove('bg-baseBlue', 'text-white', 'dark:bg-baseBlue/70');
                 tabBiodata.classList.add('bg-white', 'text-baseBlue');
             }
         });
@@ -224,9 +229,9 @@
                 kontenAkun.classList.add('hidden');
                 kontenBiodata.classList.remove('hidden');
             
-                tabBiodata.classList.add('bg-baseBlue', 'text-white');
+                tabBiodata.classList.add('bg-baseBlue', 'text-white', 'dark:bg-baseBlue/70');
                 tabBiodata.classList.remove('bg-white', 'text-baseBlue');
-                tabAkun.classList.remove('bg-baseBlue', 'text-white');
+                tabAkun.classList.remove('bg-baseBlue', 'text-white', 'dark:bg-baseBlue/70');
                 tabAkun.classList.add('bg-white', 'text-baseBlue');
             }
         });

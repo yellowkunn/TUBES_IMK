@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+@include('htmlhead')
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,7 +35,7 @@
         }
     </style>
 </head>
-<body class="font-Inter text-regularContent">
+<body class="font-Inter text-regularContent dark:dark-mode">
     <div>
     @include('components.siswa.navbar')
 
@@ -50,20 +50,19 @@
 
             <!-- page hierarchy -->
             <div class="flex items-center gap-2 text-smallContent">
-                <a href="{{ route('home') }}">Dashboard</a>
+                <a href="{{ route('home') }}" class="hover:font-semibold">Dashboard</a>
                 <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                <a href="{{ route('sertifikatt') }}">Sertifikat</a>
+                <a href="{{ route('sertifikatt') }}" class="hover:font-semibold">Sertifikat</a>
             </div>
 
             <p class="text-title font-semibold mt-7 mb-4 md:mb-6">Sertifikat Saya</p>
                 
-            <div class="bg-white drop-shadow-regularShadow py-3 mb-8 rounded-lg border">
+            <div class="bg-white dark:bg-[#374151]/40 drop-shadow-regularShadow py-3 mb-8 rounded-lg border">
                 <!-- tabel rapor -->
                 <div class="overflow-x-auto">
                     
                     <table class="min-w-full text-left text-sm font-light text-surface dark:text-white">
-                        <thead class="border-b-2 border-neutral-200 font-semibold bg-greyBackground"
-                            style="color: #717171">
+                        <thead class="border-b-2 border-neutral-200 font-semibold bg-greyBackground dark:bg-[#374151]/40 dark:text-white text-[#717171]">
                             <tr>
                                 <th scope="col" class="w-2 px-4 sm:px-12 py-3">No.</th>
                                 <th scope="col" class="px-4 sm:px-12 py-3">Nama Sertifikat</th>
@@ -77,14 +76,14 @@
                             @php $nomor = 1; @endphp
                             @if ($sertifikats->isNotEmpty())
                                 @foreach ($sertifikats as $sertifikat)
-                                    <tr class="border-b border-neutral-200">
+                                    <tr class="border-b border-neutral-200 dark:bg-[#374151]/40 dark:text-white">
                                         <td class="px-4 sm:px-12 py-4">{{ $nomor++ }}</td>
                                         <td class="px-4 sm:px-12 py-4">{{ $sertifikat->nama }}</td>
                                         <td class="px-4 sm:px-12 py-4">{{ $sertifikat->keterangan }}</td>
                                         <td class="px-4 sm:px-12 py-4">
                                             {{ \Carbon\Carbon::parse($sertifikat->dibuat)->format('d/m/Y H:i') }}
                                         </td>
-                                        <td class="flex gap-4 text-greyIcon py-4 px-4 sm:px-12">
+                                        <td class="flex gap-4 text-greyIcon dark:text-white py-4 px-4 sm:px-12">
                                         @php
                                             $fileUrl = asset('sertifikat/' . $sertifikat->sertifikat);
                                         @endphp

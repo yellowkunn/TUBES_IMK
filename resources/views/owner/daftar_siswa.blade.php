@@ -136,7 +136,8 @@
 
                     <div id="siswaContent">
                         <div class="bg-white drop-shadow-regularShadow py-3 my-5 rounded-lg border overflow-x-auto">
-                            <!-- tabel rapor -->
+
+                            <!-- tabel siswa -->
                             <table class="min-w-full text-left text-sm font-light text-surface dark:text-white"
                                 style="color: #191919">
                                 <thead class="border-b-2 border-neutral-200 font-semibold bg-greyBackground"
@@ -175,6 +176,7 @@
                                                     {{ $siswa->status ?? '-' }}
                                                 </td>
                                                 <td class="px-8 py-4 flex items-center gap-4">
+
                                                     <button><i
                                                             class="fa-solid fa-arrow-right-to-bracket rotate-90"></i></button>
                                                     <button
@@ -193,7 +195,7 @@
                                     @endif
                                 </tbody>
                             </table>
-                            <!-- akhir dari tabel rapor -->
+                            <!-- akhir dari tabel siswa -->
                         </div>
                     </div>
 
@@ -255,7 +257,8 @@
 
                     <div id="penggunaContent" class="hidden">
                         <div class="bg-white drop-shadow-regularShadow py-3 my-5 rounded-lg border overflow-x-auto">
-                            <!-- tabel rapor -->
+                        
+                            <!-- tabel siswa -->
                             <table class="min-w-full text-left text-sm font-light text-surface dark:text-white"
                                 style="color: #191919">
                                 <thead class="border-b-2 border-neutral-200 font-semibold bg-greyBackground"
@@ -294,14 +297,15 @@
                                     @endif
                                 </tbody>
                             </table>
-                            <!-- akhir dari tabel rapor -->
-
+                            <!-- akhir dari tabel siswa -->
+                            
                         </div>
                     </div>
                 </div>
 
                 @if ($siswas)
                     @foreach ($siswas as $siswa)
+
                         <!-- Pop up hapus data siswa -->
                         <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow 
                                 w-full h-screen"
@@ -358,6 +362,7 @@
                             </div>
                         </div>
                         <!-- Akhir dari pop up hapus data siswa -->
+
                     @endforeach
                 @endif
 

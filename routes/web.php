@@ -42,6 +42,8 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
     Route::delete('/pengajar/{id}', [AdminController::class, 'hapusPengajar'])->name('pengajar.hapus');
     Route::delete('/siswa/{id}', [AdminController::class, 'hapusSiswa'])->name('siswa.hapus');
     Route::post('/aturRuangan', [AdminController::class, 'aturRuangan']);
+
+    Route::get('/verifikasipendaftar', [AdminController::class, 'verifikasipendaftar'])->name('admin.verifikasi-pendaftar');
 });
 
 //Pengajar
