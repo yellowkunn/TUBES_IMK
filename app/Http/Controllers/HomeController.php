@@ -47,7 +47,7 @@ class HomeController extends Controller
                         ->paginate(4);
 
                     $siswaa = Siswa::all();
-                    $pengajarr = Pengajar::distinct()->pluck('pengguna_id');
+                    $pengajarr = Pengajar::distinct()->pluck('id_pengajar');
                     return view('owner.dashboard', compact('kelasss', 'siswaStatus', 'kelass', 'siswaa', 'pengajarr'));
 
 

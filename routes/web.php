@@ -41,6 +41,10 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
     Route::get('/editdetailkelas/{kelas}', [AdminController::class, 'editdetailkelas'])->name('editdetailkelas');
     Route::get('/editdaftarkelas', [AdminController::class, 'editdaftarkelas'])->name('editdaftarkelas');
     Route::post('/hapuskelas/{id}', [AdminController::class,'hapuskelas'])->name('kelas.hapus');
+  
+    Route::post('/tambahpengajarbaru', [AdminController::class, 'tambahpengajarbaru']);
+    Route::post('/uploadSertifikat', [AdminController::class, 'uploadSertifikat']);
+    Route::delete('/pengajar/{id}', [AdminController::class, 'hapusPengajar'])->name('pengajar.hapus');
 });
 
 //Pengajar

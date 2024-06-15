@@ -9,6 +9,8 @@ use App\Models\Siswa;
 use App\Models\Pengajar;
 use App\Models\User;
 use App\Models\Biodata_Pengajar;
+use App\Models\Sertifikat;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
@@ -16,7 +18,7 @@ class AdminController extends Controller
     // {
     //     $siswas = Siswa::select('kelas_id')->distinct()->get();
     //     $kelas_ids = $siswas->pluck('kelas_id')->toArray(); // Ambil semua kelas_id yang unik dan ubah ke dalam array
-        
+
     //     $kelasss = Kelas::leftJoin('siswa', 'kelas.id_kelas', '=', 'siswa.kelas_id')
     //         ->select('kelas.*', DB::raw('COUNT(siswa.id_siswa) as total_siswa'))
     //         ->whereNotNull('siswa.kelas_id')
@@ -31,12 +33,12 @@ class AdminController extends Controller
     public function pengaturanruangan()
     {
         $kelass = Kelas::all();
-        return view ('owner.pengaturan_ruangan', compact('kelass'));
+        return view('owner.pengaturan_ruangan', compact('kelass'));
     }
 
     public function kalenderpendidikan()
     {
-        return view ('owner.kalender_pendidikan');
+        return view('owner.kalender_pendidikan');
     }
 
     public function editdaftarkelas()
@@ -45,7 +47,7 @@ class AdminController extends Controller
         $pengajars = DB::table('view_pengajar_unique')->get(); // Mengambil data dari view_pengajar_unique
         return view('owner.daftar_kelas', compact('kelass', 'pengajars')); // Menyertakan $pengajar ke dalam compact
     }
-    
+
 
     public function editdetailkelas(Kelas $kelas)
     {
@@ -56,14 +58,14 @@ class AdminController extends Controller
     public function editdaftarsiswa()
     {
         $siswas = Siswa::all();
-        return view ('owner.daftar_siswa', compact('siswas'));
+        return view('owner.daftar_siswa', compact('siswas'));
     }
     public function editdaftarpengajar()
     {
         $pengajars = Pengajar::all();
         $kelas = Kelas::all();
-        $pengguna = User::where('role', 'user')->get();
-        return view ('owner.daftar_pengajar', compact('pengajars', 'pengguna', 'kelas'));
+        $pengguna = User::whereIn('role', ['user', 'pengajar'])->get();
+        return view('owner.daftar_pengajar', compact('pengajars', 'pengguna', 'kelas'));
     }
 
     public function tambahpengajarbaru(Request $request)
@@ -110,6 +112,41 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Pengajar berhasil ditambahkan');
     }
 
+    public function uploadSertifikat(Request $request)
+    {
+        $request->validate([
+            'sertifikatPengajar' => 'required|file|mimes:pdf,jpg,jpeg,png|max:10240', // 10 MB dalam kilobyte
+            'nama' => 'required|string|max:255',
+            'keterangan' => 'required|string|max:255',
+            'pengajar_id' => 'required|exists:users,id_pengguna',
+        ]);
+
+        $file = $request->file('sertifikatPengajar');
+        $nama_file = 'file_' . now()->format('YmdHis') . '_' . Str::random(10) . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path('sertifikat'), $nama_file);
+
+        Sertifikat::insert([
+            'pengguna_id' => $request->pengajar_id,
+            'nama' => $request->nama,
+            'keterangan' => $request->keterangan,
+            'sertifikat' => $nama_file,
+        ]);
+
+        return redirect()->back()->with('success', 'Sertifikat berhasil ditambahkan');
+    }
+
+    public function hapusPengajar($id)
+    {
+        $pengguna = Pengajar::find($id);
+
+        if ($pengguna) {
+            $pengguna->delete();
+            return redirect()->back()->with('success', 'Penngajar berhasil dihapus');
+        } else {
+            return redirect() - back()->with('error', 'Pengajar tidak ditemukan');
+        }
+    }
+
 
     public function tambahkelasbaru(Request $request)
     {
@@ -123,7 +160,7 @@ class AdminController extends Controller
             'durasi' => 'required|string|max:255'
         ]);
 
-        try{
+        try {
             $file = $request->file('gambar');
             if ($file) {
                 // $judul = $request->get('gambar');
@@ -132,26 +169,29 @@ class AdminController extends Controller
                 $file->move(public_path('berkas_ujis'), $nama_file);
                 $berkas = '' . $nama_file;
             }
-            DB::select('call kelas_baru(?,?,?,?,?,?,?,?,?)',
-            array($request->get('nama'),$request->get('tingkat_kelas'),
-            $berkas,
-            $request->get('deskripsi'),
-            $request->get('harga'),
-            $request->get('fasilitas'),
-            $request->get('rentang'),
-            $request->get('jadwal_hari'),
-            $request->get('durasi')
-        ));
+            DB::select(
+                'call kelas_baru(?,?,?,?,?,?,?,?,?)',
+                array(
+                    $request->get('nama'), $request->get('tingkat_kelas'),
+                    $berkas,
+                    $request->get('deskripsi'),
+                    $request->get('harga'),
+                    $request->get('fasilitas'),
+                    $request->get('rentang'),
+                    $request->get('jadwal_hari'),
+                    $request->get('durasi')
+                )
+            );
             return redirect()->back()->with('success', 'Berhasil menambahkan kelas');
-        } catch (Exception $e){
+        } catch (Exception $e) {
             return redirect()->back()->with('error', 'Gagal menambahkan kelas');
-
         }
     }
 
-    public function hapuskelas(Request $request, $id){
+    public function hapuskelas(Request $request, $id)
+    {
         $kelas = Kelas::findOrFail($id);
-        
+
         $kelas->delete();
 
         return redirect()->back()->with('success', 'Kelas berhasil dihapus');

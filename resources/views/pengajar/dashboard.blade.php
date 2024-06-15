@@ -36,7 +36,8 @@
                     <div class="bg-baseDarkerGreen rounded-xl p-6 md:p-12 relative my-7 font-semibold text-white">
                         <div class="flex flex-col gap-2 text-start md:w-1/2">
                             <p class="text-subtitle">Hello {{ Auth::user()->username }}!</p>
-                            <p>Jangan lupa kelas kamu selanjutnya di hari Selasa pukul 10.00 ya! {{ $pertemuanSelanjutnya->pertemuan_ke }}</p>
+                            <p>Jangan lupa kelas kamu selanjutnya di hari Selasa pukul 10.00 ya!</p>
+                            {{-- {{ $pertemuanSelanjutnya->pertemuan_ke }} --}}
                         </div>
                         <div class="absolute right-5 top-0 invisible md:visible">
                             <img src="{{asset('images/cartoon4dashboardUser.png')}}" alt="" width=220>
@@ -116,9 +117,10 @@
                                         @php
                                             $index = 0;
                                         @endphp
+                                        @if($kelas->siswa->isNotEmpty())
                                         @foreach($kelas->siswa as $siswa => $image)
                                             @if($index < 3)
-                                                <img class="w-8 h-8 object-cover rounded-full ms-10 fixed z-{{ ($index * 10) }} left-{{ ($index * 4) }}" src="{{ asset('berkas_ujis/' . $image->pengguna->foto_profile) }}" alt="">
+                                                <img class="w-8 h-8 object-cover rounded-full ms-10 fixed z-{{ ($index * 10) }} left-{{ ($index * 4) }}" src="{{ asset('berkas_ujis/' . $image->pengguna->foto_profile ?? 'default.jpg') }}" alt="">
                                             @endif
                                         @php
                                         $index++;
@@ -131,6 +133,9 @@
                                         <p class="mt-1 text-greyIcon text-smallContent ms-14">{{ $kelas->total_siswa }} siswa</p>
                                         @elseif($kelas->total_siswa > 2)
                                         <p class="mt-1 text-greyIcon text-smallContent ms-20">{{ $kelas->total_siswa }} siswa</p>
+                                        @endif
+                                        @else
+                                        <p class="mt-1 text-greyIcon text-smallContent">Belum ada siswa</p>
                                         @endif
                                     </div>
 

@@ -57,16 +57,33 @@
                         </div>
                     </div>
 
-                    <div class="bg-white drop-shadow-regularShadow py-3 my-5 rounded-lg border">
+                    <!-- Pesan Error -->
+                    @if ($errors->any())
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+                            <strong class="font-bold">Oops!</strong>
+                            <span class="block sm:inline">Terjadi kesalahan dengan input Anda:</span>
+                            <ul class="list-disc pl-5 mt-2">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
-                        @if (session('success'))
-                        <div id="success-message" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+                    <!-- Pesan Sukses -->
+                    @if (session('success'))
+                        <div id="success-message"
+                            class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4"
+                            role="alert">
                             <strong class="font-bold">Sukses!</strong>
                             <span class="block sm:inline">{{ session('success') }}</span>
-                            <span class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer" onclick="dismissMessage()">
-                                <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <span class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer"
+                                onclick="dismissMessage()">
+                                <svg class="fill-current h-6 w-6 text-green-500" role="button"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                     <title>Tutup</title>
-                                    <path d="M14.348 5.652a1 1 0 011.415 0l1.515 1.515a1 1 0 010 1.414l-8.648 8.648a1 1 0 01-1.415 0L2.122 8.59a1 1 0 010-1.415L3.637 5.652a1 1 0 011.414 0L10 10.586l4.348-4.348z" />
+                                    <path
+                                        d="M14.348 5.652a1 1 0 011.415 0l1.515 1.515a1 1 0 010 1.414l-8.648 8.648a1 1 0 01-1.415 0L2.122 8.59a1 1 0 010-1.415L3.637 5.652a1 1 0 011.414 0L10 10.586l4.348-4.348z" />
                                 </svg>
                             </span>
                         </div>
@@ -81,7 +98,7 @@
                                 message.style.display = 'none';
                             }, 1000);
                         }
-                    
+
                         // Automatically dismiss the message after 5 seconds
                         setTimeout(() => {
                             const message = document.getElementById('success-message');
@@ -94,6 +111,8 @@
                             }
                         }, 3000);
                     </script>
+
+                    <div class="bg-white drop-shadow-regularShadow py-3 my-5 rounded-lg border">
                         <!-- tabel pengajar -->
                         <table class="min-w-full text-left text-sm font-light text-surface dark:text-white"
                             style="color: #191919">
@@ -138,7 +157,7 @@
                                             <td class="px-8 py-4 flex items-center gap-4 justify-center">
                                                 <button
                                                     onclick="showPopupDetailPengajar({{ $pengajar->pengguna->biodataPengajar->id_biodata ?? '0' }})"
-                                                    class="text-baseBlue font-semibold w-16 h-8 rounded hover:bg-white hover:border-2 hover:border-baseBlue focus:bg-baseBlue focus:text-white" >Detail</button>
+                                                    class="text-baseBlue font-semibold w-16 h-8 rounded hover:bg-white hover:border-2 hover:border-baseBlue focus:bg-baseBlue focus:text-white">Detail</button>
                                                 <button
                                                     onclick="showPopupEditPengajar({{ $pengajar->pengguna->biodataPengajar->id_biodata ?? '0' }})"
                                                     class="flex items-center gap-2">
@@ -182,7 +201,7 @@
                                     <!-- kiri -->
                                     <div class="w-full flex flex-col gap-6">
                                         <div>
-                                            <p class="font-semibold mb-2">Pilih Pengajar</p>
+                                            <p class="font-semibold mb-2">Pilih Calon Pengajar</p>
                                             <select
                                                 class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1"
                                                 name="pengajar" id="pengajar" required>
@@ -307,7 +326,8 @@
                         <div class="flex flex-col gap-4">
                             <div class="py-4">
                                 <div class="flex justify-center mb-6">
-                                    <img src="{{ asset('berkas_ujis/' . $pengajar->pengguna->foto_profile ?? 'default.jpg') }}" class="w-16 h-16 object-cover rounded-full" alt="">
+                                    <img src="{{ asset('berkas_ujis/' . $pengajar->pengguna->foto_profile ?? 'default.jpg') }}"
+                                        class="w-16 h-16 object-cover rounded-full" alt="">
                                 </div>
 
                                 <div class="grid grid-cols-2">
@@ -334,8 +354,8 @@
                                     </div>
                                 </div>
 
-                                <!-- <p class="">{{ $pengajar->kelas->nama }}</p>
-                                    <p class="">{{ $pengajar->kelas->jadwal_hari }}</p>
+                                <!-- <p class="">{{ $pengajar->kelas->nama ?? '-' }}</p>
+                                    <p class="">{{ $pengajar->kelas->jadwal_hari ?? '-' }}</p>
                                     <p class="">10.00 WIB, 11.00 WIB, 12.00 WIB</p> -->
                             </div>
 
@@ -365,18 +385,25 @@
                     </div>
 
                     <div class="bg-white rounded-b-xl px-10 py-8">
-                        <form action="" method="post" class="flex flex-col justify-center gap-6">
+                        <form action="{{ url('/uploadSertifikat') }}" method="post"
+                            class="flex flex-col justify-center gap-6" enctype="multipart/form-data">
                             @csrf
                             <p>Sertifikat untuk {{ $pengajar->pengguna->biodataPengajar->nama_lengkap }}</p>
                             <input type="file" name="sertifikatPengajar" id="sertifikatPengajar"
                                 class="file:text-baseBlue file:font-semibold 
                                 file:bg-baseBlue/20 file:rounded-full file:py-2 file:px-4 file:border-none file:cursor-pointer">
                             <div>
+                                <label for="nama">Nama Sertifikat</label>
+                                <input type="text" name="nama" id="nama"
+                                    class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1 mt-1">
+                            </div>
+                            <div>
                                 <label for="keterangan">Keterangan</label>
                                 <textarea name="keterangan" id="keterangan"
                                     class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1 mt-1"
                                     rows="2"></textarea>
                             </div>
+                            <input type="hidden" name="pengajar_id" value="{{ $pengajar->id_pengajar }}">
 
                             <div class="flex justify-center gap-6 mb-2 mt-4">
                                 <button type="button"
@@ -435,7 +462,9 @@
                                 {{ $pengajar->pengguna->biodataPengajar->nama_lengkap }}?
                             </p>
 
-                            <form action="" method="post">
+                            <form action="{{ route('pengajar.hapus', $pengajar->id_pengajar) }}" method="POST">
+                                @csrf
+                                @method('delete')
                                 <div class="flex justify-between gap-4 mt-4">
                                     <button type="button"
                                         onclick="showPopupHapusPengajar({{ $pengajar->pengguna->biodataPengajar->id_biodata }})"
