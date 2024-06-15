@@ -9,6 +9,8 @@ use App\Models\Siswa;
 use App\Models\Pengajar;
 use App\Models\User;
 use App\Models\Biodata_Pengajar;
+use App\Models\Sertifikat;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
@@ -108,6 +110,39 @@ class AdminController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Pengajar berhasil ditambahkan');
+    }
+
+    public function uploadSertifikat(Request $request)
+    {
+        $request->validate([
+            'sertifikatPengajar' => 'required|file|mimes:pdf|max:10240', // 10 MB dalam kilobyte
+            'keterangan' => 'required|string|max:255',
+            'pengajar_id' => 'required|exists:users,id_pengguna',]);
+
+        $file = $request->file('sertifikatPengajar');
+        $nama_file = 'file_' . now()->format('YmdHis') . '_' . Str::random(10) . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path('sertifikat'), $nama_file);
+
+        Sertifikat::insert([    
+            'pengguna_id' => $request->pengajar_id,
+            'keterangan' => $request->keterangan,
+            'sertifikat' => $nama_file,
+        ]);
+
+        return redirect()->back()->with('success', 'Sertifikat berhasil ditambahkan');
+
+    }
+
+    public function hapusPengajar($id)
+    {
+        $pengguna = User::find($id);
+
+        if ($pengguna) {
+            $pengguna->delete();
+            return redirect()->back()->with('success', 'Penngajar berhasil dihapus');
+        } else {
+            return redirect()-back()->with('error', 'Pengajar tidak ditemukan');
+        }
     }
 
 
