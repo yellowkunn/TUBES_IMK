@@ -354,8 +354,8 @@
                                     </div>
                                 </div>
 
-                                <!-- <p class="">{{ $pengajar->kelas->nama }}</p>
-                                    <p class="">{{ $pengajar->kelas->jadwal_hari }}</p>
+                                <!-- <p class="">{{ $pengajar->kelas->nama ?? '-' }}</p>
+                                    <p class="">{{ $pengajar->kelas->jadwal_hari ?? '-' }}</p>
                                     <p class="">10.00 WIB, 11.00 WIB, 12.00 WIB</p> -->
                             </div>
 
@@ -457,7 +457,9 @@
                                 {{ $pengajar->pengguna->biodataPengajar->nama_lengkap }}?
                             </p>
 
-                            <form action="" method="post">
+                            <form action="{{ route('pengajar.hapus', $pengajar->id_pengajar) }}" method="POST">
+                                @csrf
+                                @method('delete')
                                 <div class="flex justify-between gap-4 mt-4">
                                     <button type="button"
                                         onclick="showPopupHapusPengajar({{ $pengajar->pengguna->biodataPengajar->id_biodata }})"

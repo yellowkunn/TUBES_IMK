@@ -64,7 +64,7 @@ class AdminController extends Controller
     {
         $pengajars = Pengajar::all();
         $kelas = Kelas::all();
-        $pengguna = User::where('role', 'user')->get();
+        $pengguna = User::whereIn('role', ['user', 'pengajar'])->get();
         return view ('owner.daftar_pengajar', compact('pengajars', 'pengguna', 'kelas'));
     }
 
@@ -74,7 +74,7 @@ class AdminController extends Controller
         $request->validate([
             'pengajar' => 'required|exists:users,id_pengguna',
             'nama' => 'required|string|max:255',
-            'tanggal_lahir' => 'required|date',
+            'tanggal_lahir' => 'required|date', 
             'tempat' => 'required|string|max:255',
             'agama' => 'required|string|max:50',
             'jabatan' => 'nullable|string|max:255',
@@ -135,7 +135,7 @@ class AdminController extends Controller
 
     public function hapusPengajar($id)
     {
-        $pengguna = User::find($id);
+        $pengguna = Pengajar::find($id);
 
         if ($pengguna) {
             $pengguna->delete();

@@ -57,7 +57,7 @@ class HomeController extends Controller
                         ->select('kelas.*', DB::raw('COUNT(siswa.id_siswa) as total_siswa'))
                         ->withCount('siswa')
                         ->with('siswa') // Menyertakan data siswa secara lengkap
-                        ->whereNotNull('siswa.kelas_id')
+                        // ->whereNotNull('siswa.kelas_id')
                         ->whereIn('kelas.id_kelas', $kelas_id)
                         ->groupBy('kelas.id_kelas', 'kelas.nama', 'kelas.tingkat_kelas', 'kelas.foto', 'kelas.deskripsi', 'kelas.harga', 'kelas.fasilitas', 'kelas.rentang', 'kelas.jadwal_hari', 'kelas.durasi', 'kelas.dibuat')
                         ->get();
