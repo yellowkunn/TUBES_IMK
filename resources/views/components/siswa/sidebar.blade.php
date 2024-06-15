@@ -18,8 +18,8 @@
                 <p class="flex duration-500 relative left-10 hidden">Rapor</p>
             </div>
         </a>
-        <a href="{{ url('/sertifikatt') }}">
-            <div class="flex items-center gap-2 absolute left-0 w-5/6 lg:w-full py-3 {{ request()->routeIs('sertifikat-siswa') ? 'bg-baseDarkerGreen text-white font-normal rounded-r-lg' : '' }}">
+        <a href="{{ route('sertifikatt') }}">
+            <div class="flex items-center gap-2 absolute left-0 w-5/6 lg:w-full py-3 {{ request()->routeIs('sertifikat') ? 'bg-baseDarkerGreen text-white font-normal rounded-r-lg' : '' }}">
                 <span class="material-symbols-outlined relative left-10">verified</span>
                 <p class="flex duration-500 relative left-10 hidden">Sertifikat</p>
             </div>

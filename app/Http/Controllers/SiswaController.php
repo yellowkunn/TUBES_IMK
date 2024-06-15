@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Biodata_siswa;
 use App\Models\Siswa;
 use App\Models\Pertemuan;
+use App\Models\Sertifikat;
 
 class SiswaController extends Controller
 {
@@ -172,7 +173,7 @@ class SiswaController extends Controller
     public function sertifikat()
     {
         $user = Auth::user();
-        $siswas = Siswa::where('pengguna_id', $user->id_pengguna)->with('kelas')->get();
-        return view('siswa.sertifikat', compact('siswas'));
+        $sertifikats = Sertifikat::where('pengguna_id', $user->id_pengguna)->get();
+        return view('siswa.sertifikat', compact('sertifikats'));
     }
 }

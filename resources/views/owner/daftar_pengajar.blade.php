@@ -109,7 +109,7 @@
                                     message.style.display = 'none';
                                 }, 1000);
                             }
-                        }, 3000);
+                        }, 5000);
                     </script>
 
                     <div class="bg-white drop-shadow-regularShadow py-3 my-5 rounded-lg border">
@@ -421,7 +421,7 @@
 
                 </div>
             </div>
-            <!-- akhir dari pop up detail Pengajar -->
+            <!-- akhir dari pop up upload sertif -->
 
             <!-- pop up hapus pengajar -->
             <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow 
