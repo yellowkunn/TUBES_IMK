@@ -10,8 +10,8 @@ class Siswa extends Model
     use HasFactory;
 
     protected $table = 'siswa';
-    protected $primaryKey = 'id_kelas';
-    protected $guarded = ['id_kelas'];
+    protected $primaryKey = 'id_siswa';
+    protected $guarded = ['id_siswa'];
     public $timestamps = false;
 
 
