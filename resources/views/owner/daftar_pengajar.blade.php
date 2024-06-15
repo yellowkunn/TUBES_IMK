@@ -32,9 +32,9 @@
 
                     <!-- page hierarchy -->
                     <div class="flex items-center gap-2 text-smallContent">
-                        <a href="">Dashboard</a>
+                        <a href="{{ route('home') }}" class="hover:font-semibold">Dashboard</a>
                         <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                        <a href="">Pengajar</a>
+                        <a href="{{ route('editdaftarpengajar') }}" class="hover:font-semibold">Pengajar</a>
                     </div>
 
 

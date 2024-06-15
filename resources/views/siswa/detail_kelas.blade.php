@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+@include('htmlhead')
 
 <head>
     <meta charset="UTF-8">
@@ -16,7 +15,7 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="font-Inter text-regularContent">
+<body class="font-Inter text-regularContent dark:dark-mode">
     <div>
         @include('components.siswa.navbar')
 
@@ -51,7 +50,7 @@
                         @if (isset($kelas->pengajar) &&
                                 count($kelas->pengajar) > 0 &&
                                 isset($kelas->pengajar[0]->pengguna->biodataPengajar->nama_lengkap))
-                            <p class="text-smallContent text-greyIcon">
+                            <p class="text-smallContent text-greyIcon dark:text-white/80">
                                 {{ $kelas->pengajar[0]->pengguna->biodataPengajar->nama_lengkap }}</p>
                         @else
                             <p class="text-smallContent text-greyIcon">Pengajar tidak tersedia</p>

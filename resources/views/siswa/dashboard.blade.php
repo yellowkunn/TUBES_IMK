@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+@include('htmlhead')
 
 <head>
     <meta charset="UTF-8">
@@ -16,7 +15,7 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="font-Inter text-regularContent">
+<body class="font-Inter text-regularContent dark:dark-mode">
     <div>
         @include('components.siswa.navbar')
 
@@ -35,7 +34,7 @@
                         <a href="{{ route('home') }}" class="hover:font-semibold">Dashboard</a>
                     </div>
 
-                    <div class="bg-baseDarkerGreen rounded-xl p-6 md:p-12 relative my-7 font-semibold text-white">
+                    <div class="bg-baseDarkerGreen dark:bg-baseDarkerGreen/80 rounded-xl p-6 md:p-12 relative my-7 font-semibold text-white">
                         <div class="flex flex-col gap-2 text-start md:w-1/2">
                             <p class="text-subtitle">Hello {{ Auth::user()->username }}!</p>
                             <p>Jangan lupa kelas kamu selanjutnya di hari Selasa pukul 10.00 ya!</p>
@@ -49,7 +48,7 @@
                         <div class="md:w-2/3">
                             <div class="flex justify-between items-center">
                                 <p class="md:text-subtitle font-semibold">Baru diakses</p>
-                                <a href="" class="text-[#00e]">Selengkapnya</a>
+                                <a href="" class="text-[#00e] dark:text-white">Selengkapnya</a>
                             </div>
 
                             <!-- baru diakses -->
@@ -59,7 +58,7 @@
 
                             <div class="dropdown group mt-4" data-index="0">
                                 <div id="tabPertemuan-0"
-                                    class="rounded-xl drop-shadow-regularShadow bg-white p-4 px-8 flex justify-between items-center relative">
+                                    class="rounded-xl drop-shadow-regularShadow bg-white dark:dark:bg-[#374151]/40 p-4 px-8 flex justify-between items-center relative">
                                     <div>
                                         <div>
                                             <div
@@ -69,7 +68,7 @@
 
                                         <div class="ms-1">
                                             @if ($pertemuan)
-                                                <p class="font-semibold">Pertemuan
+                                                <p class="font-semibold dark:font-normal">Pertemuan
                                                     {{ $pertemuan->pertemuan_ke }}</p>
                                                 <p class="text-smallContent">Pertemuan
                                                     {{ $pertemuan->judul }}</p>
@@ -187,11 +186,11 @@
                         <div class="md:w-1/3">
                             <p class="text-subtitle font-semibold">Kalender</p>
 
-                            <!-- baru diakses -->
+                            <!-- kalender -->
                             <div class="flex flex-col gap-4 my-5">
-                                <div class="bg-white p-5 px-8 rounded-lg shadow-meetCardShadow">
+                                <div class="bg-white rounded-lg shadow-meetCardShadow">
                                     <div class="flex justify-between">
-                                        tes
+                                        <img src="{{ asset('images/cal.png') }}" alt="calender">
                                     </div>
                                 </div>
                             </div>

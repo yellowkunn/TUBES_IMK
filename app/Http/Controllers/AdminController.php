@@ -43,7 +43,7 @@ class AdminController extends Controller
 
     public function editdaftarkelas()
     {
-        $kelass = Kelas::all();
+        $kelass = Kelas::paginate(8);
         $pengajars = DB::table('view_pengajar_unique')->get(); // Mengambil data dari view_pengajar_unique
         return view('owner.daftar_kelas', compact('kelass', 'pengajars')); // Menyertakan $pengajar ke dalam compact
     }

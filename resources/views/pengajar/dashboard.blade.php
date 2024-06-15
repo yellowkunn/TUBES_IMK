@@ -30,7 +30,7 @@
 
                     <!-- page hierarchy -->
                     <div class="flex items-center gap-2 text-smallContent">
-                        <a href="">Dashboard</a>
+                        <a href="{{ route('home') }}" class="hover:font-semibold">Dashboard</a>
                     </div>
 
                     <div class="bg-baseDarkerGreen rounded-xl p-6 md:p-12 relative my-7 font-semibold text-white">
@@ -158,11 +158,11 @@
                         <div class="md:w-1/3">
                             <p class="text-subtitle font-semibold">Kalender</p>
 
-                            <!-- baru diakses -->
+                            <!-- kalender -->
                             <div class="flex flex-col gap-4 my-5">
-                                <div class="bg-white p-5 px-8 rounded-lg shadow-meetCardShadow">
+                                <div class="bg-white p-2 rounded-lg shadow-meetCardShadow">
                                     <div class="flex justify-between">
-                                        tes
+                                        <img src="{{ asset('images/cal.png') }}" alt="calender">
                                     </div>
                                 </div>
                             </div>
