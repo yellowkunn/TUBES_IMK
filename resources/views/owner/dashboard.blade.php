@@ -30,6 +30,11 @@
             <div class="w-full">
                 <div id="content" class="p-8">
 
+                <!-- page hierarchy -->
+                <div class="flex items-center gap-2 text-smallContent mb-5">
+                    <a href="{{ route('home') }}" class="hover:font-semibold">Dashboard</a>
+                </div>
+
                     <div class="flex justify-between">
                         <!-- <div class="drop-shadow-regularShadow rounded-xl p-7 px-12 pe-36 text-white bg-baseBlue">
                         <span class="material-symbols-outlined bg-white text-baseBlue p-1 rounded text-3xl">chair_alt</span>
@@ -38,22 +43,22 @@
                     </div> -->
                         <a href="{{ route('editdaftarkelas') }}">
 
-                            <div class="border-2 border-greyBorder rounded-xl p-7 px-12 pe-36 text-greyIcon">
-                                <span class="material-symbols-outlined bg-greyBackground p-1 rounded text-3xl">chair_alt</span>
+                            <div class="bg-baseBlue/90 hover:bg-baseBlue rounded-xl p-7 px-12 pe-36 text-white">
+                                <span class="material-symbols-outlined bg-white text-baseBlue p-1 rounded text-3xl">chair_alt</span>
                                 <p class="font-semibold text-subtitle mt-3 my-1">Daftar Kelas</p>
-                                <p class="text-smallContent" style="color: #949494">{{ count($kelass) }} kelas</p>
+                                <p class="text-white">{{ count($kelass) }} kelas</p>
                             </div>
                         </a>
                         <a href="{{ route('editdaftarsiswa') }}">
-                            <div class="border-2 border-greyBorder rounded-xl p-7 px-12 pe-36 text-greyIcon">
-                                <span class="material-symbols-outlined bg-greyBackground p-1 rounded text-3xl">interactive_space</span>
+                            <div class="border-2 border-greyBorder hover:bg-slate-50 rounded-xl p-7 px-12 pe-36 text-greyIcon">
+                                <span class="material-symbols-outlined bg-slate-200 p-1 px-2 rounded text-3xl">interactive_space</span>
                                 <p class="font-semibold text-subtitle mt-3 my-1">Daftar Siswa</p>
                                 <p class="text-smallContent" style="color: #949494">{{ count($siswaa) }} siswa</p>
                             </div>
                         </a>
                         <a href="{{ route('editdaftarpengajar') }}">
-                            <div class="border-2 border-greyBorder rounded-xl p-7 px-12 pe-36 text-greyIcon">
-                                <i class="fa-solid fa-chalkboard-user bg-greyBackground p-1 rounded text-2xl"></i>
+                            <div class="border-2 border-greyBorder hover:bg-slate-50 rounded-xl p-7 px-12 pe-36 text-greyIcon">
+                                <i class="fa-solid fa-chalkboard-user bg-slate-200 p-1.5 px-2 rounded text-2xl"></i>
                                 <p class="font-semibold text-subtitle mt-3 my-1">Daftar Pengajar</p>
                                 <p class="text-smallContent" style="color: #949494">{{ count($pengajarr) }} pengajar</p>
                             </div>
@@ -122,7 +127,6 @@
                         </div>
                         @endforeach
                         @endif
-                        {{ $kelasss->links() }}
                     </div>
                     <!-- akhir dari daftar kelas -->
 
