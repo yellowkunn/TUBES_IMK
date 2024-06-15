@@ -48,14 +48,14 @@
                             <div class="border-2 border-greyBorder rounded-xl p-7 px-12 pe-36 text-greyIcon">
                                 <span class="material-symbols-outlined bg-greyBackground p-1 rounded text-3xl">interactive_space</span>
                                 <p class="font-semibold text-subtitle mt-3 my-1">Daftar Siswa</p>
-                                <p class="text-smallContent" style="color: #949494">{{ count($siswaa) }} Orang</p>
+                                <p class="text-smallContent" style="color: #949494">{{ count($siswaa) }} siswa</p>
                             </div>
                         </a>
                         <a href="{{ route('editdaftarpengajar') }}">
                             <div class="border-2 border-greyBorder rounded-xl p-7 px-12 pe-36 text-greyIcon">
                                 <i class="fa-solid fa-chalkboard-user bg-greyBackground p-1 rounded text-2xl"></i>
                                 <p class="font-semibold text-subtitle mt-3 my-1">Daftar Pengajar</p>
-                                <p class="text-smallContent" style="color: #949494">{{ count($pengajarr) }} Orang</p>
+                                <p class="text-smallContent" style="color: #949494">{{ count($pengajarr) }} pengajar</p>
                             </div>
                         </a>
                     </div>

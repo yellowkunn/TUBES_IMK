@@ -86,7 +86,12 @@
                                                 {{ $siswa->kelas->jadwal_waktu ?? '-' }}
                                             </td>
                                             <td class="px-8 py-4">
+                                                @if($siswa->kelas && $siswa->kelas->pengajar->isNotEmpty())
                                                 {{ $siswa->kelas->pengajar->first()?->pengguna->biodataPengajar->nama_lengkap ?? '-' }}
+                                            @else
+                                                -
+                                            @endif
+                                            
                                             </td>
                                             <td class="px-8 py-4 flex items-center gap-4">
                                                 <i class="fa-solid fa-arrow-right-to-bracket rotate-90"></i>

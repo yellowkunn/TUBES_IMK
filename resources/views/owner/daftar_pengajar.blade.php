@@ -393,6 +393,11 @@
                                 class="file:text-baseBlue file:font-semibold 
                                 file:bg-baseBlue/20 file:rounded-full file:py-2 file:px-4 file:border-none file:cursor-pointer">
                             <div>
+                                <label for="nama">Nama Sertifikat</label>
+                                <input type="text" name="nama" id="nama"
+                                    class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1 mt-1">
+                            </div>
+                            <div>
                                 <label for="keterangan">Keterangan</label>
                                 <textarea name="keterangan" id="keterangan"
                                     class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1 mt-1"

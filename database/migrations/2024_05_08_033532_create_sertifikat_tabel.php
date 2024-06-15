@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('sertifikat', function (Blueprint $table) {
             $table->id('id_sertifikat');
             $table->foreignId('pengguna_id')->constrained('users', 'id_pengguna')->onDelete('cascade');
+            $table->string('nama');
             $table->string('keterangan');
             $table->string('sertifikat');
             $table->timestamp('dibuat')->useCurrent();
