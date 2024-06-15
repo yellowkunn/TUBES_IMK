@@ -95,6 +95,7 @@
                                                     {{ $siswa->kelas->pengajar->first()?->pengguna->biodataPengajar->nama_lengkap ?? '-' }}
                                                 </td>
                                                 <td class="px-8 py-4 flex items-center gap-4">
+                                                    <i class="fa-regular fa-eye"></i>
                                                     <i class="fa-solid fa-pen text-white p-1.5 bg-baseBlue rounded-full"></i>
                                                 </td>
                                             </tr>
@@ -137,8 +138,9 @@
                                                     {{ $p->role ?? '-' }}
                                                 </td>
                                                 <td class="px-8 py-4 flex items-center gap-4">
-                                                    <i
-                                                    class="fa-solid fa-pen text-white p-1.5 bg-baseBlue rounded-full"></i>
+                                                    <i class="fa-solid fa-arrow-right-to-bracket rotate-90"></i>
+                                                    <i class="fa-regular fa-eye"></i>
+                                                    <span class="material-symbols-outlined text-xl">military_tech</span>
                                                 </td>
                                             </tr>
                                         @endforeach
