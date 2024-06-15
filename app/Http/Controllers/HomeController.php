@@ -43,7 +43,7 @@ class HomeController extends Controller
                         ->whereNotNull('siswa.kelas_id')
                         ->with('siswa')
                         ->whereIn('kelas.id_kelas', $kelas_ids) // Tambahkan kondisi whereIn untuk membatasi hasil query
-                        ->groupBy('kelas.id_kelas', 'kelas.nama', 'kelas.tingkat_kelas', 'kelas.foto', 'kelas.deskripsi', 'kelas.harga', 'kelas.fasilitas', 'kelas.rentang', 'kelas.jadwal_hari', 'kelas.durasi', 'kelas.dibuat')
+                        ->groupBy('kelas.id_kelas', 'kelas.nama', 'kelas.tingkat_kelas', 'kelas.foto', 'kelas.deskripsi', 'kelas.harga', 'kelas.fasilitas', 'kelas.rentang', 'kelas.jadwal_hari', 'kelas.jam', 'kelas.durasi', 'kelas.dibuat')
                         ->paginate(4);
 
                     $siswaa = Siswa::all();
@@ -59,7 +59,7 @@ class HomeController extends Controller
                         ->with('siswa') // Menyertakan data siswa secara lengkap
                         ->whereNotNull('siswa.kelas_id')
                         ->whereIn('kelas.id_kelas', $kelas_id)
-                        ->groupBy('kelas.id_kelas', 'kelas.nama', 'kelas.tingkat_kelas', 'kelas.foto', 'kelas.deskripsi', 'kelas.harga', 'kelas.fasilitas', 'kelas.rentang', 'kelas.jadwal_hari', 'kelas.durasi', 'kelas.dibuat')
+                        ->groupBy('kelas.id_kelas', 'kelas.nama', 'kelas.tingkat_kelas', 'kelas.foto', 'kelas.deskripsi', 'kelas.harga', 'kelas.fasilitas', 'kelas.rentang', 'kelas.jadwal_hari', 'kelas.jam', 'kelas.durasi', 'kelas.dibuat')
                         ->get();
 
                     $pertemuan = Pertemuan::where('pengajar_id', $user->id_pengguna)->first();

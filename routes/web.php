@@ -29,14 +29,10 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
     // Route::get('/admindashboard', [AdminController::class, 'dashboardadmin'])->name('dashboardadmin');
     Route::get('/pengaturanruangan', [AdminController::class, 'pengaturanruangan'])->name('pengaturanruangan');
-
     Route::get('/kalenderpendidikan', [AdminController::class, 'kalenderpendidikan'])->name('kalenderpendidikan');
-  
     Route::get('/editdaftarsiswa', [AdminController::class, 'editdaftarsiswa'])->name('editdaftarsiswa');
-    
     Route::get('/editdaftarpengajar', [AdminController::class, 'editdaftarpengajar'])->name('editdaftarpengajar');
     Route::post('/tambahpengajarbaru', [AdminController::class, 'tambahpengajarbaru']);
-
     Route::post('/tambahkelasbaru', [AdminController::class, 'tambahkelasbaru']);
     Route::get('/editdetailkelas/{kelas}', [AdminController::class, 'editdetailkelas'])->name('editdetailkelas');
     Route::get('/editdaftarkelas', [AdminController::class, 'editdaftarkelas'])->name('editdaftarkelas');
@@ -45,6 +41,7 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
     Route::post('/tambahpengajarbaru', [AdminController::class, 'tambahpengajarbaru']);
     Route::post('/uploadSertifikat', [AdminController::class, 'uploadSertifikat']);
     Route::delete('/pengajar/{id}', [AdminController::class, 'hapusPengajar'])->name('pengajar.hapus');
+    Route::post('/aturRuangan', [AdminController::class, 'aturRuangan']);
 });
 
 //Pengajar

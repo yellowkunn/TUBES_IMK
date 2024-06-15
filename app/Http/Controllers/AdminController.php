@@ -33,7 +33,8 @@ class AdminController extends Controller
     public function pengaturanruangan()
     {
         $kelass = Kelas::all();
-        return view('owner.pengaturan_ruangan', compact('kelass'));
+        $pengajars = User::where('role', 'pengajar')->get();
+        return view('owner.pengaturan_ruangan', compact('kelass', 'pengajars'));
     }
 
     public function kalenderpendidikan()
@@ -112,6 +113,29 @@ class AdminController extends Controller
 
         return redirect()->back()->with('success', 'Pengajar berhasil ditambahkan');
     }
+
+    public function aturRuangan(Request $request)
+    {
+        Kelas::where('id_kelas', $request->id_kelas)->update([
+            'jam' => $request->jam
+        ]);
+
+        $exists = Pengajar::where('pengguna_id', $request->pengajar)
+            ->where('kelas_id', $request->id_kelas)
+            ->exists();
+
+            if (!$exists) {
+                Pengajar::insert([
+                    'pengguna_id' => $request->pengajar,
+                    'kelas_id' => $request->id_kelas,
+                    'jabatan' => 'pengajar'
+                ]);
+                return redirect()->back()->with('success', 'Jadwal berhasil diperbarui dan pengajar ditambahkan.');
+            } else {
+                return redirect()->back()->with('pesanPengajar', 'Pengajar sudah terdaftar di kelas ini.')->with('success', 'Jadwal berhasil diperbarui.');
+            }
+    }
+
 
     public function uploadSertifikat(Request $request)
     {

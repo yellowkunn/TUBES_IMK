@@ -205,6 +205,7 @@
                                             <select
                                                 class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1"
                                                 name="pengajar" id="pengajar" required>
+                                                <option value="" disabled selected></option>
                                                 @foreach ($pengguna as $user)
                                                     <option value="{{ $user->id_pengguna }}">{{ $user->username }}
                                                     </option>

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->text('fasilitas');
             $table->string('rentang');
             $table->string('jadwal_hari');
+            $table->time('jam')->nullable();
             $table->string('durasi');
             $table->timestamp('dibuat')->useCurrent();
         }); 
