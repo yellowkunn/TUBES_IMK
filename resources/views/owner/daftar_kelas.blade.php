@@ -139,7 +139,7 @@
 
                     <!-- hasil kelas -->
                     <div id="hasilKelas" class="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-x-24 gap-y-16">
-                        
+
                         @foreach($kelass as $kelas)
                         <div class="bg-white rounded-lg p-6 px-10 lg:px-12 drop-shadow-regularShadow relative group my-8 sm:my-0">
 

@@ -52,7 +52,7 @@
             <div class="flex items-center gap-2 text-smallContent">
                 <a href="{{ route('home') }}" class="hover:font-semibold">Dashboard</a>
                 <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                <a href="{{ route('sertifikat') }}" class="hover:font-semibold">Sertifikat</a>
+                <a href="{{ route('sertifikatt') }}" class="hover:font-semibold">Sertifikat</a>
             </div>
 
             <p class="text-title font-semibold mt-7 mb-4 md:mb-6">Sertifikat Saya</p>
@@ -73,17 +73,17 @@
                         </thead>
 
                         <tbody>
-                        @php $nomor = 1; @endphp
+                            @php $nomor = 1; @endphp
                             @if ($sertifikats->isNotEmpty())
                                 @foreach ($sertifikats as $sertifikat)
-                                    <tr class="border-b border-neutral-200">
+                                    <tr class="border-b border-neutral-200 dark:bg-[#374151]/40 dark:text-white">
                                         <td class="px-4 sm:px-12 py-4">{{ $nomor++ }}</td>
                                         <td class="px-4 sm:px-12 py-4">{{ $sertifikat->nama }}</td>
                                         <td class="px-4 sm:px-12 py-4">{{ $sertifikat->keterangan }}</td>
                                         <td class="px-4 sm:px-12 py-4">
                                             {{ \Carbon\Carbon::parse($sertifikat->dibuat)->format('d/m/Y H:i') }}
                                         </td>
-                                        <td class="flex gap-4 text-greyIcon dark:bg-[#374151]/40 dark:text-white py-4 px-4 sm:px-12">
+                                        <td class="flex gap-4 text-greyIcon dark:text-white py-4 px-4 sm:px-12">
                                         @php
                                             $fileUrl = asset('sertifikat/' . $sertifikat->sertifikat);
                                         @endphp
