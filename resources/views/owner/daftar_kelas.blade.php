@@ -70,6 +70,44 @@
                         </form>
                     </div>
 
+                    <!-- Pesan Error -->
+                    @if ($errors->any())
+                    <div id="error-message">
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+                            <strong class="font-bold">Oops!</strong>
+                            <span class="block sm:inline">Terjadi kesalahan dengan input Anda:</span>
+                            <ul class="list-disc pl-5 mt-2">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                    @endif
+
+                    <script>
+                        function dismissMessage() {
+                            const message = document.getElementById('error-message');
+                            message.style.transition = 'opacity 1s ease-out';
+                            message.style.opacity = '0';
+                            setTimeout(() => {
+                                message.style.display = 'none';
+                            }, 1000);
+                        }
+
+                        // Automatically dismiss the message after 5 seconds
+                        setTimeout(() => {
+                            const message = document.getElementById('error-message');
+                            if (message) {
+                                message.style.transition = 'opacity 1s ease-out';
+                                message.style.opacity = '0';
+                                setTimeout(() => {
+                                    message.style.display = 'none';
+                                }, 1000);
+                            }
+                        }, 3000);
+                    </script>
+
                     <!-- skeleton -->
                     <div id="skeleton" class="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-x-24 gap-y-16">
                         <div class="bg-slate-400/5 rounded-lg p-8 px-12 drop-shadow-regularShadow min-h-[400px] md:min-h-fit md:max-h-[200px]">
@@ -210,16 +248,16 @@
                                                     <!-- <input class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" type="text" name="jadwal_hari" id="jadwal_hari"> -->
                                                     <div class="flex gap-8">
                                                         <div class="flex flex-col gap-4">
-                                                            <div class="flex items-center gap-2"><input type="checkbox" class="rounded appearance-none checked:bg-baseBlue" id="senin" nama="hari" value="senin"><label for="senin">Senin</label></div>
-                                                            <div class="flex items-center gap-2"><input type="checkbox" class="rounded appearance-none checked:bg-baseBlue" id="kamis" nama="hari" value="kamis"><label for="kamis">Kamis</label></div> 
+                                                            <div class="flex items-center gap-2"><input type="checkbox" class="rounded appearance-none checked:bg-baseBlue" id="senin" name="hari[]" value="senin"><label for="senin">Senin</label></div>
+                                                            <div class="flex items-center gap-2"><input type="checkbox" class="rounded appearance-none checked:bg-baseBlue" id="kamis" name="hari[]" value="kamis"><label for="kamis">Kamis</label></div> 
                                                         </div>
                                                         <div class="flex flex-col gap-4">
-                                                            <div class="flex items-center gap-2"><input type="checkbox" class="rounded appearance-none checked:bg-baseBlue" id="selasa" nama="hari" value="selasa"><label for="selasa">Selasa</label></div> 
-                                                            <div class="flex items-center gap-2"><input type="checkbox" class="rounded appearance-none checked:bg-baseBlue" id="jumat" nama="hari" value="jumat"><label for="jumat">Jumat</label></div> 
+                                                            <div class="flex items-center gap-2"><input type="checkbox" class="rounded appearance-none checked:bg-baseBlue" id="selasa" name="hari[]" value="selasa"><label for="selasa">Selasa</label></div> 
+                                                            <div class="flex items-center gap-2"><input type="checkbox" class="rounded appearance-none checked:bg-baseBlue" id="jumat" name="hari[]" value="jumat"><label for="jumat">Jumat</label></div> 
                                                         </div>
                                                         <div class="flex flex-col gap-4">
-                                                            <div class="flex items-center gap-2"><input type="checkbox" class="rounded appearance-none checked:bg-baseBlue" id="rabu" nama="hari" value="rabu"><label for="rabu">Rabu</label></div> 
-                                                            <div class="flex items-center gap-2"><input type="checkbox" class="rounded appearance-none checked:bg-baseBlue" id="sabtu" nama="hari" value="sabtu"><label for="sabtu">Sabtu</label></div> 
+                                                            <div class="flex items-center gap-2"><input type="checkbox" class="rounded appearance-none checked:bg-baseBlue" id="rabu" name="hari[]" value="rabu"><label for="rabu">Rabu</label></div> 
+                                                            <div class="flex items-center gap-2"><input type="checkbox" class="rounded appearance-none checked:bg-baseBlue" id="sabtu" name="hari[]" value="sabtu"><label for="sabtu">Sabtu</label></div> 
                                                         </div>
                                                     </div>
                                                 </div>

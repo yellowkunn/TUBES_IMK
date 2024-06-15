@@ -141,7 +141,7 @@
 
                     <div id="belumDiaturContent">
                         <div class="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-x-24 gap-y-16">
-                            @foreach ($kelass as $kelas)
+                            @foreach ($kelasJamkos as $kelas)
                                 <div
                                     class="bg-white h-fit rounded-lg p-6 px-10 lg:px-12 drop-shadow-regularShadow relative group my-8 sm:my-0">
                                     <div class="flex items-center gap-2 w-full">
