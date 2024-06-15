@@ -59,7 +59,7 @@ class AdminController extends Controller
     }
     public function editdaftarsiswa()
     {
-        $siswas = Siswa::all();
+        $siswas = Siswa::whereIn('status', ['Aktif', 'TidakAktif'])->get();
         $penggunas = User::where('role', 'user')->get();
         return view('owner.daftar_siswa', compact('siswas', 'penggunas'));
     }
@@ -122,7 +122,7 @@ class AdminController extends Controller
             'jam' => 'required|date_format:H:i',
             'pengajar' => 'required|exists:users,id_pengguna'
         ]);
-        
+
         Kelas::where('id_kelas', $request->id_kelas)->update([
             'jam' => $request->jam
         ]);
@@ -151,25 +151,39 @@ class AdminController extends Controller
     public function uploadSertifikat(Request $request)
     {
         $request->validate([
-            'sertifikatPengajar' => 'required|file|mimes:pdf,jpg,jpeg,png|max:10240', // 10 MB dalam kilobyte
+            'sertifikatPengajar' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:10240', // 10 MB dalam kilobyte
+            'sertifikatSiswa' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:10240', // 10 MB dalam kilobyte
             'nama' => 'required|string|max:255',
             'keterangan' => 'required|string|max:255',
-            'pengajar_id' => 'required|exists:users,id_pengguna',
+            'pengajar_id' => 'nullable|exists:users,id_pengguna|required_without:siswa_id',
+            'siswa_id' => 'nullable|exists:users,id_pengguna|required_without:pengajar_id',
         ]);
-
-        $file = $request->file('sertifikatPengajar');
+    
+        if ($request->hasFile('sertifikatPengajar')) {
+            $file = $request->file('sertifikatPengajar');
+            $pengguna_id = $request->pengajar_id;
+        } elseif ($request->hasFile('sertifikatSiswa')) {
+            $file = $request->file('sertifikatSiswa');
+            $pengguna_id = $request->siswa_id;
+        } else {
+            return redirect()->back()->withErrors('Sertifikat harus diunggah.');
+        }
+    
         $nama_file = 'file_' . now()->format('YmdHis') . '_' . Str::random(10) . '.' . $file->getClientOriginalExtension();
         $file->move(public_path('sertifikat'), $nama_file);
-
+    
+        // Insert data ke tabel Sertifikat
         Sertifikat::insert([
-            'pengguna_id' => $request->pengajar_id,
+            'pengguna_id' => $pengguna_id,
             'nama' => $request->nama,
             'keterangan' => $request->keterangan,
             'sertifikat' => $nama_file,
         ]);
-
+    
         return redirect()->back()->with('success', 'Sertifikat berhasil ditambahkan');
     }
+    
+
 
     public function hapusPengajar($id)
     {
@@ -180,6 +194,18 @@ class AdminController extends Controller
             return redirect()->back()->with('success', 'Penngajar berhasil dihapus');
         } else {
             return redirect() - back()->with('error', 'Pengajar tidak ditemukan');
+        }
+    }
+
+    public function hapusSiswa($id)
+    {
+        $pengguna = Siswa::find($id);
+
+        if ($pengguna) {
+            $pengguna->delete();
+            return redirect()->back()->with('success', 'Siswa berhasil dihapus');
+        } else {
+            return redirect() - back()->with('error', 'Siswa tidak ditemukan');
         }
     }
 
@@ -215,7 +241,7 @@ class AdminController extends Controller
             'harga' => $validatedData['harga'],
             'fasilitas' => $validatedData['fasilitas'],
             'rentang' => $validatedData['rentang'],
-            'jadwal_hari' => implode(',', $request->hari),            
+            'jadwal_hari' => implode(',', $request->hari),
             'durasi' => $validatedData['durasi'],
         ]);
 
