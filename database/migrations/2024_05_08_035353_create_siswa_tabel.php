@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id('id_siswa');
             $table->foreignId('pengguna_id')->constrained('users', 'id_pengguna')->onDelete('cascade');
             $table->foreignId('kelas_id')->nullable()->constrained('kelas', 'id_kelas')->onDelete('cascade');
+            $table->string('jam_kelas')->nullable();
             $table->enum('status', ['Aktif', 'TidakAktif', 'MenungguVerif'])->default('Aktif');
             $table->timestamp('dibuat')->useCurrent();
         });

@@ -24,14 +24,16 @@ class SiswaController extends Controller
     public function kirimformulirpendaftaran(Request $request)
     {
         $request->validate([
-            'gambar' => 'required|mimes:jpg,jpeg,png,bmp|max:2048', // File gambar
-            'namalengkap' => 'required|string|max:255', // String dengan maksimal panjang 255 karakter
-            'gender' => 'required|in:Laki-laki,Perempuan', // Harus salah satu dari dua nilai ini
+            'kelas' => 'required|exists:kelas,id_kelas',
+            'jam' => 'required|string',
+            'gambar' => 'nullable|image|max:2048',
+            'namalengkap' => 'required|string|max:255',
+            'gender' => 'required|in:Laki-laki,Perempuan',
             'tempatlahir' => 'required|string|max:255',
-            'tanggallahir' => 'required|date', // Harus dalam format tanggal
+            'tanggallahir' => 'required|date',
             'agama' => 'required|string|max:255',
             'kewarganegaraan' => 'required|string|max:255',
-            'alamat' => 'required|string', // Tidak ada batasan ukuran di MySQL untuk TEXT
+            'alamat' => 'required|string|max:255',
             'notelp' => 'required|string|max:255',
             'nohp' => 'required|string|max:255',
             'pendidikanterakhir' => 'required|string|max:255',
@@ -42,42 +44,48 @@ class SiswaController extends Controller
             'tanggallahirortu' => 'required|date',
             'agamaortu' => 'required|string|max:255',
             'pendidikanortu' => 'required|string|max:255',
-            'pekerjaanortu' => 'required|string|max:255'
+            'pekerjaanortu' => 'required|string|max:255',
         ]);
 
-        try{
-            $file = $request->file('gambar');
-            if ($file) {
-                // $judul = $request->get('gambar');
-                $extension = $file->getClientOriginalExtension();
-                $nama_file = 'file_' . date('YmdHis') . '.' . $extension;
-                $file->move(public_path('berkas_ujis'), $nama_file);
-                $berkas = '' . $nama_file;
-            }
-            DB::select(
-                'call kirimformulirpendaftaran(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
-                array(
-                    $request->get('id_pengguna'), $berkas,
-                    $request->get('namalengkap'), $request->get('gender'),
-                    $request->get('tempatlahir'), $request->get('tanggallahir'),
-                    $request->get('agama'), $request->get('kewarganegaraan'),
-                    $request->get('alamat'), $request->get('notelp'),
-                    $request->get('nohp'), $request->get('pendidikanterakhir'),
-                    $request->get('diterimakursus'), $request->get('tingkat_kelas'), $request->get('namaortu'),
-                    $request->get('tempatlahirortu'), $request->get('tanggallahirortu'),
-                    $request->get('agamaortu'), $request->get('pendidikanortu'),
-                    $request->get('pekerjaanortu')
-                )
-            );
-            DB::select(
-                'call insert_siswa(?,?,?)',
-                array($request->get('id_pengguna'), $request->get('kelas'), $request->get('status'))
-            );
+        $file = $request->file('gambar');
+        $extension = $file->getClientOriginalExtension();
+        $nama_file = 'file_' . date('YmdHis') . '.' . $extension;
+        $file->move(public_path('berkas_ujis'), $nama_file);
+        $berkas = '' . $nama_file;
+
+        // Create the Siswa record
+        Siswa::create([
+            'pengguna_id' => Auth::user()->id_pengguna,
+            'kelas_id' => $request->kelas,
+            'jam_kelas' => $request->jam,
+            'status' => 'MenungguVerif'
+        ]);
+
+        // Create the BiodataSiswa record
+        Biodata_siswa::create([
+            'pengguna_id' => Auth::user()->id_pengguna,
+            'foto' => $berkas,
+            'nama_lengkap' => $request->namalengkap,
+            'jenis_kelamin' => $request->gender,
+            'tempat_lahir' => $request->tempatlahir,
+            'tgl_lahir' => $request->tanggallahir,
+            'agama' => $request->agama,
+            'kewarganegaraan' => $request->kewarganegaraan,
+            'alamat' => $request->alamat,
+            'no_telepon' => $request->notelp,
+            'no_hp' => $request->nohp,
+            'pendidikan' => $request->pendidikanterakhir,
+            'diterimakursus' => $request->diterimakursus,
+            'tingkat_kelas' => $request->tingkat_kelas,
+            'nama_ortu' => $request->namaortu,
+            'tempat_lahir_ortu' => $request->tempatlahirortu,
+            'tgl_lahir_ortu' => $request->tanggallahirortu,
+            'agama_ortu' => $request->agamaortu,
+            'pendidikan_ortu' => $request->pendidikanortu,
+            'pekerjaan_ortu' => $request->pekerjaanortu,
+        ]);
             return redirect('/berandasiswa')->with('success_fp', 'Formulir pendaftaran berhasil dikirim dan akan ditinjau dalam 2x24 jam oleh pihak FEC. 
                                             Harap periksa progres pendaftaran anda secara berkala pada laman Progres Pendaftaran');
-        } catch(Exception $e){
-            return redirect('/berandasiswa')->with('error_fp','Gagal mengirim formulir pendaftaran Anda');
-        }
     }
 
     public function detailkelas(Kelas $kelas)

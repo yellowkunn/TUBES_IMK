@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Biodata_Pengajar;
 use App\Models\Sertifikat;
 use Illuminate\Support\Str;
+use App\Models\Notification;
 
 class AdminController extends Controller
 {
@@ -65,8 +66,9 @@ class AdminController extends Controller
     public function editdaftarsiswa()
     {
         $siswas = Siswa::whereIn('status', ['Aktif', 'TidakAktif'])->get();
+        $siswam = Siswa::where('status', 'MenungguVerif')->get();
         $penggunas = User::where('role', 'user')->get();
-        return view('owner.daftar_siswa', compact('siswas', 'penggunas'));
+        return view('owner.daftar_siswa', compact('siswas', 'penggunas', 'siswam'));
     }
     public function editdaftarpengajar()
     {
@@ -163,7 +165,7 @@ class AdminController extends Controller
             'pengajar_id' => 'nullable|exists:users,id_pengguna|required_without:siswa_id',
             'siswa_id' => 'nullable|exists:users,id_pengguna|required_without:pengajar_id',
         ]);
-    
+
         if ($request->hasFile('sertifikatPengajar')) {
             $file = $request->file('sertifikatPengajar');
             $pengguna_id = $request->pengajar_id;
@@ -173,10 +175,10 @@ class AdminController extends Controller
         } else {
             return redirect()->back()->withErrors('Sertifikat harus diunggah.');
         }
-    
+
         $nama_file = 'file_' . now()->format('YmdHis') . '_' . Str::random(10) . '.' . $file->getClientOriginalExtension();
         $file->move(public_path('sertifikat'), $nama_file);
-    
+
         // Insert data ke tabel Sertifikat
         Sertifikat::insert([
             'pengguna_id' => $pengguna_id,
@@ -184,10 +186,10 @@ class AdminController extends Controller
             'keterangan' => $request->keterangan,
             'sertifikat' => $nama_file,
         ]);
-    
+
         return redirect()->back()->with('success', 'Sertifikat berhasil ditambahkan');
     }
-    
+
 
 
     public function hapusPengajar($id)
@@ -202,17 +204,75 @@ class AdminController extends Controller
         }
     }
 
-    public function hapusSiswa($id)
+    public function hapusSiswa(Request $request,$id)
     {
         $pengguna = Siswa::find($id);
-
-        if ($pengguna) {
-            $pengguna->delete();
-            return redirect()->back()->with('success', 'Siswa berhasil dihapus');
-        } else {
-            return redirect() - back()->with('error', 'Siswa tidak ditemukan');
+        if (!$pengguna) {
+            return redirect()->back()->with('error', 'Siswa tidak ditemukan');
         }
+
+        // Hapus siswa
+        $pengguna->delete();
+
+        // Periksa apakah pengguna terkait masih ada
+        $pengguna_id = $pengguna->pengguna_id;
+        $cekpengguna = Siswa::where('pengguna_id', $pengguna_id)->exists();
+
+        Notification::create([
+            'pengguna_id' => $pengguna_id,
+            'keterangan' => $request->keterangan
+        ]);
+
+        if (!$cekpengguna) {
+            User::where('id_pengguna', $pengguna_id)->update(['role' => 'user']);
+        }
+
+        return redirect()->back()->with('success', 'Siswa berhasil dihapus');
     }
+    public function tolakSiswa(Request $request,$id)
+    {
+        $pengguna = Siswa::find($id);
+        if (!$pengguna) {
+            return redirect()->back()->with('error', 'Siswa tidak ditemukan');
+        }
+
+        $pengguna->delete();
+
+        $pengguna_id = $pengguna->pengguna_id;
+        $cekpengguna = Siswa::where('pengguna_id', $pengguna_id)->exists();
+
+        Notification::create([
+            'pengguna_id' => $pengguna_id,
+            'keterangan' => $request->keterangan
+        ]);
+
+        if (!$cekpengguna) {
+            User::where('id_pengguna', $pengguna_id)->update(['role' => 'user']);
+        }
+
+        return redirect()->back()->with('success', 'Siswa berhasil ditolak');
+    }
+
+    public function terimaSiswa(Request $request, $id)
+    {
+        $siswa = Siswa::find($id);
+        if (!$siswa) {
+            return redirect()->back()->with('error', 'Siswa tidak ditemukan');
+        }
+        
+        $siswa->update(['status' => 'Aktif']);
+
+        $pengguna = Siswa::find($id);
+        $pengguna_id = $pengguna->pengguna_id;
+
+        Notification::create([
+            'pengguna_id' => $pengguna_id,
+            'keterangan' => $request->keterangan
+        ]);
+    
+        return redirect()->back()->with('success', 'Siswa berhasil diterima');
+    }
+    
 
 
     public function tambahkelasbaru(Request $request)
