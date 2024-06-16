@@ -52,7 +52,7 @@
                 <p class="text-subtitle font-semibold">Informasi Akun</p>
                 <p class="mt-2">Informasi yang mungkin tampak pada pengguna lain</p>
 
-                <form action="" method="post">
+                <form method="post">
                 @csrf
                     <div class="flex flex-col gap-6 mt-8">
                         <div>
@@ -89,7 +89,7 @@
                 <p class="text-subtitle font-semibold">Password</p>
                 <p class="mt-2">Gunakan password yang kuat untuk melindungi akun anda</p>
 
-                <form action="" method="post">
+                <form method="post">
                 @csrf
                     <div class="flex flex-col gap-4 mt-8">
                         <!-- Password Lama-->

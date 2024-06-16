@@ -39,7 +39,7 @@
 
                     <div class="flex justify-between items-center my-7">
                         <p class="text-title font-semibold">Pendaftar</p>
-                        <form action="" method="get" class="flex justify-between items-center relative">
+                        <form method="get" class="flex justify-between items-center relative">
                             <input autocomplete="off" type="text" id="search" name="search" value=""
                                 class="py-2 px-5 w-full bg-greyBackground border-2 border-greyBorder rounded-full"
                                 placeholder="Cari">

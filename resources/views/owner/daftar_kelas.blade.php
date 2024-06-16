@@ -66,12 +66,7 @@
                         <p class="text-title font-semibold">Daftar Kelas</p>
 
                         <div class="flex gap-4">
-                            <form action="" method="get" class="flex justify-between items-center relative">
-                                <input autocomplete="off" type="text" id="search" name="search" value=""
-                                    class="py-2 px-5 w-full bg-greyBackground border-2 border-greyBorder rounded-lg"
-                                    placeholder="Cari">
-                                <button type="submit" class="absolute right-5"><i class="fa-solid fa-magnifying-glass text-greyIcon"></i></button>
-                            </form>
+                            @livewire('search')
                             <button onclick="showPopupTambahKelas()"
                                 class="bg-baseBlue/5 hover:bg-baseBlue/10 border-2 border-baseBlue/80 flex items-center gap-3 px-3 py-2 rounded-lg">
                                 <i class="fa-solid fa-plus p-1 px-[5px] rounded-full text-white bg-baseBlue"></i>
@@ -139,7 +134,7 @@
 
                     <!-- hasil kelas -->
                     <div id="hasilKelas" class="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-x-24 gap-y-16">
-
+                        
                         @foreach($kelass as $kelas)
                         <div class="bg-white rounded-lg p-6 px-10 lg:px-12 drop-shadow-regularShadow relative group my-8 sm:my-0">
 
@@ -308,7 +303,8 @@
                                 </button>
                             </div>
                             <div class="bg-white p-7 pt-4 rounded-b-xl px-10 py-8">
-                                <form action="" method="post" class="flex flex-col gap-5">
+                                <form method="post" class="flex flex-col gap-5">
+                                    @csrf
                                     <div>
                                         <p class="font-semibold mb-1">Nama Kelas</p>
                                         <input class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" type="text" name="namaKelas" id="namaKelas" value="{{ $kelas->nama }}">

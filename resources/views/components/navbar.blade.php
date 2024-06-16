@@ -27,7 +27,7 @@
             </div>
         </div>
 
-        <div class="flex gap-6">
+        <div class="flex items-center gap-4">
             <div class="group" id="setTheme">
                 <button onclick="changeToDark()" id="darkModeBtn" class="bg-yellow-400/30 group-hover:bg-black p-1.5 px-2"><i class="group-hover:text-white text-yellow-400 fa-regular fa-moon fa-xl text-greyIcon"></i></button>
                 <button onclick="changeToLight()" id="lightModeBtn" class="hidden group-hover:bg-slate-500/30 p-1.5 px-2"><i class="fa-solid fa-sun fa-lg"></i></button>
@@ -35,6 +35,21 @@
 
             @if (Route::has('login'))
             @auth
+            <div class="relative group">
+                <div class="bg-red-600 absolute top-0 right-0 rounded-full text-white text-[11px] px-1">3</div>
+                <a href=""><i class="fa-regular fa-bell fa-xl bg-slate-100 py-4 px-2 rounded dark:dark-mode dark:hover:bg-[#313A49]"></i></a>
+
+                <div class="absolute hidden group-hover:block bg-white shadow -translate-x-1/2 rounded-lg z-10 w-80 dark:bg-[#313A49] divide-y divide-slate-400">
+                    <!-- perulangan notif baru, batasi maks 4 sj untuk ditampilkan disini -->
+                    <a href="">
+                        <div class="py-2 px-4">
+                            <p class="truncate">tes</p>
+                            <p class="text-greyIcon dark:text-white/80 text-[12px]">12-4-2024</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
             <!-- dd more (edit & hapus) -->
             <div class="pe-4 my-auto">
                 <button id="dd-more" class="flex items-center">
@@ -78,18 +93,26 @@
 </div>
 </div>
 
+<!-- mobile -->
 <div class="relative block md:hidden bg-white dark:dark-mode">
     <div class="flex justify-between items-center px-2 sm:px-6 md:px-8 py-5">
         <a href="{{ route('berandasiswa') }}"><p class="text-baseBlue text-center font-bold leading-snug ms-1.5 dark:text-white dark:font-normal">Fortunate<br>Education Center</p></a>
 
-        <div class="flex items-center gap-2">
-            @if(!Route::has('login'))
-            <a href="{{ route('login') }}" id="masuk"><i class="fa-solid fa-user text-greyIcon"></i></a>
-            @endif
+        <div class="flex gap-2">
+            <div class="group" id="setTheme">
+                <button onclick="changeToDark()" id="darkModeBtn" class="bg-yellow-400/30 group-hover:bg-black p-1.5 px-2"><i class="group-hover:text-white text-yellow-400 fa-regular fa-moon fa-xl text-greyIcon"></i></button>
+                <button onclick="changeToLight()" id="lightModeBtn" class="hidden group-hover:bg-slate-500/30 p-1.5 px-2"><i class="fa-solid fa-sun fa-lg"></i></button>
+            </div>
 
-            <button id="hamburger" type="button" class="p-2 px-3 rounded-xl hover:bg-neutral-100">
-                <i class="fa-solid fa-bars fa-lg text-greyIcon dark:text-white"></i>
-            </button>
+            <div class="flex items-center gap-2">
+                @if(!Route::has('login'))
+                <a href="{{ route('login') }}" id="masuk"><i class="fa-solid fa-user text-greyIcon"></i></a>
+                @endif
+
+                <button id="hamburger" type="button" class="p-2 px-3 rounded-xl hover:bg-neutral-100">
+                    <i class="fa-solid fa-bars fa-lg text-greyIcon dark:text-white"></i>
+                </button>
+            </div>
         </div>
     </div>
 

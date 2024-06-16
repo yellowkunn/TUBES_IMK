@@ -40,7 +40,7 @@
 
                     <div class="flex justify-between items-center my-7">
                         <p class="text-title font-semibold">Pengaturan Ruangan</p>
-                        <form action="" method="get" class="flex justify-between items-center relative">
+                        <form method="get" class="flex justify-between items-center relative">
                             <input autocomplete="off" type="text" id="search" name="search" value=""
                                 class="py-2 px-5 w-full bg-greyBackground border-2 border-greyBorder rounded-full"
                                 placeholder="Cari">
@@ -318,7 +318,7 @@
                                     </button>
                                 </div>
                                 <div class="bg-white p-7 pt-4 rounded-b-xl px-10 py-8">
-                                    <form action="" method="post" class="flex flex-col gap-5">
+                                    <form method="post" class="flex flex-col gap-5">
                                         @csrf
                                         <div>
                                             <p class="font-semibold mb-1">Pengaturan ruang kelas </p>
@@ -408,7 +408,7 @@
                                             {{ $kelas->nama }}?
                                         </p>
 
-                                        <form action="" method="post">
+                                        <form method="post">
                                             <div class="flex justify-between gap-4 mt-4">
                                                 <button type="button"
                                                     onclick="showPopupHapusRuangan({{ $kelas->id_kelas }})"

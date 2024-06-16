@@ -42,7 +42,8 @@
                         <p class="text-title font-semibold">Daftar Pengajar</p>
 
                         <div class="flex gap-4">
-                            <form action="" method="get" class="flex justify-between items-center relative">
+                            <form method="get" class="flex justify-between items-center relative">
+                                @csrf
                                 <input autocomplete="off" type="text" id="search" name="search" value=""
                                     class="py-2 px-5 w-full bg-greyBackground border-2 border-greyBorder rounded-lg"
                                     placeholder="Cari">

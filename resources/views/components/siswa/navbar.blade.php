@@ -29,7 +29,7 @@
             <i class="fa-solid fa-angle-down fa-xs"></i>
         </button>
 
-            <div id="dd-menu" class="invisible grid grid-cols-1 divide-y bg-white mt-2 rounded-md drop-shadow-regularShadow absolute top-12 right-5 text-black">
+            <div id="dd-menu" class="invisible grid grid-cols-1 divide-y bg-white mt-2 rounded-md drop-shadow-regularShadow absolute z-20 top-12 right-5 text-black">
                 <a href=" {{ url('/berandasiswa') }} " class="w-full h-full flex items-center gap-2 py-2 px-4 sm:hidden">
                 <span class="material-symbols-outlined text-[20px]">sync</span>
                     <p>Beranda</p>
