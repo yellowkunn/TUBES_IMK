@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Kelas;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Biodata_siswa;
+use App\Models\Notification;
 use App\Models\Siswa;
 use App\Models\Pertemuan;
 use App\Models\Sertifikat;
@@ -147,8 +148,9 @@ class SiswaController extends Controller
             // Tangani kesalahan koneksi ke database di sini
             return redirect()->back()->with('error', 'Tidak dapat terhubung ke database.');
         }
-
-        return view('beranda', compact('kelass'));
+        $user = Auth::user();
+        $notif = Notification::where('pengguna_id', $user->id_pengguna)->take(4)->get();
+        return view('beranda', compact('kelass', 'notif'));
     }
 
     public function kelassaya()

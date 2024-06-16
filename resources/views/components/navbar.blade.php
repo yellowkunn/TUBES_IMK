@@ -35,20 +35,28 @@
 
             @if (Route::has('login'))
             @auth
+            @if($notif->count() > 0)
             <div class="relative group">
-                <div class="bg-red-600 absolute top-0 right-0 rounded-full text-white text-[11px] px-1">3</div>
+                <div class="bg-red-600 absolute top-0 right-0 rounded-full text-white text-[11px] px-1">{{ $notif->count() }}</div>
                 <a href=""><i class="fa-regular fa-bell fa-xl bg-slate-100 py-4 px-2 rounded dark:dark-mode dark:hover:bg-[#313A49]"></i></a>
 
                 <div class="absolute hidden group-hover:block bg-white shadow -translate-x-1/2 rounded-lg z-10 w-80 dark:bg-[#313A49] divide-y divide-slate-400">
                     <!-- perulangan notif baru, batasi maks 4 sj untuk ditampilkan disini -->
+                    @foreach ($notif as $n)
                     <a href="">
                         <div class="py-2 px-4">
-                            <p class="truncate">tes</p>
-                            <p class="text-greyIcon dark:text-white/80 text-[12px]">12-4-2024</p>
+                            {{-- <p class="truncate">{{ $n->title }}</p> --}}
+                            <p class="truncate">{{ $n->keterangan }}</p>
+                            <p class="text-greyIcon dark:text-white/80 text-[12px]">
+                                {{ \Carbon\Carbon::parse($n->dibuat)->locale('id')->diffForHumans() }}
+                            </p>
                         </div>
                     </a>
+                    @endforeach
+                    
                 </div>
             </div>
+            @endif
 
             <!-- dd more (edit & hapus) -->
             <div class="pe-4 my-auto">

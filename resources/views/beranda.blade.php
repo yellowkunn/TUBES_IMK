@@ -18,7 +18,12 @@
 </head>
 
 <body class="font-Inter text-regularContent">
+    @if(isset($notifications))
+    @include('components.navbar', ['notifications' => $notifications])
+    @else
     @include('components.navbar')
+    @endif
+
 
     <div class=" px-8 sm:px-16 lg:px-20 flex justify-center" id="session">
     @if (session('success_fp'))
