@@ -31,6 +31,13 @@ class SiswaController extends Controller
         return view('user.formulir_pendaftaran', compact('kelass'));
     }
 
+    public function pembayaran()
+    {
+        $user = Auth::user();
+        $siswas = Siswa::where('pengguna_id', $user->id_pengguna)->with('kelas')->get();
+        return view('user.pembayaran', compact('siswas'));
+    }
+
     public function kirimformulirpendaftaran(Request $request)
     {
         $request->validate([
@@ -189,13 +196,6 @@ class SiswaController extends Controller
         $user = Auth::user();
         $siswas = Biodata_siswa::where('pengguna_id', $user->id_pengguna)->first();
         return view('siswa.profile', compact('siswas'));
-    }
-
-    public function pembayaran()
-    {
-        $user = Auth::user();
-        $siswas = Siswa::where('pengguna_id', $user->id_pengguna)->with('kelas')->get();
-        return view('siswa.pembayaran', compact('siswas'));
     }
 
     public function rapor()
