@@ -12,6 +12,7 @@ use App\Models\Siswa;
 use App\Models\Pengajar;
 use App\Models\Pertemuan;
 use Carbon\Carbon;
+use App\Models\Notification;
 
 class HomeController extends Controller
 {
@@ -33,7 +34,8 @@ class HomeController extends Controller
 
 
                 case 'user':
-                    return view('beranda', compact('kelass', 'siswaStatus'));
+                    $notif = Notification::where('pengguna_id', $user->id_pengguna)->take(4)->get();
+                    return view('beranda', compact('kelass', 'siswaStatus', 'notif'));
                 case 'admin':
                     $siswas = Siswa::select('kelas_id')->distinct()->get();
                     $kelas_ids = $siswas->pluck('kelas_id')->toArray(); // Ambil semua kelas_id yang unik dan ubah ke dalam array

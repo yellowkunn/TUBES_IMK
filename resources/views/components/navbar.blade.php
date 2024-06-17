@@ -35,7 +35,7 @@
 
             @if (Route::has('login'))
             @auth
-            @if($notif->count() > 0)
+            @if(isset($notif))
             <div class="relative group">
                 <div class="bg-red-600 absolute top-0 right-0 rounded-full text-white text-[11px] px-1">{{ $notif->count() }}</div>
                 <a href=""><i class="fa-regular fa-bell fa-xl bg-slate-100 py-4 px-2 rounded dark:dark-mode dark:hover:bg-[#313A49]"></i></a>
@@ -53,7 +53,6 @@
                         </div>
                     </a>
                     @endforeach
-                    
                 </div>
             </div>
             @endif
