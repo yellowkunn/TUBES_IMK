@@ -24,15 +24,6 @@
 
     <div id="content" class="px-12 md:px-24 py-10 dark:border-t-2 dark:border-white">
 
-        <!-- page hierarchy -->
-        <div class="flex items-center gap-2 text-smallContent">
-            <a href="{{ route('home') }}" class="hover:font-semibold">Dashboard</a>
-            <i class="fa-solid fa-caret-right text-baseBlue"></i>
-            <a href="" class="hover:font-semibold">Detail Kelas</a>
-            <i class="fa-solid fa-caret-right text-baseBlue"></i>
-            <a href="{{ route('formulirpendaftaran') }}" class="hover:font-semibold">Formulir</a>
-        </div>
-
         <div class="text-center">
             <p class="text-title font-semibold mt-12">Formulir Pendaftaran</p>
             <p class="mt-2">Silakan isi dan lengkapi formulir pendaftaran berikut sebelum mendaftar pada kelas.</p>
@@ -546,6 +537,10 @@
         });
 
         showTab(0);
+
+
+        // regex
+
     </script>
 </body>
 
