@@ -37,10 +37,10 @@
                         <a href="" class="hover:font-semibold">{{ $kelasDetail->nama }} {{ $kelasDetail->tingkat_kelas }}</a>
                     </div>
 
-                    <div class="flex justify-between mt-7">
+                    <div class="sm:flex justify-between mt-7">
                         <p class="text-title font-semibold">{{ $kelasDetail->nama }} {{ $kelasDetail->tingkat_kelas }}</p>
-                        <button onclick="showPopupListSiswa()" class="bg-white text-greyIcon font-semibold 
-                                    flex items-center gap-2 w-fit p-3 px-4 rounded-full 
+                        <button onclick="showPopupListSiswa()" class="my-3 sm:my-0 bg-white text-greyIcon font-semibold 
+                                    flex items-center gap-2 w-fit p-2 sm:p-3 px-6 sm:px-4 rounded-full 
                                     border border-greyIcon" style="box-shadow: 0px 1px 10px rgba(0,0,0,0.1)">
                             <i class="fa-solid fa-user-group"></i>
                             <p>{{ $kelasDetail->total_siswa }}</p>
@@ -63,21 +63,15 @@
                     </div>
 
                     <!-- button -->
-                    <div class="flex gap-4">
-                        <a href="{{ route('tambah_pertemuan', $kelasDetail->id_kelas) }}" class="bg-baseDarkerGreen/90 hover:font-semibold hover:bg-baseDarkerGreen text-white 
-                            flex items-center gap-2 w-fit p-3 px-6 rounded-full" style="box-shadow: 
+                    <div class="sm:flex gap-4">
+                        <a href="{{ route('tambah_pertemuan', $kelasDetail->id_kelas) }}" class="mb-4 sm:mb-0 bg-baseDarkerGreen/90 hover:font-semibold hover:bg-baseDarkerGreen text-white 
+                            flex items-center gap-2 w-full sm:w-fit p-3 px-6 rounded-full" style="box-shadow: 
                             0px 4px 5px 0 rgba(105,212,220,0.3);">
                             <i class="fa-solid fa-circle-plus fa-lg"></i>
                             <p>Tambah Pertemuan</p>
                         </a>
-                        <!-- <a href="{{ route('absensi', $kelasDetail->id_kelas) }}" class="bg-baseDarkerGreen/90 hover:bg-baseDarkGreen hover:font-semibold text-white 
-                            flex items-center gap-2 w-fit p-3 px-6 rounded-full" style="box-shadow: 
-                            0px 4px 5px 0 rgba(105,212,220,0.3);">
-                            <i class="fa-solid fa-file-circle-plus fa-lg"></i>
-                            <p>Absensi</p>
-                        </a> -->
                         <a href="{{ route('raporpengajar', $kelasDetail->id_kelas) }}" class="bg-baseDarkerGreen/90 hover:bg-baseDarkGreen hover:font-semibold text-white 
-                            flex items-center gap-2 w-fit p-3 px-6 rounded-full" style="box-shadow: 
+                            flex items-center gap-2 w-full sm:w-fit p-3 px-6 rounded-full" style="box-shadow: 
                             0px 4px 5px 0 rgba(105,212,220,0.3);">
                             <span class="material-symbols-outlined">lab_profile</span>
                             <p>Rapor</p>
