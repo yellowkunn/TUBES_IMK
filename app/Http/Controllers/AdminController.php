@@ -40,7 +40,7 @@ class AdminController extends Controller
     public function pengaturanruangan()
     {
         $kelasJamkos = Kelas::whereNull('jam')->get();
-        $kelass = Kelas::all();
+        $kelass = Kelas::whereNotNull('jam')->get();
         $pengajars = User::where('role', 'pengajar')->get();
         return view('owner.pengaturan_ruangan', compact('kelasJamkos', 'kelass', 'pengajars'));
     }
@@ -127,7 +127,7 @@ class AdminController extends Controller
     {
         $request->validate([
             'id_kelas' => 'required|exists:kelas,id_kelas',
-            'jam' => 'required|date_format:H:i',
+            'jam' => 'required|string|max:255',
             'pengajar' => 'required|exists:users,id_pengguna'
         ]);
 
@@ -151,8 +151,50 @@ class AdminController extends Controller
         }
     }
 
-    public function editRuangan()
+    public function editPengaturanRuangKelas(Request $request)
     {
+        $request->validate([
+            'id_kelas' => 'required|exists:kelas,id_kelas',
+            'pengajar' => 'required|exists:users,id_pengguna',
+            'jam' => 'nullable|string',
+            'hari' => 'required|array',
+        ]);
+
+        // Perbarui data pengajar
+        Pengajar::where('kelas_id', $request->id_kelas)->update([
+            'pengguna_id' => $request->pengajar
+        ]);
+
+        // Ambil data yang ada dari database
+        $kelas = Kelas::where('id_kelas', $request->id_kelas)->first();
+
+        // Pecah data jadwal_hari yang sudah ada menjadi array
+        $existingHari = explode(',', $kelas->jadwal_hari);
+
+        // Gabungkan data baru dengan data yang sudah ada
+        $combinedHari = array_merge($existingHari, $request->hari);
+
+        // Proses jam
+        $jam = $kelas->jam;
+        $newJam = $request->jam;
+
+        // Menggabungkan jam yang sudah ada dengan yang baru, dan memastikan unik
+        $combinedJam = array_unique(array_merge(explode(',', $jam), explode(',', $newJam)));
+
+        // Hilangkan duplikasi dari hasil penggabungan
+        $uniqueHari = array_unique($combinedHari);
+        sort($uniqueHari);
+
+        // Hilangkan duplikasi dari hasil penggabungan
+        $uniqueHari = array_unique($combinedHari);
+
+        // Update data ke database
+        Kelas::where('id_kelas', $request->id_kelas)->update([
+            'jadwal_hari' => implode(',', $uniqueHari),
+            'jam' => implode(',', $combinedJam)
+        ]);
+
+        return redirect()->back()->with('success', 'Ruangan berhasil diperbarui');
     }
 
 
@@ -205,7 +247,7 @@ class AdminController extends Controller
         }
     }
 
-    public function hapusSiswa(Request $request,$id)
+    public function hapusSiswa(Request $request, $id)
     {
         $pengguna = Siswa::find($id);
         if (!$pengguna) {
@@ -230,7 +272,7 @@ class AdminController extends Controller
 
         return redirect()->back()->with('success', 'Siswa berhasil dihapus');
     }
-    public function tolakSiswa(Request $request,$id)
+    public function tolakSiswa(Request $request, $id)
     {
         $pengguna = Siswa::find($id);
         if (!$pengguna) {
@@ -261,7 +303,7 @@ class AdminController extends Controller
         if (!$siswa) {
             return redirect()->back()->with('error', 'Siswa tidak ditemukan');
         }
-        
+
         $siswa->update(['status' => 'Aktif']);
 
         $pengguna = Siswa::find($id);
@@ -271,10 +313,10 @@ class AdminController extends Controller
             'pengguna_id' => $pengguna_id,
             'keterangan' => $request->keterangan
         ]);
-    
+
         return redirect()->back()->with('success', 'Siswa berhasil diterima');
     }
-    
+
 
 
     public function tambahkelasbaru(Request $request)

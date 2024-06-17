@@ -12,6 +12,7 @@ class Pengajar extends Model
     protected $table = 'pengajar';
     protected $primaryKey = 'id_pengajar';
     protected $guarded = ['id_pengajar'];
+    public $timestamps = false;
 
     // Definisi relasi ke model Kelas
     public function kelas()
