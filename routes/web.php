@@ -60,7 +60,8 @@ Route::middleware(['role:pengajar', 'auth', 'verified'])->group(function () {
     Route::get('/pengajarjadwal', [PengajarController::class, 'jadwalpengajar']);
     Route::get('absensipengajar', [PengajarController::class, 'absensipengajar']);
     Route::get('/jadwalpengajar', [PengajarController::class, 'jadwalpengajar'])->name('jadwalpengajar');
-    Route::get('/raporpengajar', [PengajarController::class, 'raporpengajar'])->name('raporpengajar');
+    Route::get('/rapor/{kelas}', [PengajarController::class, 'raporpengajar'])->name('raporpengajar');
+    Route::get('/rapor/{kelas}/{siswa}', [PengajarController::class, 'isirapor'])->name('isirapor');
     Route::get('/sertifikatpengajar', [PengajarController::class, 'sertifikatpengajar'])->name('sertifikatpengajar');
     Route::post('/kirimtambahpertemuan', [PengajarController::class, 'kirimtambahpertemuan']);
     Route::get('/detail_pertemuan/{pertemuan}', [PengajarController::class, 'detail_pertemuan'])->name('detail_pertemuan');

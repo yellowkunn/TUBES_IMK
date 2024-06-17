@@ -76,9 +76,14 @@
                             <p class="font-semibold">Status Tidak Diketahui</p>
                         @endif
                     </td>
+<<<<<<< HEAD
                     
                     <td class="px-8 py-4"> 
                         <button class="bg-amber-500/90 hover:bg-amber-500 text-white rounded-lg p-1.5 px-6" onclick="showPopupKeterangan({{ $n->id_notification }})" >Lihat</button> 
+=======
+                    <td class="px-8 py-4">
+                        <button onclick="showPopupKeterangan( parameter)" class="bg-amber-500/90 hover:bg-amber-500 text-white rounded-lg p-1.5 px-6">Lihat</button> 
+>>>>>>> cdbd9d4fdc439fd516eeb6bd7ccbbec0bd0caf83
                     </td>
                 </tr>
                 @endforeach
