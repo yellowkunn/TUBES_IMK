@@ -218,8 +218,6 @@
                                                 </td>
                                                 <td class="px-8 py-4 flex items-center gap-4">
 
-                                                    <button><i
-                                                            class="fa-solid fa-arrow-right-to-bracket rotate-90"></i></button>
                                                     <button
                                                         onclick="showPopupUploadSertif({{ $siswa->pengguna->biodataSiswa->id_biodata ?? '0' }})"
                                                         id="sertif">

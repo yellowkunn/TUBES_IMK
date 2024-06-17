@@ -11,6 +11,7 @@ use App\Models\Notification;
 use App\Models\Siswa;
 use App\Models\Pertemuan;
 use App\Models\Sertifikat;
+use App\Models\User;
 
 class SiswaController extends Controller
 {
@@ -56,12 +57,20 @@ class SiswaController extends Controller
 
         // Create the Siswa record
         Siswa::create([
-            'pengguna_id' => Auth::user()->id_pengguna,
+            'pengguna_id' => '3',
             'kelas_id' => $request->kelas,
             'jam_kelas' => $request->jam,
             'status' => 'MenungguVerif'
         ]);
-
+        $pengguna = User::where('role', 'admin')->first();
+        if ($pengguna) {
+            Notification::create([
+                'pengguna_id' => $pengguna->id_pengguna,
+                'keterangan' => 'Siswa menunggu verifikasi'
+            ]);
+        } else {
+            return redirect('/berandasiswa')->with('error_fp', 'Mohon maaf terjadi kesalahan pada sistem, silahkan hubungi admin');        
+        }
         // Create the BiodataSiswa record
         Biodata_siswa::create([
             'pengguna_id' => Auth::user()->id_pengguna,

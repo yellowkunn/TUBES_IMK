@@ -50,8 +50,12 @@ class HomeController extends Controller
 
                     $siswaa = Siswa::all();
                     $pengajarr = Pengajar::distinct()->pluck('id_pengajar');
-                    $notif = Notification::where('pengguna_id', $user->id_pengguna)->take(4)->get();
-                    return view('owner.dashboard', compact('kelasss', 'siswaStatus', 'kelass', 'siswaa', 'pengajarr', 'notif'));
+                    $notif = Notification::join('users', 'notifications.pengguna_id', '=', 'users.id_pengguna')
+                    ->where('users.role', 'admin')
+                    ->select('notifications.*')  // Pilih kolom-kolom yang ingin diambil dari tabel notifications
+                    ->take(4)
+                    ->get();
+                                    return view('owner.dashboard', compact('kelasss', 'siswaStatus', 'kelass', 'siswaa', 'pengajarr', 'notif'));
 
 
                 case 'pengajar':

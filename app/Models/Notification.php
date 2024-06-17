@@ -12,4 +12,9 @@ class Notification extends Model
     protected $table = 'notifications';
     protected $primaryKey = 'id_notification';
     protected $guarded = ['id_notification'];
+
+    public function pengguna()
+    {
+        return $this->belongsTo(User::class, 'pengguna_id', 'id_pengguna');
+    }
 }
