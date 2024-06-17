@@ -34,8 +34,8 @@
                         <a href="{{ route('kelas') }}" class="hover:font-semibold">Kelas</a>
                     </div>
 
-                    <div class="flex justify-between mt-8">
-                        <p class="text-title font-semibold">Kelas Saya</p>   
+                    <div class="sm:flex justify-between mt-8">
+                        <p class="text-title font-semibold mb-3 sm:mb-0">Kelas Saya</p>   
                         
                         <a href=" {{url('/../formulirpendaftaran')}} " class="bg-baseBlue/5 hover:bg-baseBlue/10 border-2 border-baseBlue/80 flex items-center gap-3 px-5 py-2 rounded-lg">
                         <i class="fa-solid fa-plus p-1 px-[5px] rounded-full text-white bg-baseBlue"></i>

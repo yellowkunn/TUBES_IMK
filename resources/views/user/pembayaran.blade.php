@@ -29,7 +29,7 @@
             <span class="material-symbols-outlined mt-1 text-success">account_balance_wallet</span>
         </div>
 
-        <div class="flex gap-6 justify-center">
+        <div class="md:flex gap-6 justify-center">
             <div class="h-fit border-4 border-baseDarkerGreen/20 shadow p-7 my-5 rounded-lg border overflow-x-auto dark:bg-[#374151]/40 dark:border-none dark:rounded-none">
                 <p class="font-semibold dark:font-normal dark:text-white">Metode Pembayaran</p>
 
@@ -60,19 +60,19 @@
                 <div class="flex flex-col gap-4">
                     <p class="font-semibold dark:font-normal dark:text-white text-subtitle">Rincian</p>
                     
-                        <div class="flex justify-between gap-36">
+                        <div class="sm:flex justify-between gap-36">
                             <p>Kelas: </p>
                             <p class="font-semibold">Bahasa Inggris SMP</p>
                         </div>
-                        <div class="flex justify-between gap-36">
+                        <div class="sm:flex justify-between gap-36">
                             <p>Hari: </p>
                             <p>Senin, Rabu, Jumat</p>
                         </div>
-                        <div class="flex justify-between gap-36">
+                        <div class="sm:flex justify-between gap-36">
                             <p>Pukul: </p>
                             <p>13.30-15.00</p>
                         </div>
-                        <div class="flex justify-between gap-36 border-t-2 border-b-2 py-4 text-amber-500 font-semibold">
+                        <div class="sm:flex justify-between gap-36 border-t-2 border-b-2 py-4 text-amber-500 font-semibold">
                             <p>Harga: </p>
                             <p class="font-semibold">Rp310.000</p>
                         </div>

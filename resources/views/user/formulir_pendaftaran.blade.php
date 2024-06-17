@@ -25,7 +25,7 @@
     <div id="content" class="px-12 md:px-24 py-10 dark:border-t-2 dark:border-white">
 
         <div class="text-center">
-            <p class="text-title font-semibold mt-12">Formulir Pendaftaran</p>
+            <p class="text-title font-semibold lg:mt-12">Formulir Pendaftaran</p>
             <p class="mt-2">Silakan isi dan lengkapi formulir pendaftaran berikut sebelum mendaftar pada kelas.</p>
         </div>
 

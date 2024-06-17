@@ -62,10 +62,7 @@
                         <a href="{{ route('editdaftarkelas') }}" class="hover:font-semibold">Kelas</a>
                     </div>
 
-                    
-                    {{-- @livewire('tambah-kelas') --}}
                     @livewire('tambah-kelas')
-
                     
                 </div>
             </div>
@@ -79,6 +76,21 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            const load = $('#skeleton');
+            const show = $('#hasilKelas');
+            
+            load.show();
+            show.hide();
+
+            setTimeout(function() {
+                load.hide();
+                show.show();
+            }, 150);
+        });
+
+        const search = document.getElementId('search');
+
+        search.addEventListener("DOMContentLoaded", function() {
             const load = $('#skeleton');
             const show = $('#hasilKelas');
             

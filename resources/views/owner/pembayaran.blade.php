@@ -35,7 +35,7 @@
                     <div class="flex items-center gap-2 text-smallContent">
                         <a href=" route('home') " class="hover:font-semibold">Dashboard</a>
                         <i class="fa-solid fa-caret-right text-baseBlue"></i>
-                        <a href=" route('pengaturanruangan') " class="hover:font-semibold">Kalender Pendidikan</a>
+                        <a href="{{ route('adminpembayaran') }}" class="hover:font-semibold">Pembayaran</a>
                     </div>
 
                     <p class="text-title font-semibold mt-8">Pembayaran</p>   

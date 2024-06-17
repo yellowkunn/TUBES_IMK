@@ -83,6 +83,8 @@ Route::middleware(['role:siswa', 'auth', 'verified'])->group(function () {
 
 // User
 Route::get('/notifikasi', [SiswaController::class, 'notifikasi'])->name('notifikasi');
+Route::get('/tawarankelas', [SiswaController::class, 'tawarankelas'])->name('tawarankelas');
+Route::get('/tutorialpendaftaran', [SiswaController::class, 'tutorialpendaftaran'])->name('tutorialpendaftaran');
 Route::get('/formulirpendaftaran', [SiswaController::class, 'formulirpendaftaran'])->name('formulirpendaftaran');
 Route::post('/formulirpendaftaran', [SiswaController::class, 'kirimformulirpendaftaran']);
 Route::get('/pembayaran', [SiswaController::class, 'pembayaran'])->name('pembayaran');

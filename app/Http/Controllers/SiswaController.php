@@ -126,6 +126,17 @@ class SiswaController extends Controller
         return view('detail_tawaran_kelas', ["kelas" => $kelas], compact('class'));
     }
 
+    public function tawarankelas()
+    {
+        $kelas = Kelas::paginate(12);
+        return view('daftar_tawaran_kelas', compact('kelas'));
+    }
+
+    public function tutorialpendaftaran()
+    {
+        return view('tutorial_pendaftaran');
+    }
+
     public function programkelas(Kelas $kelas)
     {
         // Ambil data pertemuan beserta relasinya

@@ -17,17 +17,17 @@
                             @if ($siswa->status === 'Aktif' || $siswa->status === 'TidakAktif')
                                 <a href="{{ route('home') }}" class="nav">Dashboard</a>
                             @else
-                                <a href="{{ route('home') }}" class="nav">Beranda</a>
+                                <a href="{{ url('/') }}" class="nav">Beranda</a>
                             @endif
                         @else
-                            <a href="{{ route('home') }}" class="nav">Beranda</a>
+                            <a href="{{ url('/') }}" class="nav">Beranda</a>
                         @endif
                     @else
-                        <a href="{{ route('home') }}" class="nav">Beranda</a>
+                        <a href="{{ url('/') }}" class="nav">Beranda</a>
                     @endauth
                 @endif
-                <a href="" class="nav">Kelas</a>
-                <a href="" class="nav">Langkah Pendaftaran</a>
+                <a href="{{ route('tawarankelas') }}" class="nav">Kelas</a>
+                <a href="{{ route('tutorialpendaftaran') }}" class="nav">Tutorial Pendaftaran</a>
             </div>
         </div>
 
@@ -159,8 +159,8 @@
                     <a href="{{ route('home') }}" class="nav w-fit">{{ $routeName }}</a>
                 @endif
 
-                <a href="" class="nav w-fit">Kelas</a>
-                <a href="" class="nav w-fit">Langkah Pendaftaran</a>
+                <a href="{{ route('tawarankelas') }}" class="nav w-fit">Kelas</a>
+                <a href="{{ route('tutorialpendaftaran') }}" class="nav w-fit">Tutorial Pendaftaran</a>
 
                 @if (Route::has('login'))
                     @auth

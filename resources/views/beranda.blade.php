@@ -22,10 +22,11 @@
 
     <div class=" px-8 sm:px-16 lg:px-20 flex justify-center" id="session">
     @if (session('success_fp'))
-        <div id="success" class="mt-5 bg-[#f7fff4] border border-[#8bdc64] shadow-[0px_0px_6px_1px_rgba(86,169,47,0.2)] z-20 w-fit gap-2 items-center px-8 py-3 justify-center rounded-2xl flex unselectable">
-            <div class="flex justify-between items-center gap-4 lg:gap-36">
+        <div id="success" class="mx-4 mt-5 bg-[#f7fff4] border border-[#8bdc64] shadow-[0px_0px_6px_1px_rgba(86,169,47,0.2)] z-20 w-fit gap-2 items-center px-8 py-3 justify-center rounded-2xl flex unselectable">
+            <div class="sm:flex justify-between items-center gap-4 lg:gap-36">
+            <i class="sm:hidden flex justify-end fa-solid fa-xmark fa-lg p-2 py-4 h-fit text-greyIcon hover:bg-gray-200 rounded-full" onclick="document.getElementById('success').classList.add('hidden')"></i>
                 <div class="flex gap-4 items-center">
-                    <i class="fa-solid fa-check fa-lg p-2 py-4 bg-success rounded-full text-white"></i>
+                    <i class="hidden sm:block fa-solid fa-check fa-lg p-2 py-4 bg-success rounded-full text-white"></i>
                     <p class="text-lg text-greyIcon">{{ session('success_fp') }}</p>
                 </div>
 
@@ -58,8 +59,8 @@
         <div class="flex justify-between px-8 sm:px-16 lg:px-20">
             <div class="mt-10 flex flex-col gap-8">
 
-                <p id="typewriter" class="font-semibold text-red-700 text-[50px] lg:text-[55px] xl:text-[70px] leading-tight lg:w-2/3 h-[180px] hidden md:block"></p>
-                <p class="md:hidden  text-red-700 font-semibold text-subtitle text-balance">Gabung dan dapatkan pembelajaran terbaik dari kami!</p>
+                <p id="typewriter" class="font-semibold dark:text-red-600 text-red-700 text-[50px] lg:text-[55px] xl:text-[70px] leading-tight lg:w-2/3 h-[180px] hidden md:block"></p>
+                <p class="md:hidden text-red-700 font-semibold text-subtitle text-balance">Gabung dan dapatkan pembelajaran terbaik dari kami!</p>
                 <p class="leading-tight sm:text-subtitle w-full lg:w-3/4 dark:dark-mode">Di setiap langkah yang kami ambil, kami percaya bahwa pendidikan adalah kunci untuk membuka pintu masa depan yang gemilang.</p>
                 @if (Route::has('login'))
                 @auth
