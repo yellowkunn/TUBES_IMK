@@ -43,10 +43,10 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
     Route::post('/siswam/{id}', [AdminController::class, 'tolakSiswa'])->name('siswam.tolak');
     Route::post('/siswaa/{id}', [AdminController::class, 'terimaSiswa'])->name('siswaa.terima');
     Route::post('/aturRuangan', [AdminController::class, 'aturRuangan']);
-    Route::delete('/deleteKelas/{id}', [AdminController::class, 'deleteKelas']);
+    Route::delete('/deleteKelas/{id}', [AdminController::class, 'deleteKelas'])->name('kelas.hapus');
     Route::post('/editPengaturanRuangKelas', [AdminController::class, 'editPengaturanRuangKelas']);
     Route::get('/verifikasipendaftar', [AdminController::class, 'verifikasipendaftar'])->name('admin.verifikasi-pendaftar');
-    Route::get('/pembayaran', [AdminController::class, 'pembayaran'])->name('admin.pembayaran');
+    Route::get('/adminpembayaran', [AdminController::class, 'pembayaran'])->name('adminpembayaran');
 });
 
 //Pengajar
