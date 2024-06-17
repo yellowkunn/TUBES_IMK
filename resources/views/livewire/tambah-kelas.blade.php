@@ -373,8 +373,13 @@
                             Apakah anda yakin ingin menghapus kelas {{ $kelas->nama }}?
                         </p>
 
+<<<<<<< HEAD
                         <form action="{{ route('kelas.hapus', $kelas->id_kelas) }}" method="post">
+=======
+                        <form action="{{ url('/deleteKelas', $kelas->id_kelas) }}" method="post">
+>>>>>>> f8a5c8d95d4cfdf4f373a901ac321d18d610dd46
                             @csrf
+                            @method('delete')
                             <div class="flex justify-between gap-4 mt-4">
                                 <button type="button" onclick="showPopupHapusKelas({{ $kelas->id_kelas }})"
                                     class="text-greyIcon w-full hover:font-semibold">Batal</button>
