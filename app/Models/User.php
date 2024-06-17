@@ -28,7 +28,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function siswa()
     {
-        return $this->hasOne(Siswa::class, 'user_id');
+        return $this->hasOne(Siswa::class, 'pengguna_id', 'id_pengguna');
     }
 
     public function biodataSiswa()

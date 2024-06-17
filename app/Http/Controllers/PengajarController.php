@@ -57,7 +57,7 @@ class PengajarController extends Controller
         $kelasDetail = Kelas::leftJoin('siswa', 'kelas.id_kelas', '=', 'siswa.kelas_id')
         ->select('kelas.*', DB::raw('COUNT(siswa.id_siswa) as total_siswa'))
         ->where('kelas.id_kelas', $kelas->id_kelas)
-        ->groupBy('kelas.id_kelas', 'kelas.nama', 'kelas.tingkat_kelas', 'kelas.foto', 'kelas.deskripsi', 'kelas.harga', 'kelas.fasilitas', 'kelas.rentang', 'kelas.jadwal_hari', 'kelas.durasi', 'kelas.dibuat')
+        ->groupBy('kelas.id_kelas', 'kelas.nama', 'kelas.tingkat_kelas', 'kelas.foto', 'kelas.deskripsi', 'kelas.harga', 'kelas.fasilitas', 'kelas.rentang', 'kelas.jadwal_hari', 'kelas.jam', 'kelas.durasi', 'kelas.dibuat')
         ->first();
 
         $siswa = Siswa::where('kelas_id', $kelas->id_kelas)->get();

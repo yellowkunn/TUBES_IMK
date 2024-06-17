@@ -42,47 +42,67 @@
             </thead>
 
             <tbody>
+                @php
+                $nomor = 1;
+                @endphp
+                @if(isset($notif) && $notif->count() > 0)
+                @foreach($notif as $n)
                 <tr class="bg-greyBackground">
-                    <td class="px-8 py-4"> $nomor++ </td>
+                    <td class="px-8 py-4"> {{ $nomor++ }} </td>
                     <td class="px-8 py-4">
-                        Sakifa 
+                        {{ $n->pengguna->biodataSiswa->nama_lengkap }}
                     </td>
                     <td class="px-8 py-4">
-                        Matematika, SMP, 13:30
+                        {{ $n->pengguna->siswa->kelas->nama }}, {{ $n->pengguna->siswa->kelas->tingkat_kelas }}, {{ $n->pengguna->siswa->kelas->jam }}
                     </td>
                     <td class="px-8 py-4">
-                        Rp500.000
+                        Rp{{ $n->pengguna->siswa->kelas->harga }}
                     </td>
                     <td class="px-8 py-4">
-                        12 Desember 2012, 12:39 
+                        {{ \Carbon\Carbon::parse($n->dibuat)->translatedFormat('d F Y, H:i ') }}
                     </td>
                     <td class="px-8 py-6 flex items-center gap-2">
-                        <div class="rounded-full bg-error w-3 h-3"></div> 
-                        <p class="font-semibold">Ditolak</p>
-
-                        <!-- <div class="rounded-full bg-amber-500 w-3 h-3"></div> 
-                        <p class="font-semibold">Menunggu Verifikasi</p>
-
-                        <div class="rounded-full bg-success w-3 h-3"></div>  -->
-                        <!-- <p class="font-semibold">Diterima</p>   -->
+                        @if ($n->pengguna->siswa->status == 'MenungguVerif')
+                            <div class="rounded-full bg-amber-500 w-3 h-3"></div>
+                            <p class="font-semibold">Menunggu Verifikasi</p>
+                        @elseif ($n->pengguna->siswa->status == 'Aktif')
+                            <div class="rounded-full bg-success w-3 h-3"></div>
+                            <p class="font-semibold">Diterima</p>
+                        @elseif ($n->pengguna->siswa->status == 'Ditolak')
+                            <div class="rounded-full bg-error w-3 h-3"></div>
+                            <p class="font-semibold">Ditolak</p>
+                        @else
+                            <div class="rounded-full bg-gray-500 w-3 h-3"></div>
+                            <p class="font-semibold">Status Tidak Diketahui</p>
+                        @endif
                     </td>
+<<<<<<< HEAD
+                    
+                    <td class="px-8 py-4"> 
+                        <button class="bg-amber-500/90 hover:bg-amber-500 text-white rounded-lg p-1.5 px-6" onclick="showPopupKeterangan({{ $n->id_notification }})" >Lihat</button> 
+=======
                     <td class="px-8 py-4">
                         <button onclick="showPopupKeterangan( parameter)" class="bg-amber-500/90 hover:bg-amber-500 text-white rounded-lg p-1.5 px-6">Lihat</button> 
+>>>>>>> cdbd9d4fdc439fd516eeb6bd7ccbbec0bd0caf83
                     </td>
                 </tr>
+                @endforeach
+                @endif
             </tbody>
         </table>
         <!-- akhir dari tabel siswa -->
     </div>
     </div>
 
+    @if(isset($notif) && $notif->count() > 0)
+    @foreach($notif as $n)
     <!-- pop up keterangan -->
     <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow 
-        w-full h-screen" id="popupKeterangan parameter">
+        w-full h-screen" id="popupKeterangan{{ $n->id_notification }}">
             <div class="flex flex-col justify-center min-w-[450px]">
                 <div class="flex justify-between bg-baseBlue px-10 py-4 rounded-t-xl text-white">
                     <p class="text-title">keterangan</p>
-                    <button onclick="showPopupKeterangan( parameter)">
+                    <button onclick="showPopupKeterangan({{ $n->id_notification }})">
                         <i class="fa-solid fa-xmark fa-lg"></i>
                     </button>
                 </div>
@@ -92,12 +112,12 @@
                         <div>
                             <p class="font-semibold mb-1">Keterangan</p>
                             <div>
-                                <p>cepatla siap</p>
+                                <p>{{ $n->keterangan }}</p>
                             </div>
                         </div>
 
                         <div class="mt-4 flex justify-center gap-6">
-                            <button type="button" onclick="showPopupKeterangan( parameter)" class="text-baseBlue bg-white border-2 border-baseBlue p-1.5 px-7 rounded-full
+                            <button type="button" onclick="showPopupKeterangan({{ $n->id_notification }})" class="text-baseBlue bg-white border-2 border-baseBlue p-1.5 px-7 rounded-full
                                 hover:bg-baseBlue hover:text-white" style="box-shadow: 
                                 0px 0px 5px 1px rgba(122,161,226,0.3);">Tutup</button>
                         </div>
@@ -106,7 +126,8 @@
                 </div>
             </div>
         </div>
-        <!-- akhir dari pop up keterangan -->
+        @endforeach
+        @endif
 
 @include('components.footer')
 

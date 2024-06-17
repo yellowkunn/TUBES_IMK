@@ -15,10 +15,11 @@ use App\Models\User;
 
 class SiswaController extends Controller
 {
+
     public function notifikasi()
     {
         $user = Auth::user();
-        $notif = Notification::where('pengguna_id', $user->id_pengguna)->take(4)->get();
+        $notif = Notification::where('pengguna_id', $user->id_pengguna)->get();
         return view('user.notifikasi', compact('notif'));
     }
 
@@ -26,9 +27,8 @@ class SiswaController extends Controller
     {
         $user = Auth::user();
         $form = Biodata_siswa::where('pengguna_id', $user->id_pengguna)->first();
-        $notif = Notification::where('pengguna_id', $user->id_pengguna)->take(4)->get();
         $kelass = Kelas::all();
-        return view('user.formulir_pendaftaran', compact('kelass', 'notif'));
+        return view('user.formulir_pendaftaran', compact('kelass'));
     }
 
     public function kirimformulirpendaftaran(Request $request)
@@ -65,11 +65,12 @@ class SiswaController extends Controller
 
         // Create the Siswa record
         Siswa::create([
-            'pengguna_id' => '3',
+            'pengguna_id' => Auth::user()->id_pengguna,
             'kelas_id' => $request->kelas,
             'jam_kelas' => $request->jam,
             'status' => 'MenungguVerif'
         ]);
+
         $pengguna = User::where('role', 'admin')->first();
         if ($pengguna) {
             Notification::create([
@@ -79,6 +80,12 @@ class SiswaController extends Controller
         } else {
             return redirect('/berandasiswa')->with('error_fp', 'Mohon maaf terjadi kesalahan pada sistem, silahkan hubungi admin');        
         }
+
+        Notification::create([
+            'pengguna_id' => Auth::user()->id_pengguna,
+            'keterangan' => 'Formulir pendaftaran berhasil dikirimkan, silahkan tunggu verifikasi oleh admin'
+        ]);
+
         // Create the BiodataSiswa record
         Biodata_siswa::create([
             'pengguna_id' => Auth::user()->id_pengguna,
