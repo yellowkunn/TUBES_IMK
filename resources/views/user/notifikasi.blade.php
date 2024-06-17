@@ -67,7 +67,7 @@
                         <!-- <p class="font-semibold">Diterima</p>   -->
                     </td>
                     <td class="px-8 py-4">
-                        <button class="bg-amber-500/90 hover:bg-amber-500 text-white rounded-lg p-1.5 px-6">Lihat</button> 
+                        <button onclick="showPopupKeterangan( parameter)" class="bg-amber-500/90 hover:bg-amber-500 text-white rounded-lg p-1.5 px-6">Lihat</button> 
                     </td>
                 </tr>
             </tbody>

@@ -27,6 +27,17 @@ class PengajarController extends Controller
         return view('pengajar.absensi_pengajar', compact('kelas', 'siswas', 'kehadiran_siswa'));
     }
 
+    public function raporpengajar(Kelas $kelas)
+    {
+        $siswas = Siswa::where('kelas_id', $kelas->id_kelas)->get();
+        return view('pengajar.siswa_rapor', compact('kelas', 'siswas'));
+    }
+
+    public function isirapor(Kelas $kelas, Siswa $siswa)
+    {
+        return view('pengajar.detail_rapor', compact('kelas', 'siswa'));
+    }
+
     public function kelaspengajar(){
         $user = Auth::user();
         $kelas_ajars = Pengajar::where('pengguna_id', $user->id_pengguna)
@@ -100,10 +111,7 @@ class PengajarController extends Controller
     {
         return view('pengajar.jadwal');
     }
-    public function raporpengajar()
-    {
-        return view('pengajar.rapor');
-    }
+
     public function sertifikatpengajar()
     {
         $pengajar = Auth::user();
