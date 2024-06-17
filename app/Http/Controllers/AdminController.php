@@ -33,7 +33,8 @@ class AdminController extends Controller
 
     public function verifikasipendaftar()
     {
-        return view('owner.verifikasi_pendaftar');
+        $siswam = Siswa::where('status', 'MenungguVerif')->get();
+        return view('owner.verifikasi_pendaftar', compact('siswam'));
     }
 
     public function pengaturanruangan()

@@ -50,7 +50,8 @@ class HomeController extends Controller
 
                     $siswaa = Siswa::all();
                     $pengajarr = Pengajar::distinct()->pluck('id_pengajar');
-                    return view('owner.dashboard', compact('kelasss', 'siswaStatus', 'kelass', 'siswaa', 'pengajarr'));
+                    $notif = Notification::where('pengguna_id', $user->id_pengguna)->take(4)->get();
+                    return view('owner.dashboard', compact('kelasss', 'siswaStatus', 'kelass', 'siswaa', 'pengajarr', 'notif'));
 
 
                 case 'pengajar':
