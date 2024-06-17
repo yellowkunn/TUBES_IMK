@@ -7,7 +7,7 @@
 
     <!-- font awsome -->
     <script src="https://kit.fontawesome.com/8c8655eff1.js" crossorigin="anonymous"></script>
-
+    
     @vite('resources/css/app.css')
 </head>
 
@@ -24,7 +24,7 @@
             </div>
         
             <div class="logo mx-auto mt-8">
-                <img src="{{asset('images/logo.jpg')}}" alt="Logo" class="w-10">
+                <a href="{{ url('/') }}"><img src="{{asset('images/logo.jpg')}}" alt="Logo" class="w-10"></a>
             </div>
 
             <div class="mx-auto px-8 sm:px-10 md:px-24 py-8 sm:py-10 h-fit bg-greyBackground rounded-lg border-2 border-greyBorder md:min-w-[550px]">

@@ -38,7 +38,7 @@
             @if(isset($notif))
             <div class="relative group">
                 <div class="bg-red-600 absolute top-0 right-0 rounded-full text-white text-[11px] px-1">{{ $notif->count() }}</div>
-                <a href=""><i class="fa-regular fa-bell fa-xl bg-slate-100 py-4 px-2 rounded dark:dark-mode dark:hover:bg-[#313A49]"></i></a>
+                <a href="{{ route('notifikasi') }}"><i class="fa-regular fa-bell fa-xl bg-slate-100 py-4 px-2 rounded dark:dark-mode dark:hover:bg-[#313A49]"></i></a>
 
                 <div class="absolute hidden group-hover:block bg-white shadow -translate-x-1/2 rounded-lg z-10 w-80 dark:bg-[#313A49] divide-y divide-slate-400">
                     <!-- perulangan notif baru, batasi maks 4 sj untuk ditampilkan disini -->

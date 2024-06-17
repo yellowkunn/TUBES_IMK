@@ -14,12 +14,20 @@ use App\Models\Sertifikat;
 
 class SiswaController extends Controller
 {
+    public function notifikasi()
+    {
+        $user = Auth::user();
+        $notif = Notification::where('pengguna_id', $user->id_pengguna)->take(4)->get();
+        return view('user.notifikasi', compact('notif'));
+    }
+
     public function formulirpendaftaran()
     {
         $user = Auth::user();
         $form = Biodata_siswa::where('pengguna_id', $user->id_pengguna)->first();
+        $notif = Notification::where('pengguna_id', $user->id_pengguna)->take(4)->get();
         $kelass = Kelas::all();
-        return view('user.formulir_pendaftaran', compact('kelass'));
+        return view('user.formulir_pendaftaran', compact('kelass', 'notif'));
     }
 
     public function kirimformulirpendaftaran(Request $request)
