@@ -12,6 +12,7 @@ use App\Models\Biodata_Pengajar;
 use App\Models\Sertifikat;
 use Illuminate\Support\Str;
 use App\Models\Notification;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -294,6 +295,12 @@ class AdminController extends Controller
             User::where('id_pengguna', $pengguna_id)->update(['role' => 'user']);
         }
 
+        $p = Auth::user();
+        Notification::where('pengguna_id', $p)
+            ->orderBy('dibuat', 'desc')
+            ->first()
+            ->delete();
+
         return redirect()->back()->with('success', 'Siswa berhasil ditolak');
     }
 
@@ -304,19 +311,43 @@ class AdminController extends Controller
             return redirect()->back()->with('error', 'Siswa tidak ditemukan');
         }
 
+        // Update status siswa menjadi 'Aktif'
         $siswa->update(['status' => 'Aktif']);
 
-        $pengguna = Siswa::find($id);
-        $pengguna_id = $pengguna->pengguna_id;
+        // Ambil pengguna_id dari siswa
+        $pengguna_id = $siswa->pengguna_id;
 
+        // Buat notifikasi
         Notification::create([
             'pengguna_id' => $pengguna_id,
             'keterangan' => $request->keterangan
         ]);
 
+        // Ambil pengguna yang sedang login
+        $p = Auth::user();
+
+        // Ambil notifikasi pertama berdasarkan field 'dibuat'
+        $firstNotification = Notification::where('pengguna_id', $p->id_pengguna)
+            ->orderBy('dibuat', 'asc')
+            ->first();
+
+        // Hapus notifikasi pertama jika ada
+        if ($firstNotification) {
+            $firstNotification->delete();
+        }
+
+        // Ambil notifikasi pertama berdasarkan field 'dibuat'
+        $awuNotification = Notification::where('pengguna_id', $pengguna_id)
+            ->orderBy('dibuat', 'asc')
+            ->first();
+
+        // Hapus notifikasi pertama jika ada
+        if ($awuNotification) {
+            $awuNotification->delete();
+        }
+
         return redirect()->back()->with('success', 'Siswa berhasil diterima');
     }
-
 
 
     public function tambahkelasbaru(Request $request)
