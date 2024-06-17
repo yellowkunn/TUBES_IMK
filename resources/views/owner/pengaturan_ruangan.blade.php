@@ -18,54 +18,60 @@
 
 <body class="font-Inter text-regularContent">
 
-<div class="relative flex justify-center items-center" id="session">
-        @if(session('success'))
-        <div id="success" class="fixed top-8 mt-5 bg-[#f7fff4] border border-[#8bdc64] shadow-[0px_0px_6px_1px_rgba(86,169,47,0.2)] z-20 w-fit gap-2 px-8 py-3 rounded-2xl unselectable translate-y-4 duration-300">
-            <div class="flex justify-between items-center gap-4 lg:gap-36">
-                <div class="flex gap-4 items-center">
-                    <i class="fa-solid fa-check fa-lg p-2 py-4 bg-success rounded-full text-white"></i>
-                    <p class="text-lg text-greyIcon">{{session('success')}}</p>
-                </div>
+    <div class="relative flex justify-center items-center" id="session">
+        @if (session('success'))
+            <div id="success"
+                class="fixed top-8 mt-5 bg-[#f7fff4] border border-[#8bdc64] shadow-[0px_0px_6px_1px_rgba(86,169,47,0.2)] z-20 w-fit gap-2 px-8 py-3 rounded-2xl unselectable translate-y-4 duration-300">
+                <div class="flex justify-between items-center gap-4 lg:gap-36">
+                    <div class="flex gap-4 items-center">
+                        <i class="fa-solid fa-check fa-lg p-2 py-4 bg-success rounded-full text-white"></i>
+                        <p class="text-lg text-greyIcon">{{ session('success') }}</p>
+                    </div>
 
-                <i class="fa-solid fa-xmark fa-lg p-2 py-4 h-fit text-greyIcon hover:bg-gray-200 rounded-full" onclick="document.getElementById('success').classList.add('hidden')"></i>
+                    <i class="fa-solid fa-xmark fa-lg p-2 py-4 h-fit text-greyIcon hover:bg-gray-200 rounded-full"
+                        onclick="document.getElementById('success').classList.add('hidden')"></i>
+                </div>
             </div>
-        </div>
         @elseif(session('error'))
-        <div id="error" class="fixed top-8 mt-5 bg-[#ffefef] border border-[#ff3838] shadow-[0px_0px_6px_2px_rgba(227,0,0,0.2)] z-20 gap-2 items-center w-fit px-8 py-3 justify-center rounded-2xl flex unselectable">
-            <div class="flex justify-between items-center gap-36">
-                <div class="flex gap-4 items-center">
-                    <i class="fa-solid fa-exclamation fa-lg p-4 bg-error rounded-full text-white"></i>
-                    <p class="text-lg text-greyIcon">
+            <div id="error"
+                class="fixed top-8 mt-5 bg-[#ffefef] border border-[#ff3838] shadow-[0px_0px_6px_2px_rgba(227,0,0,0.2)] z-20 gap-2 items-center w-fit px-8 py-3 justify-center rounded-2xl flex unselectable">
+                <div class="flex justify-between items-center gap-36">
+                    <div class="flex gap-4 items-center">
+                        <i class="fa-solid fa-exclamation fa-lg p-4 bg-error rounded-full text-white"></i>
+                        <p class="text-lg text-greyIcon">
                         <ul class="list-disc pl-5 mt-2">
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
                             @endforeach
                         </ul>
-                    </p>
-                </div>
+                        </p>
+                    </div>
 
-                <i class="fa-solid fa-xmark fa-lg p-2 py-4 h-fit text-greyIcon hover:bg-gray-200 rounded-full" onclick="document.getElementById('error').classList.add('hidden')"></i>
+                    <i class="fa-solid fa-xmark fa-lg p-2 py-4 h-fit text-greyIcon hover:bg-gray-200 rounded-full"
+                        onclick="document.getElementById('error').classList.add('hidden')"></i>
+                </div>
             </div>
-        </div>
         @endif
 
         @if (session('pesanPengajar'))
-        <div id="pesan-pengajar" class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded relative mb-4" role="alert">
-            <strong class="font-bold"></strong>
-            <span class="block sm:inline">{{ session('pesanPengajar') }}</span>
-            <span class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer"
-                onclick="document.getElementById('pesan-pengajar').classList.add('hidden')">
-                <svg class="fill-current h-6 w-6 text-yellow-500" role="button"
-                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <title>Tutup</title>
-                    <path
-                        d="M14.348 5.652a1 1 0 011.415 0l1.515 1.515a1 1 0 010 1.414l-8.648 8.648a1 1 0 01-1.415 0L2.122 8.59a1 1 0 010-1.415L3.637 5.652a1 1 0 011.414 0L10 10.586l4.348-4.348z" />
-                </svg>
-            </span>
-        </div>
+            <div id="pesan-pengajar"
+                class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded relative mb-4"
+                role="alert">
+                <strong class="font-bold"></strong>
+                <span class="block sm:inline">{{ session('pesanPengajar') }}</span>
+                <span class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer"
+                    onclick="document.getElementById('pesan-pengajar').classList.add('hidden')">
+                    <svg class="fill-current h-6 w-6 text-yellow-500" role="button" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20">
+                        <title>Tutup</title>
+                        <path
+                            d="M14.348 5.652a1 1 0 011.415 0l1.515 1.515a1 1 0 010 1.414l-8.648 8.648a1 1 0 01-1.415 0L2.122 8.59a1 1 0 010-1.415L3.637 5.652a1 1 0 011.414 0L10 10.586l4.348-4.348z" />
+                    </svg>
+                </span>
+            </div>
         @endif
     </div>
-    
+
     <div>
         @include('components.owner.navbar')
 
@@ -280,204 +286,236 @@
                                 </div>
                             </div>
                         </div>
-                        @endforeach
-                        <!-- akhir dari pop up atur pengaturan ruang kelas -->
+                    @endforeach
+                    <!-- akhir dari pop up atur pengaturan ruang kelas -->
 
-                        @if (isset($kelass) && count($kelass) > 0)
-                            @foreach ($kelass as $kelas)
-                                <!-- pop up edit pengaturan ruang kelas -->
-                                <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow w-full h-screen"
-                                    id="popupEditRuangan{{ $kelas->id_kelas }}">
-                                    <div class="flex flex-col justify-center min-w-[450px]">
-                                        <div
-                                            class="flex justify-between bg-baseBlue px-10 py-4 rounded-t-xl text-white">
-                                            <p class="text-title">Edit Kelas</p>
-                                            <button onclick="showPopupEditRuangan({{ $kelas->id_kelas }})">
-                                                <i class="fa-solid fa-xmark fa-lg"></i>
-                                            </button>
-                                        </div>
-                                        <div class="bg-white p-7 pt-4 rounded-b-xl px-10 py-8">
-                                            <form action="{{ url('/editPengaturanRuangKelas') }}" method="post" class="flex flex-col gap-5">
-                                                @csrf
-                                                <div>
-                                                    <p class="font-semibold mb-1">Pengaturan ruang kelas </p>
-                                                    <p class="font-semibold mb-1 text-subtitle">{{ $kelas->nama }}
-                                                    </p>
-                                                    <input type="hidden" name="namaKelas" id="namaKelas"
-                                                        value="{{ $kelas->nama }}">
-                                                </div>
+                    @if (isset($kelass) && count($kelass) > 0)
+                        @foreach ($kelass as $kelas)
+                            <!-- pop up edit pengaturan ruang kelas -->
+                            <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow w-full h-screen"
+                                id="popupEditRuangan{{ $kelas->id_kelas }}">
+                                <div class="flex flex-col justify-center min-w-[450px]">
+                                    <div class="flex justify-between bg-baseBlue px-10 py-4 rounded-t-xl text-white">
+                                        <p class="text-title">Edit Kelas</p>
+                                        <button onclick="showPopupEditRuangan({{ $kelas->id_kelas }})">
+                                            <i class="fa-solid fa-xmark fa-lg"></i>
+                                        </button>
+                                    </div>
+                                    <div class="bg-white p-7 pt-4 rounded-b-xl px-10 py-8">
+                                        <form action="{{ url('/editPengaturanRuangKelas') }}" method="post"
+                                            class="flex flex-col gap-5">
+                                            @csrf
+                                            <div>
+                                                <p class="font-semibold mb-1">Pengaturan ruang kelas </p>
+                                                <p class="font-semibold mb-1 text-subtitle">{{ $kelas->nama }}
+                                                </p>
+                                                <input type="hidden" name="namaKelas" id="namaKelas"
+                                                    value="{{ $kelas->nama }}">
+                                            </div>
 
-                                                <div>
-                                                    <p class="font-semibold mb-1">Pengajar</p>
-                                                    <select
-                                                        class="px-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1"
-                                                        name="pengajar" id="pengajar">
-                                                        <option value="" disabled selected>Pilih Pengajar
-                                                        </option>
-                                                        @if ($pengajars->isNotEmpty())
-                                                            @foreach ($pengajars as $pengajar)
-                                                                <option value="{{ $pengajar->id_pengguna }}">
-                                                                    {{ $pengajar->biodataPengajar->nama_lengkap }}
-                                                                </option>
-                                                            @endforeach
-                                                        @endif
-                                                    </select>
-                                                </div>
+                                            <div>
+                                                <p class="font-semibold mb-1">Pengajar</p>
+                                                <select
+                                                    class="px-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1"
+                                                    name="pengajar" id="pengajar">
+                                                    <option value="" disabled selected>Pilih Pengajar
+                                                    </option>
+                                                    @if ($pengajars->isNotEmpty())
+                                                        @foreach ($pengajars as $pengajar)
+                                                            <option value="{{ $pengajar->id_pengguna }}">
+                                                                {{ $pengajar->biodataPengajar->nama_lengkap }}
+                                                            </option>
+                                                        @endforeach
+                                                    @endif
+                                                </select>
+                                            </div>
 
-                                                <div>
-                                                    <div
-                                                        class="overflow-y-auto max-h-30 flex flex-col gap-4 pe-3 ps-0.5">
-                                                        <!-- foreach jadwal_hari -->
-                                                        <div>
-                                                            <p class="font-semibold mt-3">Tambah Jam</p>
-                                                            <div class="flex gap-3 items-center mt-1">
-                                                                <div class="relative flex flex-col gap-3 w-full">
-                                                                    <label for="jam"
-                                                                        class="absolute top-2 left-4 text-smallContent text-[#717171] dark:text-white font-semibold">Pilih
-                                                                        jam default</label>
-                                                                    <select id="jam2" name="jam"
-                                                                        class="dark:focus:bg-[#374151]/40 pt-8 block appearance-none w-full bg-greyBackground dark:bg-[#374151]/40 dark:text-white dark:rounded dark:text-black border border-greyBorder text-greyIcon py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-greyIcon">
-                                                                        <option value=""
-                                                                            class="text-greyIcon dark:dark-mode"
-                                                                            disabled>Jam</option>
-                                                                        <option class="text-greyIcon dark:dark-mode"
-                                                                            value="13.30-15.00">
-                                                                            13.30-15.00
-                                                                        </option>
-                                                                        <option class="text-greyIcon dark:dark-mode"
-                                                                            value="15.00-16.30">
-                                                                            15.00-16.30
-                                                                        </option>
-                                                                        <option class="text-greyIcon dark:dark-mode"
-                                                                            value="16.30-18.00">
-                                                                            16.30-18.00
-                                                                        </option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="mt-4 relative flex flex-col gap-3 w-full">
-                                                                <label for="jamTambahan2"
+                                            <div>
+                                                <div class="overflow-y-auto max-h-30 flex flex-col gap-4 pe-3 ps-0.5">
+                                                    <!-- foreach jadwal_hari -->
+                                                    <div>
+                                                        <p class="font-semibold mt-3">Tambah Jam</p>
+                                                        <div class="flex gap-3 items-center mt-1">
+                                                            <div class="relative flex flex-col gap-3 w-full">
+                                                                <label for="jam"
                                                                     class="absolute top-2 left-4 text-smallContent text-[#717171] dark:text-white font-semibold">Pilih
-                                                                    jam custom</label>
-                                                                <select id="jamTambahan2" name="jam"
+                                                                    jam default</label>
+                                                                <select id="jam2" name="jam"
                                                                     class="dark:focus:bg-[#374151]/40 pt-8 block appearance-none w-full bg-greyBackground dark:bg-[#374151]/40 dark:text-white dark:rounded dark:text-black border border-greyBorder text-greyIcon py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-greyIcon">
                                                                     <option value=""
                                                                         class="text-greyIcon dark:dark-mode" disabled>
                                                                         Jam</option>
                                                                     <option class="text-greyIcon dark:dark-mode"
-                                                                        value="09.00-10.30">
-                                                                        09.00-10.30
+                                                                        value="13.30-15.00">
+                                                                        13.30-15.00
                                                                     </option>
                                                                     <option class="text-greyIcon dark:dark-mode"
-                                                                        value="10.30-12.00">
-                                                                        10.30-12.00
+                                                                        value="15.00-16.30">
+                                                                        15.00-16.30
+                                                                    </option>
+                                                                    <option class="text-greyIcon dark:dark-mode"
+                                                                        value="16.30-18.00">
+                                                                        16.30-18.00
                                                                     </option>
                                                                 </select>
                                                             </div>
+                                                        </div>
 
-                                                            <div>
-                                                                <p class="font-semibold mt-6 mb-1">Pilih Hari</p>
-                                                                <!-- <input class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" type="text" name="jadwal_hari" id="jadwal_hari"> -->
-                                                                <div class="flex gap-8">
-                                                                    <div class="flex flex-col gap-4">
-                                                                        <div class="flex items-center gap-2"><input type="checkbox" class="rounded appearance-none checked:bg-baseBlue" id="senin" name="hari[]" value="senin"><label for="senin">Senin</label></div>
-                                                                        <div class="flex items-center gap-2"><input type="checkbox" class="rounded appearance-none checked:bg-baseBlue" id="kamis" name="hari[]" value="kamis"><label for="kamis">Kamis</label></div> 
-                                                                    </div>
-                                                                    <div class="flex flex-col gap-4">
-                                                                        <div class="flex items-center gap-2"><input type="checkbox" class="rounded appearance-none checked:bg-baseBlue" id="selasa" name="hari[]" value="selasa"><label for="selasa">Selasa</label></div> 
-                                                                        <div class="flex items-center gap-2"><input type="checkbox" class="rounded appearance-none checked:bg-baseBlue" id="jumat" name="hari[]" value="jumat"><label for="jumat">Jumat</label></div> 
-                                                                    </div>
-                                                                    <div class="flex flex-col gap-4">
-                                                                        <div class="flex items-center gap-2"><input type="checkbox" class="rounded appearance-none checked:bg-baseBlue" id="rabu" name="hari[]" value="rabu"><label for="rabu">Rabu</label></div> 
-                                                                        <div class="flex items-center gap-2"><input type="checkbox" class="rounded appearance-none checked:bg-baseBlue" id="sabtu" name="hari[]" value="sabtu"><label for="sabtu">Sabtu</label></div> 
-                                                                    </div>
+                                                        <div class="mt-4 relative flex flex-col gap-3 w-full">
+                                                            <label for="jamTambahan2"
+                                                                class="absolute top-2 left-4 text-smallContent text-[#717171] dark:text-white font-semibold">Pilih
+                                                                jam custom</label>
+                                                            <select id="jamTambahan2" name="jam"
+                                                                class="dark:focus:bg-[#374151]/40 pt-8 block appearance-none w-full bg-greyBackground dark:bg-[#374151]/40 dark:text-white dark:rounded dark:text-black border border-greyBorder text-greyIcon py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-greyIcon">
+                                                                <option value=""
+                                                                    class="text-greyIcon dark:dark-mode" disabled>
+                                                                    Jam</option>
+                                                                <option class="text-greyIcon dark:dark-mode"
+                                                                    value="09.00-10.30">
+                                                                    09.00-10.30
+                                                                </option>
+                                                                <option class="text-greyIcon dark:dark-mode"
+                                                                    value="10.30-12.00">
+                                                                    10.30-12.00
+                                                                </option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div>
+                                                            <p class="font-semibold mt-6 mb-1">Pilih Hari</p>
+                                                            <!-- <input class="ps-3 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground w-full p-1" type="text" name="jadwal_hari" id="jadwal_hari"> -->
+                                                            <div class="flex gap-8">
+                                                                <div class="flex flex-col gap-4">
+                                                                    <div class="flex items-center gap-2"><input
+                                                                            type="checkbox"
+                                                                            class="rounded appearance-none checked:bg-baseBlue"
+                                                                            id="senin" name="hari[]"
+                                                                            value="senin"><label
+                                                                            for="senin">Senin</label></div>
+                                                                    <div class="flex items-center gap-2"><input
+                                                                            type="checkbox"
+                                                                            class="rounded appearance-none checked:bg-baseBlue"
+                                                                            id="kamis" name="hari[]"
+                                                                            value="kamis"><label
+                                                                            for="kamis">Kamis</label></div>
+                                                                </div>
+                                                                <div class="flex flex-col gap-4">
+                                                                    <div class="flex items-center gap-2"><input
+                                                                            type="checkbox"
+                                                                            class="rounded appearance-none checked:bg-baseBlue"
+                                                                            id="selasa" name="hari[]"
+                                                                            value="selasa"><label
+                                                                            for="selasa">Selasa</label></div>
+                                                                    <div class="flex items-center gap-2"><input
+                                                                            type="checkbox"
+                                                                            class="rounded appearance-none checked:bg-baseBlue"
+                                                                            id="jumat" name="hari[]"
+                                                                            value="jumat"><label
+                                                                            for="jumat">Jumat</label></div>
+                                                                </div>
+                                                                <div class="flex flex-col gap-4">
+                                                                    <div class="flex items-center gap-2"><input
+                                                                            type="checkbox"
+                                                                            class="rounded appearance-none checked:bg-baseBlue"
+                                                                            id="rabu" name="hari[]"
+                                                                            value="rabu"><label
+                                                                            for="rabu">Rabu</label></div>
+                                                                    <div class="flex items-center gap-2"><input
+                                                                            type="checkbox"
+                                                                            class="rounded appearance-none checked:bg-baseBlue"
+                                                                            id="sabtu" name="hari[]"
+                                                                            value="sabtu"><label
+                                                                            for="sabtu">Sabtu</label></div>
                                                                 </div>
                                                             </div>
-                                                            <input type="hidden" name="id_kelas" value="{{ $kelas->id_kelas }}">
                                                         </div>
-                                                    </div>
-
-                                                    <div class="mt-8 flex justify-end gap-6">
-                                                        <button type="button"
-                                                            onclick="showPopupEditRuangan({{ $kelas->id_kelas }})"
-                                                            class="text-greyIcon hover:text-black">Batal</button>
-                                                        <button type="submit"
-                                                            class="text-baseBlue bg-white border-2 border-baseBlue p-1.5 px-7 rounded-full hover:bg-baseBlue hover:text-white"
-                                                            style="box-shadow: 0px 0px 5px 1px rgba(122,161,226,0.3);">Simpan</button>
+                                                        <input type="hidden" name="id_kelas"
+                                                            value="{{ $kelas->id_kelas }}">
                                                     </div>
                                                 </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- akhir dari pop up edit pengaturan ruang kelas -->
-                            @endforeach
-                        @endif
 
-
-                        @if (isset($kelass) && count($kelass) > 0)
-                        @foreach ($kelass as $kelas)
-                        <!-- pop up hapus pengaturan ruang kelas -->
-                        <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow w-full h-screen"
-                            id="popupHapusRuangan{{ $kelas->id_kelas }}">
-                            <div class="flex flex-col justify-center max-w-[350px]">
-                                <div class="bg-white rounded-xl px-10 py-8">
-                                    <div class="text-end">
-                                        <button onclick="showPopupHapusRuangan({{ $kelas->id_kelas }})">
-                                            <i class="fa-solid fa-xmark fa-lg text-greyIcon"></i>
-                                        </button>
-                                    </div>
-
-                                    <div class="flex flex-col gap-4">
-                                        <svg fill="none" xmlns="http://www.w3.org/2000/svg"
-                                            class="w-[52px] h-[52px] mx-auto">
-                                            <circle cx="26" cy="26" r="26" fill="#FF3838"
-                                                fill-opacity="0.1">
-                                            </circle>
-                                            <circle cx="26" cy="26" r="21" fill="#FF3838"
-                                                fill-opacity="0.15">
-                                            </circle>
-                                            <g clip-path="url(#clip0_213_507)">
-                                                <path
-                                                    d="M27 20C27 19.4469 26.5531 19 26 19C25.4469 19 25 19.4469 25 20V28C25 28.5531 25.4469 29 26 29C26.5531 29 27 28.5531 27 28V20ZM26 33C26.3315 33 26.6495 32.8683 26.8839 32.6339C27.1183 32.3995 27.25 32.0815 27.25 31.75C27.25 31.4185 27.1183 31.1005 26.8839 30.8661C26.6495 30.6317 26.3315 30.5 26 30.5C25.6685 30.5 25.3505 30.6317 25.1161 30.8661C24.8817 31.1005 24.75 31.4185 24.75 31.75C24.75 32.0815 24.8817 32.3995 25.1161 32.6339C25.3505 32.8683 25.6685 33 26 33Z"
-                                                    fill="#D60101"></path>
-                                            </g>
-                                            <circle cx="26" cy="26" r="11" stroke="#D60101"
-                                                stroke-width="2">
-                                            </circle>
-                                            <defs>
-                                                <clipPath id="clip0_213_507">
-                                                    <rect width="2" height="16" fill="white"
-                                                        transform="translate(25 18)"></rect>
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-
-                                        <p class="font-semibold text-greyIcon text-balance text-center">
-                                            Apakah anda yakin ingin menghapus pengaturan ruang untuk kelas
-                                            {{ $kelas->nama }}?
-                                        </p>
-
-                                        <form method="post">
-                                            <div class="flex justify-between gap-4 mt-4">
-                                                <button type="button"
-                                                    onclick="showPopupHapusRuangan({{ $kelas->id_kelas }})"
-                                                    class="text-greyIcon hover:text-black w-full">Batal</button>
-                                                <button type="submit"
-                                                    class="text-[#d60101] bg-white border-2 border-[#d60101] p-1.5 w-full rounded-full
-                                    hover:bg-[#d60101] hover:text-white"
-                                                    style="box-shadow: 0px 0px 5px 1px rgba(214,1,1,0.3);">Hapus</button>
+                                                <div class="mt-8 flex justify-end gap-6">
+                                                    <button type="button"
+                                                        onclick="showPopupEditRuangan({{ $kelas->id_kelas }})"
+                                                        class="text-greyIcon hover:text-black">Batal</button>
+                                                    <button type="submit"
+                                                        class="text-baseBlue bg-white border-2 border-baseBlue p-1.5 px-7 rounded-full hover:bg-baseBlue hover:text-white"
+                                                        style="box-shadow: 0px 0px 5px 1px rgba(122,161,226,0.3);">Simpan</button>
+                                                </div>
                                             </div>
                                         </form>
-
                                     </div>
                                 </div>
                             </div>
-                            <!-- akhir dari pop up hapus pengaturan ruang kelas -->
+                            <!-- akhir dari pop up edit pengaturan ruang kelas -->
+                        @endforeach
+                    @endif
 
-                        </div>
-                    @endforeach
+
+                    @if (isset($kelass) && count($kelass) > 0)
+                        @foreach ($kelass as $kelas)
+                            <!-- pop up hapus pengaturan ruang kelas -->
+                            <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow w-full h-screen"
+                                id="popupHapusRuangan{{ $kelas->id_kelas }}">
+                                <div class="flex flex-col justify-center max-w-[350px]">
+                                    <div class="bg-white rounded-xl px-10 py-8">
+                                        <div class="text-end">
+                                            <button onclick="showPopupHapusRuangan({{ $kelas->id_kelas }})">
+                                                <i class="fa-solid fa-xmark fa-lg text-greyIcon"></i>
+                                            </button>
+                                        </div>
+
+                                        <div class="flex flex-col gap-4">
+                                            <svg fill="none" xmlns="http://www.w3.org/2000/svg"
+                                                class="w-[52px] h-[52px] mx-auto">
+                                                <circle cx="26" cy="26" r="26" fill="#FF3838"
+                                                    fill-opacity="0.1">
+                                                </circle>
+                                                <circle cx="26" cy="26" r="21" fill="#FF3838"
+                                                    fill-opacity="0.15">
+                                                </circle>
+                                                <g clip-path="url(#clip0_213_507)">
+                                                    <path
+                                                        d="M27 20C27 19.4469 26.5531 19 26 19C25.4469 19 25 19.4469 25 20V28C25 28.5531 25.4469 29 26 29C26.5531 29 27 28.5531 27 28V20ZM26 33C26.3315 33 26.6495 32.8683 26.8839 32.6339C27.1183 32.3995 27.25 32.0815 27.25 31.75C27.25 31.4185 27.1183 31.1005 26.8839 30.8661C26.6495 30.6317 26.3315 30.5 26 30.5C25.6685 30.5 25.3505 30.6317 25.1161 30.8661C24.8817 31.1005 24.75 31.4185 24.75 31.75C24.75 32.0815 24.8817 32.3995 25.1161 32.6339C25.3505 32.8683 25.6685 33 26 33Z"
+                                                        fill="#D60101"></path>
+                                                </g>
+                                                <circle cx="26" cy="26" r="11" stroke="#D60101"
+                                                    stroke-width="2">
+                                                </circle>
+                                                <defs>
+                                                    <clipPath id="clip0_213_507">
+                                                        <rect width="2" height="16" fill="white"
+                                                            transform="translate(25 18)"></rect>
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+
+                                            <p class="font-semibold text-greyIcon text-balance text-center">
+                                                Apakah anda yakin ingin menghapus pengaturan ruang untuk kelas
+                                                {{ $kelas->nama }}?
+                                            </p>
+
+                                            <form action="{{ url('/deleteKelas', $kelas->id_kelas) }}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <div class="flex justify-between gap-4 mt-4">
+                                                    <button type="button"
+                                                        onclick="showPopupHapusRuangan({{ $kelas->id_kelas }})"
+                                                        class="text-greyIcon hover:text-black w-full">Batal</button>
+                                                    <button type="submit"
+                                                        class="text-[#d60101] bg-white border-2 border-[#d60101] p-1.5 w-full rounded-full
+                                    hover:bg-[#d60101] hover:text-white"
+                                                        style="box-shadow: 0px 0px 5px 1px rgba(214,1,1,0.3);">Hapus</button>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- akhir dari pop up hapus pengaturan ruang kelas -->
+
+                            </div>
+                        @endforeach
                     @endif
 
                 </div>

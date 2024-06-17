@@ -242,9 +242,21 @@ class AdminController extends Controller
 
         if ($pengguna) {
             $pengguna->delete();
-            return redirect()->back()->with('success', 'Penngajar berhasil dihapus');
+            return redirect()->back()->with('success', 'Pengajar berhasil dihapus');
         } else {
             return redirect() - back()->with('error', 'Pengajar tidak ditemukan');
+        }
+    }
+
+    public function deleteKelas($id)
+    {
+        $kelas = Kelas::find($id);
+
+        if ($kelas) {
+            $kelas->delete();
+            return redirect()->back()->with('success', 'Kelas berhasil dihapus');
+        } else {
+            return redirect() - back()->with('error', 'Kelas tidak ditemukan');
         }
     }
 
