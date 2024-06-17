@@ -22,23 +22,24 @@ class SiswaController extends Controller
 
     public function kirimformulirpendaftaran(Request $request)
     {
+        dd($request->all);
         $request->validate([
             'gambar' => 'required|mimes:jpg,jpeg,png,bmp|max:2048', // File gambar
-            'namalengkap' => 'required|string|max:255', // String dengan maksimal panjang 255 karakter
-            'gender' => 'required|in:Laki-laki,Perempuan', // Harus salah satu dari dua nilai ini
-            'tempatlahir' => 'required|string|max:255',
-            'tanggallahir' => 'required|date', // Harus dalam format tanggal
+            'namalengkap' => 'required|string|max:255|regex:/^[a-zA-Z\s\.\']+$/',
+            'gender' => 'required|in:Laki-laki,Perempuan', // Enum values
+            'tempatlahir' => 'required|string|max:255|regex:/^[a-zA-Z\s\.\']+$/',
+            'tanggallahir' => 'required|date_format:d-m-Y', // Format tanggal DD-MM-YYYY
             'agama' => 'required|string|max:255',
             'kewarganegaraan' => 'required|string|max:255',
             'alamat' => 'required|string', // Tidak ada batasan ukuran di MySQL untuk TEXT
-            'notelp' => 'required|string|max:255',
-            'nohp' => 'required|string|max:255',
+            'notelp' => 'required|regex:/^\+?62?\d{9,12}$/',
+            'nohp' => 'required|regex:/^\+?62?\d{9,12}$/',
             'pendidikanterakhir' => 'required|string|max:255',
             'diterimakursus' => 'required|string|max:255',
             'tingkat_kelas' => 'required|string|max:255',
-            'namaortu' => 'required|string|max:255',
-            'tempatlahirortu' => 'required|string|max:255',
-            'tanggallahirortu' => 'required|date',
+            'namaortu' => 'required|string|max:255|regex:/^[a-zA-Z\s\.\']+$/',
+            'tempatlahirortu' => 'required|string|max:255|regex:/^[a-zA-Z\s\.\']+$/',
+            'tanggallahirortu' => 'required|date_format:d-m-Y',
             'agamaortu' => 'required|string|max:255',
             'pendidikanortu' => 'required|string|max:255',
             'pekerjaanortu' => 'required|string|max:255'
