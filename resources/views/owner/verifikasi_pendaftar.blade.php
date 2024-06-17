@@ -14,48 +14,6 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
     @vite('resources/css/app.css')
-
-    <style>
-        .btn-approve,
-        .btn-delete {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 8px 12px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-approve {
-            background-color: #28a745;
-            /* Warna hijau untuk tombol approve */
-            color: white;
-        }
-
-        .btn-approve:hover {
-            background-color: #218838;
-            /* Warna hijau gelap untuk efek hover */
-        }
-
-        .btn-delete {
-            background-color: #dc3545;
-            /* Warna merah untuk tombol delete */
-            color: white;
-        }
-
-        .btn-delete:hover {
-            background-color: #c82333;
-            /* Warna merah gelap untuk efek hover */
-        }
-
-        .fa-check,
-        .fa-xmark {
-            font-size: 1.2em;
-            /* Ukuran ikon */
-        }
-    </style>
 </head>
 
 <body class="font-Inter text-regularContent">
@@ -80,84 +38,45 @@
                             Pendaftar</a>
                     </div>
 
+
+                    <div class=" px-8 sm:px-16 lg:px-20 flex justify-center" id="session">
                     <!-- Pesan Error -->
                     @if ($errors->any())
-                        <div id="error-message"
-                            class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
-                            <strong class="font-bold">Oops!</strong>
-                            <span class="block sm:inline">Terjadi kesalahan dengan input Anda:</span>
-                            <ul class="list-disc pl-5 mt-2">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                            <span class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer"
-                                onclick="dismissErrorMessage()">
-                                <svg class="fill-current h-6 w-6 text-red-500" role="button"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <title>Tutup</title>
-                                    <path
-                                        d="M14.348 5.652a1 1 0 011.415 0l1.515 1.515a1 1 0 010 1.414l-8.648 8.648a1 1 0 01-1.415 0L2.122 8.59a1 1 0 010-1.415L3.637 5.652a1 1 0 011.414 0L10 10.586l4.348-4.348z" />
-                                </svg>
-                            </span>
+                        <div id="error" class="bg-[#ffefef] border border-[#ff3838] shadow-[0px_0px_6px_2px_rgba(227,0,0,0.2)] z-20 gap-2 items-center w-fit px-8 py-3 justify-center rounded-2xl flex unselectable">
+                            <div class="flex justify-between items-center gap-36">
+                                <div class="flex gap-4 items-center">
+                                    <i class="fa-solid fa-exclamation fa-lg p-4 bg-error rounded-full text-white"></i>
+                                    <p class="text-lg text-greyIcon">
+                                    <ul class="list-disc pl-5 mt-2">
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                    </p>
+                                </div>
+
+                                <i class="fa-solid fa-xmark fa-lg p-2 py-4 h-fit text-greyIcon hover:bg-gray-200 rounded-full" onclick="document.getElementById('error').classList.add('hidden')"></i>
+                            </div>
                         </div>
                     @endif
 
                     <!-- Pesan Sukses -->
                     @if (session('success'))
-                        <div id="success-message"
-                            class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4"
-                            role="alert">
-                            <strong class="font-bold">Sukses!</strong>
-                            <span class="block sm:inline">{{ session('success') }}</span>
-                            <span class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer"
-                                onclick="dismissMessage()">
-                                <svg class="fill-current h-6 w-6 text-green-500" role="button"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <title>Tutup</title>
-                                    <path
-                                        d="M14.348 5.652a1 1 0 011.415 0l1.515 1.515a1 1 0 010 1.414l-8.648 8.648a1 1 0 01-1.415 0L2.122 8.59a1 1 0 010-1.415L3.637 5.652a1 1 0 011.414 0L10 10.586l4.348-4.348z" />
-                                </svg>
-                            </span>
+                    <div id="success" class="bg-[#f7fff4] border border-[#8bdc64] shadow-[0px_0px_6px_1px_rgba(86,169,47,0.2)] z-20 w-fit gap-2 items-center px-8 py-3 justify-center rounded-2xl flex unselectable">
+                        <div class="flex justify-between items-center gap-4 lg:gap-36">
+                            <div class="flex gap-4 items-center">
+                                <i class="fa-solid fa-check fa-lg p-2 py-4 bg-success rounded-full text-white"></i>
+                                <p class="text-lg text-greyIcon">{{ session('success') }}</p>
+                            </div>
+
+                            <i class="fa-solid fa-xmark fa-lg p-2 py-4 h-fit text-greyIcon hover:bg-gray-200 rounded-full" onclick="document.getElementById('success').classList.add('hidden')"></i>
                         </div>
+                    </div>
                     @endif
+                    </div>
 
-                    <script>
-                        function dismissErrorMessage() {
-                            const message = document.getElementById('error-message');
-                            if (message) {
-                                message.style.transition = 'opacity 1s ease-out';
-                                message.style.opacity = '0';
-                                setTimeout(() => {
-                                    message.style.display = 'none';
-                                }, 1000);
-                            }
-                        }
-
-                        function dismissMessage() {
-                            const message = document.getElementById('success-message');
-                            if (message) {
-                                message.style.transition = 'opacity 1s ease-out';
-                                message.style.opacity = '0';
-                                setTimeout(() => {
-                                    message.style.display = 'none';
-                                }, 1000);
-                            }
-                        }
-
-                        // Automatically dismiss the error message after 5 seconds
-                        setTimeout(() => {
-                            dismissErrorMessage();
-                        }, 5000);
-
-                        // Automatically dismiss the success message after 5 seconds
-                        setTimeout(() => {
-                            dismissMessage();
-                        }, 5000);
-                    </script>
-
-                    <div class="flex justify-between items-center my-7">
-                        <p class="text-title font-semibold">Pendaftar</p>
+                    <div class="md:flex justify-between items-center mt-4 my-7">
+                        <p class="text-title font-semibold mb-4 md:mb-0">Pendaftar</p>
                         <form method="get" class="flex justify-between items-center relative">
                             <input autocomplete="off" type="text" id="search" name="search" value=""
                                 class="py-2 px-5 w-full bg-greyBackground border-2 border-greyBorder rounded-full"
@@ -207,13 +126,13 @@
                                                 {{ $siswa->status === 'MenungguVerif' ? 'Menunggu Verifikasi' : $siswa->status ?? '-' }}
                                             </td>
                                             <td class="px-8 py-4 flex items-center gap-4">
-                                                <button class="btn-approve"
-                                                    onclick="showPopupTerimaDataSiswa({{ $siswa->id_siswa }})">
-                                                    <i class="fa-solid fa-check"></i>
-                                                </button>
-                                                <button class="btn-delete"
+                                                <button class="p-1.5 px-3 rounded bg-error/80 hover:bg-error text-white"
                                                     onclick="showPopupTolakDataSiswa({{ $siswa->id_siswa }})">
-                                                    <i class="fa-solid fa-xmark"></i>
+                                                    <i class="fa-solid fa-xmark fa-lg"></i>
+                                                </button>
+                                                <button class="p-1.5 px-3 rounded bg-success/90 hover:bg-success text-white"
+                                                    onclick="showPopupTerimaDataSiswa({{ $siswa->id_siswa }})">
+                                                    <i class="fa-solid fa-check fa-lg"></i>
                                                 </button>
                                             </td>
                                         </tr>
@@ -325,7 +244,7 @@
                                         {{ $siswa->pengguna->biodataSiswa->nama_lengkap ?? '-' }}?
                                     </p>
 
-                                    <form action={{ route('siswaa.terima', $siswa->id_siswa) }} method="post">
+                                    <form action="{{ route('siswaa.terima', $siswa->id_siswa) }}" method="post">
                                         @csrf
                                         <label for="keterangan" class="block text-grey-700 mb-2">Keterangan:</label>
                                         <textarea id="keterangan" name="keterangan" rows="4" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300"
@@ -355,45 +274,6 @@
                     @endif
                     <!-- Akhir dari pop up terima data siswa -->
 
-                <!-- Pop up tolak pendaftar -->
-                {{-- <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow 
-                            w-full h-screen"
-                    id="popupTolak $siswa->id_siswa ">
-                    <div class="flex flex-col justify-center max-w-[600px]">
-                        <div class="bg-white rounded-xl px-10 py-8">
-                            <div class="text-end">
-                                <button onclick="alasanTolak( $siswa->id_siswa )">
-                                    <i class="fa-solid fa-xmark fa-lg text-greyIcon"></i>
-                                </button>
-                            </div>
-                            <div class="flex flex-col gap-4">
-                                <div class="mt-4">
-                                    <div class="relative flex flex-col gap-3 w-full">
-                                        <label for="alasanTolak"
-                                            class="text-subtitle dark:text-white font-semibold">Alasan pendaftar
-                                            ditolak</label>
-                                        <textarea type="text" id="alasanTolak" name="alasanTolak" required
-                                            class="ps-4 border-t-0 border-r-0 border-l-0 border-b-2 border-greyBorder bg-greyBackground dark:bg-[#374151]/40 dark:text-white rounded dark:text-black w-full"
-                                            rows="3" cols="200"></textarea>
-                                    </div>
-                                </div>
-
-                                <form action=" route('siswa.hapus', $siswa->id_siswa) " method="post">
-                                    @csrf
-                                    <div class="flex justify-between gap-4 mt-4">
-                                        <button type="button" onclick="alasanTolak( $siswa->id_siswa )"
-                                            class="text-greyIcon w-full hover:font-semibold">Batal</button>
-                                        <button typw="submit"
-                                            class="bg-baseBlue/90 text-white border-baseBlue p-1.5 w-full rounded
-                                                hover:bg-baseBlue hover:font-semibold">Kirim</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
-                <!-- Akhir dari pop up tolak pendaftar -->
-
             </div>
         </div>
     </div>
@@ -402,38 +282,12 @@
     @include('components.footer')
 
     <script>
-        const siswaBtn = document.getElementById('siswaBtn');
-        const penggunaBtn = document.getElementById('penggunaBtn');
-        const kontensiswa = document.getElementById('siswaContent');
-        const kontenpengguna = document.getElementById('penggunaContent');
-
-        penggunaBtn.addEventListener("click", function() {
-            if (kontenpengguna.classList.contains('hidden')) {
-                kontensiswa.classList.add('hidden');
-                kontenpengguna.classList.remove('hidden');
-
-                penggunaBtn.classList.add('bg-baseBlue', 'text-white');
-                penggunaBtn.classList.remove('bg-white', 'text-baseBlue');
-                siswaBtn.classList.remove('bg-baseBlue', 'text-white');
-                siswaBtn.classList.add('bg-white', 'text-baseBlue');
+        setTimeout(function() {
+            const session = document.getElementById('session');
+            if (session) {
+                session.classList.add('hidden');
             }
-        });
-
-        siswaBtn.addEventListener("click", function() {
-            if (kontensiswa.classList.contains('hidden')) {
-                kontenpengguna.classList.add('hidden');
-                kontensiswa.classList.remove('hidden');
-
-                siswaBtn.classList.add('bg-baseBlue', 'text-white');
-                siswaBtn.classList.remove('bg-white', 'text-baseBlue');
-                penggunaBtn.classList.remove('bg-baseBlue', 'text-white');
-                penggunaBtn.classList.add('bg-white', 'text-baseBlue');
-            }
-        });
-
-        // function showPopupTolak(i) {
-        //     document.getElementById('popupTolak' + i).classList.toggle('hidden');
-        // }
+        }, 4000);
 
         function showPopupTolakDataSiswa(i) {
             document.getElementById('popupTolakDataSiswa' + i).classList.toggle('hidden');

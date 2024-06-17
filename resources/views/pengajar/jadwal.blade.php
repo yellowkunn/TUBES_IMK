@@ -35,13 +35,13 @@
                 <p class="text-title font-semibold my-7">Jadwal</p>
 
                 <div class="flex flex-col gap-8">
-                <div class="flex justify-between">
-                    <button class="bg-white border-2 focus:bg-baseBlue/10 focus:font-semibold focus:text-baseBlue border-neutral-200 focus:border-baseBlue rounded-lg p-2 px-8 drop-shadow-regularShadow">Sen</button>
-                    <button class="bg-white border-2 focus:bg-baseBlue/10 focus:font-semibold focus:text-baseBlue border-neutral-200 focus:border-baseBlue rounded-lg p-2 px-8 drop-shadow-regularShadow">Sel</button>
-                    <button class="bg-white border-2 focus:bg-baseBlue/10 focus:font-semibold focus:text-baseBlue border-neutral-200 focus:border-baseBlue rounded-lg p-2 px-8 drop-shadow-regularShadow">Rab</button>
-                    <button class="bg-white border-2 focus:bg-baseBlue/10 focus:font-semibold focus:text-baseBlue border-neutral-200 focus:border-baseBlue rounded-lg p-2 px-8 drop-shadow-regularShadow">Kam</button>
-                    <button class="bg-white border-2 focus:bg-baseBlue/10 focus:font-semibold focus:text-baseBlue border-neutral-200 focus:border-baseBlue rounded-lg p-2 px-8 drop-shadow-regularShadow">Jum</button>
-                    <button class="bg-white border-2 focus:bg-baseBlue/10 focus:font-semibold focus:text-baseBlue border-neutral-200 focus:border-baseBlue rounded-lg p-2 px-8 drop-shadow-regularShadow">Sab</button>
+                <div class="md:flex justify-between">
+                    <button class="m-2 md:m-0 bg-white border-2 focus:bg-baseBlue/10 focus:font-semibold focus:text-baseBlue border-neutral-200 focus:border-baseBlue rounded-lg p-2 px-8 drop-shadow-regularShadow">Sen</button>
+                    <button class="m-2 md:m-0 bg-white border-2 focus:bg-baseBlue/10 focus:font-semibold focus:text-baseBlue border-neutral-200 focus:border-baseBlue rounded-lg p-2 px-8 drop-shadow-regularShadow">Sel</button>
+                    <button class="m-2 md:m-0 bg-white border-2 focus:bg-baseBlue/10 focus:font-semibold focus:text-baseBlue border-neutral-200 focus:border-baseBlue rounded-lg p-2 px-8 drop-shadow-regularShadow">Rab</button>
+                    <button class="m-2 md:m-0 bg-white border-2 focus:bg-baseBlue/10 focus:font-semibold focus:text-baseBlue border-neutral-200 focus:border-baseBlue rounded-lg p-2 px-8 drop-shadow-regularShadow">Kam</button>
+                    <button class="m-2 md:m-0 bg-white border-2 focus:bg-baseBlue/10 focus:font-semibold focus:text-baseBlue border-neutral-200 focus:border-baseBlue rounded-lg p-2 px-8 drop-shadow-regularShadow">Jum</button>
+                    <button class="m-2 md:m-0 bg-white border-2 focus:bg-baseBlue/10 focus:font-semibold focus:text-baseBlue border-neutral-200 focus:border-baseBlue rounded-lg p-2 px-8 drop-shadow-regularShadow">Sab</button>
                 </div>
 
                     <div class="w-full p-5 px-8 flex justify-between bg-white drop-shadow-regularShadow rounded-lg">
