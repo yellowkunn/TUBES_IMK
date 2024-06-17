@@ -20,6 +20,42 @@
     <div>
         @include('components.owner.navbar')
 
+        <div class=" px-8 sm:px-16 lg:px-20 flex justify-center" id="session">
+            <!-- Pesan Error -->
+            @if ($errors->any())
+                <div id="error" class="bg-[#ffefef] border border-[#ff3838] shadow-[0px_0px_6px_2px_rgba(227,0,0,0.2)] z-20 gap-2 items-center w-fit px-8 py-3 justify-center rounded-2xl flex unselectable">
+                    <div class="flex justify-between items-center gap-36">
+                        <div class="flex gap-4 items-center">
+                            <i class="fa-solid fa-exclamation fa-lg p-4 bg-error rounded-full text-white"></i>
+                            <p class="text-lg text-greyIcon">
+                            <ul class="list-disc pl-5 mt-2">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                            </p>
+                        </div>
+
+                        <i class="fa-solid fa-xmark fa-lg p-2 py-4 h-fit text-greyIcon hover:bg-gray-200 rounded-full" onclick="document.getElementById('error').classList.add('hidden')"></i>
+                    </div>
+                </div>
+            @endif
+
+            <!-- Pesan Sukses -->
+            @if (session('success'))
+            <div id="success" class="bg-[#f7fff4] border border-[#8bdc64] shadow-[0px_0px_6px_1px_rgba(86,169,47,0.2)] z-20 w-fit gap-2 items-center px-8 py-3 justify-center rounded-2xl flex unselectable">
+                <div class="flex justify-between items-center gap-4 lg:gap-36">
+                    <div class="flex gap-4 items-center">
+                        <i class="fa-solid fa-check fa-lg p-2 py-4 bg-success rounded-full text-white"></i>
+                        <p class="text-lg text-greyIcon">{{ session('success') }}</p>
+                    </div>
+
+                    <i class="fa-solid fa-xmark fa-lg p-2 py-4 h-fit text-greyIcon hover:bg-gray-200 rounded-full" onclick="document.getElementById('success').classList.add('hidden')"></i>
+                </div>
+            </div>
+            @endif
+        </div>
+
         <div class="flex max-w-[1440px]">
             <div class="translate-x-[-100%] md:translate-x-0 md:h-fit fixed md:static z-10 h-screen duration-300"
                 id="sidebar">
@@ -38,11 +74,11 @@
                     </div>
 
 
-                    <div class="flex justify-between items-center mt-4 my-7">
-                        <p class="text-title font-semibold">Daftar Pengajar</p>
+                    <div class="md:flex justify-between items-center mt-4 my-7">
+                        <p class="text-title font-semibold mb-4 md:mb-0">Daftar Pengajar</p>
 
-                        <div class="flex gap-4">
-                            <form method="get" class="flex justify-between items-center relative">
+                        <div class="sm:flex gap-4">
+                            <form method="get" class="flex justify-between items-center relative my-4 sm:my-0">
                                 @csrf
                                 <input autocomplete="off" type="text" id="search" name="search" value=""
                                     class="py-2 px-5 w-full bg-greyBackground border-2 border-greyBorder rounded-lg"
@@ -51,69 +87,14 @@
                                         class="fa-solid fa-magnifying-glass text-greyIcon"></i></button>
                             </form>
                             <button onclick="showPopupTambahPengajar()"
-                                class="bg-baseBlue/5 hover:bg-baseBlue/10 border-2 border-baseBlue/80 flex items-center gap-3 px-3 py-2 rounded-lg">
+                                class="w-full sm:w-fit bg-baseBlue/5 hover:bg-baseBlue/10 border-2 border-baseBlue/80 flex items-center gap-3 px-3 py-2 rounded-lg">
                                 <i class="fa-solid fa-plus p-1 px-[5px] rounded-full text-white bg-baseBlue"></i>
                                 <p class="text-greyIcon font-semibold">Tambah pengajar</p>
                             </button>
                         </div>
                     </div>
 
-                    <!-- Pesan Error -->
-                    @if ($errors->any())
-                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
-                            <strong class="font-bold">Oops!</strong>
-                            <span class="block sm:inline">Terjadi kesalahan dengan input Anda:</span>
-                            <ul class="list-disc pl-5 mt-2">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
-                    <!-- Pesan Sukses -->
-                    @if (session('success'))
-                        <div id="success-message"
-                            class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4"
-                            role="alert">
-                            <strong class="font-bold">Sukses!</strong>
-                            <span class="block sm:inline">{{ session('success') }}</span>
-                            <span class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer"
-                                onclick="dismissMessage()">
-                                <svg class="fill-current h-6 w-6 text-green-500" role="button"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <title>Tutup</title>
-                                    <path
-                                        d="M14.348 5.652a1 1 0 011.415 0l1.515 1.515a1 1 0 010 1.414l-8.648 8.648a1 1 0 01-1.415 0L2.122 8.59a1 1 0 010-1.415L3.637 5.652a1 1 0 011.414 0L10 10.586l4.348-4.348z" />
-                                </svg>
-                            </span>
-                        </div>
-                    @endif
-
-                    <script>
-                        function dismissMessage() {
-                            const message = document.getElementById('success-message');
-                            message.style.transition = 'opacity 1s ease-out';
-                            message.style.opacity = '0';
-                            setTimeout(() => {
-                                message.style.display = 'none';
-                            }, 1000);
-                        }
-
-                        // Automatically dismiss the message after 5 seconds
-                        setTimeout(() => {
-                            const message = document.getElementById('success-message');
-                            if (message) {
-                                message.style.transition = 'opacity 1s ease-out';
-                                message.style.opacity = '0';
-                                setTimeout(() => {
-                                    message.style.display = 'none';
-                                }, 1000);
-                            }
-                        }, 5000);
-                    </script>
-
-                    <div class="bg-white drop-shadow-regularShadow py-3 my-5 rounded-lg border">
+                    <div class="bg-white drop-shadow-regularShadow py-3 my-5 rounded-lg border overflow-x-auto">
                         <!-- tabel pengajar -->
                         <table class="min-w-full text-left text-sm font-light text-surface dark:text-white"
                             style="color: #191919">
@@ -155,19 +136,19 @@
                                                         class="material-symbols-outlined text-greyIcon mt-1.5">workspace_premium</span>
                                                 </button>
                                             </td>
-                                            <td class="px-8 py-4 flex items-center gap-4 justify-center">
+                                            <td class="px-8 py-6 flex items-center gap-4 justify-center">
                                                 <button
                                                     onclick="showPopupDetailPengajar({{ $pengajar->pengguna->biodataPengajar->id_biodata ?? '0' }})"
                                                     class="text-baseBlue font-semibold w-16 h-8 rounded hover:bg-white hover:border-2 hover:border-baseBlue focus:bg-baseBlue focus:text-white">Detail</button>
                                                 <button
                                                     onclick="showPopupEditPengajar({{ $pengajar->pengguna->biodataPengajar->id_biodata ?? '0' }})"
                                                     class="flex items-center gap-2">
-                                                    <i class="fa-regular fa-pen-to-square"></i>
+                                                    <i class="fa-regular fa-pen-to-square fa-lg"></i>
                                                 </button>
                                                 <button
                                                     onclick="showPopupHapusPengajar({{ $pengajar->pengguna->biodataPengajar->id_biodata ?? '0' }})"
                                                     class="flex items-center gap-2">
-                                                    <i class="fa-regular fa-trash-can"></i>
+                                                    <i class="fa-regular fa-trash-can fa-lg"></i>
                                                 </button>
                                             </td>
                                         </tr>
@@ -490,6 +471,13 @@
     @include('components.footer')
 
     <script>
+        setTimeout(function() {
+            const session = document.getElementById('session');
+            if (session) {
+                session.classList.add('hidden');
+            }
+        }, 4000);
+
         tippy('#sertif', {
             content: 'Upload Sertifikat',
         });

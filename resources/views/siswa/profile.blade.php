@@ -16,7 +16,7 @@
 
 <body class="font-Inter text-regularContent dark:dark-mode">
 
-    <div class="flex flex-col gap-6 px-24 py-12">
+    <div class="flex flex-col gap-6 px-8 lg:px-24 py-12">
         <div class="flex justify-between items-center">
             <div class="flex items-center gap-6">
                 <a href="{{ route('home') }}"><i class="fa-solid fa-arrow-left rounded-full bg-white p-3 drop-shadow-regularShadow dark:bg-[#313A49]"></i></a>
@@ -47,7 +47,7 @@
             <button type="button" id="biodataBtn" class="rounded-t-lg py-2 px-4 bg-white dark:bg-[#313A49] dark:text-white text-baseBlue focus:font-semibold">Biodata</button>
         </div>
 
-        <div id="akunContent" class="grid grid-cols-2 gap-12 divide-x-2 mt-6">
+        <div id="akunContent" class="md:grid grid-cols-2 gap-12 divide-x-2 mt-6">
             <div>
                 <p class="text-subtitle font-semibold">Informasi Akun</p>
                 <p class="mt-2">Informasi yang mungkin tampak pada pengguna lain</p>
