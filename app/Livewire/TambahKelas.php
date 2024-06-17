@@ -7,7 +7,6 @@ use App\Models\Kelas;
 
 class TambahKelas extends Component
 {
-    public $kelas;
     public $search;
 
     public function render()
