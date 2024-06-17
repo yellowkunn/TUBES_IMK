@@ -18,6 +18,54 @@
 
 <body class="font-Inter text-regularContent">
 
+<div class="relative flex justify-center items-center" id="session">
+        @if(session('success'))
+        <div id="success" class="fixed top-8 mt-5 bg-[#f7fff4] border border-[#8bdc64] shadow-[0px_0px_6px_1px_rgba(86,169,47,0.2)] z-20 w-fit gap-2 px-8 py-3 rounded-2xl unselectable translate-y-4 duration-300">
+            <div class="flex justify-between items-center gap-4 lg:gap-36">
+                <div class="flex gap-4 items-center">
+                    <i class="fa-solid fa-check fa-lg p-2 py-4 bg-success rounded-full text-white"></i>
+                    <p class="text-lg text-greyIcon">{{session('success')}}</p>
+                </div>
+
+                <i class="fa-solid fa-xmark fa-lg p-2 py-4 h-fit text-greyIcon hover:bg-gray-200 rounded-full" onclick="document.getElementById('success').classList.add('hidden')"></i>
+            </div>
+        </div>
+        @elseif(session('error'))
+        <div id="error" class="fixed top-8 mt-5 bg-[#ffefef] border border-[#ff3838] shadow-[0px_0px_6px_2px_rgba(227,0,0,0.2)] z-20 gap-2 items-center w-fit px-8 py-3 justify-center rounded-2xl flex unselectable">
+            <div class="flex justify-between items-center gap-36">
+                <div class="flex gap-4 items-center">
+                    <i class="fa-solid fa-exclamation fa-lg p-4 bg-error rounded-full text-white"></i>
+                    <p class="text-lg text-greyIcon">
+                        <ul class="list-disc pl-5 mt-2">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </p>
+                </div>
+
+                <i class="fa-solid fa-xmark fa-lg p-2 py-4 h-fit text-greyIcon hover:bg-gray-200 rounded-full" onclick="document.getElementById('error').classList.add('hidden')"></i>
+            </div>
+        </div>
+        @endif
+
+        @if (session('pesanPengajar'))
+        <div id="pesan-pengajar" class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded relative mb-4" role="alert">
+            <strong class="font-bold"></strong>
+            <span class="block sm:inline">{{ session('pesanPengajar') }}</span>
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer"
+                onclick="document.getElementById('pesan-pengajar').classList.add('hidden')">
+                <svg class="fill-current h-6 w-6 text-yellow-500" role="button"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <title>Tutup</title>
+                    <path
+                        d="M14.348 5.652a1 1 0 011.415 0l1.515 1.515a1 1 0 010 1.414l-8.648 8.648a1 1 0 01-1.415 0L2.122 8.59a1 1 0 010-1.415L3.637 5.652a1 1 0 011.414 0L10 10.586l4.348-4.348z" />
+                </svg>
+            </span>
+        </div>
+        @endif
+    </div>
+    
     <div>
         @include('components.owner.navbar')
 
@@ -48,107 +96,6 @@
                                     class="fa-solid fa-magnifying-glass text-greyIcon"></i></button>
                         </form>
                     </div>
-
-                    <!-- Pesan Error -->
-                    @if ($errors->any())
-                        <div id="error-messages"
-                            class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
-                            <strong class="font-bold">Oops!</strong>
-                            <span class="block sm:inline">Terjadi kesalahan dengan input Anda:</span>
-                            <ul class="list-disc pl-5 mt-2">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                            <span class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer"
-                                onclick="dismissMessage('error-messages')">
-                                <svg class="fill-current h-6 w-6 text-red-500" role="button"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <title>Tutup</title>
-                                    <path
-                                        d="M14.348 5.652a1 1 0 011.415 0l1.515 1.515a1 1 0 010 1.414l-8.648 8.648a1 1 0 01-1.415 0L2.122 8.59a1 1 0 010-1.415L3.637 5.652a1 1 0 011.414 0L10 10.586l4.348-4.348z" />
-                                </svg>
-                            </span>
-                        </div>
-                    @endif
-
-                    <!-- Pesan Sukses -->
-                    @if (session('success'))
-                        <div id="success-message"
-                            class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4"
-                            role="alert">
-                            <strong class="font-bold">Sukses!</strong>
-                            <span class="block sm:inline">{{ session('success') }}</span>
-                            <span class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer"
-                                onclick="dismissMessage('success-message')">
-                                <svg class="fill-current h-6 w-6 text-green-500" role="button"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <title>Tutup</title>
-                                    <path
-                                        d="M14.348 5.652a1 1 0 011.415 0l1.515 1.515a1 1 0 010 1.414l-8.648 8.648a1 1 0 01-1.415 0L2.122 8.59a1 1 0 010-1.415L3.637 5.652a1 1 0 011.414 0L10 10.586l4.348-4.348z" />
-                                </svg>
-                            </span>
-                        </div>
-                    @endif
-
-                    <!-- Pesan Pengajar -->
-                    @if (session('pesanPengajar'))
-                        <div id="pesan-pengajar"
-                            class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded relative mb-4"
-                            role="alert">
-                            <strong class="font-bold"></strong>
-                            <span class="block sm:inline">{{ session('pesanPengajar') }}</span>
-                            <span class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer"
-                                onclick="dismissMessage('pesan-pengajar')">
-                                <svg class="fill-current h-6 w-6 text-yellow-500" role="button"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <title>Tutup</title>
-                                    <path
-                                        d="M14.348 5.652a1 1 0 011.415 0l1.515 1.515a1 1 0 010 1.414l-8.648 8.648a1 1 0 01-1.415 0L2.122 8.59a1 1 0 010-1.415L3.637 5.652a1 1 0 011.414 0L10 10.586l4.348-4.348z" />
-                                </svg>
-                            </span>
-                        </div>
-                    @endif
-
-                    <script>
-                        function dismissMessage(elementId) {
-                            const message = document.getElementById(elementId);
-                            message.style.transition = 'opacity 1s ease-out';
-                            message.style.opacity = '0';
-                            setTimeout(() => {
-                                message.style.display = 'none';
-                            }, 1000);
-                        }
-
-                        // Automatically dismiss the messages after 5 seconds
-                        setTimeout(() => {
-                            const successMessage = document.getElementById('success-message');
-                            const pengajarMessage = document.getElementById('pesan-pengajar');
-                            const errorMessages = document.getElementById('error-messages');
-
-                            if (successMessage) {
-                                successMessage.style.transition = 'opacity 1s ease-out';
-                                successMessage.style.opacity = '0';
-                                setTimeout(() => {
-                                    successMessage.style.display = 'none';
-                                }, 1000);
-                            }
-                            if (pengajarMessage) {
-                                pengajarMessage.style.transition = 'opacity 1s ease-out';
-                                pengajarMessage.style.opacity = '0';
-                                setTimeout(() => {
-                                    pengajarMessage.style.display = 'none';
-                                }, 1000);
-                            }
-                            if (errorMessages) {
-                                errorMessages.style.transition = 'opacity 1s ease-out';
-                                errorMessages.style.opacity = '0';
-                                setTimeout(() => {
-                                    errorMessages.style.display = 'none';
-                                }, 1000);
-                            }
-                        }, 5000);
-                    </script>
 
                     <div class="border-b-2 border-baseBlue w-full flex gap-6 mb-10">
                         <button type="button" id="belumDiaturBtn"
@@ -233,8 +180,7 @@
 
                     @foreach ($kelasJamkos as $kelas)
                         <!-- pop up atur pengaturan ruang kelas -->
-                        <div class="hidden top-0 left-0 flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow 
-                    w-full h-screen"
+                        <div class="hidden top-0 left-0 flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow w-full h-screen"
                             id="popupAturRuangan{{ $kelas->id_kelas }}">
                             <div class="flex flex-col justify-center min-w-[450px]">
                                 <div class="flex justify-between bg-baseBlue px-10 py-4 rounded-t-xl text-white">
@@ -299,8 +245,7 @@
                                                 </select>
                                             </div>
 
-                                            <div class="mb-4"></div>
-                                            <div class="relative flex flex-col gap-3 w-full">
+                                            <div class="mt-4 relative flex flex-col gap-3 w-full">
                                                 <label for="jamTambahan"
                                                     class="absolute top-2 left-4 text-smallContent text-[#717171] dark:text-white font-semibold">Pilih
                                                     jam custom</label>
@@ -341,8 +286,7 @@
                         @if (isset($kelass) && count($kelass) > 0)
                             @foreach ($kelass as $kelas)
                                 <!-- pop up edit pengaturan ruang kelas -->
-                                <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow 
-                    w-full h-screen"
+                                <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow w-full h-screen"
                                     id="popupEditRuangan{{ $kelas->id_kelas }}">
                                     <div class="flex flex-col justify-center min-w-[450px]">
                                         <div
@@ -412,8 +356,7 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div class="mb-4"></div>
-                                                            <div class="relative flex flex-col gap-3 w-full">
+                                                            <div class="mt-4 relative flex flex-col gap-3 w-full">
                                                                 <label for="jamTambahan2"
                                                                     class="absolute top-2 left-4 text-smallContent text-[#717171] dark:text-white font-semibold">Pilih
                                                                     jam custom</label>
@@ -432,8 +375,6 @@
                                                                     </option>
                                                                 </select>
                                                             </div>
-
-
 
                                                             <div>
                                                                 <p class="font-semibold mt-6 mb-1">Pilih Hari</p>
@@ -455,20 +396,17 @@
                                                             </div>
                                                             <input type="hidden" name="id_kelas" value="{{ $kelas->id_kelas }}">
                                                         </div>
-
                                                     </div>
-
 
                                                     <div class="mt-8 flex justify-end gap-6">
                                                         <button type="button"
                                                             onclick="showPopupEditRuangan({{ $kelas->id_kelas }})"
                                                             class="text-greyIcon hover:text-black">Batal</button>
                                                         <button type="submit"
-                                                            class="text-baseBlue bg-white border-2 border-baseBlue p-1.5 px-7 rounded-full
-                                            hover:bg-baseBlue hover:text-white"
-                                                            style="box-shadow: 
-                                            0px 0px 5px 1px rgba(122,161,226,0.3);">Simpan</button>
+                                                            class="text-baseBlue bg-white border-2 border-baseBlue p-1.5 px-7 rounded-full hover:bg-baseBlue hover:text-white"
+                                                            style="box-shadow: 0px 0px 5px 1px rgba(122,161,226,0.3);">Simpan</button>
                                                     </div>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
@@ -481,8 +419,7 @@
                         @if (isset($kelass) && count($kelass) > 0)
                         @foreach ($kelass as $kelas)
                         <!-- pop up hapus pengaturan ruang kelas -->
-                        <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow 
-                    w-full h-screen"
+                        <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow w-full h-screen"
                             id="popupHapusRuangan{{ $kelas->id_kelas }}">
                             <div class="flex flex-col justify-center max-w-[350px]">
                                 <div class="bg-white rounded-xl px-10 py-8">
@@ -551,6 +488,25 @@
     @include('components.footer')
 
     <script>
+        setTimeout(function() {
+            const session = document.getElementById('session');
+            if (session) {
+                session.classList.add('hidden');
+            }
+        }, 4000);
+
+        function showPopupAturRuangan(i) {
+            document.getElementById('popupAturRuangan' + i).classList.toggle('hidden');
+        }
+
+        function showPopupEditRuangan(i) {
+            document.getElementById('popupEditRuangan' + i).classList.toggle('hidden');
+        }
+
+        function showPopupHapusRuangan(i) {
+            document.getElementById('popupHapusRuangan' + i).classList.toggle('hidden');
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             const selectJam1 = document.getElementById('jam');
             const selectJam2 = document.getElementById('jamTambahan');
@@ -613,18 +569,6 @@
                 tabSudahDiatur.classList.add('bg-white', 'text-baseBlue');
             }
         });
-
-        function showPopupAturRuangan(i) {
-            document.getElementById('popupAturRuangan' + i).classList.toggle('hidden');
-        }
-
-        function showPopupEditRuangan(i) {
-            document.getElementById('popupEditRuangan' + i).classList.toggle('hidden');
-        }
-
-        function showPopupHapusRuangan(i) {
-            document.getElementById('popupHapusRuangan' + i).classList.toggle('hidden');
-        }
 
         tippy('#hapus', {
             content: 'Hapus Ruangan',
