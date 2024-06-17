@@ -38,6 +38,11 @@ class AdminController extends Controller
         return view('owner.verifikasi_pendaftar', compact('siswam'));
     }
 
+    public function pembayaran()
+    {
+        return view('owner.pembayaran');
+    }
+
     public function pengaturanruangan()
     {
         $kelasJamkos = Kelas::whereNull('jam')->get();
@@ -400,24 +405,4 @@ class AdminController extends Controller
         // Redirect ke halaman lain setelah berhasil disimpan
         return redirect()->back()->with('success', 'Kelas berhasil ditambahkan!');
     }
-
-    public function hapuskelas(Request $request, $id)
-    {
-        $kelas = Kelas::findOrFail($id);
-
-        $kelas->delete();
-
-        return redirect()->back()->with('success', 'Kelas berhasil dihapus');
-    }
-
-    // public function destroy(Request $request): RedirectResponse
-    // {
-    //     Auth::guard('web')->logout();
-
-    //     $request->session()->invalidate();
-
-    //     $request->session()->regenerateToken();
-
-    //     return redirect('/');
-    // }
 }

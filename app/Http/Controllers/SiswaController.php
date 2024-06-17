@@ -117,7 +117,7 @@ class SiswaController extends Controller
             'pekerjaan_ortu' => $request->pekerjaanortu,
         ]);
             return redirect('/berandasiswa')->with('success_fp', 'Formulir pendaftaran berhasil dikirim dan akan ditinjau dalam 2x24 jam oleh pihak FEC. 
-                                            Harap periksa progres pendaftaran anda secara berkala pada laman Progres Pendaftaran');
+                                            Harap periksa progres pendaftaran anda secara berkala pada laman Pendaftaran Kelas');
     }
 
     public function detailkelas(Kelas $kelas)

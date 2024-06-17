@@ -51,7 +51,7 @@
     </script>
 
     <!-- skeleton -->
-    {{-- <div id="skeleton" class="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-x-24 gap-y-16">
+    <div id="skeleton" class="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-x-24 gap-y-16">
 
         @foreach ($kelass as $kelas)
             <div
@@ -68,7 +68,7 @@
                 </div>
             </div>
         @endforeach
-    </div> --}}
+    </div>
     
     <!-- hasil kelas -->
     <div id="hasilKelas" class="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-x-24 gap-y-16">
@@ -120,9 +120,7 @@
     </div>
 
     <!-- pagination -->
-    {{-- <div class="mt-16">
-                        {{ $kelass->links() }}
-                    </div> --}}
+    <div class="mt-16">{{ $kelass->links() }}</div>
 
     <!-- pop up tambah kelas baru -->
     <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow w-full h-screen"
@@ -375,7 +373,7 @@
                             Apakah anda yakin ingin menghapus kelas {{ $kelas->nama }}?
                         </p>
 
-                        <form action="{{ route('kelas.hapus', $kelas->id_kelas) }}" method="post">
+                        <form action="{{ url('deleteKelas', $kelas->id_kelas) }}" method="post">
                             @csrf
                             <div class="flex justify-between gap-4 mt-4">
                                 <button type="button" onclick="showPopupHapusKelas({{ $kelas->id_kelas }})"
