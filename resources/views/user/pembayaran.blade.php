@@ -24,74 +24,70 @@
 
     <div id="content" class="px-12 md:px-24 py-10 dark:border-t-2 dark:border-white">
 
-    <div class="flex gap-4 items-center">
-        <p class="text-title font-semibold">Pembayaran</p>
-        <span class="material-symbols-outlined mt-1">account_balance_wallet</span>
-    </div>
-
-    <div class="border-2 drop-shadow-regularShadow p-7 my-5 rounded-lg border overflow-x-auto">
-        <p class="font-semibold text-gryIcon dark:font-normal dark:text-white">Metode Pembayaran</p>
-
-        <div class="flex gap-2 items-center my-4">
-            <input type="radio" name="metodepembayaran" id="bni" value="bni">
-            <label for="bni" class="flex">
-                <img src="{{ asset('images/bni.png')}}" alt="" class="w-12 h-8 p-1 bg-white rounded">
-                <p class="dark:text-white">BNI</p>
-            </label>
-        </div>
-        <div class="flex gap-2 items-center my-4">
-            <input type="radio" name="metodepembayaran" id="cash" value="cash">
-            <label for="cash">
-            <i class="fa-solid fa-hand-holding-dollar"></i>
-                <p class="dark:text-white">Cash</p>
-            </label>
+        <div class="flex gap-4 items-center">
+            <p class="text-title font-semibold">Pembayaran</p>
+            <span class="material-symbols-outlined mt-1 text-success">account_balance_wallet</span>
         </div>
 
-    </div>
-    </div>
+        <div class="flex gap-6 justify-center">
+            <div class="h-fit border-4 border-baseDarkerGreen/20 shadow p-7 my-5 rounded-lg border overflow-x-auto dark:bg-[#374151]/40 dark:border-none dark:rounded-none">
+                <p class="font-semibold dark:font-normal dark:text-white">Metode Pembayaran</p>
 
-    @if(isset($notif) && $notif->count() > 0)
-    @foreach($notif as $n)
-    <!-- pop up keterangan -->
-    <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow 
-        w-full h-screen" id="popupKeterangan{{ $n->id_notification }}">
-            <div class="flex flex-col justify-center min-w-[450px]">
-                <div class="flex justify-between bg-baseBlue px-10 py-4 rounded-t-xl text-white">
-                    <p class="text-title">keterangan</p>
-                    <button onclick="showPopupKeterangan({{ $n->id_notification }})">
-                        <i class="fa-solid fa-xmark fa-lg"></i>
-                    </button>
+                <div class="flex gap-2 items-center mt-4">
+                    <input type="radio" class="bg-transparent" name="metodepembayaran" id="bni" value="bni">
+                    <label for="bni" class="flex gap-2">
+                        <img src="{{ asset('images/bni.png')}}" alt="" class="w-7 h-6 p-0.5 bg-white rounded">
+                        <p class="dark:text-white">BNI</p>
+                    </label>
                 </div>
-                <div class="bg-white p-7 pt-4 rounded-b-xl px-10 py-8">
-                    <form method="post" class="flex flex-col gap-5">
-                        @csrf
-                        <div>
-                            <p class="font-semibold mb-1">Keterangan</p>
-                            <div>
-                                <p>{{ $n->keterangan }}</p>
-                            </div>
-                        </div>
-
-                        <div class="mt-4 flex justify-center gap-6">
-                            <button type="button" onclick="showPopupKeterangan({{ $n->id_notification }})" class="text-baseBlue bg-white border-2 border-baseBlue p-1.5 px-7 rounded-full
-                                hover:bg-baseBlue hover:text-white" style="box-shadow: 
-                                0px 0px 5px 1px rgba(122,161,226,0.3);">Tutup</button>
-                        </div>
-                    </form>
-
+                    
+                <div class="flex gap-2 items-center my-4">
+                    <input type="radio" class="bg-transparent" name="metodepembayaran" id="cash" value="cash">
+                    <label for="cash" class="flex gap-2">
+                    <i class="fa-solid fa-hand-holding-dollar text-amber-600"></i>
+                        <p class="dark:text-white">Cash</p>
+                    </label>
                 </div>
+
+                <div>
+                    <p class="font-semibold dark:font-normal dark:text-white mt-8">Nomor Rekening</p>
+                    <p class="dark:text-white text-[18px]">1234567890 <span class="text-regularContent">a.n Freddy Tambunan</span></p>
+                </div>
+
+            </div>
+
+            <div class="bg-greyBorder/10 dark:bg-[#374151]/40 p-7 my-5 dark:text-white flex flex-col justify-between">
+                <div class="flex flex-col gap-4">
+                    <p class="font-semibold dark:font-normal dark:text-white text-subtitle">Rincian</p>
+                    
+                        <div class="flex justify-between gap-36">
+                            <p>Kelas: </p>
+                            <p class="font-semibold">Bahasa Inggris SMP</p>
+                        </div>
+                        <div class="flex justify-between gap-36">
+                            <p>Hari: </p>
+                            <p>Senin, Rabu, Jumat</p>
+                        </div>
+                        <div class="flex justify-between gap-36">
+                            <p>Pukul: </p>
+                            <p>13.30-15.00</p>
+                        </div>
+                        <div class="flex justify-between gap-36 border-t-2 border-b-2 py-4 text-amber-500 font-semibold">
+                            <p>Harga: </p>
+                            <p class="font-semibold">Rp310.000</p>
+                        </div>
+                </div>
+
+                <p class="text-smallContent text-greyIcon dark:text-white mt-8 text-end">12 Desember 2012 12:20</p>
             </div>
         </div>
-        @endforeach
-        @endif
 
-@include('components.footer')
+        <div class="flex gap-4 justify-center items-center mt-12 mb-4">
+            <a href="{{ route('home') }}" class="p-2 px-4 text-white rounded bg-success/80 hover:bg-success">Selesai</a>
+        </div>
+    </div>
 
-<script>
-    function showPopupKeterangan(i) {
-        document.getElementById('popupKeterangan'+i).classList.toggle('hidden');
-    }
-</script>
+   @include('components.footer')
 </body>
 
 </html>

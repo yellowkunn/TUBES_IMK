@@ -36,7 +36,19 @@
                 <a href="" class="hover:font-semibold">Rapor Bulanan</a>
             </div>
 
-            <p class="text-title font-semibold mt-7 mb-4 md:mb-6">Rapor Bulanan</p>
+            <div class="flex justify-between items-center mt-7 mb-4 md:mb-6">
+                <p class="text-title font-semibold">Rapor <span id="title">Bulanan</span></p>
+
+                <div>
+                <!-- dd jenis rapor -->
+                <select id="jenisrapor" onchange="jenisrapor(this.value)" name="jenisrapor"
+                    class="h-fit dark:focus:bg-[#374151]/40 block appearance-none w-full bg-greyBackground dark:bg-[#374151]/40 dark:text-white dark:rounded dark:text-black border border-greyBorder text-greyIcon rounded leading-tight focus:outline-none focus:bg-white focus:border-greyIcon">
+                    <option value="Bulanan" class="dark:dark-mode">Rapor Bulanan</option>
+                    <option value="Tengah Semester" class="dark:dark-mode">Rapor Tengah Semester</option>
+                    <option value="Semester" class="dark:dark-mode">Rapor Semester</option>
+                </select>
+                </div>
+            </div>
                 
             <div class="bg-white dark:bg-[#374151]/40 drop-shadow-regularShadow py-3 mb-8 rounded-lg border">
                 <!-- tabel rapor -->
@@ -48,7 +60,7 @@
                         </div>
                         
                         <table class="min-w-full text-left text-sm font-light text-surface dark:text-white">
-                            <thead class="border-b border-neutral-200 font-semibold bg-greyBackground dark:bg-[#374151]/40" style="color: #717171">
+                            <thead class="border-b border-neutral-200 font-semibold bg-greyBackground dark:bg-baseDarkerGreen/20" style="color: #717171">
                                 <tr class="dark:text-white">
                                     <th scope="col" class="px-4 sm:px-12 py-2">No.</th>
                                     <th scope="col" class="w-full px-4 sm:px-12 py-2">Bidang</th>
@@ -106,5 +118,12 @@
     </div>
 
     @include('components.footer')
+
+    <script>
+        function jenisrapor(value) {
+            const title = document.getElementById('title');
+            title.innerHTML = value;
+        }
+    </script>
 </body>
 </html>

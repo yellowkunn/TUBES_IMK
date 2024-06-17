@@ -13,7 +13,7 @@ class TambahKelas extends Component
     public function render()
     {
         return view('livewire.tambah-kelas', [
-            'kelass' => Kelas::orderBy('dibuat', 'asc')->where('nama', 'like', "%{$this->search}%")->get()
+            'kelass' => Kelas::orderBy('dibuat', 'asc')->where('nama', 'like', "%{$this->search}%")->paginate(9)
         ]);
         
         
