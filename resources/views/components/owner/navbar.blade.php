@@ -19,7 +19,7 @@
             <div class="absolute hidden group-hover:block bg-white shadow -translate-x-1/2 rounded-lg z-10 w-80 dark:bg-[#313A49] divide-y divide-slate-400">
                 <!-- perulangan notif baru, batasi maks 4 sj untuk ditampilkan disini -->
                 @foreach ($notif as $n)
-                <a href="">
+                <a href="{{ route('admin.verifikasi-pendaftar') }}">
                     <div class="py-2 px-4">
                         {{-- <p class="truncate">{{ $n->title }}</p> --}}
                         <p class="truncate">{{ $n->keterangan }}</p>
