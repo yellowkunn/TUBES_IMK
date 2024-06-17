@@ -8,13 +8,27 @@ use App\Models\User;
 
 class PengaturRuangan extends Component
 {
-    public $search;
+    public $search = '';
+    public $activeTab = 'belumDiatur'; // Add this property to track the active tab
+
+    public function setActiveTab($tab)
+    {
+        $this->activeTab = $tab;
+    }
+
     public function render()
     {
-        return view('livewire.pengatur-ruangan' ,[
-            'kelasJamkos' => Kelas::whereNull('jam')->where('nama', 'like', "%{$this->search}%")->get(),
-            'kelass' => Kelas::whereNotNull('jam')->where('nama', 'like', "%{$this->search}%")->get(),
-            'pengajars' => User::where('role', 'pengajar')->get()
-        ]);
+        $kelasJamkos = Kelas::whereNull('jam')
+            ->where('nama', 'like', "%{$this->search}%")
+            ->get();
+
+        $kelass = Kelas::whereNotNull('jam')
+            ->where('nama', 'like', "%{$this->search}%")
+            ->get();
+
+        $pengajars = User::where('role', 'pengajar')->get();
+
+        return view('livewire.pengatur-ruangan', compact('kelasJamkos', 'kelass', 'pengajars'));
     }
 }
+

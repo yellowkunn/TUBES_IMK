@@ -1,87 +1,105 @@
 <div>
     <!-- page hierarchy -->
     <div class="flex items-center gap-2 text-smallContent">
-        <a href="{{ route('home') }}" class="hover:font-semibold">Dashboard</a>
-        <i class="fa-solid fa-caret-right text-baseBlue"></i>
-        <a href="{{ route('pengaturanruangan') }}" class="hover:font-semibold">Pengaturan Ruangan</a>
-    </div>
-    @include('livewire.includes.search-pengatur-ruangan')
-
-    <div class="border-b-2 border-baseBlue w-full flex gap-6 mb-10">
-        <button type="button" id="belumDiaturBtn" class="rounded-t-lg bg-baseBlue py-2 px-4 text-white">Belum
-            diatur</button>
-        <button type="button" id="sudahDiaturBtn" class="rounded-t-lg py-2 px-4 bg-white text-baseBlue">Sudah
-            diatur</button>
-    </div>
-    <div id="belumDiaturContent">
-        <div class="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-x-24 gap-y-16">
-            @foreach ($kelasJamkos as $kelas)
-                <div
-                    class="bg-white h-fit rounded-lg p-6 px-10 lg:px-12 drop-shadow-regularShadow relative group my-8 sm:my-0">
-                    <div class="flex items-center gap-2 w-full">
-                        <span class="relative flex h-3 w-3">
-                            <span
-                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-                        </span>
-                        <p class="text-red-500 text-smallContent font-semibold">Belum diatur</p>
-                    </div>
-
-                    <div class="flex flex-col gap-2 mt-4">
-                        <p class="font-semibold md:text-[20px] lg:text-subtitle capitalize">
-                            {{ $kelas->nama }}</p>
-
-                        <button id="dd-more{{ $loop->index }}" onclick="showPopupAturRuangan({{ $kelas->id_kelas }})"
-                            class="rounded-lg bg-baseBlue/90 group-hover:bg-baseBlue text-white py-2 my-3 inline-block text-center">Atur
-                            Ruangan</button>
-                    </div>
-                </div>
-            @endforeach
+        <div class="flex items-center gap-2 text-smallContent mb-5">
+            <a href="{{ route('home') }}" class="hover:font-semibold">Dashboard</a>
+            <i class="fa-solid fa-caret-right text-baseBlue"></i>
+            <a href="{{ route('pengaturanruangan') }}" class="hover:font-semibold">Pengaturan Ruangan</a>
         </div>
     </div>
-
-    <div id="sudahDiaturContent" class="hidden">
-        <div class="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-x-24 gap-y-16">
-            @foreach ($kelass as $kelas)
-                <div
-                    class="bg-white h-fit rounded-lg p-6 px-10 lg:px-12 drop-shadow-regularShadow relative group my-8 sm:my-0">
-                    <div>
-                        <div class="flex justify-between mb-3">
+    <div>
+        <div class="border-b-2 border-baseBlue w-full flex gap-6 mb-10">
+            <button type="button" wire:click="setActiveTab('belumDiatur')" id="belumDiaturBtn"
+                    class="rounded-t-lg py-2 px-4 {{ $activeTab === 'belumDiatur' ? 'bg-baseBlue text-white' : 'bg-white text-baseBlue' }}">
+                Belum diatur
+            </button>
+            <button type="button" wire:click="setActiveTab('sudahDiatur')" id="sudahDiaturBtn"
+                    class="rounded-t-lg py-2 px-4 {{ $activeTab === 'sudahDiatur' ? 'bg-baseBlue text-white' : 'bg-white text-baseBlue' }}">
+                Sudah diatur
+            </button>
+        </div>
+    
+        <div class="md:flex justify-between items-center mt-4 my-7">
+            <p class="text-title font-semibold mb-4 md:mb-0">Pengaturan Ruangan</p>
+            <div class="flex justify-between items-center relative">
+                <input wire:model.live.debounce.500ms="search" autocomplete="off" type="text" id="search" name="search"
+                       class="py-2 px-5 w-full bg-greyBackground border-2 border-greyBorder rounded-full" placeholder="Cari">
+            </div>
+        </div>
+    
+        @if ($activeTab === 'belumDiatur')
+            <div id="belumDiaturContent">
+                <div class="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-x-24 gap-y-16">
+                    @foreach ($kelasJamkos as $kelas)
+                        <div
+                            class="bg-white h-fit rounded-lg p-6 px-10 lg:px-12 drop-shadow-regularShadow relative group my-8 sm:my-0">
                             <div class="flex items-center gap-2 w-full">
                                 <span class="relative flex h-3 w-3">
                                     <span
-                                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-300 opacity-75"></span>
-                                    <span class="relative inline-flex rounded-full h-3 w-3 bg-green-400"></span>
+                                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
                                 </span>
-                                <p class="text-green-500 text-smallContent font-semibold">Sudah diatur
-                                </p>
+                                <p class="text-red-500 text-smallContent font-semibold">Belum diatur</p>
                             </div>
-
-                            <button id="dd-more{{ $loop->index }}"
-                                onclick="showPopupHapusRuangan({{ $kelas->id_kelas }})">
-                                <i class="fa-regular fa-trash-can" id="hapus"></i>
-                            </button>
+    
+                            <div class="flex flex-col gap-2 mt-4">
+                                <p class="font-semibold md:text-[20px] lg:text-subtitle capitalize">
+                                    {{ $kelas->nama }}</p>
+    
+                                <button id="dd-more{{ $loop->index }}" onclick="showPopupAturRuangan({{ $kelas->id_kelas }})"
+                                        class="rounded-lg bg-baseBlue/90 group-hover:bg-baseBlue text-white py-2 my-3 inline-block text-center">Atur
+                                    Ruangan</button>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="flex flex-col gap-2">
-                        <p class="font-semibold md:text-[20px] lg:text-subtitle capitalize mb-4">
-                            {{ $kelas->nama }}</p>
-
-                        <p class="font-semibold">Pengajar: <span
-                                class="font-normal">{{ $kelas->pengajar[0]->pengguna->biodataPengajar->nama_lengkap ?? '-' }}</span>
-                        </p>
-                        <p class="font-semibold">Hari: <span class="font-normal">{{ $kelas->jadwal_hari }}</p>
-                        <p class="font-semibold">Jam: <span class="font-normal">{{ $kelas->jam }}
-                        </p>
-                        <button id="dd-more{{ $loop->index }}" onclick="showPopupEditRuangan({{ $kelas->id_kelas }})"
-                            class="rounded-lg bg-baseBlue/90 group-hover:bg-baseBlue text-white py-2 my-3 inline-block text-center">Edit
-                            Ruangan</button>
-                    </div>
+                    @endforeach
                 </div>
-            @endforeach
-        </div>
+            </div>
+        @else
+            <div id="sudahDiaturContent">
+                <div class="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-x-24 gap-y-16">
+                    @foreach ($kelass as $kelas)
+                        <div
+                            class="bg-white h-fit rounded-lg p-6 px-10 lg:px-12 drop-shadow-regularShadow relative group my-8 sm:my-0">
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <div class="flex items-center gap-2 w-full">
+                                        <span class="relative flex h-3 w-3">
+                                            <span
+                                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-300 opacity-75"></span>
+                                            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-400"></span>
+                                        </span>
+                                        <p class="text-green-500 text-smallContent font-semibold">Sudah diatur
+                                        </p>
+                                    </div>
+    
+                                    <button id="dd-more{{ $loop->index }}"
+                                            onclick="showPopupHapusRuangan({{ $kelas->id_kelas }})">
+                                        <i class="fa-regular fa-trash-can" id="hapus"></i>
+                                    </button>
+                                </div>
+                            </div>
+    
+                            <div class="flex flex-col gap-2">
+                                <p class="font-semibold md:text-[20px] lg:text-subtitle capitalize mb-4">
+                                    {{ $kelas->nama }}</p>
+    
+                                <p class="font-semibold">Pengajar: <span
+                                        class="font-normal">{{ $kelas->pengajar[0]->pengguna->biodataPengajar->nama_lengkap ?? '-' }}</span>
+                                </p>
+                                <p class="font-semibold">Hari: <span class="font-normal">{{ $kelas->jadwal_hari }}</p>
+                                <p class="font-semibold">Jam: <span class="font-normal">{{ $kelas->jam }}
+                                </p>
+                                <button id="dd-more{{ $loop->index }}" onclick="showPopupEditRuangan({{ $kelas->id_kelas }})"
+                                        class="rounded-lg bg-baseBlue/90 group-hover:bg-baseBlue text-white py-2 my-3 inline-block text-center">Edit
+                                    Ruangan</button>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        @endif
     </div>
+    
 
     @foreach ($kelasJamkos as $kelas)
         <!-- pop up atur pengaturan ruang kelas -->

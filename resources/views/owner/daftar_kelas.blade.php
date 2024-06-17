@@ -62,8 +62,11 @@
                         <a href="{{ route('editdaftarkelas') }}" class="hover:font-semibold">Kelas</a>
                     </div>
 
-
+                    
+                    {{-- @livewire('tambah-kelas') --}}
                     @livewire('tambah-kelas')
+
+                    
                 </div>
             </div>
         </div>
