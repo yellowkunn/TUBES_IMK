@@ -238,6 +238,7 @@ class AdminController extends Controller
         }
 
         $pengguna->delete();
+        Siswa::where('pengguna_id', $pengguna->pengguna_id)->update(['status' => 'Ditolak']);
 
         $pengguna_id = $pengguna->pengguna_id;
         $cekpengguna = Siswa::where('pengguna_id', $pengguna_id)->exists();
