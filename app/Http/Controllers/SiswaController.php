@@ -123,7 +123,8 @@ class SiswaController extends Controller
 
     public function detailkelas(Kelas $kelas)
     {
-        $class = Kelas::whereNotIn('id_kelas', $kelas)->get();
+        
+        $class = Kelas::where('id_kelas', '!=', $kelas->id_kelas)->get();
         return view('detail_tawaran_kelas', ["kelas" => $kelas], compact('class'));
     }
 

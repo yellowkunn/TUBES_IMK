@@ -15,8 +15,6 @@
 </head>
 
 <body class="font-Inter text-regularContent">
-
-
   <div class="flex flex-col bg-white dark:dark-mode">
     <main class="flex flex-col self-center w-full px-8 sm:px-16 lg:px-20 my-4 md:my-12">
       <div class="flex items-center gap-6 mb-12">
