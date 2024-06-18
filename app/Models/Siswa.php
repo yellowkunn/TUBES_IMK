@@ -28,5 +28,10 @@ class Siswa extends Model
     {
         return $this->hasMany(Absensi::class, 'siswa_id', 'id_siswa');
     }
+
+    public function kalender_pendidikan()
+    {
+        return $this->belongsTo(Kalender_pendidikan::class, 'kalender_pendidikan_id', 'id_kalender_pendidikan');
+    }
     
 }

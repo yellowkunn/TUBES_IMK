@@ -57,10 +57,10 @@
 
             <div id="dd-menu"
                 class="invisible grid grid-cols-1 divide-y bg-white mt-2 rounded-md drop-shadow-regularShadow absolute top-12 right-6 text-black">
-                <a href=" {{ url('/editprofile') }} " class="w-full h-full flex items-center gap-2 py-2 px-4">
+                {{-- <a href=" {{ url('/editprofile') }} " class="w-full h-full flex items-center gap-2 py-2 px-4">
                     <i class="fa-regular fa-pen-to-square"></i>
                     <p>Edit Profile</p>
-                </a>
+                </a> --}}
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit" class="w-full h-full flex items-center gap-2 py-2 px-4">
