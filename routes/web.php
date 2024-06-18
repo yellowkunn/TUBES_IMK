@@ -77,7 +77,6 @@ Route::middleware(['role:siswa', 'auth', 'verified'])->group(function () {
     Route::get('/rapor', [SiswaController::class, 'rapor'])->name('rapor');
     Route::get('/sertifikatt', [SiswaController::class, 'sertifikat'])->name('sertifikatt');
     Route::get('/kelas', [SiswaController::class, 'kelassaya'])->name('kelas');
-    Route::get('/detailkelas/{kelas}', [SiswaController::class, 'detailkelas'])->name('detailkelas');
     Route::get('/siswa/detailkelas/{kelas}', [SiswaController::class, 'programkelas'])->name('programkelas');
     Route::get('/editprofile', [SiswaController::class, 'editprofile'])->name('editprofile');
 });
@@ -85,6 +84,7 @@ Route::middleware(['role:siswa', 'auth', 'verified'])->group(function () {
 // User
 Route::get('/notifikasi', [SiswaController::class, 'notifikasi'])->name('notifikasi');
 Route::get('/tawarankelas', [SiswaController::class, 'tawarankelas'])->name('tawarankelas');
+Route::get('/detailkelas/{kelas}', [SiswaController::class, 'detailkelas'])->name('detailkelas');
 Route::get('/tutorialpendaftaran', [SiswaController::class, 'tutorialpendaftaran'])->name('tutorialpendaftaran');
 Route::get('/formulirpendaftaran', [SiswaController::class, 'formulirpendaftaran'])->name('formulirpendaftaran');
 Route::post('/formulirpendaftaran', [SiswaController::class, 'kirimformulirpendaftaran']);
