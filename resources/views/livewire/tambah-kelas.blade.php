@@ -337,7 +337,9 @@
             </div>
         </div>
         <!-- akhir dari pop up edit kelas -->
+        @endforeach
 
+        @foreach($kelass as $kelas)
         <!-- pop up hapus kelas -->
         <div class="top-0 left-0 hidden flex flex-col justify-center items-center fixed z-10 backdrop-blur-sm backdrop-brightness-50 drop-shadow-regularShadow 
                     w-full h-screen"
