@@ -17,7 +17,7 @@
 <body class="font-Inter text-regularContent">
 @include('components.navbar')
 
-  <div class="flex flex-col bg-white">
+  <div class="flex flex-col bg-white dark:dark-mode">
     <main class="flex flex-col self-center w-full px-8 sm:px-16 lg:px-20 my-4 md:my-12">
       <section class="flex gap-5 justify-between px-0.5 max-md:flex-wrap max-md:max-w-full">
         <div class="flex flex-col self-start">
@@ -41,7 +41,7 @@
 
         </div>
         
-        <div class="flex flex-col justify-center px-8 py-8 text-white bg-baseBlue rounded-xl max-md:px-5">
+        <div class="flex flex-col justify-center px-8 py-8 text-white bg-baseBlue dark:bg-baseBlue/70 rounded-xl max-md:px-5">
           <div class="flex flex-col">
             <p>Hanya</p>
             <p class="mt-5 leading-6">
@@ -51,7 +51,7 @@
             </p>
             @if (Route::has('login'))
             @auth
-            <a href="{{ url('/formulirpendaftaran') }}" class="justify-center text-black items-center px-16 py-2.5 mt-5 bg-white rounded-[30px] max-md:px-5 font-semibold">
+            <a href="{{ url('/formulirpendaftaran') }}" class="dark:bg-[#313A49]/40 dark:hover:bg-[#313A49]/70 dark:font-normal dark:text-white dark:rounded-lg justify-center text-black items-center px-16 py-2.5 mt-5 bg-white rounded-[30px] max-md:px-5 font-semibold">
               Daftar Sekarang
             </a>
             @else
@@ -80,7 +80,7 @@
   
   <section class="flex gap-5 justify-between items-center mt-16 max-md:flex-wrap max-md:max-w-full">
     <p class="text-title font-semibold">Kelas Lainnya</p>
-    <a href="#" class="text-blue-700 whitespace-nowrap">
+    <a href="{{ route('tawarankelas') }}" class="text-blue-700 whitespace-nowrap">
       Selengkapnya
     </a>
   </section>

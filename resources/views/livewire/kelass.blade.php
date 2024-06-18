@@ -1,5 +1,5 @@
 <div>
-<div class="flex justify-between items-center mt-12">
+<div class="flex justify-between items-center">
     <p class="md:text-subtitle font-semibold">Kelas Saya</p>
     <a href="{{ route('kelas') }}" class="text-[#00e] dark:text-white">Selengkapnya</a>
 </div>
@@ -7,7 +7,7 @@
 <div class="sm:flex gap-6 mt-4 mb-3 md:mb-8">
     <!-- filter bds kelas aktif/tdk -->
     <div class="mb-3 md:mb-0">
-        <select wire:model="filterkelas" wire:change="filter_kelas" id="filterKelas" class="block appearance-none w-full sm:w-48 dark:bg-white/90 bg-white border border-greyBorder text-greyIcon px-4 py-2.5 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-greyIcon">
+        <select wire:model="filterkelas" wire:change="filter_kelas" id="filterKelas" class="block appearance-none w-full sm:w-48 dark:bg-[#374151]/40 dark:text-white dark:focus:bg-[#374151]/40 bg-white border border-greyBorder text-greyIcon px-4 py-2.5 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-greyIcon">
             <option value="Aktif" class="dark:dark-mode">Kelas Aktif</option>
             <option value="Tidak_aktif" class="dark:dark-mode   ">Kelas Tidak Aktif</option>
         </select>

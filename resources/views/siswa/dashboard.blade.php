@@ -76,7 +76,7 @@
                             <!-- perulangan pertemuan -->
                             @if (collect($groupedPertemuans)->isNotEmpty())
                                 @foreach ($groupedPertemuans as $pertemuan)
-                                    <div class="dropdown group mt-4" data-index="0">
+                                    <div class="dropdown group mt-4 mb-12" data-index="0">
                                         <div id="tabPertemuan-0"
                                             class="rounded-xl drop-shadow-regularShadow bg-white dark:dark:bg-[#374151]/40 p-4 px-8 flex justify-between items-center relative">
                                             <div>

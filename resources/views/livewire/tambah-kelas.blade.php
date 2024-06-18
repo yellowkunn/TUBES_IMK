@@ -78,8 +78,8 @@
 
                 <!-- dd more (edit & hapus) -->
                 <div>
-                    <button id="dd-more{{ $loop->index }}" class="text-end w-full"><i
-                            class="fa-solid fa-ellipsis-vertical text-lg"></i></button>
+                    <button id="dd-more{{ $loop->index }}" class="text-end w-full">
+                        <i class="fa-solid fa-ellipsis-vertical text-lg"></i></button>
 
                     <div id="dd-menu{{ $loop->index }}"
                         class="hidden grid grid-cols-1 divide-y bg-white mt-2 rounded-md drop-shadow-regularShadow absolute top-5 right-14 text-black">
