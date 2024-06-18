@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
+
 class PertemuanSeeder extends Seeder
 {
     /**
@@ -218,5 +219,6 @@ class PertemuanSeeder extends Seeder
             'dibuat' => now(),
         ],
     );
+
     }
 }

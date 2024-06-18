@@ -133,7 +133,7 @@ class UserSeeder extends Seeder
                 'remember_token' => Str::random(10),
                 'dibuat' => now(),
             ],
-        
+
             // user
             [
                 'username' => 'sintong',

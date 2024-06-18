@@ -89,6 +89,7 @@ Route::get('/tutorialpendaftaran', [SiswaController::class, 'tutorialpendaftaran
 Route::get('/formulirpendaftaran', [SiswaController::class, 'formulirpendaftaran'])->name('formulirpendaftaran');
 Route::post('/formulirpendaftaran', [SiswaController::class, 'kirimformulirpendaftaran']);
 Route::get('/pembayaran', [SiswaController::class, 'pembayaran'])->name('pembayaran');
+Route::get('/detailkelas/{kelas}', [SiswaController::class, 'detailkelas'])->name('detailkelas');
 require __DIR__.'/auth.php';
 
 Route::fallback(function () {
