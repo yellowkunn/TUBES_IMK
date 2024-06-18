@@ -12,6 +12,7 @@ use App\Models\Siswa;
 use App\Models\Pertemuan;
 use App\Models\Sertifikat;
 use App\Models\User;
+use App\Models\Rapor;
 
 class SiswaController extends Controller
 {
@@ -212,7 +213,7 @@ class SiswaController extends Controller
     public function rapor()
     {
         $user = Auth::user();
-        $siswas = Siswa::where('pengguna_id', $user->id_pengguna)->with('kelas')->get();
+        $siswas = Rapor::where('pengguna_id', $user->id_pengguna)->get();
         return view('siswa.detail_rapor', compact('siswas'));
     }
     public function sertifikat()

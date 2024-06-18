@@ -66,6 +66,7 @@ Route::middleware(['role:pengajar', 'auth', 'verified'])->group(function () {
     Route::get('/sertifikatpengajar', [PengajarController::class, 'sertifikatpengajar'])->name('sertifikatpengajar');
     Route::post('/kirimtambahpertemuan', [PengajarController::class, 'kirimtambahpertemuan']);
     Route::get('/detail_pertemuan/{pertemuan}', [PengajarController::class, 'detail_pertemuan'])->name('detail_pertemuan');
+    Route::post('/kirimrapor', [PengajarController::class, 'kirimrapor']);
 });
 
 //Siswa

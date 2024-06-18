@@ -12,6 +12,7 @@ use App\Models\Absensi;
 use App\Models\Pertemuan;
 use App\Models\Sertifikat;
 use Illuminate\Support\Facades\DB;
+use App\Models\Rapor;
 
 class PengajarController extends Controller
 {
@@ -119,9 +120,26 @@ class PengajarController extends Controller
         return view('pengajar.sertifikat', compact('sertifikats'));
     }
 
-    public function kirimtambahpertemuan(Request $request)
+    public function kirimrapor(Request $request)
     {
+        $validated = $request->validate([
+            'siswa_id' => 'required|exists:siswa,pengguna_id',
+            'jenisrapor' => 'required|in:raporBulanan,raporTengahSemester,raporSemester',
+            'pengetahuan' => 'required|numeric|min:0|max:100',
+            'keterampilan' => 'required|numeric|min:0|max:100',
+            'sikap' => 'required|numeric|min:0|max:100',
+            'catatan' => 'nullable|string'
+        ]);
 
+        Rapor::create([
+            'pengguna_id' => $validated['siswa_id'],
+            'jenis_rapor' => $validated['jenisrapor'],
+            'pengetahuan' => $validated['pengetahuan'],
+            'keterampilan' => $validated['keterampilan'],
+            'sikap' => $validated['sikap'],
+            'catatan' => $validated['catatan']
+        ]);
+        return redirect()->back()->with('success', 'Rapor berhasil dikirim');
     }
 
     // public function destroy(Request $request): RedirectResponse
