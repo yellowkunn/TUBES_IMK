@@ -31,7 +31,7 @@
                 @csrf
                 <button type="submit" class="w-full h-full flex items-center gap-2 py-2 px-4">
                 <i class="fa-solid fa-arrow-right-from-bracket fa-sm"></i>
-                <p>{{ __('logout') }}</p>
+                <p>{{ __('logout') }}</p>pe
                 </button>
             </form>
         </div>

@@ -43,14 +43,41 @@ class PengajarController extends Controller
         $user = Auth::user();
         $kelas_ajars = Pengajar::where('pengguna_id', $user->id_pengguna)
             ->with(['kelas' => function($query) {
-                $query->select('kelas.*')
+                $query->select(
+                        'kelas.id_kelas',
+                        'kelas.nama',
+                        'kelas.tingkat_kelas',
+                        'kelas.foto',
+                        'kelas.deskripsi',
+                        'kelas.harga',
+                        'kelas.fasilitas',
+                        'kelas.rentang',
+                        'kelas.jadwal_hari',
+                        'kelas.jam',
+                        'kelas.durasi',
+                        'kelas.dibuat',
+                        DB::raw('COUNT(siswa.id_siswa) as total_siswa')
+                    )
                     ->leftJoin('siswa', 'kelas.id_kelas', '=', 'siswa.kelas_id')
-                    ->selectRaw('kelas.*, COUNT(siswa.id_siswa) as total_siswa')
-                    ->groupBy('kelas.id_kelas');
+                    ->groupBy(
+                        'kelas.id_kelas',
+                        'kelas.nama',
+                        'kelas.tingkat_kelas',
+                        'kelas.foto',
+                        'kelas.deskripsi',
+                        'kelas.harga',
+                        'kelas.fasilitas',
+                        'kelas.rentang',
+                        'kelas.jadwal_hari',
+                        'kelas.jam',
+                        'kelas.durasi',
+                        'kelas.dibuat'
+                    );
             }])->get();
         
         return view('pengajar.kelas_ajar', compact('kelas_ajars'));
     }
+    
 
     public function detailkelaspengajar(Kelas $kelas)
     {
