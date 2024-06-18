@@ -70,7 +70,7 @@
 
                             <!-- baru diakses -->
                             @if($barudiakses)
-                            <div class="flex flex-col gap-4 my-5">
+                            <div class="flex flex-col gap-4 my-5 mb-12">
                                 <div class="bg-white p-5 px-8 rounded-lg shadow-meetCardShadow relative group">
                                     <div>
                                         <div class="bg-baseBlue h-1/3 group-hover:h-1/2 absolute top-10 group-hover:top-8 left-3 rounded-full transform -translate-x-1/2 duration-300 w-1"></div>
@@ -95,7 +95,7 @@
                             @endif
 
                             <!-- daftar kelas -->
-                            <div class="flex justify-between my-5 mt-12">
+                            <div class="flex justify-between mb-5">
                                 <p class="text-subtitle font-semibold">Kelas</p>
                                 <a href="" class="text-[#00e]">Selengkapnya</a>
                             </div>
