@@ -38,6 +38,7 @@ class KelasSeeder extends Seeder
                 'fasilitas' => 'Fasilitas kelas kedua',
                 'rentang' => '8 pertemuan',
                 'jadwal_hari' => 'senin,selasa,rabu',
+                'jam' => '10.00 - 12.30, 13.00 - 15.30',
                 'durasi' => '50 Menit',
                 'dibuat' => now(),
 

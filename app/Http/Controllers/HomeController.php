@@ -51,11 +51,11 @@ class HomeController extends Controller
                     $siswaa = Siswa::all();
                     $pengajarr = Pengajar::distinct()->pluck('id_pengajar');
                     $notif = Notification::join('users', 'notifications.pengguna_id', '=', 'users.id_pengguna')
-                    ->where('users.role', 'admin')
-                    ->select('notifications.*')  // Pilih kolom-kolom yang ingin diambil dari tabel notifications
-                    ->take(4)
-                    ->get();
-                                    return view('owner.dashboard', compact('kelasss', 'siswaStatus', 'kelass', 'siswaa', 'pengajarr', 'notif'));
+                        ->where('users.role', 'admin')
+                        ->select('notifications.*')  // Pilih kolom-kolom yang ingin diambil dari tabel notifications
+                        ->take(4)
+                        ->get();
+                    return view('owner.dashboard', compact('kelasss', 'siswaStatus', 'kelass', 'siswaa', 'pengajarr', 'notif'));
 
 
                 case 'pengajar':
@@ -69,18 +69,99 @@ class HomeController extends Controller
                         ->groupBy('kelas.id_kelas', 'kelas.nama', 'kelas.tingkat_kelas', 'kelas.foto', 'kelas.deskripsi', 'kelas.harga', 'kelas.fasilitas', 'kelas.rentang', 'kelas.jadwal_hari', 'kelas.jam', 'kelas.durasi', 'kelas.dibuat')
                         ->get();
 
-                    $pertemuan = Pertemuan::where('pengajar_id', $user->id_pengguna)->first();
-                    $today = Carbon::today()->toDateString();
-                    // Ambil pertemuan terdekat berdasarkan pengajar_id dan tgl_pertemuan
-                    $pertemuanSelanjutnya = Pertemuan::where('pengajar_id', $user->id_pengguna)
-                        ->where('tgl_pertemuan', '>=', $today)
-                        ->orderBy('tgl_pertemuan', 'asc')
-                        ->first();
+                    // Mapping nama hari dalam bahasa Indonesia ke angka
+                    $hariMapping = [
+                        'senin' => Carbon::MONDAY,
+                        'selasa' => Carbon::TUESDAY,
+                        'rabu' => Carbon::WEDNESDAY,
+                        'kamis' => Carbon::THURSDAY,
+                        'jumat' => Carbon::FRIDAY,
+                        'sabtu' => Carbon::SATURDAY,
+                        'minggu' => Carbon::SUNDAY,
+                    ];
+
+                    // Ambil pengajar berdasarkan user
+                    $pengajars = Pengajar::where('pengguna_id', $user->id_pengguna)->get();
+                    $kelas = [];
+
+                    if ($pengajars->isNotEmpty()) {
+                        $kelas_ids = [];
+
+                        foreach ($pengajars as $pengajar) {
+                            $kelas_ids[] = $pengajar->kelas_id;
+                        }
+
+                        // Ambil semua kelas dengan id_kelas yang ada
+                        $kelas = Kelas::whereIn('id_kelas', $kelas_ids)->get();
+
+                        $today = Carbon::today()->dayOfWeek; // Hari ini dalam format angka (0=Senin, 6=Minggu)
+
+                        // Filter kelas berdasarkan jadwal_hari yang sudah lewat dari hari ini
+                        $kelasYangLewat = [];
+
+                        foreach ($kelas as $kelasItem) {
+                            $jadwalHari = explode(',', $kelasItem->jadwal_hari);
+                            $jadwalHariNumbers = [];
+
+                            // Mengonversi nama hari ke angka
+                            foreach ($jadwalHari as $hari) {
+                                $hari = strtolower(trim($hari)); // Pastikan nama hari dalam format kecil dan strip spasi
+                                if (isset($hariMapping[$hari])) {
+                                    $jadwalHariNumbers[] = $hariMapping[$hari];
+                                }
+                            }
+
+                            // Cek jika ada hari dalam jadwal_hari yang sudah lewat dari hari ini
+                            foreach ($jadwalHariNumbers as $dayOfWeek) {
+                                if ($dayOfWeek >= $today) {
+                                    $kelasYangLewat[] = $kelasItem;
+                                    break; // Keluar dari loop jika sudah menemukan hari yang sesuai
+                                }
+                            }
+                        }
+
+                        // Jika ada kelas yang sudah lewat, urutkan berdasarkan jarak hari dengan hari ini
+                        if (!empty($kelasYangLewat)) {
+                            usort($kelasYangLewat, function ($a, $b) use ($today, $hariMapping) {
+                                $hariA = explode(',', $a->jadwal_hari);
+                                $hariB = explode(',', $b->jadwal_hari);
+                                $hariAClosest = null;
+                                $hariBClosest = null;
+
+                                foreach ($hariA as $hari) {
+                                    $hariNum = $hariMapping[strtolower(trim($hari))];
+                                    if ($hariNum >= $today) {
+                                        $hariAClosest = $hariNum;
+                                        break;
+                                    }
+                                }
+
+                                foreach ($hariB as $hari) {
+                                    $hariNum = $hariMapping[strtolower(trim($hari))];
+                                    if ($hariNum >= $today) {
+                                        $hariBClosest = $hariNum;
+                                        break;
+                                    }
+                                }
+
+                                // Hitung jarak hari dengan hari ini, ambil yang paling dekat
+                                $diffA = $hariAClosest !== null ? abs($hariAClosest - $today) : PHP_INT_MAX;
+                                $diffB = $hariBClosest !== null ? abs($hariBClosest - $today) : PHP_INT_MAX;
+
+                                return $diffA <=> $diffB;
+                            });
+
+                            // Ambil satu record yang paling dekat
+                            $kelasYangTerdekat = $kelasYangLewat[0];
+                        } else {
+                            $kelasYangTerdekat = null;
+                        }
+                    }
 
                     $barudiakses = BaruDiakses::where('pengguna_id', $user->id_pengguna)
                         ->orderBy('baru_diakses', 'desc')
                         ->first();
-                    return view('pengajar.dashboard', compact('kelasss', 'siswaStatus', 'pertemuan', 'barudiakses', 'pertemuanSelanjutnya'));
+                    return view('pengajar.dashboard', compact('kelasss', 'siswaStatus', 'barudiakses', 'kelasYangTerdekat'));
 
 
                 case 'siswa':
@@ -145,7 +226,105 @@ class HomeController extends Controller
                         if ($status == 'MenungguVerif') {
                             return view('beranda', compact('kelass', 'siswaStatus'));
                         } elseif ($status == 'Aktif' || $status == 'TidakAktif') {
-                            return view('siswa.dashboard', compact('siswa', 'siswas', 'barudiakses', 'groupedPertemuans'));
+
+
+
+
+
+
+
+
+
+
+                            // Mapping nama hari dalam bahasa Indonesia ke angka
+                    $hariMapping = [
+                        'senin' => Carbon::MONDAY,
+                        'selasa' => Carbon::TUESDAY,
+                        'rabu' => Carbon::WEDNESDAY,
+                        'kamis' => Carbon::THURSDAY,
+                        'jumat' => Carbon::FRIDAY,
+                        'sabtu' => Carbon::SATURDAY,
+                        'minggu' => Carbon::SUNDAY,
+                    ];
+
+                    // Ambil pengajar berdasarkan user
+                    $sw = Siswa::where('pengguna_id', $user->id_pengguna)->get();
+                    $kelas = [];
+
+                    if ($sw->isNotEmpty()) {
+                        $kelas_ids = [];
+
+                        foreach ($sw as $siswa) {
+                            $kelas_ids[] = $siswa->kelas_id;
+                        }
+
+                        // Ambil semua kelas dengan id_kelas yang ada
+                        $kelas = Kelas::whereIn('id_kelas', $kelas_ids)->get();
+
+                        $today = Carbon::today()->dayOfWeek; // Hari ini dalam format angka (0=Senin, 6=Minggu)
+
+                        // Filter kelas berdasarkan jadwal_hari yang sudah lewat dari hari ini
+                        $kelasYangLewat = [];
+
+                        foreach ($kelas as $kelasItem) {
+                            $jadwalHari = explode(',', $kelasItem->jadwal_hari);
+                            $jadwalHariNumbers = [];
+
+                            // Mengonversi nama hari ke angka
+                            foreach ($jadwalHari as $hari) {
+                                $hari = strtolower(trim($hari)); // Pastikan nama hari dalam format kecil dan strip spasi
+                                if (isset($hariMapping[$hari])) {
+                                    $jadwalHariNumbers[] = $hariMapping[$hari];
+                                }
+                            }
+
+                            // Cek jika ada hari dalam jadwal_hari yang sudah lewat dari hari ini
+                            foreach ($jadwalHariNumbers as $dayOfWeek) {
+                                if ($dayOfWeek >= $today) {
+                                    $kelasYangLewat[] = $kelasItem;
+                                    break; // Keluar dari loop jika sudah menemukan hari yang sesuai
+                                }
+                            }
+                        }
+
+                        // Jika ada kelas yang sudah lewat, urutkan berdasarkan jarak hari dengan hari ini
+                        if (!empty($kelasYangLewat)) {
+                            usort($kelasYangLewat, function ($a, $b) use ($today, $hariMapping) {
+                                $hariA = explode(',', $a->jadwal_hari);
+                                $hariB = explode(',', $b->jadwal_hari);
+                                $hariAClosest = null;
+                                $hariBClosest = null;
+
+                                foreach ($hariA as $hari) {
+                                    $hariNum = $hariMapping[strtolower(trim($hari))];
+                                    if ($hariNum >= $today) {
+                                        $hariAClosest = $hariNum;
+                                        break;
+                                    }
+                                }
+
+                                foreach ($hariB as $hari) {
+                                    $hariNum = $hariMapping[strtolower(trim($hari))];
+                                    if ($hariNum >= $today) {
+                                        $hariBClosest = $hariNum;
+                                        break;
+                                    }
+                                }
+
+                                // Hitung jarak hari dengan hari ini, ambil yang paling dekat
+                                $diffA = $hariAClosest !== null ? abs($hariAClosest - $today) : PHP_INT_MAX;
+                                $diffB = $hariBClosest !== null ? abs($hariBClosest - $today) : PHP_INT_MAX;
+
+                                return $diffA <=> $diffB;
+                            });
+
+                            // Ambil satu record yang paling dekat
+                            $kelasYangTerdekat = $kelasYangLewat[0];
+                        } else {
+                            $kelasYangTerdekat = null;
+                        }
+                    }
+                            return view('siswa.dashboard', compact('siswa', 'siswas', 'barudiakses', 'groupedPertemuans', 'kelasYangTerdekat'));
                         }
                     }
 

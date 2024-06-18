@@ -36,8 +36,24 @@
                     <div class="bg-baseDarkerGreen rounded-xl p-6 md:p-12 relative my-7 font-semibold text-white">
                         <div class="flex flex-col gap-2 text-start md:w-1/2">
                             <p class="text-subtitle">Hello {{ Auth::user()->username }}!</p>
-                            <p>Jangan lupa kelas kamu selanjutnya di hari Selasa pukul 10.00 ya!</p>
-                            {{-- {{ $pertemuanSelanjutnya->pertemuan_ke }} --}}
+                            @if (isset($kelasYangTerdekat))
+                            <p>
+                                Jangan lupakan
+                                @if ($kelasYangTerdekat->nama != null)
+                                    kelas {{ $kelasYangTerdekat->nama }}
+                                @else
+                                    pertemuan
+                                @endif
+                                di hari {{ explode(',', $kelasYangTerdekat->jadwal_hari ?? '-')[0] }}
+                                @if ($kelasYangTerdekat->jam != null)
+                                    pukul {{ $kelasYangTerdekat->jam }} ya!
+                                @else
+                                    ya!
+                                @endif
+                            </p>
+                        @else
+                            <p>Belum ada kelas terdekat yang terjadwal. Silakan cek kembali nanti!</p>
+                        @endif
                         </div>
                         <div class="absolute right-5 top-0 invisible md:visible">
                             <img src="{{asset('images/cartoon4dashboardUser.png')}}" alt="" width=220>
@@ -46,10 +62,11 @@
 
                     <div class="md:flex gap-14 mt-12">
                         <div class="md:w-2/3">
-                            <div class="flex justify-between">
-                                <p class="text-subtitle font-semibold">Baru diakses</p>
-                                <a href="" class="text-[#00e]">Selengkapnya</a>
+                            @if (collect($barudiakses)->isNotEmpty())
+                            <div class="flex justify-between items-center">
+                                <p class="md:text-subtitle font-semibold">Baru diakses</p>
                             </div>
+                            @endif
 
                             <!-- baru diakses -->
                             @if($barudiakses)
@@ -149,10 +166,10 @@
 
                             <!-- akhir dari daftar kelas -->
 
-                            <div class="flex justify-between my-5 mt-12">
+                            {{-- <div class="flex justify-between my-5 mt-12">
                                 <p class="text-subtitle font-semibold">Sertifikat terbaru</p>
                                 <a href="" class="text-[#00e]">Selengkapnya</a>
-                            </div>
+                            </div> --}}
                         </div>
 
                         <div class="md:w-1/3">
