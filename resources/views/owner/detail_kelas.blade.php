@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+@include('htmlhead')
 
 <head>
   <meta charset="UTF-8">
@@ -16,17 +15,29 @@
 </head>
 
 <body class="font-Inter text-regularContent">
-@include('components.navbar')
 
-  <div class="flex flex-col bg-white">
+
+  <div class="flex flex-col bg-white dark:dark-mode">
     <main class="flex flex-col self-center w-full px-8 sm:px-16 lg:px-20 my-4 md:my-12">
+      <div class="flex items-center gap-6 mb-12">
+          <a href="{{ route('home') }}"><i class="fa-solid fa-arrow-left rounded-full bg-white p-3 drop-shadow-regularShadow dark:bg-[#313A49]"></i></a>
+
+          <p class="font-semibold text-subtitle">Detail Kelas</p>
+      </div>
+      
       <section class="flex gap-5 justify-between px-0.5 max-md:flex-wrap max-md:max-w-full">
         <div class="flex flex-col self-start">
           <h2 class="text-title font-semibold">{{ $kelas->nama }}</h2>
-          <h3 class="mt-8 text-subtitle max-md:mt-10 font-semibold">Waktu</h3>
+
+          <p class="font-semibold text-[#E9940C] md:text-[18px] lg:text-[20px]">
+          Rp{{ number_format($kelas->harga, 0, ',', '.') }} <br><span
+              class="text-smallContent text-greyIcon font-normal">{{ $kelas->rentang }} / bulan</span></p>
+
+              
+          <h3 class="mt-4 md:mt-8 text-subtitle font-semibold">Waktu</h3>
 
           <div class="flex flex-col gap-3">
-              <div class="flex gap-2 justify-center items-center mt-4">
+              <div class="flex gap-2 items-center mt-4">
                   <span class="material-symbols-outlined">calendar_today</span>  
                   <p class="my-auto font-normal">
                       <span class="font-semibold">Jadwal :</span> {{ $kelas->jadwal_hari }}
@@ -41,34 +52,11 @@
           </div>
 
         </div>
-        
-        <div class="flex flex-col justify-center px-8 py-8 text-white bg-baseBlue rounded-xl max-md:px-5">
-          <div class="flex flex-col">
-            <p>Hanya</p>
-            <p class="mt-5 leading-6">
-              <span class="text-subtitle font-semibold">Rp{{ number_format($kelas->harga, 0, ',', '.') }}</span>
-              <br />
-              /{{ $kelas->rentang }}
-            </p>
-            @if (Route::has('login'))
-            @auth
-            <a href="{{ url('/formulirpendaftaran') }}" class="justify-center text-black items-center px-16 py-2.5 mt-5 bg-white rounded-[30px] max-md:px-5 font-semibold">
-              Daftar Sekarang
-            </a>
-            @else
-            <a href="{{ route('login') }}" class="justify-center text-black items-center px-16 py-2.5 mt-5 bg-white rounded-[30px] max-md:px-5 font-semibold">
-              Daftar Sekarang
-            </a>
-            @endauth
-            @endif
-
-          </div>
-        </div>
       </section>
 
       <h3 class="text-subtitle font-semibold max-w-3/4 mt-8 md:mt-4">Deskripsi</h3>
       <p class="mt-1.5  w-full md:w-3/4">
-       {{ $kelas->deskripsi }}
+      {{ $kelas->deskripsi }}
       </p>
 
       <h3 class="mt-8 text-subtitle font-semibold max-md:mt-10 max-md:max-w-full">Fasilitas</h3>
@@ -78,10 +66,47 @@
         <li>{{ $fasilitas }}</li>
         @endforeach
       </ul>
+      
     </main>
   </div>
 
   @include('components.footer')
+
+
+  <script src="{{asset('js/style.js')}}"></script>
+  <script>
+    tippy('#daftarSkrgTip', {
+    content: 'Daftar Kelas',
+    });
+
+ 
+    // price card detail tawaran kelas
+      function handleScroll() {
+        const daftarSkrg = document.getElementById('daftarSkrg');
+        const priceCard = document.getElementById('priceCard');
+        const scroll = window.scrollY;
+
+        if (window.innerWidth > 768) {
+          if (scroll > 280) {
+            daftarSkrg.classList.remove('hidden');
+          } else {
+            daftarSkrg.classList.add('hidden');
+            
+          }
+        } else {
+          if (scroll > 500) {
+            daftarSkrg.classList.remove('hidden');
+          } else {
+            daftarSkrg.classList.add('hidden');
+            
+          }
+        }
+      }
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll);
+  </script>
 </body>
 
 </html>

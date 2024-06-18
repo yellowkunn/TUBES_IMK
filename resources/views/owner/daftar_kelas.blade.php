@@ -75,42 +75,19 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const load = $('#skeleton');
-            const show = $('#hasilKelas');
+
+        // document.addEventListener("DOMContentLoaded", function() {
+        //     const load = $('#skeleton');
+        //     const show = $('#hasilKelas');
             
-            load.show();
-            show.hide();
+        //     load.show();
+        //     show.hide();
 
-            setTimeout(function() {
-                load.hide();
-                show.show();
-            }, 150);
-        });
-
-        const search = document.getElementId('search');
-
-        search.addEventListener("DOMContentLoaded", function() {
-            const load = $('#skeleton');
-            const show = $('#hasilKelas');
-            
-            load.show();
-            show.hide();
-
-            setTimeout(function() {
-                load.hide();
-                show.show();
-            }, 150);
-        });
-
-        function showPopupEditKelas(i) {
-            document.getElementById('popupEditKelas'+i).classList.toggle('hidden');
-        }
-
-        function showPopupHapusKelas(i) {
-            document.getElementById('popupHapusKelas'+i).classList.toggle('hidden');
-        }
-
+        //     setTimeout(function() {
+        //         load.hide();
+        //         show.show();
+        //     }, 150);
+        // });
         document.addEventListener('DOMContentLoaded', (event) => {
             function initializeDropdown(buttonId, menuId) {
                 const dropdownButton = document.getElementById(buttonId);
@@ -145,6 +122,29 @@
                 initializeDropdown(`dd-more${index}`, `dd-menu${index}`);
             });
         });
+
+        const search = document.getElementId('search');
+
+        search.addEventListener("DOMContentLoaded", function() {
+            const load = $('#skeleton');
+            const show = $('#hasilKelas');
+            
+            load.show();
+            show.hide();
+
+            setTimeout(function() {
+                load.hide();
+                show.show();
+            }, 150);
+        });
+
+        function showPopupEditKelas(i) {
+            document.getElementById('popupEditKelas'+i).classList.toggle('hidden');
+        }
+
+        function showPopupHapusKelas(i) {
+            document.getElementById('popupHapusKelas'+i).classList.toggle('hidden');
+        }
 
         
         //save data for unsubmitted form
