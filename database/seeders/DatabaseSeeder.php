@@ -26,6 +26,8 @@ class DatabaseSeeder extends Seeder
         $this -> call(Biodata_siswaSeeder::class);
         $this -> call(Biodata_PengajarSeeder::class);
         $this -> call(SiswaSeeder::class);
+        $this -> call(PertemuanSeeder::class);
+        
 
         User::factory(10)->create();
         Siswa::factory(10)->create();

@@ -29,4 +29,9 @@ class Pengajar extends Model
     {
         return $this->hasMany(Pertemuan::class, 'pengajar_id', 'id_pengajar');
     }
+
+    public function kalender_pendidikan()
+    {
+        return $this->belongsTo(Kalender_pendidikan::class, 'kalender_pendidikan_id', 'id_kalender_pendidikan');
+    }
 }

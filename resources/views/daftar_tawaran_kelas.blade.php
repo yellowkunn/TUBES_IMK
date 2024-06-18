@@ -26,7 +26,7 @@
         @foreach($kelas as $kelasItem)
           <article class="flex flex-col">
               <a href="{{ url('/detailkelas/' . $kelasItem->id_kelas) }}" class="flex flex-col justify-center">
-                  <div class="group transform transition-transform hover:scale-95 flex flex-col p-5 sm:p-7 w-full drop-shadow-regularShadow bg-white dark:bg-[#374151]/40 hover:drop-shadow-none rounded-xl">
+                  <div class="group transform transition-transform hover:scale-95 flex flex-col p-5 sm:p-7 w-full drop-shadow-regularShadow bg-white dark:bg-[#374151]/40 rounded-xl">
                       <div class="flex flex-col items-start text-neutral-700 dark:text-white">
                           <h4 class="font-semibold text-subtitle">{{ $kelasItem->nama }}</h4>
                           <!-- <p class="text-smallContent italic font-light">kurikulum nasional</p> -->
