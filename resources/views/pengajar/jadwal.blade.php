@@ -34,32 +34,7 @@
 
                 <p class="text-title font-semibold my-7">Jadwal</p>
 
-                <div class="flex flex-col gap-8">
-                <div class="md:flex justify-between">
-                    <button class="m-2 md:m-0 bg-white border-2 focus:bg-baseBlue/10 focus:font-semibold focus:text-baseBlue border-neutral-200 focus:border-baseBlue rounded-lg p-2 px-8 drop-shadow-regularShadow">Sen</button>
-                    <button class="m-2 md:m-0 bg-white border-2 focus:bg-baseBlue/10 focus:font-semibold focus:text-baseBlue border-neutral-200 focus:border-baseBlue rounded-lg p-2 px-8 drop-shadow-regularShadow">Sel</button>
-                    <button class="m-2 md:m-0 bg-white border-2 focus:bg-baseBlue/10 focus:font-semibold focus:text-baseBlue border-neutral-200 focus:border-baseBlue rounded-lg p-2 px-8 drop-shadow-regularShadow">Rab</button>
-                    <button class="m-2 md:m-0 bg-white border-2 focus:bg-baseBlue/10 focus:font-semibold focus:text-baseBlue border-neutral-200 focus:border-baseBlue rounded-lg p-2 px-8 drop-shadow-regularShadow">Kam</button>
-                    <button class="m-2 md:m-0 bg-white border-2 focus:bg-baseBlue/10 focus:font-semibold focus:text-baseBlue border-neutral-200 focus:border-baseBlue rounded-lg p-2 px-8 drop-shadow-regularShadow">Jum</button>
-                    <button class="m-2 md:m-0 bg-white border-2 focus:bg-baseBlue/10 focus:font-semibold focus:text-baseBlue border-neutral-200 focus:border-baseBlue rounded-lg p-2 px-8 drop-shadow-regularShadow">Sab</button>
-                </div>
-
-                    <div class="w-full p-5 px-8 flex justify-between bg-white drop-shadow-regularShadow rounded-lg">
-                        <p>14.30 - 13.20</p>
-                        <p>Mapel</p>
-                        <p>Ruang A1</p>
-                    </div>
-                    <div class="w-full p-5 px-8 flex justify-between bg-white drop-shadow-regularShadow rounded-lg">
-                        <p>14.30 - 13.20</p>
-                        <p>Mapel</p>
-                        <p>Ruang A1</p>
-                    </div>
-                    <div class="w-full p-5 px-8 flex justify-between bg-white drop-shadow-regularShadow rounded-lg">
-                        <p>14.30 - 13.20</p>
-                        <p>Mapel</p>
-                        <p>Ruang A1</p>
-                    </div>
-                </div>
+                    @livewire('jadwal')
                 
                 </div>
             </div>

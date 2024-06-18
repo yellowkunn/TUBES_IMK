@@ -24,7 +24,7 @@ class KelasSeeder extends Seeder
                 'harga' => 100000.00,
                 'fasilitas' => 'Fasilitas kelas pertama',
                 'rentang' => '8 pertemuan',
-                'jadwal_hari' => 'Senin, Selasa, Rabu',
+                'jadwal_hari' => 'senin,selasa,rabu',
                 'durasi' => '50 Menit',
                 'dibuat' => now(),
 
@@ -37,7 +37,7 @@ class KelasSeeder extends Seeder
                 'harga' => 150000.00,
                 'fasilitas' => 'Fasilitas kelas kedua',
                 'rentang' => '8 pertemuan',
-                'jadwal_hari' => 'Senin, Selasa, Rabu',
+                'jadwal_hari' => 'senin,selasa,rabu',
                 'durasi' => '50 Menit',
                 'dibuat' => now(),
 
@@ -50,7 +50,7 @@ class KelasSeeder extends Seeder
                 'harga' => 200000.00,
                 'fasilitas' => 'Fasilitas kelas ketiga',
                 'rentang' => '8 pertemuan',
-                'jadwal_hari' => 'Senin, Selasa, Rabu',
+                'jadwal_hari' => 'senin,selasa,rabu',
                 'durasi' => '50 Menit',
                 'dibuat' => now(),
 
@@ -63,7 +63,7 @@ class KelasSeeder extends Seeder
                 'harga' => 250000.00,
                 'fasilitas' => 'Fasilitas kelas keempat',
                 'rentang' => '8 pertemuan',
-                'jadwal_hari' => 'Senin, Selasa, Rabu',
+                'jadwal_hari' => 'senin,selasa,rabu',
                 'durasi' => '50 Menit',
                 'dibuat' => now(),
 
@@ -76,7 +76,7 @@ class KelasSeeder extends Seeder
                 'harga' => 300000.00,
                 'fasilitas' => 'Fasilitas kelas kelima',
                 'rentang' => '8 pertemuan',
-                'jadwal_hari' => 'Senin, Selasa, Rabu',
+                'jadwal_hari' => 'senin,selasa,rabu',
                 'durasi' => '50 Menit',
                 'dibuat' => now(),
 
